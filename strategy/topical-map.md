@@ -26,7 +26,17 @@ map without testing them against the Central Search Intent:
 - Pillars are numbered by identity and presented in **publication order**, so the
   numbering is not sequential down the page.
 
-Totals: **12 pillars, 149 pages.** Core = 55, Outer = 94.
+Totals: **17 pillars, 606 pages.** Core = 88, Outer = 518.
+
+Two pillars are large enough to live in their own files:
+
+- **Pillar 8** — destination coverage, 322 pages →
+  [`destination-taxonomy.md`](./destination-taxonomy.md)
+- **Pillars 12–17** — cross-cutting sub-entities, 130 pages →
+  [`sub-entity-pillars.md`](./sub-entity-pillars.md)
+
+The conservation angle is applied across all 606 pages under the rules in
+[`conservation-vector.md`](./conservation-vector.md).
 
 ---
 
@@ -264,7 +274,13 @@ undated impact report ages into a liability.
 ---
 
 ## Pillar 6 — Masai Mara ecosystem
-*Section: Outer · Phase 4*
+*Section: Outer · Phase 4 · **expands to 40 pages***
+
+The 14 pages below are the base. As the flagship (Tier A), the Mara also needs
+its own sub-entity layer — 5 gates, 9 sectors and features, 6 conservancies,
+enumerated in [`destination-taxonomy.md`](./destination-taxonomy.md) — bringing
+the pillar to 40. Every other cluster on the site is measured against this one,
+so it has to be the deepest.
 
 **Cross-domain caution:** masaimara.ke owns broad informational destination
 coverage. Every page here must carry an operator angle — first-hand observation,
@@ -316,52 +332,51 @@ to Pillar 1 or 3.
 ---
 
 ## Pillar 8 — Kenyan destination coverage
-*Section: Outer · Phase 6 · **38 pages***
+*Section: Outer · Phase 6 · **322 pages** → [`destination-taxonomy.md`](./destination-taxonomy.md)*
 
-**This pillar is what makes the head term reachable.** Eight destination pages
-do not make a Kenya safari authority; parity of treatment across the domain
-does. Every major park gets the same attribute set the Mara receives, so the
-domain is covered evenly rather than spiking on one sub-domain.
+**This pillar is what makes the head term reachable.** Six tiers, from the Mara
+flagship down to remote parks that will never convert but without which the
+domain is not covered:
 
-This is hierarchical expansion — every park is a genuine child of
+| Tier | Scope | Depth | Count | Pages |
+|---|---|---|---|---|
+| A | Masai Mara — flagship | Pillars 1, 2, 6 | 1 | *(P6 → 40)* |
+| B | Major parks | 16-page cluster | 7 | 112 |
+| C | Secondary parks and reserves | 8-page cluster | 14 | 112 |
+| D | Remote and specialist | 4-page cluster | 8 | 32 |
+| E | Coast — extension-framed | 6-page cluster | 5 | 30 |
+| F | Conservancies | 4-page cluster | 8 | 32 |
+| — | Structural hubs | — | 4 | 4 |
+
+Tier B: Amboseli · Tsavo East · Tsavo West · Samburu · Ol Pejeta · Lake Nakuru ·
+**Nairobi National Park**.
+
+All of it is hierarchical expansion — every destination is a genuine child of
 `/kenya-safari/` and a genuine sibling of the Mara cluster — so it deepens the
-site vector rather than widening it. Tented-camp framed throughout: each page
-states the accommodation class used, and each carries the conservation vector as
-a page-specific consequence.
+site vector rather than widening it. Full templates, per-park named sub-entities
+and the coast boundary are in the taxonomy file.
 
-### Structural pages
+---
 
-| URL | Page type | Schema | IG | Fresh |
-|---|---|---|---|---|
-| `/kenya-national-parks/` | Domain reference | `ItemList` | 4 | M |
-| `/kenya-safari-circuits/` | Routing hub | `ItemList` | 4,6 | M |
-| `/safari-and-beach-kenya/` | Extension — **one page only** | `TouristTrip` | 6 | M |
+## Pillars 12–17 — Cross-cutting sub-entities
+*Section: Outer · Phases 4–7 · **130 pages** → [`sub-entity-pillars.md`](./sub-entity-pillars.md)*
 
-`/safari-and-beach-kenya/` is a deliberate single-page exception. Do **not**
-expand it into a Diani/Watamu/Mombasa cluster — that is a different central
-entity and it *is* lateral expansion.
+The destination taxonomy covers the domain **by place**. These pillars cover the
+other axes searchers actually use, and they supply the site's richest internal
+linking substrate.
 
-### Per-park cluster template — 5 pages × 7 parks = 35
+| # | Pillar | Pages | Phase |
+|---|---|---|---|
+| 12 | Wildlife — species, events, behaviour | 48 | 5 |
+| 13 | Ecosystems and landscapes | 12 | 6 |
+| 14 | Activities and experiences | 16 | 5 |
+| 15 | Timing and seasonality | 22 | 4 |
+| 16 | Circuits and road routes | 14 | 6 |
+| 17 | Traveller segments | 18 | 7 |
 
-Apply identically to every park below. Consistency of structure is the point:
-it is what signals even coverage of the domain.
-
-| Slug pattern | Page type | Schema | IG | Fresh |
-|---|---|---|---|---|
-| `/{park}-safari/` | Cluster hub + product | `TouristTrip`,`Place` | 6 | H |
-| `/{park}-safari/cost/` | Commercial | `FAQPage` | 1,2 | **H** |
-| `/{park}-safari/best-time-to-visit/` | Planning | `FAQPage` | 4 | M |
-| `/{park}-safari/wildlife/` | Wildlife | — | 4 | L |
-| `/{park}-safari/where-to-stay/` | Accommodation ladder applied | `ItemList` | 1,3 | H |
-
-**Parks:** `amboseli` · `tsavo` (East and West as one cluster) · `lake-nakuru` ·
-`naivasha-hells-gate` · `samburu` · `ol-pejeta` · `aberdare-mount-kenya`
-
-The `/where-to-stay/` page in each cluster is the one that ties the pillar back
-to Core — it re-applies the Pillar 2 accommodation ladder to that park and
-routes to the relevant Kambu package. Without it this pillar is informational
-content with no monetization path, which is exactly the failure mode the
-phasing rules exist to prevent.
+Pillar 12 was the largest gap in the previous draft — wildlife is the sub-entity
+class most safari searches actually resolve to. Pillar 15 sits early because the
+month pages route strongly into packages.
 
 ---
 
@@ -406,17 +421,26 @@ established what kind of source it is.
 | 2 | 3, 4 | Core | 30 | All package + cost pages live and priced |
 | 3 | 5, 11 | Core | 24 | Fleet cluster complete; every conservation claim evidenced |
 | — | — | — | **88** | **Core complete. Only now start Outer.** |
-| 4 | 6 | Outer | 14 | — |
-| 5 | 7 | Outer | 14 | — |
-| 6 | 8 | Outer | 38 | Per-park template applied evenly — no partial clusters |
-| 7 | 9 | Outer | 5 | — |
-| 8 | 10 | Outer | 5 | — |
-| — | — | — | **76** | Domain coverage complete |
+| 4 | 6 (→40), 15 | Outer | 62 | Mara sub-entities complete; all 12 month pages substantively distinct |
+| 5 | 7, 12, 14 | Outer | 78 | — |
+| 6 | 8 (B, C, F), 13, 16 | Outer | 282 | Tier templates applied evenly — no partial clusters |
+| 7 | 8 (D, E), 9, 17 | Outer | 85 | — |
+| 8 | 10 | Outer | 11 | Coverage matrix run; remaining gaps recorded with reasons |
+| — | — | — | **518** | Domain coverage complete |
 
-**Phase 6 is the head-term phase.** It is also the largest and the least
-immediately rewarding, which is why it sits after every monetizing cluster is
-live. Do not part-build it: seven complete park clusters beat fourteen partial
-ones, because uneven coverage of a domain reads as an unfocused source.
+**Phase 6 is the head-term phase.** It is the largest and least immediately
+rewarding, which is why it sits after every monetizing cluster is live. Do not
+part-build it: seven complete Tier B clusters beat fourteen partial ones,
+because uneven coverage of a domain reads as an unfocused source.
+
+### Scope discipline
+
+606 pages is a multi-year programme, and the map is a **ceiling on scope, not a
+production quota**. 600 thin pages rank worse than 150 substantive ones and
+actively damage the site vector. Every page must clear the Core bar: it answers
+a real question, contains at least one fact not on page one of the results, names
+real places and numbers, and routes to a Kambu product or to a page that does.
+A page that cannot clear it is a section of its parent.
 
 Do not interleave. The most common failure mode in this framework is publishing
 attractive Outer content — migration guides, packing lists — before the Core
