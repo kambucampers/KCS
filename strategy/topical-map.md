@@ -23,7 +23,32 @@ map without testing them against the Central Search Intent:
   charter §7). Pages with no IG marker are structural or definitional.
 - **Freshness** — H = high volatility, review quarterly. M = annually. L = static.
 
-Totals: **9 pillars, 94 pages.** Core = 46, Outer = 48.
+- Pillars are numbered by identity and presented in **publication order**, so the
+  numbering is not sequential down the page.
+
+Totals: **12 pillars, 149 pages.** Core = 55, Outer = 94.
+
+---
+
+## Root — the contextual domain
+
+*Section: Core · Phase 1*
+
+`/kenya-safari/` is the **structural parent of the entire site** and the page
+that carries the commercial objective of ranking for the domain head term. It is
+not a package page and it does not sit inside Pillar 3.
+
+| URL | Page type | Schema | IG | Fresh |
+|---|---|---|---|---|
+| `/kenya-safari/` | **Root hub** | `ItemList`, `FAQPage` | 1,4 | H |
+
+It must do four things and nothing else: define the domain, route to all eleven
+pillars, state the Kambu contextual vector (affordable comfort, low footprint)
+in two sentences, and carry the decision framework a first-time visitor needs.
+
+**It will not rank early, and that is expected.** The head term is won by the
+aggregate coverage beneath it plus historical data — never by optimising the hub
+itself. Do not iterate on this page while Core pillars are incomplete.
 
 ---
 
@@ -43,7 +68,8 @@ Establishes source context before any commercial page is crawled. Ship first.
 | `/booking-and-payment/` | Transactional | — | — | M |
 | `/cancellation-policy/` | Trust | — | — | M |
 | `/travel-insurance/` | Trust | — | — | M |
-| `/responsible-tourism/` | Trust | — | 5 | L |
+
+Responsible-tourism content is **not** a single trust page here — it is Pillar 11.
 
 ---
 
@@ -119,7 +145,7 @@ and use a table.
 
 | URL | Page type | Schema | IG | Fresh |
 |---|---|---|---|---|
-| `/kenya-safari-packages/` | Hub | `ItemList` | — | H |
+| `/kenya-safari-packages/` | Hub (child of root) | `ItemList` | — | H |
 | `/masai-mara-lake-nakuru-safari/` | Product | `TouristTrip` | 6 | H |
 | `/masai-mara-naivasha-safari/` | Product | `TouristTrip` | 6 | H |
 | `/6-day-kenya-safari/` | Product | `TouristTrip` | 6 | H |
@@ -188,6 +214,55 @@ Update the road-condition section by date and show the date.
 
 ---
 
+## Pillar 11 — Conservation and impact
+*Section: Core · Phase 3*
+
+Core, not Outer. Conservation is part of the source context, so it has to be
+established as a property of the brand before the rest of the site references it.
+
+**Publication gate:** no page in this pillar ships without a named partner, a
+number, a date, a named project, or a photograph of the thing described. See
+`source-context.md` §5, the unsubstantiated-claim rule. A pillar of unsupported
+claims is worse than no pillar at all — legally, editorially and commercially.
+
+| URL | Page type | Schema | IG | Fresh |
+|---|---|---|---|---|
+| `/conservation/` | **Cluster hub / impact charter** | `AboutPage` | 7 | M |
+| `/conservation/wildlife/` | Evidence | — | 7 | H |
+| `/conservation/community/` | Evidence | — | 7 | H |
+| `/conservation/environment/` | Evidence | — | 7 | H |
+| `/conservation/why-tented-camps-have-a-lower-footprint/` | **Argument** | `FAQPage` | 3,7 | M |
+| `/conservation/shared-vehicles-and-wildlife-pressure/` | **Argument** | `FAQPage` | 4,7 | M |
+| `/conservation/where-your-money-goes/` | Transparency | `FAQPage` | 1,2,7 | **H** |
+| `/conservation/conservancy-fees-explained/` | Reference | — | 2,7 | **H** |
+| `/conservation/our-team-and-local-employment/` | Evidence | — | 7 | M |
+| `/conservation/local-sourcing-and-supply/` | Evidence | — | 7 | M |
+| `/conservation/water-power-and-waste-at-camp/` | Evidence | — | 3,7 | M |
+| `/conservation/responsible-safari-code/` | Guest conduct | `HowTo` | 7 | L |
+| `/conservation/impact-report/` | **Dated report** | `Report` | 7 | **H** |
+
+### The two argument pages carry the pillar
+
+`/conservation/why-tented-camps-have-a-lower-footprint/` and
+`/conservation/shared-vehicles-and-wildlife-pressure/` are the pages that convert
+the conservation vector into a *commercial* argument rather than a virtue claim.
+They connect directly to the accommodation ladder in Pillar 2 and the vehicle
+cluster in Pillar 5:
+
+- No concrete foundations, reversible siting, lower water demand, solar-viable
+  load — a tented camp is the low-impact rung of the ladder.
+- Fewer vehicles per guest lowers both emissions per guest and pressure at
+  sightings, vehicle crowding being a documented welfare problem in the Mara.
+
+`/conservation/where-your-money-goes/` is the highest-value page in the pillar
+because it fuses conservation with the cost-transparency cluster in Pillar 4.
+Nobody reselling product can write it.
+
+`/conservation/impact-report/` must be dated and republished annually. An
+undated impact report ages into a liability.
+
+---
+
 ## Pillar 6 — Masai Mara ecosystem
 *Section: Outer · Phase 4*
 
@@ -240,27 +315,53 @@ to Pillar 1 or 3.
 
 ---
 
-## Pillar 8 — Other Kenyan circuits
-*Section: Outer · Phase 6*
+## Pillar 8 — Kenyan destination coverage
+*Section: Outer · Phase 6 · **38 pages***
 
-Tented-camp framed only. These extend the central entity geographically; they do
-not introduce a new one. Each page must state the accommodation class used.
+**This pillar is what makes the head term reachable.** Eight destination pages
+do not make a Kenya safari authority; parity of treatment across the domain
+does. Every major park gets the same attribute set the Mara receives, so the
+domain is covered evenly rather than spiking on one sub-domain.
+
+This is hierarchical expansion — every park is a genuine child of
+`/kenya-safari/` and a genuine sibling of the Mara cluster — so it deepens the
+site vector rather than widening it. Tented-camp framed throughout: each page
+states the accommodation class used, and each carries the conservation vector as
+a page-specific consequence.
+
+### Structural pages
 
 | URL | Page type | Schema | IG | Fresh |
 |---|---|---|---|---|
-| `/kenya-safari-circuits/` | Hub | `ItemList` | — | M |
-| `/amboseli-safari/` | Destination product | `TouristTrip` | 6 | H |
-| `/tsavo-east-and-west-safari/` | Destination product | `TouristTrip` | 6 | H |
-| `/lake-nakuru-safari/` | Destination product | `TouristTrip` | 6 | H |
-| `/lake-naivasha-and-hells-gate/` | Destination product | `TouristTrip` | 6 | H |
-| `/samburu-safari/` | Destination product | `TouristTrip` | 6 | H |
-| `/ol-pejeta-conservancy/` | Destination product | `TouristTrip` | 6 | H |
-| `/aberdares-and-mount-kenya/` | Destination product | `TouristTrip` | 6 | M |
+| `/kenya-national-parks/` | Domain reference | `ItemList` | 4 | M |
+| `/kenya-safari-circuits/` | Routing hub | `ItemList` | 4,6 | M |
 | `/safari-and-beach-kenya/` | Extension — **one page only** | `TouristTrip` | 6 | M |
 
 `/safari-and-beach-kenya/` is a deliberate single-page exception. Do **not**
 expand it into a Diani/Watamu/Mombasa cluster — that is a different central
-entity and it will widen the site vector.
+entity and it *is* lateral expansion.
+
+### Per-park cluster template — 5 pages × 7 parks = 35
+
+Apply identically to every park below. Consistency of structure is the point:
+it is what signals even coverage of the domain.
+
+| Slug pattern | Page type | Schema | IG | Fresh |
+|---|---|---|---|---|
+| `/{park}-safari/` | Cluster hub + product | `TouristTrip`,`Place` | 6 | H |
+| `/{park}-safari/cost/` | Commercial | `FAQPage` | 1,2 | **H** |
+| `/{park}-safari/best-time-to-visit/` | Planning | `FAQPage` | 4 | M |
+| `/{park}-safari/wildlife/` | Wildlife | — | 4 | L |
+| `/{park}-safari/where-to-stay/` | Accommodation ladder applied | `ItemList` | 1,3 | H |
+
+**Parks:** `amboseli` · `tsavo` (East and West as one cluster) · `lake-nakuru` ·
+`naivasha-hells-gate` · `samburu` · `ol-pejeta` · `aberdare-mount-kenya`
+
+The `/where-to-stay/` page in each cluster is the one that ties the pillar back
+to Core — it re-applies the Pillar 2 accommodation ladder to that park and
+routes to the relevant Kambu package. Without it this pillar is informational
+content with no monetization path, which is exactly the failure mode the
+phasing rules exist to prevent.
 
 ---
 
@@ -301,15 +402,21 @@ established what kind of source it is.
 
 | Phase | Pillars | Section | Pages | Gate to proceed |
 |---|---|---|---|---|
-| 1 | 0, 1, 2 | Core | 34 | Entity home indexed; camp cluster complete |
+| 1 | Root, 0, 1, 2 | Core | 34 | Entity home indexed; camp cluster complete |
 | 2 | 3, 4 | Core | 30 | All package + cost pages live and priced |
-| 3 | 5 | Core | 11 | Fleet cluster complete |
-| — | — | — | — | **Core complete. Only now start Outer.** |
+| 3 | 5, 11 | Core | 24 | Fleet cluster complete; every conservation claim evidenced |
+| — | — | — | **88** | **Core complete. Only now start Outer.** |
 | 4 | 6 | Outer | 14 | — |
 | 5 | 7 | Outer | 14 | — |
-| 6 | 8 | Outer | 9 | — |
+| 6 | 8 | Outer | 38 | Per-park template applied evenly — no partial clusters |
 | 7 | 9 | Outer | 5 | — |
 | 8 | 10 | Outer | 5 | — |
+| — | — | — | **76** | Domain coverage complete |
+
+**Phase 6 is the head-term phase.** It is also the largest and the least
+immediately rewarding, which is why it sits after every monetizing cluster is
+live. Do not part-build it: seven complete park clusters beat fourteen partial
+ones, because uneven coverage of a domain reads as an unfocused source.
 
 Do not interleave. The most common failure mode in this framework is publishing
 attractive Outer content — migration guides, packing lists — before the Core

@@ -14,7 +14,8 @@ Framework: Koray Tuğberk Gübür's semantic SEO model —
 > **Kambu Campers is a Kenyan-registered tour operator that owns and operates a
 > permanent tented camp near Sekenani Gate and runs its own safari fleet —
 > selling comfortable, en-suite tented safaris priced between backpacker
-> camping and lodge safaris.**
+> camping and lodge safaris, on the lowest-footprint accommodation and
+> transport model available in Kenyan safari travel.**
 
 ### Identity
 
@@ -25,6 +26,10 @@ This distinction determines the entire map. An affiliate's map starts with
 operator reviews and bonus comparisons. A marketplace's starts with inventory
 and filters. Kambu's starts with **the tent and the vehicle, because Kambu owns
 both.**
+
+Owning both is also what makes the conservation position credible rather than
+decorative: an operator that owns its camp and its fleet can state — and be held
+to — its actual footprint. A reseller cannot.
 
 ### Monetization
 
@@ -100,11 +105,71 @@ Business Profile, and its own review corpus.
 
 ---
 
+## 2a. Contextual hierarchy
+
+The site targets **"Kenya safari"** as a commercial objective. That is a broader
+entity than the central entity, and it must be handled as a *parent*, not as a
+lateral expansion.
+
+| Layer | Value |
+|---|---|
+| **Contextual domain** | Kenya safari |
+| **Central entity** | Permanent tented camp safari |
+| **Contextual vector** | Affordable comfort + low conservation footprint |
+| **Dominant sub-domain** | Masai Mara |
+
+### The rule that keeps this safe
+
+**Hierarchical expansion is safe. Lateral expansion is not.**
+
+Moving *up* the tree from "Masai Mara tented camp safari" to "Kenya safari" is a
+parent–child relationship — the site vector stays coherent because every
+Kenyan park page is a genuine child of the domain and a genuine sibling of the
+Mara pages. Moving *sideways* into Zanzibar, Kilimanjaro or gorilla trekking
+introduces unrelated entities and widens the vector for no return.
+
+### How the head term is actually won
+
+`kenya safari` is not won by targeting it on one page. It is won by being the
+source that most completely and cheaply satisfies the whole domain — topical
+coverage plus historical data. Three requirements follow:
+
+1. `/kenya-safari/` becomes the **root hub** and the structural parent of every
+   pillar, not a page inside the packages cluster.
+2. Kenyan destination coverage must be **deep, not token**. A site with nine
+   destination pages is not a Kenya safari authority. Each major park needs its
+   own cluster with the same attribute set the Mara receives.
+3. Time. This is a multi-year objective, and it converts worse per session than
+   the long-tail commercial pages in Pillars 1–4. It is the byproduct of
+   completing the map, never the reason to skip ahead.
+
+### The conservation vector
+
+Conservation is a **contextual vector** — an angle applied consistently across
+the whole domain — not a topic bolted on beside it. It is legitimate here
+because it derives from the central entity rather than decorating it:
+
+- **Accommodation:** permanent tented camps have a materially lower footprint
+  than lodges — no concrete foundations, reversible siting, lower water demand,
+  solar-viable load, and no permanent alteration of the site.
+- **Transport:** shared vehicles mean fewer vehicles per guest, which lowers
+  both emissions per guest and pressure at sightings — vehicle crowding being a
+  documented welfare problem in the Mara.
+- **Price:** affordable, high-occupancy operation is what makes low-impact
+  travel accessible rather than a luxury add-on.
+
+This reinforces the accommodation ladder rather than competing with it: **rung 3
+is the low-impact rung.** That is the argument, and it is defensible on the
+facts.
+
+---
+
 ## 3. Central Search Intent
 
 > **Help a traveller who wants genuine comfort but not lodge prices to
 > understand, compare, price, and book a permanent-tented-camp safari —
-> primarily in the Masai Mara.**
+> primarily in the Masai Mara — from an operator whose footprint they can
+> verify.**
 
 This is the filter. Every candidate topic is tested against it. A topic with
 high search volume that does not advance *understanding, comparing, pricing, or
@@ -154,6 +219,33 @@ Never publish:
 - **any itinerary that does not begin in Kenya**
 - backpacker / bring-your-own-tent product as a primary offer (it may appear
   only as the lower rung in comparison content)
+
+### The unsubstantiated-claim rule
+
+**No conservation claim without a verifiable referent.** This is a hard
+publication gate, not a style preference.
+
+Every conservation statement on the site must carry at least one of: a named
+partner or conservancy, a number, a date, a named project, or a photograph of
+the thing described. Statements such as "we care about the environment", "we
+support local communities" or "eco-friendly safaris" — with nothing attached —
+are prohibited.
+
+Three reasons, in order of seriousness:
+
+1. **Regulatory.** Unsubstantiated environmental claims are actionable under the
+   UK CMA Green Claims Code and the EU's green-claims regime, and the ASA has
+   ruled against travel advertisers for exactly this. A large share of the
+   target audience is UK and EU.
+2. **Ranking.** Unsupported claims are the textbook E-E-A-T failure. They read
+   as boilerplate, add no information gain, and depress the perceived
+   trustworthiness of the pages carrying them.
+3. **Commercial.** Vague claims are unfalsifiable, so they persuade nobody. A
+   named conservancy lease payment persuades; "we care" does not.
+
+Also prohibited: carbon-neutral or offset claims without a named scheme and
+methodology; "eco-lodge" or "eco-camp" as a self-awarded label; comparative
+claims against unnamed competitors.
 
 ### The Tanzania rule
 
@@ -205,6 +297,11 @@ Every Core Section page should draw on at least one.
 5. **Named people and vehicles** — guides, the "Cheyat" campervan.
 6. **Internal booking data**: which months, durations and group sizes actually
    sell, and what guests ask before booking.
+7. **Verified conservation and community facts**: conservancy lease and bed-night
+   fees actually paid, staff numbers and roles by community, suppliers sourced
+   locally, water and power figures at camp, waste handled, named projects
+   supported with dates and amounts. These are unrepeatable by resellers and are
+   the only form in which the conservation vector may be expressed.
 
 ---
 
