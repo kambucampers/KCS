@@ -1,71 +1,84 @@
 # Kambu Campers — Topical Map
 
-Derived from [`source-context.md`](./source-context.md). Do not add pages to this
-map without testing them against the Central Search Intent:
+Derived from [`source-context.md`](./source-context.md). Conservation is applied
+across every page under [`conservation-vector.md`](./conservation-vector.md).
+
+Do not add pages without testing them against the Central Search Intent:
 
 > Help a traveller who wants genuine comfort but not lodge prices to understand,
 > compare, price, and book a permanent-tented-camp safari — primarily in the
-> Masai Mara.
+> Masai Mara — from an operator whose footprint they can verify.
 
 **Central entity:** the permanent tented camp safari.
-**Dominant contextual domain:** Masai Mara.
+**Contextual domain:** Kenya safari. **Dominant sub-domain:** Masai Mara.
+
+**Total: 250 pages. Core = 85, Outer = 165.**
+
+---
+
+## What the 250-page cap changes
+
+The map was drafted at 606 pages for full domain coverage. Capped at 250, the
+strategy has to change — not just shrink. Cutting 60% evenly would have produced
+thin coverage of everything, which is the worst available outcome: it widens the
+site vector without deepening any part of it.
+
+**The cut is therefore depth-preserving and breadth-sacrificing.**
+
+| Kept whole | Cut hard | Cut entirely |
+|---|---|---|
+| All Core pillars (85) | Destination coverage 322 → 62 | Tier D remote parks (32) |
+| Mara flagship depth | Wildlife 48 → 16 | Tier F conservancy clusters (32) |
+| Month-by-month timing | Traveller segments 18 → 6 | Coast clusters 30 → 2 |
+| Road-route information gain | Ecosystems 12 → 4 | Per-park 16-page template → 7 |
+
+### The honest consequence for "Kenya safari"
+
+**At 250 pages you will not win the head term.** SafariBookings, TourRadar and
+the established operators cover that domain at four figures. Chasing it at this
+scale means losing on both counts — too thin for the head term, too diffuse to
+own anything else.
+
+What 250 pages *can* win, and win properly:
+
+- `masai mara camping safari`, `budget masai mara safari`, `tented camp masai mara`
+- the accommodation-ladder cluster in full — nobody owns it
+- `masai mara safari cost` and the whole cost-transparency cluster
+- the Tier B park × cost × accommodation long tail
+- the road-route and operational queries nobody with real data competes for
+
+`/kenya-safari/` stays as the root hub because the hierarchy needs a parent and
+it consolidates the site. Treat ranking for it as a **year-three byproduct**, not
+a target. Revisit the cap before treating it as an objective.
 
 ---
 
 ## How to read this document
 
 - **Section** — Core carries monetization and defines source context. Outer
-  builds historical data and relevance, and routes authority back to Core.
+  builds historical data and routes authority back to Core.
 - **Phase** — publication order. **Complete every Core phase before starting
-  Outer.** An unfinished core alongside a sprawling outer section reads as an
-  unfocused source and depresses site focus.
-- **IG** — the information-gain asset the page must draw on (numbered per
-  charter §7). Pages with no IG marker are structural or definitional.
-- **Freshness** — H = high volatility, review quarterly. M = annually. L = static.
-
-- Pillars are numbered by identity and presented in **publication order**, so the
-  numbering is not sequential down the page.
-
-Totals: **17 pillars, 606 pages.** Core = 88, Outer = 518.
-
-Two pillars are large enough to live in their own files:
-
-- **Pillar 8** — destination coverage, 322 pages →
-  [`destination-taxonomy.md`](./destination-taxonomy.md)
-- **Pillars 12–17** — cross-cutting sub-entities, 130 pages →
-  [`sub-entity-pillars.md`](./sub-entity-pillars.md)
-
-The conservation angle is applied across all 606 pages under the rules in
-[`conservation-vector.md`](./conservation-vector.md).
+  Outer.**
+- **IG** — information-gain asset per `source-context.md` §7.
+- **Fresh** — H = review quarterly, M = annually, L = on change.
 
 ---
 
+# CORE — 85 pages
+
 ## Root — the contextual domain
-
-*Section: Core · Phase 1*
-
-`/kenya-safari/` is the **structural parent of the entire site** and the page
-that carries the commercial objective of ranking for the domain head term. It is
-not a package page and it does not sit inside Pillar 3.
+*Phase 1 · 1 page*
 
 | URL | Page type | Schema | IG | Fresh |
 |---|---|---|---|---|
 | `/kenya-safari/` | **Root hub** | `ItemList`, `FAQPage` | 1,4 | H |
 
-It must do four things and nothing else: define the domain, route to all eleven
-pillars, state the Kambu contextual vector (affordable comfort, low footprint)
-in two sentences, and carry the decision framework a first-time visitor needs.
-
-**It will not rank early, and that is expected.** The head term is won by the
-aggregate coverage beneath it plus historical data — never by optimising the hub
-itself. Do not iterate on this page while Core pillars are incomplete.
-
----
+Structural parent of every pillar. Defines the domain, routes to all pillars,
+states the contextual vector in two sentences. Do not iterate on it while Core
+is incomplete.
 
 ## Pillar 0 — Entity home and trust
-*Section: Core · Phase 1*
-
-Establishes source context before any commercial page is crawled. Ship first.
+*Phase 1 · 9 pages*
 
 | URL | Page type | Schema | IG | Fresh |
 |---|---|---|---|---|
@@ -79,337 +92,284 @@ Establishes source context before any commercial page is crawled. Ship first.
 | `/cancellation-policy/` | Trust | — | — | M |
 | `/travel-insurance/` | Trust | — | — | M |
 
-Responsible-tourism content is **not** a single trust page here — it is Pillar 11.
+## Pillar 1 — Kambu Mara Camp
+*Phase 1 · 12 pages*
 
----
+The most defensible cluster on the site. A distinct sub-entity, not a page
+section. **Never stock photography.**
 
-## Pillar 1 — Kambu Mara Camp (owned asset)
-*Section: Core · Phase 1*
+`/kambu-mara-camp/` (hub, `Campground`/`LodgingBusiness`) · `/tents/` ·
+`/rates/` · `/dining/` · `/facilities/` · `/location-and-directions/` ·
+`/gallery/` · `/families-and-groups/` · `/couples-and-honeymoon/` ·
+`/accessibility/` · `/wifi-and-power/` · `/a-day-at-camp/`
 
-The most defensible cluster on the site. Kambu Mara Camp is a distinct
-sub-entity — treat it as such. **Never use stock photography here.**
+## Pillar 2 — The accommodation ladder
+*Phase 1 · 12 pages*
 
-| URL | Page type | Schema | IG | Fresh |
-|---|---|---|---|---|
-| `/kambu-mara-camp/` | **Cluster hub** | `Campground`/`LodgingBusiness` | 1,3 | H |
-| `/kambu-mara-camp/tents/` | Product detail | `Accommodation` | 3 | M |
-| `/kambu-mara-camp/rates/` | Commercial | `Offer` | 1 | **H** |
-| `/kambu-mara-camp/dining/` | Attribute | — | 3 | M |
-| `/kambu-mara-camp/facilities/` | Attribute | `amenityFeature` | 3 | M |
-| `/kambu-mara-camp/location-and-directions/` | Operational | `Place`, `GeoCoordinates` | 4 | H |
-| `/kambu-mara-camp/gallery/` | Proof | `ImageObject` | 3 | M |
-| `/kambu-mara-camp/families-and-groups/` | Segment | — | 6 | M |
-| `/kambu-mara-camp/couples-and-honeymoon/` | Segment | — | 6 | M |
-| `/kambu-mara-camp/accessibility/` | Attribute | — | 3 | L |
-| `/kambu-mara-camp/wifi-and-power/` | Attribute | — | 3 | M |
-| `/kambu-mara-camp/a-day-at-camp/` | Experience | — | 4,6 | L |
+The comparison spine, and the biggest differentiator the site has. Rung 3 is the
+only rung that profits from the ladder being explained accurately.
 
-**Linking rule:** every page in Pillars 2 and 3 links to `/kambu-mara-camp/`
-within the first screen.
-
----
-
-## Pillar 2 — The accommodation ladder (the wedge)
-*Section: Core · Phase 1*
-
-The comparison spine. This pillar is where the source context is argued, and it
-is the single biggest differentiator the site has. Write it honestly — the
-comparison only works because it is accurate.
-
-| URL | Page type | Schema | IG | Fresh |
-|---|---|---|---|---|
-| `/safari-accommodation-kenya/` | **Definitional hub** | `FAQPage` | 1 | M |
-| `/what-is-a-permanent-tented-camp/` | Definitional | — | 3 | L |
-| `/glamping-safari-kenya/` | Alias surface | — | 1,3 | M |
-| `/tented-camp-vs-lodge/` | Comparison | `FAQPage` | 1 | M |
-| `/tented-camp-vs-budget-camping/` | Comparison | `FAQPage` | 1 | M |
-| `/mid-range-safari-kenya/` | Positioning | — | 1 | M |
-| `/en-suite-safari-tents/` | Attribute | — | 3 | L |
-| `/is-glamping-safe-in-the-masai-mara/` | Objection | `FAQPage` | 4,6 | L |
-| `/what-a-safari-tent-actually-looks-like/` | Proof | `ImageObject` | 3 | L |
-| `/glamping-vs-luxury-camp/` | Comparison | — | 1 | M |
-| `/best-tented-camps-masai-mara/` | Commercial comparison | `ItemList` | 1,4 | H |
-| `/safari-comfort-checklist/` | Decision tool | — | 6 | L |
-
----
+`/safari-accommodation-kenya/` (definitional hub) ·
+`/what-is-a-permanent-tented-camp/` · `/glamping-safari-kenya/` ·
+`/tented-camp-vs-lodge/` · `/tented-camp-vs-budget-camping/` ·
+`/mid-range-safari-kenya/` · `/en-suite-safari-tents/` ·
+`/is-glamping-safe-in-the-masai-mara/` · `/what-a-safari-tent-actually-looks-like/` ·
+`/glamping-vs-luxury-camp/` · `/best-tented-camps-masai-mara/` ·
+`/safari-comfort-checklist/`
 
 ## Pillar 3 — Safari packages
-*Section: Core · Phase 2*
+*Phase 2 · 18 pages*
 
-Primary monetization. One page per **genuinely distinct product**, never per
-keyword variant. If two durations produce the same itinerary logic, merge them
-and use a table.
+One page per **genuinely distinct product**, never per keyword variant.
 
-### Masai Mara core
+**Mara (6):** `/masai-mara-safari-packages/` (hub) · `/2-day-` · `/3-day-` ·
+`/4-day-` · `/5-day-masai-mara-safari/` · `/masai-mara-migration-safari/`
 
-| URL | Page type | Schema | IG | Fresh |
-|---|---|---|---|---|
-| `/masai-mara-safari-packages/` | **Cluster hub** | `ItemList` | 6 | H |
-| `/2-day-masai-mara-safari/` | Product (resident/weekend) | `TouristTrip`,`Offer` | 6 | H |
-| `/3-day-masai-mara-safari/` | Product | `TouristTrip`,`Offer` | 6 | H |
-| `/4-day-masai-mara-safari/` | Product | `TouristTrip`,`Offer` | 6 | H |
-| `/5-day-masai-mara-safari/` | Product | `TouristTrip`,`Offer` | 6 | H |
-| `/masai-mara-migration-safari/` | Seasonal product | `TouristTrip` | 4,6 | **H** |
+**Multi-park (6):** `/kenya-safari-packages/` (hub) ·
+`/masai-mara-lake-nakuru-safari/` · `/masai-mara-naivasha-safari/` ·
+`/amboseli-masai-mara-safari/` · `/7-day-kenya-safari/` · `/10-day-kenya-safari/`
 
-### Multi-park Kenya
+**Segments (6):** `/private-vs-group-joining-safari/` · `/solo-traveller-safari-kenya/` ·
+`/family-safari-kenya/` · `/honeymoon-safari-kenya/` · `/small-group-safari-kenya/` ·
+`/custom-safari-planning/`
 
-| URL | Page type | Schema | IG | Fresh |
-|---|---|---|---|---|
-| `/kenya-safari-packages/` | Hub (child of root) | `ItemList` | — | H |
-| `/masai-mara-lake-nakuru-safari/` | Product | `TouristTrip` | 6 | H |
-| `/masai-mara-naivasha-safari/` | Product | `TouristTrip` | 6 | H |
-| `/6-day-kenya-safari/` | Product | `TouristTrip` | 6 | H |
-| `/7-day-kenya-safari/` | Product | `TouristTrip` | 6 | H |
-| `/10-day-kenya-safari/` | Product | `TouristTrip` | 6 | H |
-| `/amboseli-masai-mara-safari/` | Product | `TouristTrip` | 6 | H |
-
-### Segment pages
-
-| URL | Page type | Schema | IG | Fresh |
-|---|---|---|---|---|
-| `/private-vs-group-joining-safari/` | Decision | `FAQPage` | 6 | M |
-| `/solo-traveller-safari-kenya/` | Segment | — | 6 | M |
-| `/family-safari-kenya/` | Segment | — | 6 | M |
-| `/honeymoon-safari-kenya/` | Segment | — | 6 | M |
-| `/photography-safari-kenya/` | Segment | — | 6 | M |
-| `/small-group-safari-kenya/` | Segment | — | 6 | M |
-| `/custom-safari-planning/` | Conversion | — | 6 | L |
-
----
+*Cut from 20: 6-day Kenya safari (merged into 7-day) and photography safari
+(now a Pillar 17 segment page).*
 
 ## Pillar 4 — Cost and pricing transparency
-*Section: Core · Phase 2*
+*Phase 2 · 10 pages*
 
-The highest information-gain cluster on the site. Kambu can publish real numbers
-because it owns the cost base. Competitors quoting resold product cannot.
+Highest-IG cluster on the site. Kambu can publish real numbers because it owns
+the cost base.
 
-| URL | Page type | Schema | IG | Fresh |
-|---|---|---|---|---|
-| `/masai-mara-safari-cost/` | **Cluster hub** | `FAQPage` | 1,2 | **H** |
-| `/kenya-safari-cost-per-day/` | Breakdown | — | 1,2 | **H** |
-| `/masai-mara-park-fees/` | Reference | — | 2 | **H** |
-| `/whats-included-in-a-safari-price/` | Transparency | `FAQPage` | 1 | M |
-| `/cheap-safari-vs-affordable-safari/` | Objection | — | 1,6 | M |
-| `/hidden-costs-on-safari/` | Trust | `FAQPage` | 1,6 | M |
-| `/single-supplement-explained/` | Detail | — | 1 | M |
-| `/tipping-on-safari-kenya/` | Practical | `FAQPage` | 4 | M |
-| `/low-season-vs-high-season-pricing/` | Commercial | — | 1 | H |
-| `/how-to-budget-for-a-kenya-safari/` | Planning tool | — | 1,6 | M |
-
----
+`/masai-mara-safari-cost/` (hub) · `/kenya-safari-cost-per-day/` ·
+`/masai-mara-park-fees/` · `/whats-included-in-a-safari-price/` ·
+`/cheap-safari-vs-affordable-safari/` · `/hidden-costs-on-safari/` ·
+`/single-supplement-explained/` · `/tipping-on-safari-kenya/` ·
+`/low-season-vs-high-season-pricing/` · `/how-to-budget-for-a-kenya-safari/`
 
 ## Pillar 5 — Vehicles, transport and self-drive
-*Section: Core · Phase 3*
+*Phase 3 · 11 pages*
 
-Second revenue line, second audience. Keep every page tied to the tented-camp
-central entity — vehicle hire is *how you reach the camp*, not a separate business.
+`/safari-vehicle-hire-kenya/` (hub) · `/4x4-land-cruiser-hire/` ·
+`/safari-minivan-vs-land-cruiser/` · `/campervan-hire-kenya/` ·
+`/self-drive-safari-kenya/` · `/camping-gear-hire/` ·
+**`/nairobi-to-masai-mara-road/`** · `/flying-vs-driving-to-masai-mara/` ·
+`/masai-mara-airstrips/` · `/jkia-airport-transfers/` ·
+`/driving-in-kenya-for-visitors/`
 
-| URL | Page type | Schema | IG | Fresh |
-|---|---|---|---|---|
-| `/safari-vehicle-hire-kenya/` | **Cluster hub** | `Service`,`Offer` | 1,5 | H |
-| `/4x4-land-cruiser-hire/` | Product | `Vehicle`,`Offer` | 3,5 | H |
-| `/safari-minivan-vs-land-cruiser/` | Decision | `FAQPage` | 4,5 | M |
-| `/campervan-hire-kenya/` | Product ("Cheyat") | `Vehicle`,`Offer` | 3,5 | H |
-| `/self-drive-safari-kenya/` | Segment | — | 4 | M |
-| `/camping-gear-hire/` | Product | `Offer` | 1,3 | M |
-| `/nairobi-to-masai-mara-road/` | **Operational** | `FAQPage` | **4** | **H** |
-| `/flying-vs-driving-to-masai-mara/` | Decision | `FAQPage` | 4 | H |
-| `/masai-mara-airstrips/` | Reference | `Place` | 4 | M |
-| `/jkia-airport-transfers/` | Service | `Service` | — | M |
-| `/driving-in-kenya-for-visitors/` | Practical | — | 4 | M |
-
-`/nairobi-to-masai-mara-road/` is the single strongest information-gain page on
-the site. Kambu drives that road weekly; almost nobody ranking for it does.
-Update the road-condition section by date and show the date.
-
----
+`/nairobi-to-masai-mara-road/` is the strongest single information-gain page on
+the site. Date-stamp the road-condition section and show the date.
 
 ## Pillar 11 — Conservation and impact
-*Section: Core · Phase 3*
+*Phase 3 · 12 pages*
 
-Core, not Outer. Conservation is part of the source context, so it has to be
-established as a property of the brand before the rest of the site references it.
+**Publication gate:** no page ships without a named partner, a number, a date, a
+named project, or a photograph. See `source-context.md` §5.
 
-**Publication gate:** no page in this pillar ships without a named partner, a
-number, a date, a named project, or a photograph of the thing described. See
-`source-context.md` §5, the unsubstantiated-claim rule. A pillar of unsupported
-claims is worse than no pillar at all — legally, editorially and commercially.
+`/conservation/` (hub) · `/wildlife/` · `/community/` · `/environment/` ·
+**`/why-tented-camps-have-a-lower-footprint/`** ·
+**`/shared-vehicles-and-wildlife-pressure/`** · **`/where-your-money-goes/`** ·
+`/conservancy-fees-explained/` · `/our-team-and-local-employment/` ·
+`/water-power-and-waste-at-camp/` · `/responsible-safari-code/` ·
+`/impact-report/`
 
-| URL | Page type | Schema | IG | Fresh |
-|---|---|---|---|---|
-| `/conservation/` | **Cluster hub / impact charter** | `AboutPage` | 7 | M |
-| `/conservation/wildlife/` | Evidence | — | 7 | H |
-| `/conservation/community/` | Evidence | — | 7 | H |
-| `/conservation/environment/` | Evidence | — | 7 | H |
-| `/conservation/why-tented-camps-have-a-lower-footprint/` | **Argument** | `FAQPage` | 3,7 | M |
-| `/conservation/shared-vehicles-and-wildlife-pressure/` | **Argument** | `FAQPage` | 4,7 | M |
-| `/conservation/where-your-money-goes/` | Transparency | `FAQPage` | 1,2,7 | **H** |
-| `/conservation/conservancy-fees-explained/` | Reference | — | 2,7 | **H** |
-| `/conservation/our-team-and-local-employment/` | Evidence | — | 7 | M |
-| `/conservation/local-sourcing-and-supply/` | Evidence | — | 7 | M |
-| `/conservation/water-power-and-waste-at-camp/` | Evidence | — | 3,7 | M |
-| `/conservation/responsible-safari-code/` | Guest conduct | `HowTo` | 7 | L |
-| `/conservation/impact-report/` | **Dated report** | `Report` | 7 | **H** |
+The three bold pages carry the pillar — they convert the conservation vector
+into a commercial argument rather than a virtue claim. `/where-your-money-goes/`
+fuses conservation with cost transparency; no reseller can write it.
 
-### The two argument pages carry the pillar
-
-`/conservation/why-tented-camps-have-a-lower-footprint/` and
-`/conservation/shared-vehicles-and-wildlife-pressure/` are the pages that convert
-the conservation vector into a *commercial* argument rather than a virtue claim.
-They connect directly to the accommodation ladder in Pillar 2 and the vehicle
-cluster in Pillar 5:
-
-- No concrete foundations, reversible siting, lower water demand, solar-viable
-  load — a tented camp is the low-impact rung of the ladder.
-- Fewer vehicles per guest lowers both emissions per guest and pressure at
-  sightings, vehicle crowding being a documented welfare problem in the Mara.
-
-`/conservation/where-your-money-goes/` is the highest-value page in the pillar
-because it fuses conservation with the cost-transparency cluster in Pillar 4.
-Nobody reselling product can write it.
-
-`/conservation/impact-report/` must be dated and republished annually. An
-undated impact report ages into a liability.
+*Cut from 13: local sourcing merged into `/community/`.*
 
 ---
 
-## Pillar 6 — Masai Mara ecosystem
-*Section: Outer · Phase 4 · **expands to 40 pages***
+# OUTER — 165 pages
 
-The 14 pages below are the base. As the flagship (Tier A), the Mara also needs
-its own sub-entity layer — 5 gates, 9 sectors and features, 6 conservancies,
-enumerated in [`destination-taxonomy.md`](./destination-taxonomy.md) — bringing
-the pillar to 40. Every other cluster on the site is measured against this one,
-so it has to be the deepest.
+## Pillar 6 — Masai Mara ecosystem and sub-entities
+*Phase 4 · 26 pages*
 
-**Cross-domain caution:** masaimara.ke owns broad informational destination
-coverage. Every page here must carry an operator angle — first-hand observation,
-operational consequence, or a booking decision — or it does not belong on this
-domain.
+The flagship. Every other cluster is measured against this one, so it stays the
+deepest thing on the site. Operator angle required on every page — masaimara.ke
+owns broad informational destination coverage.
 
-| URL | Page type | Schema | IG | Fresh |
-|---|---|---|---|---|
-| `/masai-mara/` | Hub (operator framing) | `Place` | 4 | M |
-| `/best-time-to-visit-masai-mara/` | Planning | `FAQPage` | 4,6 | M |
-| `/wildebeest-migration-timing/` | Planning | — | 4 | **H** |
-| `/masai-mara-gates/` | Operational | `Place` × n | 4 | H |
-| `/sekenani-gate/` | Operational | `Place` | 4 | H |
-| `/conservancies-vs-national-reserve/` | Decision | `FAQPage` | 4 | M |
-| `/masai-mara-weather-by-month/` | Planning | — | 4 | M |
-| `/big-five-in-the-masai-mara/` | Wildlife | — | 4 | L |
-| `/what-happens-on-a-game-drive/` | Experience | — | 4,6 | L |
-| `/night-game-drives-and-walking-safaris/` | Activity | — | 4 | M |
-| `/balloon-safari-masai-mara/` | **Upsell** | `Offer` | 1 | H |
-| `/maasai-village-visit/` | **Upsell** | `Offer` | 1 | M |
-| `/mara-river-crossings/` | Wildlife | — | 4 | H |
-| `/is-the-masai-mara-worth-it/` | Objection | `FAQPage` | 6 | L |
+**Base (14):** `/masai-mara/` · `/best-time-to-visit-masai-mara/` ·
+`/wildebeest-migration-timing/` · `/masai-mara-gates/` ·
+`/conservancies-vs-national-reserve/` · `/masai-mara-weather-by-month/` ·
+`/big-five-in-the-masai-mara/` · `/what-happens-on-a-game-drive/` ·
+`/night-game-drives-and-walking-safaris/` · `/balloon-safari-masai-mara/` ·
+`/maasai-village-visit/` · `/mara-river-crossings/` ·
+`/is-the-masai-mara-worth-it/` · `/masai-mara-map-and-sectors/`
 
----
+**Gates (5):** Sekenani · Talek · Oloololo · Musiara · Sand River
+
+**Features (4):** Mara Triangle · Musiara Marsh · Mara River · Oloololo Escarpment
+
+**Conservancies (3):** Mara North · Naboisho · Olare Motorogi
+
+Each gate page: where it is, what it accesses, which itineraries use it, drive
+time from Nairobi and from camp, current road condition.
+
+## Pillar 15 — Timing and seasonality
+*Phase 4 · 13 pages*
+
+`/best-time-for-a-kenya-safari/` (hub) + `/kenya-safari-in-{month}/` × 12.
+
+High intent, evergreen, routes strongly into packages — which is why it sits
+early. Each month page covers weather, wildlife, crowds, price, which parks are
+at their best, and what Kambu recommends booking.
+
+**These must differ substantively.** If January and February say the same thing,
+one of them should not exist. This is the cluster most likely to be produced as
+interchangeable filler.
 
 ## Pillar 7 — Preparation and practical
-*Section: Outer · Phase 5*
+*Phase 5 · 12 pages*
 
-Builds historical data and answers pre-booking anxiety. Every page routes back
-to Pillar 1 or 3.
+`/safari-planning-guide/` (hub) · `/what-to-pack-for-a-safari/` ·
+`/safari-clothing-and-colours/` · `/kenya-eta-and-entry-requirements/` ·
+`/vaccinations-and-malaria-kenya/` · `/safety-on-safari/` ·
+`/staying-connected-wifi-and-power/` · `/travelling-with-children-on-safari/` ·
+`/safari-photography-tips/` · `/money-and-payments-in-kenya/` ·
+`/what-to-expect-first-safari/` · `/laundry-showers-and-toilets-at-camp/`
 
-| URL | Page type | Schema | IG | Fresh |
-|---|---|---|---|---|
-| `/safari-planning-guide/` | **Cluster hub** | — | 6 | M |
-| `/what-to-pack-for-a-safari/` | Practical | `ItemList` | 6 | L |
-| `/safari-clothing-and-colours/` | Practical | — | 4 | L |
-| `/kenya-eta-and-entry-requirements/` | Reference | `FAQPage` | — | **H** |
-| `/vaccinations-and-malaria-kenya/` | Health | `FAQPage` | — | M |
-| `/safety-on-safari/` | Objection | `FAQPage` | 4,6 | M |
-| `/staying-connected-wifi-and-power/` | Practical | — | 3 | M |
-| `/dietary-requirements-on-safari/` | Practical | — | 6 | L |
-| `/travelling-with-children-on-safari/` | Segment | `FAQPage` | 6 | L |
-| `/safari-photography-tips/` | Practical | — | 4 | L |
-| `/money-and-payments-in-kenya/` | Practical | — | — | M |
-| `/what-to-expect-first-safari/` | Reassurance | — | 6 | L |
-| `/laundry-showers-and-toilets-at-camp/` | Objection | `FAQPage` | 3 | L |
-| `/electricity-and-charging-on-safari/` | Practical | — | 3 | L |
+## Pillar 12 — Wildlife
+*Phase 5 · 16 pages*
 
----
+The sub-entity class most safari searches resolve to. Cut from 48 by grouping
+rather than by dropping coverage — the northern specials and the smaller
+predators become grouped pages instead of one each.
+
+`/wildlife/` (hub) · lion · leopard · elephant · buffalo · rhino (black and
+white) · cheetah · giraffe · zebra · hippo · wild dog ·
+`/northern-kenya-special-five/` (Grevy's zebra, reticulated giraffe, gerenuk,
+beisa oryx, Somali ostrich) · `/wildebeest-migration/` · `/calving-season/` ·
+`/flamingos-and-rift-valley-birds/` · **`/northern-white-rhino-ol-pejeta/`**
+
+Species page template: what it is → where in Kenya, with named parks linked →
+**best park and best month to see it** → conservation status → how Kambu's
+itineraries reach it.
+
+The northern white rhino page keeps its own URL despite the cut. Two animals, a
+globally covered story, and you can drive guests to them — the strongest
+available bridge between wildlife content and the conservation vector.
 
 ## Pillar 8 — Kenyan destination coverage
-*Section: Outer · Phase 6 · **322 pages** → [`destination-taxonomy.md`](./destination-taxonomy.md)*
+*Phase 6 · 62 pages*
 
-**This pillar is what makes the head term reachable.** Six tiers, from the Mara
-flagship down to remote parks that will never convert but without which the
-domain is not covered:
+Cut from 322. Tier D (remote parks) and Tier F (conservancy clusters) are
+dropped entirely; the Tier B template drops from 16 pages to 7.
 
-| Tier | Scope | Depth | Count | Pages |
-|---|---|---|---|---|
-| A | Masai Mara — flagship | Pillars 1, 2, 6 | 1 | *(P6 → 40)* |
-| B | Major parks | 16-page cluster | 7 | 112 |
-| C | Secondary parks and reserves | 8-page cluster | 14 | 112 |
-| D | Remote and specialist | 4-page cluster | 8 | 32 |
-| E | Coast — extension-framed | 6-page cluster | 5 | 30 |
-| F | Conservancies | 4-page cluster | 8 | 32 |
-| — | Structural hubs | — | 4 | 4 |
+### Structural (2)
+`/kenya-national-parks/` · `/kenya-safari-circuits/`
 
-Tier B: Amboseli · Tsavo East · Tsavo West · Samburu · Ol Pejeta · Lake Nakuru ·
-**Nairobi National Park**.
+### Tier B — major parks: 7 × 7 = 49
 
-All of it is hierarchical expansion — every destination is a genuine child of
-`/kenya-safari/` and a genuine sibling of the Mara cluster — so it deepens the
-site vector rather than widening it. Full templates, per-park named sub-entities
-and the coast boundary are in the taxonomy file.
+**Amboseli · Tsavo East · Tsavo West · Lake Nakuru · Samburu · Ol Pejeta ·
+Nairobi National Park**
 
----
+Template: `/{park}/` · `/cost/` · `/best-time-to-visit/` · `/wildlife/` ·
+`/where-to-stay/` · `/getting-there/` · `/things-to-do/`
 
-## Pillars 12–17 — Cross-cutting sub-entities
-*Section: Outer · Phases 4–7 · **130 pages** → [`sub-entity-pillars.md`](./sub-entity-pillars.md)*
+Park fees fold into `/cost/`. Sectors and map fold into the hub. Tsavo East and
+West stay split — distinct wildlife, access and character.
 
-The destination taxonomy covers the domain **by place**. These pillars cover the
-other axes searchers actually use, and they supply the site's richest internal
-linking substrate.
+**Named sub-entities are mandatory** — they are what separates depth from
+enumeration:
 
-| # | Pillar | Pages | Phase |
-|---|---|---|---|
-| 12 | Wildlife — species, events, behaviour | 48 | 5 |
-| 13 | Ecosystems and landscapes | 12 | 6 |
-| 14 | Activities and experiences | 16 | 5 |
-| 15 | Timing and seasonality | 22 | 4 |
-| 16 | Circuits and road routes | 14 | 6 |
-| 17 | Traveller segments | 18 | 7 |
+- **Amboseli** — Observation Hill, Enkongo Narok and Longinye swamps, big
+  tuskers, Kilimanjaro views
+- **Tsavo East** — Aruba Dam, Mudanda Rock, Lugard Falls, Yatta Plateau, red
+  elephants
+- **Tsavo West** — Mzima Springs, Shetani lava flow, Ngulia Rhino Sanctuary
+- **Lake Nakuru** — Baboon Cliff, Makalia Falls, flamingo, Rothschild's giraffe,
+  both rhino species
+- **Samburu** — Ewaso Ng'iro River, Ololokwe, the Samburu Special Five
+- **Ol Pejeta** — northern white rhino enclosure, Sweetwaters chimpanzee
+  sanctuary, endangered species boma
+- **Nairobi NP** — Ivory Burning Site, Hippo Pools, Athi Basin, Nairobi Safari Walk
 
-Pillar 12 was the largest gap in the previous draft — wildlife is the sub-entity
-class most safari searches actually resolve to. Pillar 15 sits early because the
-month pages route strongly into packages.
+Nairobi NP earns Tier B on commercial grounds, not prestige: 20 minutes from
+base, genuine half-day product, high year-round demand.
 
----
+### Tier C — secondary destinations: 8 × 1 = 8
+
+One comprehensive page each. **Lake Naivasha · Hell's Gate · Aberdare ·
+Mount Kenya · Meru · Shimba Hills · Lake Bogoria · Buffalo Springs and Shaba**
+
+Promote any of these to a full cluster if it starts converting. Tier is a
+resourcing decision, not a permanent judgement.
+
+### Coast: 2
+
+`/safari-and-beach-kenya/` · `/diani-after-safari/`
+
+Deliberately reduced from a 30-page coast tier. Both pages are framed as **the
+second half of a safari**. Still prohibited: resort reviews, diving as a primary
+topic, "best beaches in Kenya" listicles. If a page would make sense on a site
+that sells no safaris, it does not belong here.
+
+### Conservancies: 1
+
+`/kenya-conservancies/` — a single page covering the model, the named
+conservancies, and why it costs what it costs. Links to
+`/conservation/conservancy-fees-explained/`.
+
+## Pillar 16 — Circuits and road routes
+*Phase 6 · 9 pages*
+
+**Circuits (3):** Southern · Rift Valley · Northern
+
+**Road routes (6):** Nairobi–Masai Mara · Nairobi–Amboseli · Nairobi–Tsavo ·
+Nairobi–Samburu · Nairobi–Nakuru · Nairobi–Ol Pejeta
+
+Road routes are pure information gain — real distances, real drive times, real
+current road condition, where to stop, where the fuel is. Kambu drives these;
+almost nobody ranking for them does. Protected from the cut for that reason.
+
+## Pillar 14 — Activities and experiences
+*Phase 6 · 8 pages*
+
+`/safari-activities/` (hub) · game drive · night game drive · walking safari ·
+balloon safari · cultural visit · rhino tracking · birding safari
+
+Each states which parks offer it, what it costs, whether Kambu operates or books
+it, and its honest footprint. Balloon safaris must not be sold as low-impact.
+
+## Pillar 13 — Ecosystems
+*Phase 6 · 4 pages*
+
+`/ecosystems/` (hub) · Great Rift Valley · Mara–Serengeti ecosystem ·
+Amboseli–Tsavo ecosystem
+
+Reduced to the three that carry structural weight. The Mara–Serengeti page is
+the *reason* Pillar 9 exists.
+
+## Pillar 17 — Traveller segments
+*Phase 7 · 6 pages*
+
+`/first-safari/` · `/over-60s-safari/` · `/accessible-safaris-kenya/` ·
+`/women-travelling-alone/` · `/photography-safari-kenya/` ·
+**`/kenyan-resident-rates/`**
+
+Commercial segment pages already live in Pillar 3 and are not duplicated here.
+`/kenyan-resident-rates/` is commercially underrated — resident rates are a real
+product and the query has almost no serious competition.
 
 ## Pillar 9 — Tanzania bridge
-*Section: Outer · Phase 7 · **HARD CAP: 5 pages***
+*Phase 7 · 5 pages · **HARD CAP***
 
-Admissible only because the Mara and Serengeti are one ecosystem and the
-migration crosses it. Every page must be framed as an **extension of a Kenyan
-itinerary**. If the itinerary does not start in Kenya, it does not get published.
+Admissible only because the Mara and Serengeti are one ecosystem. Every page is
+framed as an extension of a Kenyan itinerary. **If the itinerary does not start
+in Kenya, it does not get published.**
 
-| URL | Page type | Schema | IG | Fresh |
-|---|---|---|---|---|
-| `/masai-mara-serengeti-safari/` | **Bridge hub** | `TouristTrip` | 6 | H |
-| `/mara-vs-serengeti/` | Comparison | `FAQPage` | 4,6 | M |
-| `/isebania-border-crossing/` | Operational | `FAQPage` | 4 | **H** |
-| `/ngorongoro-crater-extension/` | Add-on product | `TouristTrip` | 6 | H |
-| `/tanzania-park-fees-and-costs/` | Reference | — | 2 | **H** |
-
----
+`/masai-mara-serengeti-safari/` (hub) · `/mara-vs-serengeti/` ·
+`/isebania-border-crossing/` · `/ngorongoro-crater-extension/` ·
+`/tanzania-park-fees-and-costs/`
 
 ## Pillar 10 — Decision and comparison
-*Section: Outer · Phase 8*
+*Phase 8 · 4 pages*
 
-Bottom-funnel. Publish last, once the Core is complete and the site has
-established what kind of source it is.
-
-| URL | Page type | Schema | IG | Fresh |
-|---|---|---|---|---|
-| `/kenya-vs-tanzania-safari/` | Comparison | `FAQPage` | 4 | M |
-| `/how-to-choose-a-safari-operator/` | Decision | `FAQPage` | 6 | M |
-| `/questions-to-ask-before-booking/` | Decision | `FAQPage` | 6 | L |
-| `/booking-direct-vs-through-an-agent/` | Positioning | — | 1,6 | M |
-| `/common-safari-booking-mistakes/` | Trust | — | 6 | M |
+`/kenya-vs-tanzania-safari/` · `/how-to-choose-a-safari-operator/` ·
+`/questions-to-ask-before-booking/` · `/booking-direct-vs-through-an-agent/`
 
 ---
 
@@ -418,72 +378,74 @@ established what kind of source it is.
 | Phase | Pillars | Section | Pages | Gate to proceed |
 |---|---|---|---|---|
 | 1 | Root, 0, 1, 2 | Core | 34 | Entity home indexed; camp cluster complete |
-| 2 | 3, 4 | Core | 30 | All package + cost pages live and priced |
-| 3 | 5, 11 | Core | 24 | Fleet cluster complete; every conservation claim evidenced |
-| — | — | — | **88** | **Core complete. Only now start Outer.** |
-| 4 | 6 (→40), 15 | Outer | 62 | Mara sub-entities complete; all 12 month pages substantively distinct |
-| 5 | 7, 12, 14 | Outer | 78 | — |
-| 6 | 8 (B, C, F), 13, 16 | Outer | 282 | Tier templates applied evenly — no partial clusters |
-| 7 | 8 (D, E), 9, 17 | Outer | 85 | — |
-| 8 | 10 | Outer | 11 | Coverage matrix run; remaining gaps recorded with reasons |
-| — | — | — | **518** | Domain coverage complete |
+| 2 | 3, 4 | Core | 28 | All package + cost pages live and priced |
+| 3 | 5, 11 | Core | 23 | Fleet complete; every conservation claim evidenced |
+| — | — | — | **85** | **Core complete. Only now start Outer.** |
+| 4 | 6, 15 | Outer | 39 | Mara sub-entities complete; 12 month pages distinct |
+| 5 | 7, 12 | Outer | 28 | — |
+| 6 | 8, 16, 14, 13 | Outer | 83 | Tier B templates applied evenly — no partial clusters |
+| 7 | 17, 9 | Outer | 11 | — |
+| 8 | 10 | Outer | 4 | Coverage reviewed; gaps recorded with reasons |
+| — | — | — | **165** | Map complete |
 
-**Phase 6 is the head-term phase.** It is the largest and least immediately
-rewarding, which is why it sits after every monetizing cluster is live. Do not
-part-build it: seven complete Tier B clusters beat fourteen partial ones,
-because uneven coverage of a domain reads as an unfocused source.
+Do not interleave. The commonest failure is publishing attractive Outer content —
+migration guides, packing lists — before Core exists, which trains the site
+vector on content the business cannot monetize.
 
-### Scope discipline
+---
 
-606 pages is a multi-year programme, and the map is a **ceiling on scope, not a
-production quota**. 600 thin pages rank worse than 150 substantive ones and
-actively damage the site vector. Every page must clear the Core bar: it answers
-a real question, contains at least one fact not on page one of the results, names
-real places and numbers, and routes to a Kambu product or to a page that does.
-A page that cannot clear it is a section of its parent.
+## Scope discipline
 
-Do not interleave. The most common failure mode in this framework is publishing
-attractive Outer content — migration guides, packing lists — before the Core
-exists, which trains the site vector on informational content the business
-cannot monetize.
+250 is a **ceiling, not a quota**. 250 thin pages rank worse than 120
+substantive ones. Every page must clear the Core bar:
+
+- answers a question the searcher actually has;
+- contains at least one fact not on page one of the current results;
+- names real places, real numbers, real months;
+- routes to a Kambu product or to a page that does.
+
+A page that cannot clear it is a section of its parent, not a page. **Ship 120
+excellent pages before ship 250 adequate ones** — the remaining 130 are a
+backlog to earn, not a target to hit.
 
 ---
 
 ## Internal linking rules
 
 1. Every Outer page links **up** to its Core parent within the first screen.
-2. Every Pillar 2 page links to `/kambu-mara-camp/` and to
-   `/masai-mara-safari-packages/`.
+2. Every Pillar 2 page links to `/kambu-mara-camp/` and `/masai-mara-safari-packages/`.
 3. Every package page links to the camp cluster, the relevant cost page, and at
-   least one comparison page in Pillar 2.
-4. Hubs link **down** to every child. Children link **across** only where the
-   comparison is genuinely useful to a reader.
-5. Anchor text uses the canonical entity term, not rotated synonyms.
-6. No reciprocal links to sibling domains for ranking purposes. Cross-domain
-   links only where they materially help the reader.
+   least one Pillar 2 comparison.
+4. Every `/{park}/where-to-stay/` re-applies the Pillar 2 ladder — this is what
+   keeps 62 destination pages tied to the central entity instead of floating free
+   as a travel encyclopaedia.
+5. Every wildlife page links to the named parks it mentions; every month page
+   links to the parks it recommends. The links exist because the relationships
+   are true.
+6. Hubs link down to every child. Anchor text uses the canonical entity term.
+7. No reciprocal links to sibling domains for ranking purposes.
 
 ---
 
 ## Volatility register
 
-Review on a fixed cadence and stamp the page with a visible review date:
-
-- **Quarterly (H):** all rates, park fees, migration timing, road condition,
-  border-crossing procedure, eTA requirements, `/reviews/`
+- **Quarterly (H):** all rates, park fees, migration timing, road conditions,
+  border procedure, eTA requirements, `/reviews/`, every conservation figure
 - **Annually (M):** itineraries, facilities, comparison tables, seasonality
-- **On change only (L):** definitional and experiential content
+- **On change (L):** definitional and experiential content
 
 ---
 
 ## Open items
 
-1. Validate against Search Console and Ahrefs once API units reset — the map is
-   derived from the business model, not from current rankings. Expect to merge
-   or split 5–10 pages after that check.
-2. Confirm the exact sibling-domain inventory and agree the topic split with
-   masaimara.ke before Phase 4 begins.
+1. Validate against Search Console and Ahrefs once API units reset. The map is
+   derived from the business model, not current rankings — expect to merge or
+   split 5–10 pages, and to re-tier at least one Tier C destination.
+2. Agree the topic split with masaimara.ke before Phase 4 begins.
 3. Confirm Kambu Mara Camp tent count, tent classes and current rack rates
    before Phase 1 ships.
-4. Decide whether campervan hire warrants its own subdomain or stays in Pillar 5.
-   Recommendation: keep it in Pillar 5 — it shares the audience and splitting it
-   would fragment the site vector.
+4. Fill the evidence register in `conservation-vector.md` before Phase 3.
+5. Revisit the 250 cap at the end of Phase 6. If Core is converting and Tier B
+   is ranking, the case for extending toward full domain coverage — and for
+   treating the head term as a real objective — can be made on data rather than
+   ambition.

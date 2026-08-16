@@ -128,20 +128,35 @@ Kenyan park page is a genuine child of the domain and a genuine sibling of the
 Mara pages. Moving *sideways* into Zanzibar, Kilimanjaro or gorilla trekking
 introduces unrelated entities and widens the vector for no return.
 
-### How the head term is actually won
+### How the head term is actually won — and why it is not the objective
 
 `kenya safari` is not won by targeting it on one page. It is won by being the
 source that most completely and cheaply satisfies the whole domain — topical
-coverage plus historical data. Three requirements follow:
+coverage plus historical data.
 
-1. `/kenya-safari/` becomes the **root hub** and the structural parent of every
-   pillar, not a page inside the packages cluster.
-2. Kenyan destination coverage must be **deep, not token**. A site with nine
-   destination pages is not a Kenya safari authority. Each major park needs its
-   own cluster with the same attribute set the Mara receives.
-3. Time. This is a multi-year objective, and it converts worse per session than
-   the long-tail commercial pages in Pillars 1–4. It is the byproduct of
-   completing the map, never the reason to skip ahead.
+**The map is capped at 250 pages, and at that scale the head term is not
+winnable.** SafariBookings, TourRadar and the established operators cover this
+domain at four figures. Chasing it at 250 pages loses on both counts: too thin
+for the head term, too diffuse to own anything else.
+
+The domain is therefore recorded as the **contextual parent that gives the site
+its hierarchy**, not as a ranking target:
+
+1. `/kenya-safari/` is the **root hub** and structural parent of every pillar —
+   it consolidates the site and gives every cluster a home.
+2. Destination coverage is **tiered rather than exhaustive**. Seven major parks
+   receive full clusters; eight secondary destinations receive one page each;
+   remote parks are excluded. See `topical-map.md` Pillar 8.
+3. Ranking for the head term is treated as a **year-three byproduct** of Core
+   converting and Tier B ranking — never as a reason to skip ahead.
+
+What 250 pages *can* own properly: the accommodation ladder in full, the
+cost-transparency cluster, `masai mara camping safari` and its variants, the
+Tier B park × cost × accommodation long tail, and the operational and road-route
+queries nobody with real data competes for.
+
+Revisit the cap at the end of Phase 6. If Core converts and Tier B ranks, the
+case for extending toward full domain coverage can be made on data.
 
 ### The conservation vector
 

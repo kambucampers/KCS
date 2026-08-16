@@ -1,6 +1,6 @@
 # The Conservation Vector — application rules
 
-How the conservation angle is applied across all 164 pages without becoming
+How the conservation angle is applied across all 250 pages without becoming
 duplicate content or an unsubstantiated-claims liability.
 
 Read with [`source-context.md`](./source-context.md) §2a and §5, and
@@ -15,7 +15,7 @@ Read with [`source-context.md`](./source-context.md) §2a and §5, and
 
 The instinct when applying an angle site-wide is to write one good paragraph
 about caring for wildlife and communities and drop it into a template. Do not do
-this. On a 164-page site that produces 164 near-identical sections, which:
+this. On a 250-page site that produces 250 near-identical sections, which:
 
 - adds zero information gain to any page;
 - creates a large boilerplate footprint that dilutes every page's main content;
@@ -58,7 +58,7 @@ Before a conservation sentence ships on any page, it must pass all four:
 | `/what-happens-on-a-game-drive/` | Sighting conduct — vehicle limits, distance kept, why the driver will refuse to push closer |
 | `/balloon-safari-masai-mara/` | Honest note on the footprint of the activity; do not sell it as low-impact |
 | `/what-to-pack-for-a-safari/` | Kenya's plastic-bag ban as a legal fact travellers must know, not as a virtue claim |
-| `/{park}-safari/where-to-stay/` | Which accommodation classes exist inside vs outside the park boundary and why it matters |
+| `/{park}/where-to-stay/` | Which accommodation classes exist inside vs outside the park boundary and why it matters |
 
 ---
 
