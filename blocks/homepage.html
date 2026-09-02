@@ -1,0 +1,1070 @@
+<!-- ============================================================================
+     KAMBU CAMPERS — HOMEPAGE
+     Gutenberg "Custom HTML" block. Astra child theme safe: everything is scoped
+     under .kambu-wrap and every class, id and CSS custom property is prefixed
+     kambu-. No external CSS or JS is required for the page to work.
+
+     PAGE META (set these in the SEO plugin, not here):
+       SEO title:        Kenya Safaris by Mara Tour Operator | Kambu Campers
+       Meta description: Plan private Kenya safaris with Kambu Campers, a Kenya-based
+                         Mara operator offering camping, road, fly-in and tailored
+                         safari options from Nairobi.
+       URL:              /
+
+     INTERACTION MODEL (one primary, three supporting, one nav aid)
+       Primary     — destination side-tabs selector (pure CSS, works without JS)
+       Supporting  — safari-style tabs, trip-length segmented control, FAQ accordion
+       Nav aid     — sticky section rail with scroll-spy and a persistent quote CTA
+       Fallbacks   — no JavaScript: tab strips hide and every panel stacks as prose;
+                     the FAQ uses native <details>, so it never depends on script.
+
+     BEFORE PUBLISHING
+       1. Replace the three .kambu-imgslot placeholders with original Kambu photographs.
+       2. Paste a Mapbox public token into KAMBU_MAPBOX_TOKEN, or leave the styled
+          destination legend in place — it is designed to stand on its own.
+       3. Set KAMBU_SITE in the JSON-LD to the live domain before go-live.
+       4. Verify every figure marked "indicative" against the current operations record.
+     ============================================================================ -->
+<div class="kambu-wrap">
+  <!-- Sets .kambu-js so the tab panels do not flash stacked before enhancement.
+       Without JavaScript the class is never added and every panel stays visible. -->
+  <script>document.documentElement.className += " kambu-js";</script>
+  <style>
+    .kambu-wrap {
+      /* ---- Lilac-breasted-roller palette (from the Kambu Campers logo) ---- */
+      --kambu-teal:        #17a2b8;   /* roller head — bright teal          */
+      --kambu-teal-deep:   #0d7d8f;   /* large teal fills                   */
+      --kambu-link:        #0a7385;   /* AA teal for links on paper         */
+      --kambu-magenta:     #c6549c;   /* KAMBU wordmark magenta             */
+      --kambu-magenta-ink: #a5327f;   /* AA magenta for text                */
+      --kambu-gold:        #e8a94e;   /* roller wing — CTAs and highlights  */
+      --kambu-gold-deep:   #c9862a;
+      --kambu-cobalt:      #2e39b0;   /* wing flash                         */
+      --kambu-navy:        #16204a;   /* tail — display headings            */
+      --kambu-clay:        #c8613c;
+      --kambu-heading:     var(--kambu-navy);
+
+      /* ---- Surfaces and ink ---- */
+      --kambu-base:   #f7f2e9;
+      --kambu-tint:   #f2ead9;
+      --kambu-paper:  #fffdf9;
+      --kambu-ink:    #2a2620;
+      --kambu-muted:  #5f574d;
+      --kambu-line:   rgba(22,32,74,.13);
+      --kambu-line-2: rgba(22,32,74,.07);
+
+      /* ---- Scale ---- */
+      --kambu-maxw: 1160px;
+      --kambu-s1: .5rem;  --kambu-s2: .9rem;  --kambu-s3: 1.4rem;
+      --kambu-s4: 2.1rem; --kambu-s5: 3rem;
+      --kambu-rad: 18px;  --kambu-rad-sm: 10px;
+      --kambu-sticky-top: 0px;   /* raise if the theme header is sticky */
+
+      --kambu-serif: "Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+      --kambu-sans:  system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+
+      color: var(--kambu-ink);
+      background: var(--kambu-base);
+      font-family: var(--kambu-sans);
+      line-height: 1.7;
+      font-size: 1.06rem;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    .kambu-wrap *, .kambu-wrap *::before, .kambu-wrap *::after { box-sizing: border-box; }
+
+    /* ---------- Typography ---------- */
+    .kambu-wrap h1, .kambu-wrap h2, .kambu-wrap h3 { font-family: var(--kambu-serif); color: var(--kambu-heading); line-height: 1.14; letter-spacing: -.012em; margin: 0 0 .5em; font-weight: 600; }
+    .kambu-wrap h4 { font-family: var(--kambu-sans); color: var(--kambu-heading); margin: 0 0 .4em; font-size: 1.05rem; letter-spacing: .01em; }
+    .kambu-wrap h1 { font-size: clamp(2.4rem, 6vw, 3.95rem); }
+    .kambu-wrap h2 { font-size: clamp(1.85rem, 4.4vw, 2.7rem); }
+    .kambu-wrap h3 { font-size: clamp(1.28rem, 2.9vw, 1.62rem); }
+    .kambu-wrap p  { margin: 0 0 1.05em; }
+    .kambu-wrap ul, .kambu-wrap ol { margin: 0 0 1.05em; padding-left: 1.3rem; }
+    .kambu-wrap li { margin: .4em 0; }
+    .kambu-wrap strong { color: var(--kambu-navy); }
+    .kambu-wrap a {
+      color: var(--kambu-link); font-weight: 600; text-decoration: none;
+      background-image: linear-gradient(var(--kambu-gold), var(--kambu-gold));
+      background-size: 100% 2px; background-position: 0 100%; background-repeat: no-repeat;
+      padding-bottom: 1px; transition: background-size .2s ease, color .2s ease;
+    }
+    .kambu-wrap a:hover { color: var(--kambu-navy); background-size: 100% 100%; background-image: linear-gradient(rgba(232,169,78,.32), rgba(232,169,78,.32)); }
+    .kambu-wrap a:focus-visible, .kambu-wrap button:focus-visible, .kambu-wrap summary:focus-visible { outline: 3px solid var(--kambu-cobalt); outline-offset: 2px; border-radius: 3px; }
+
+    /* ---------- Layout ---------- */
+    .kambu-section { max-width: var(--kambu-maxw); margin: 0 auto; padding: clamp(2.6rem, 7vw, 4.9rem) 1.35rem; }
+    .kambu-section--tint {
+      max-width: none;
+      background:
+        radial-gradient(1200px 420px at 100% 0, rgba(198,84,156,.07), transparent 60%),
+        radial-gradient(1000px 420px at 0 100%, rgba(23,162,184,.09), transparent 60%),
+        var(--kambu-tint);
+    }
+    .kambu-section--tint > .kambu-inner { max-width: var(--kambu-maxw); margin: 0 auto; padding: clamp(2.6rem, 7vw, 4.9rem) 1.35rem; }
+    .kambu-wrap section[id] { scroll-margin-top: calc(var(--kambu-sticky-top) + 4.5rem); }
+    .kambu-lead { font-size: 1.2rem; line-height: 1.62; color: #453f36; max-width: 68ch; }
+    .kambu-answer { font-size: 1.2rem; line-height: 1.6; max-width: 70ch; color: #34302a; border-left: 4px solid var(--kambu-gold); padding-left: 1.1rem; }
+    .kambu-note { font-size: .87rem; color: var(--kambu-muted); line-height: 1.55; }
+
+    .kambu-section > h2, .kambu-section--tint .kambu-inner > h2 { position: relative; padding-bottom: .55rem; }
+    .kambu-section > h2::after, .kambu-section--tint .kambu-inner > h2::after { content: ""; position: absolute; left: 0; bottom: 0; width: 3.4rem; height: 4px; border-radius: 4px; background: linear-gradient(90deg, var(--kambu-teal), var(--kambu-magenta)); }
+
+    .kambu-eyebrow { display: inline-flex; align-items: center; gap: .55rem; font-size: .76rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 700; color: var(--kambu-magenta-ink); margin: 0 0 .75rem; }
+    .kambu-eyebrow::before { content: ""; width: 1.6rem; height: 2px; background: var(--kambu-gold); }
+
+    .kambu-stripe { display: flex; height: 5px; width: 100%; }
+    .kambu-stripe > span { flex: 1; }
+    .kambu-stripe > span:nth-child(1) { background: var(--kambu-teal); }
+    .kambu-stripe > span:nth-child(2) { background: var(--kambu-magenta); }
+    .kambu-stripe > span:nth-child(3) { background: var(--kambu-gold); }
+    .kambu-stripe > span:nth-child(4) { background: var(--kambu-cobalt); }
+
+    /* ---------- Hero ---------- */
+    .kambu-hero {
+      position: relative; color: #fff; overflow: hidden;
+      background:
+        radial-gradient(900px 520px at 85% -10%, rgba(198,84,156,.5), transparent 62%),
+        radial-gradient(760px 520px at -5% 115%, rgba(46,57,176,.48), transparent 58%),
+        linear-gradient(135deg, #0b2a43 0%, #0b5566 46%, #0d7d8f 100%);
+      /* HERO PHOTO: layer an original Kambu image over the gradient, e.g.
+         background: linear-gradient(rgba(11,42,67,.74), rgba(13,125,143,.55)),
+                     url('/wp-content/uploads/kambu-hero.jpg') center/cover; */
+    }
+    .kambu-hero::after { /* faint contour texture */
+      content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .28;
+      background-image: repeating-linear-gradient(115deg, rgba(255,255,255,.055) 0 1px, transparent 1px 46px);
+    }
+    .kambu-hero .kambu-inner { position: relative; z-index: 1; max-width: var(--kambu-maxw); margin: 0 auto; padding: clamp(3.4rem, 9vw, 6.4rem) 1.35rem clamp(2.6rem, 6vw, 4rem); }
+    .kambu-hero .kambu-eyebrow { color: #ffe4bf; }
+    .kambu-hero h1 { color: #fff; max-width: 20ch; text-shadow: 0 2px 30px rgba(0,0,0,.24); }
+    .kambu-hero p { max-width: 62ch; font-size: 1.19rem; color: rgba(255,255,255,.95); }
+    .kambu-wrap .kambu-hero p a { color: #ffe9c8; background-image: linear-gradient(rgba(255,233,200,.6), rgba(255,233,200,.6)); }
+    .kambu-ctarow { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 1.7rem; }
+    .kambu-hero > .kambu-stripe { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; }
+
+    .kambu-facts { display: grid; gap: 1px; background: rgba(255,255,255,.22); border: 1px solid rgba(255,255,255,.22); border-radius: 14px; overflow: hidden; margin-top: clamp(2rem, 5vw, 2.9rem); }
+    @media (min-width: 700px) { .kambu-facts { grid-template-columns: repeat(4, 1fr); } }
+    .kambu-facts div { background: rgba(6,36,49,.42); padding: 1rem 1.15rem; backdrop-filter: blur(2px); }
+    .kambu-facts b { display: block; font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; color: #ffd9a6; margin-bottom: .3rem; }
+    .kambu-facts span { font-size: .95rem; line-height: 1.45; color: #fff; }
+
+    /* ---------- Buttons ---------- */
+    .kambu-wrap .kambu-cta, .kambu-wrap .kambu-cta--ghost, .kambu-wrap .kambu-cta--solid, .kambu-wrap .kambu-cta--sm {
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      min-height: 48px; padding: .8rem 1.6rem; border-radius: 999px;
+      font-family: var(--kambu-sans); font-weight: 700; text-decoration: none;
+      background-image: none; border: 0; cursor: pointer; font-size: 1rem;
+      transition: transform .15s ease, box-shadow .2s ease, background-color .2s ease;
+    }
+    .kambu-wrap .kambu-cta { background: var(--kambu-gold); color: #3a2708; box-shadow: 0 8px 22px rgba(232,169,78,.35); }
+    .kambu-wrap .kambu-cta:hover { transform: translateY(-2px); color: #3a2708; background: #f0b45f; box-shadow: 0 12px 30px rgba(232,169,78,.45); }
+    .kambu-wrap .kambu-cta--solid { background: var(--kambu-navy); color: #fff; }
+    .kambu-wrap .kambu-cta--solid:hover { transform: translateY(-2px); color: #fff; background: #0f1836; }
+    .kambu-wrap .kambu-cta--ghost { background: rgba(255,255,255,.1); color: #fff; border: 1.5px solid rgba(255,255,255,.62); }
+    .kambu-wrap .kambu-cta--ghost:hover { background: rgba(255,255,255,.2); color: #fff; }
+    .kambu-wrap .kambu-cta--sm { min-height: 40px; padding: .45rem 1.05rem; font-size: .88rem; background: var(--kambu-gold); color: #3a2708; }
+    .kambu-wrap .kambu-cta--sm:hover { color: #3a2708; background: #f0b45f; }
+
+    /* ---------- Sticky section rail ---------- */
+    .kambu-rail { position: sticky; top: var(--kambu-sticky-top); z-index: 30; background: rgba(255,253,249,.93); backdrop-filter: blur(10px); border-bottom: 1px solid var(--kambu-line); }
+    .kambu-rail .kambu-inner { max-width: var(--kambu-maxw); margin: 0 auto; padding: .5rem 1.35rem; display: flex; align-items: center; gap: 1rem; }
+    .kambu-raillinks { display: flex; gap: .15rem; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; flex: 1; }
+    .kambu-raillinks::-webkit-scrollbar { display: none; }
+    .kambu-raillinks a { flex: none; font-size: .84rem; font-weight: 600; color: var(--kambu-muted); padding: .55rem .7rem; border-radius: 999px; background-image: none; white-space: nowrap; border-bottom: 2px solid transparent; }
+    .kambu-raillinks a:hover { color: var(--kambu-navy); background: rgba(23,162,184,.08); }
+    .kambu-raillinks a[aria-current="true"] { color: var(--kambu-navy); border-bottom-color: var(--kambu-teal); }
+    .kambu-rail .kambu-cta--sm { flex: none; }
+    @media (max-width: 720px) { .kambu-rail .kambu-cta--sm { display: none; } }
+
+    /* ---------- Cards and grids ---------- */
+    .kambu-card { background: var(--kambu-paper); border: 1px solid var(--kambu-line); border-radius: var(--kambu-rad); padding: clamp(1.35rem, 4vw, 2rem); box-shadow: 0 14px 40px rgba(22,32,74,.07); transition: transform .18s ease, box-shadow .2s ease; }
+    .kambu-grid { display: grid; gap: 1.35rem; }
+    @media (min-width: 760px) { .kambu-grid--2 { grid-template-columns: 1fr 1fr; } .kambu-grid--3 { grid-template-columns: repeat(3, 1fr); } }
+    @media (hover: hover) { .kambu-card:hover { transform: translateY(-4px); box-shadow: 0 22px 52px rgba(22,32,74,.13); } }
+    .kambu-card--accent { position: relative; overflow: hidden; }
+    .kambu-card--accent::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: var(--kambu-ac, var(--kambu-teal)); }
+
+    /* ---------- Tables ---------- */
+    .kambu-tablewrap { overflow-x: auto; border-radius: 16px; box-shadow: 0 14px 40px rgba(22,32,74,.06); }
+    .kambu-table { width: 100%; border-collapse: collapse; background: var(--kambu-paper); min-width: 34rem; }
+    .kambu-table caption { text-align: left; font-family: var(--kambu-serif); font-size: 1.15rem; font-weight: 600; color: var(--kambu-navy); padding: 1rem 1.1rem .45rem; }
+    .kambu-table th, .kambu-table td { text-align: left; padding: .85rem 1.1rem; border-bottom: 1px solid var(--kambu-line-2); vertical-align: top; }
+    .kambu-table thead th { background: var(--kambu-navy); color: #fff; font-weight: 600; font-size: .95rem; }
+    .kambu-table tbody th { color: var(--kambu-navy); font-weight: 600; }
+    .kambu-table tbody tr:nth-child(even) td, .kambu-table tbody tr:nth-child(even) th { background: rgba(23,162,184,.045); }
+    .kambu-table tbody tr:last-child td, .kambu-table tbody tr:last-child th { border-bottom: 0; }
+    .kambu-table tr.kambu-row--us th, .kambu-table tr.kambu-row--us td { background: rgba(232,169,78,.18); box-shadow: inset 3px 0 0 var(--kambu-gold); }
+
+    /* ---------- Figures ---------- */
+    .kambu-figure { margin: 0; }
+    .kambu-figure img { max-width: 100%; height: auto; display: block; border-radius: 14px; }
+    .kambu-imgslot { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 240px; border-radius: 14px; color: #0d3a46; padding: 1.25rem; font-size: .85rem; font-weight: 600; background: linear-gradient(135deg, rgba(23,162,184,.16), rgba(198,84,156,.16) 60%, rgba(232,169,78,.18)); border: 1.5px dashed rgba(23,162,184,.5); }
+    .kambu-figure figcaption { font-size: .85rem; color: var(--kambu-muted); margin-top: .55rem; }
+
+    /* ---------- Callouts ---------- */
+    .kambu-callout { background: linear-gradient(135deg, rgba(232,169,78,.16), rgba(198,84,156,.08)); border: 1px solid rgba(232,169,78,.42); border-left: 5px solid var(--kambu-gold); border-radius: 14px; padding: 1.2rem 1.4rem; }
+    .kambu-formula { font-size: 1.1rem; font-family: var(--kambu-serif); color: var(--kambu-navy); line-height: 1.5; }
+
+    /* ---------- Horizontal tabs ---------- */
+    .kambu-tablist { display: flex; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; gap: .35rem; margin: 0 0 1.5rem; padding: .35rem; background: rgba(22,32,74,.06); border-radius: 999px; width: fit-content; max-width: 100%; }
+    .kambu-tablist::-webkit-scrollbar { display: none; }
+    .kambu-tab { flex: none; min-height: 44px; padding: .6rem 1.25rem; border: 0; background: transparent; color: var(--kambu-navy); font-family: var(--kambu-sans); font-weight: 600; border-radius: 999px; cursor: pointer; font-size: .98rem; white-space: nowrap; transition: background-color .2s ease, color .2s ease, box-shadow .2s ease; }
+    .kambu-tab:hover { background: rgba(255,255,255,.75); }
+    .kambu-tab[aria-selected="true"] { background: var(--kambu-teal-deep); color: #fff; box-shadow: 0 6px 16px rgba(13,125,143,.32); }
+    .kambu-tabs:not([data-enhanced]) .kambu-tablist { display: none; }
+    .kambu-js .kambu-tabs:not([data-enhanced]) .kambu-tablist { display: flex; }
+    .kambu-js .kambu-tabs:not([data-enhanced]) .kambu-panel ~ .kambu-panel { display: none; }
+    .kambu-tabs:not([data-enhanced]) .kambu-panel + .kambu-panel { border-top: 1px solid var(--kambu-line); padding-top: 1.4rem; margin-top: 1.4rem; }
+    .kambu-js .kambu-tabs .kambu-panel + .kambu-panel { border-top: 0; padding-top: 0; margin-top: 0; }
+    .kambu-tabs[data-enhanced] .kambu-panel[hidden] { display: none; }
+    .kambu-panel { animation: kambu-fade .28s ease; }
+    @keyframes kambu-fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+    /* ---------- Side tabs (pure CSS, no JavaScript) ---------- */
+    .kambu-vtabs { position: relative; display: grid; grid-template-columns: 290px minmax(0, 1fr); background: var(--kambu-paper); border: 1px solid var(--kambu-line); border-radius: 20px; overflow: hidden; box-shadow: 0 18px 48px rgba(22,32,74,.09); text-align: left; }
+    .kambu-vtabs input { position: absolute; top: 0; left: 0; opacity: 0; pointer-events: none; }
+    .kambu-vtablist { background: linear-gradient(180deg, #f7f0e3, #f1e8d6); border-right: 1px solid var(--kambu-line); padding: .9rem; display: flex; flex-direction: column; gap: 4px; }
+    .kambu-vtablist > b { font-size: .63rem; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--kambu-magenta-ink); padding: .5rem .85rem .7rem; }
+    .kambu-vtablab { display: flex; align-items: center; gap: 12px; padding: 13px 14px; font-size: .89rem; font-weight: 600; color: #4a4740; cursor: pointer; border-radius: var(--kambu-rad-sm); border-left: 3px solid transparent; transition: background-color .16s, color .16s, border-color .16s, box-shadow .16s; user-select: none; -webkit-user-select: none; }
+    .kambu-vtablab i { width: 9px; height: 9px; flex: none; border-radius: 2px; background: var(--kambu-vc, var(--kambu-teal)); }
+    .kambu-vtablab span { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .kambu-vtablab s { font-size: .69rem; font-weight: 500; text-transform: uppercase; letter-spacing: .09em; color: #6b645a; text-decoration: none; }
+    .kambu-vtablab:hover { background: #fff; color: var(--kambu-navy); }
+    #kambu-d1:checked ~ .kambu-vtablist label[for="kambu-d1"],
+    #kambu-d2:checked ~ .kambu-vtablist label[for="kambu-d2"],
+    #kambu-d3:checked ~ .kambu-vtablist label[for="kambu-d3"],
+    #kambu-d4:checked ~ .kambu-vtablist label[for="kambu-d4"],
+    #kambu-d5:checked ~ .kambu-vtablist label[for="kambu-d5"],
+    #kambu-d6:checked ~ .kambu-vtablist label[for="kambu-d6"] { background: #fff; color: var(--kambu-navy); border-left-color: var(--kambu-vc, var(--kambu-teal)); box-shadow: 0 4px 14px -9px rgba(22,32,74,.5); }
+    #kambu-d1:focus-visible ~ .kambu-vtablist label[for="kambu-d1"],
+    #kambu-d2:focus-visible ~ .kambu-vtablist label[for="kambu-d2"],
+    #kambu-d3:focus-visible ~ .kambu-vtablist label[for="kambu-d3"],
+    #kambu-d4:focus-visible ~ .kambu-vtablist label[for="kambu-d4"],
+    #kambu-d5:focus-visible ~ .kambu-vtablist label[for="kambu-d5"],
+    #kambu-d6:focus-visible ~ .kambu-vtablist label[for="kambu-d6"] { outline: 3px solid var(--kambu-cobalt); outline-offset: -3px; }
+    .kambu-vpanels { padding: clamp(1.4rem, 3.5vw, 2.3rem); min-width: 0; }
+    .kambu-vpanel { display: none; animation: kambu-fade .25s ease; }
+    #kambu-d1:checked ~ .kambu-vpanels .kambu-vpanel:nth-child(1),
+    #kambu-d2:checked ~ .kambu-vpanels .kambu-vpanel:nth-child(2),
+    #kambu-d3:checked ~ .kambu-vpanels .kambu-vpanel:nth-child(3),
+    #kambu-d4:checked ~ .kambu-vpanels .kambu-vpanel:nth-child(4),
+    #kambu-d5:checked ~ .kambu-vpanels .kambu-vpanel:nth-child(5),
+    #kambu-d6:checked ~ .kambu-vpanels .kambu-vpanel:nth-child(6) { display: block; }
+    .kambu-vpanel h3 { margin-top: 0; }
+    .kambu-vsplit { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(1.2rem, 3vw, 2rem); align-items: start; }
+    .kambu-vsplit p { font-size: .97rem; }
+    .kambu-spec ul { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--kambu-line); border: 1px solid var(--kambu-line); border-radius: var(--kambu-rad-sm); overflow: hidden; list-style: none; margin: 0 0 .7rem; padding: 0; }
+    .kambu-spec li { background: #fff; padding: 11px 13px; font-size: .8rem; line-height: 1.45; margin: 0; }
+    .kambu-spec li b { display: block; font-size: .61rem; font-weight: 700; letter-spacing: .17em; text-transform: uppercase; color: var(--kambu-magenta-ink); margin-bottom: 3px; }
+    @media (max-width: 1080px) {
+      .kambu-vtabs { grid-template-columns: 1fr; }
+      .kambu-vtablist { flex-direction: row; overflow-x: auto; gap: 6px; border-right: 0; border-bottom: 1px solid var(--kambu-line); scrollbar-width: none; -ms-overflow-style: none; }
+      .kambu-vtablist::-webkit-scrollbar { display: none; }
+      .kambu-vtablist > b { display: none; }
+      .kambu-vtablab { flex: none; white-space: nowrap; border-left: 0; border-bottom: 3px solid transparent; }
+      #kambu-d1:checked ~ .kambu-vtablist label[for="kambu-d1"],
+      #kambu-d2:checked ~ .kambu-vtablist label[for="kambu-d2"],
+      #kambu-d3:checked ~ .kambu-vtablist label[for="kambu-d3"],
+      #kambu-d4:checked ~ .kambu-vtablist label[for="kambu-d4"],
+      #kambu-d5:checked ~ .kambu-vtablist label[for="kambu-d5"],
+      #kambu-d6:checked ~ .kambu-vtablist label[for="kambu-d6"] { border-bottom-color: var(--kambu-vc, var(--kambu-teal)); }
+    }
+    @media (max-width: 900px) { .kambu-vsplit { grid-template-columns: 1fr; } }
+    @media (max-width: 560px) { .kambu-spec ul { grid-template-columns: 1fr; } }
+
+    /* ---------- Accordion (native details/summary) ---------- */
+    .kambu-acc-item { border: 1px solid var(--kambu-line); border-radius: 14px; margin: 0 0 .7rem; background: var(--kambu-paper); overflow: hidden; transition: box-shadow .2s ease; }
+    .kambu-acc-item[open] { box-shadow: 0 14px 34px rgba(22,32,74,.08); }
+    .kambu-acc-item > summary { list-style: none; cursor: pointer; min-height: 48px; padding: 1rem 1.2rem; color: var(--kambu-navy); font-family: var(--kambu-sans); font-weight: 700; font-size: 1.05rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .kambu-acc-item > summary::-webkit-details-marker { display: none; }
+    .kambu-acc-item > summary:hover { background: rgba(23,162,184,.05); }
+    .kambu-acc-icon { flex: 0 0 auto; width: 1.7rem; height: 1.7rem; border-radius: 50%; background: rgba(23,162,184,.14); color: var(--kambu-link); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; line-height: 1; transition: transform .2s ease, background-color .2s ease, color .2s ease; }
+    .kambu-acc-item[open] .kambu-acc-icon { transform: rotate(45deg); background: var(--kambu-teal-deep); color: #fff; }
+    .kambu-acc-body { padding: 0 1.2rem 1.2rem; }
+    .kambu-acc-body > :last-child { margin-bottom: 0; }
+
+    /* ---------- Steps ---------- */
+    .kambu-steps { list-style: none; counter-reset: kambu-step; padding: 0; display: grid; gap: 1.35rem; margin: 0; }
+    @media (min-width: 760px) { .kambu-steps { grid-template-columns: 1fr 1fr; } }
+    .kambu-step { counter-increment: kambu-step; position: relative; padding: 1.5rem 1.5rem 1.5rem 4.3rem; margin: 0; }
+    .kambu-step::before { content: counter(kambu-step); position: absolute; left: 1.35rem; top: 1.5rem; width: 2.4rem; height: 2.4rem; border-radius: 50%; background: linear-gradient(135deg, var(--kambu-teal), var(--kambu-cobalt)); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-family: var(--kambu-serif); }
+    .kambu-step h3 { font-size: 1.2rem; }
+    .kambu-step > :last-child { margin-bottom: 0; }
+
+    /* ---------- Link list ---------- */
+    .kambu-linklist { list-style: none; padding: 0; display: grid; gap: .75rem; margin: 0; }
+    @media (min-width: 640px) { .kambu-linklist { grid-template-columns: 1fr 1fr; } }
+    .kambu-linklist .kambu-card { padding: 1rem 1.25rem; margin: 0; }
+    .kambu-linklist a { background-image: none; padding-bottom: 0; }
+
+    /* ---------- Map ---------- */
+    .kambu-map { min-height: 380px; border-radius: var(--kambu-rad); overflow: hidden; border: 1px solid var(--kambu-line); box-shadow: 0 14px 40px rgba(22,32,74,.07); background: var(--kambu-paper); }
+    .kambu-legend { padding: 1.4rem 1.5rem; background: linear-gradient(135deg, rgba(23,162,184,.08), rgba(46,57,176,.06)); }
+    .kambu-legend ul { list-style: none; padding: 0; margin: .8rem 0 .6rem; display: grid; gap: .5rem; }
+    @media (min-width: 620px) { .kambu-legend ul { grid-template-columns: 1fr 1fr; } }
+    .kambu-legend li { display: flex; align-items: baseline; gap: .6rem; font-size: .92rem; margin: 0; }
+    .kambu-legend li i { width: 9px; height: 9px; border-radius: 50%; flex: none; background: var(--kambu-vc, var(--kambu-teal)); transform: translateY(-1px); }
+    .kambu-legend li em { font-style: normal; color: var(--kambu-muted); font-size: .85rem; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .kambu-wrap *, .kambu-wrap *::before, .kambu-wrap *::after { animation: none !important; transition: none !important; }
+      .kambu-card:hover, .kambu-cta:hover, .kambu-cta--solid:hover { transform: none; }
+      .kambu-wrap { scroll-behavior: auto; }
+    }
+  </style>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="kambu-hero">
+    <div class="kambu-inner">
+      <p class="kambu-eyebrow">Kenya-based Masai Mara tour operator</p>
+      <h1>Private Kenya safaris, run by the people who own the camp</h1>
+      <p>Kambu Campers is a Kenya-based Masai Mara tour operator planning private, camping, accommodation-based, road and selected fly-in safaris for international visitors. We route from Nairobi and from our own Mara base, run our own safari-configured vehicles with destination-based guides, and host guests at Kambu Mara Camp near Sekenani Gate. Choose a destination, a safari style, a trip length and a transport model below, then browse current packages or send your dates for a tailored quote.</p>
+      <div class="kambu-ctarow">
+        <a class="kambu-cta" href="/kenya-safaris/packages/">Browse Kenya safari packages</a>
+        <a class="kambu-cta--ghost" href="/contact/">Request a safari quote</a>
+      </div>
+
+      <div class="kambu-facts">
+        <div><b>Where we operate</b><span>Nairobi operations, Masai Mara home base</span></div>
+        <div><b>Where you sleep</b><span>Kambu Mara Camp, approx. 8&nbsp;km from Sekenani Gate</span></div>
+        <div><b>What you travel in</b><span>Safari-configured 4×4 Toyota Land Cruisers</span></div>
+        <div><b>How trips are built</b><span>Private and tailored; compatible shared departures</span></div>
+      </div>
+    </div>
+    <div class="kambu-stripe" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+  </section>
+
+  <!-- ==================== STICKY SECTION RAIL ==================== -->
+  <nav class="kambu-rail" aria-label="Sections of this page">
+    <div class="kambu-inner">
+      <div class="kambu-raillinks" id="kambu-raillinks">
+        <a href="#kambu-styles">Safari styles</a>
+        <a href="#kambu-destinations">Destinations</a>
+        <a href="#kambu-mara">Masai Mara</a>
+        <a href="#kambu-length">Trip length</a>
+        <a href="#kambu-vehicles">Vehicles</a>
+        <a href="#kambu-cost">Cost</a>
+        <a href="#kambu-why">Why Kambu</a>
+        <a href="#kambu-plan">How it works</a>
+        <a href="#kambu-faq">FAQs</a>
+      </div>
+      <a class="kambu-cta--sm" href="/contact/">Request a quote</a>
+    </div>
+  </nav>
+
+  <!-- ==================== AT A GLANCE ==================== -->
+  <section class="kambu-section">
+    <div class="kambu-tablewrap">
+      <table class="kambu-table">
+        <caption>At a glance</caption>
+        <thead><tr><th scope="col">&nbsp;</th><th scope="col">What Kambu Campers provides</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Core role</th><td>Kenya-based safari operator and route planner</td></tr>
+          <tr><th scope="row">Main destination</th><td>Masai Mara, and the wider Kenya safari circuit</td></tr>
+          <tr><th scope="row">Safari styles</th><td>Private, customised, camping, accommodation-based and compatible shared options</td></tr>
+          <tr><th scope="row">Transport</th><td>Road safaris and selected fly-in arrangements</td></tr>
+          <tr><th scope="row">Operating context</th><td>Nairobi operations, own safari vehicles, destination-based guides and Kambu Mara Camp</td></tr>
+          <tr><th scope="row">Next step</th><td><a href="/kenya-safaris/destinations/">Compare destinations</a>, <a href="/kenya-safaris/packages/">browse packages</a> or <a href="/contact/">request a quote</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ==================== SAFARI STYLES — horizontal tabs ==================== -->
+  <section class="kambu-section" id="kambu-styles">
+    <p class="kambu-eyebrow">Step one</p>
+    <h2>Plan a Kenya safari around the way you want to travel</h2>
+    <p class="kambu-answer">Kambu plans four safari styles: <strong>private</strong> (your own vehicle and guide), <strong>camping</strong> (campsite or permanent tented camp), <strong>shared small-group</strong> (fixed departures, lower cost per traveller) and <strong>road or fly-in</strong> (how you reach the park). The right one depends on how much control, comfort, flexibility and privacy you want — and on what is actually available for your dates.</p>
+
+    <div class="kambu-tabs" data-kambu-tabs>
+      <div class="kambu-tablist" role="tablist" aria-label="Safari styles">
+        <button class="kambu-tab" type="button" role="tab" aria-selected="true"  aria-controls="kambu-style-private" id="kambu-styletab-private">Private</button>
+        <button class="kambu-tab" type="button" role="tab" aria-selected="false" aria-controls="kambu-style-camping" id="kambu-styletab-camping">Camping</button>
+        <button class="kambu-tab" type="button" role="tab" aria-selected="false" aria-controls="kambu-style-shared"  id="kambu-styletab-shared">Shared &amp; small-group</button>
+        <button class="kambu-tab" type="button" role="tab" aria-selected="false" aria-controls="kambu-style-road"    id="kambu-styletab-road">Road &amp; fly-in</button>
+      </div>
+
+      <div class="kambu-panel" role="tabpanel" tabindex="0" id="kambu-style-private" aria-labelledby="kambu-styletab-private">
+        <h3>Private Kenya safaris</h3>
+        <p>A private safari gives your party its own vehicle and guide arrangement, subject to availability and confirmation. That control shows up in the details that matter on a game drive: when you leave camp, how long you stay at a sighting, which loop you drive next, and whether the day is paced for photography or for covering ground.</p>
+        <p>It suits couples, families, photographers and small groups with specific interests. It also costs more per traveller than shared travel, because one vehicle and one guide are paid for by fewer people — which is why group size changes a private quote more than almost any other variable.</p>
+        <p>Explore <a href="/kenya-safaris/private/">private Kenya safaris</a>, or compare currently available <a href="/kenya-safaris/packages/">Kenya safari packages</a>.</p>
+      </div>
+
+      <div class="kambu-panel" role="tabpanel" tabindex="0" id="kambu-style-camping" aria-labelledby="kambu-styletab-camping">
+        <h3>Kenya camping safaris</h3>
+        <p>Camping is a style with its own equipment, accommodation and service decisions — not simply the cheapest way to travel. The word covers two very different products, and the difference is worth understanding before you compare quotes.</p>
+        <p>A <strong>campsite</strong> centres on a pitch with shared or simpler facilities. A <strong>permanent tented camp</strong> gives you a walk-in canvas tent with a real bed, an en-suite bathroom and a structured meal and service arrangement. That distinction changes comfort, meals, equipment, access and total cost far more than the label "camping" suggests.</p>
+        <p>Kambu's camping background and its operation of Kambu Mara Camp give these choices a direct operating context — we can describe both rungs because we run one of them. Read the guide to <a href="/masai-mara/camping/">camping in and around the Masai Mara</a>, or explore <a href="/kambu-mara-camp/">Kambu Mara Camp</a>.</p>
+      </div>
+
+      <div class="kambu-panel" role="tabpanel" tabindex="0" id="kambu-style-shared" aria-labelledby="kambu-styletab-shared">
+        <h3>Shared and small-group safari options</h3>
+        <p>Sharing a vehicle reduces the cost per traveller. It also introduces fixed dates, shared decision-making at sightings, limited route flexibility and group-fit considerations that a private departure does not have.</p>
+        <p>Kambu confirms a shared safari only when a compatible departure, route, vehicle capacity, accommodation arrangement and traveller expectation line up. Asking for a shared safari is not, by itself, confirmation that a suitable departure exists for your dates — so tell us your dates early if the shared price is what makes the trip work.</p>
+        <p>Read the <a href="/kenya-safaris/private-vs-shared/">private or shared Kenya safari</a> comparison before requesting a quote.</p>
+      </div>
+
+      <div class="kambu-panel" role="tabpanel" tabindex="0" id="kambu-style-road" aria-labelledby="kambu-styletab-road">
+        <h3>Road and fly-in safaris</h3>
+        <p>Road travel keeps the route continuous, shows you the country between the parks and lets you stop where you like — but a transfer can absorb a large part of a day. Flying returns some of that day and introduces its own constraints: flight schedules, strict baggage limits, airstrip transfers, supplier coordination and higher cost.</p>
+        <p>Kambu plans the road logistics directly and arranges selected fly-in components through the responsible provider. The carrier controls schedules and baggage rules; Kambu coordinates the route and the ground arrangements confirmed for your trip.</p>
+        <p>Compare <a href="/kenya-safaris/road-vs-fly-in/">road or fly-in safaris in Kenya</a>. For a Mara-specific decision, see <a href="/masai-mara/road-vs-flying/">should you drive or fly to the Masai Mara</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DESTINATIONS — side tabs ==================== -->
+  <section class="kambu-section--tint" id="kambu-destinations">
+    <div class="kambu-inner">
+      <p class="kambu-eyebrow">Step two</p>
+      <h2>Where can you go on safari in Kenya?</h2>
+      <p class="kambu-answer">You can go on safari across the <strong>Masai Mara</strong>, <strong>Amboseli</strong>, the Rift Valley lakes at <strong>Nakuru</strong> and <strong>Naivasha</strong>, <strong>Samburu</strong> in the north and <strong>Tsavo</strong> towards the coast. They are not interchangeable: landscape, wildlife habitat, access, season, travel time and route position all decide which one belongs in your trip.</p>
+      <p>Start with <a href="/kenya-safaris/destinations/">Kenya safari destinations</a> for the full comparison, then use the table and the selector below to place a destination in a route.</p>
+
+      <div class="kambu-tablewrap" style="margin-bottom:1.6rem;">
+        <table class="kambu-table">
+          <caption>Match your priority to a starting destination</caption>
+          <thead><tr><th scope="col">If you prioritise</th><th scope="col">Start with</th><th scope="col">Why it may fit</th></tr></thead>
+          <tbody>
+            <tr><td>Big-cat viewing, broad game drives and migration planning</td><td><a href="/masai-mara/">Masai Mara</a></td><td>Core wildlife destination with both road and fly-in access</td></tr>
+            <tr><td>Elephants and views towards Mount Kilimanjaro</td><td><a href="/amboseli/">Amboseli</a></td><td>A distinct southern Kenya landscape and wildlife circuit</td></tr>
+            <tr><td>Rift Valley routes and shorter combinations</td><td><a href="/lake-nakuru/">Lake Nakuru</a> and <a href="/lake-naivasha/">Lake Naivasha</a></td><td>Connect naturally with Mara or Hell's Gate routes</td></tr>
+            <tr><td>Dryland wildlife and northern Kenya</td><td><a href="/samburu/">Samburu</a></td><td>A distinct northern environment that needs deliberate route planning</td></tr>
+            <tr><td>Large landscapes and a safari-and-coast itinerary</td><td><a href="/tsavo/">Tsavo</a></td><td>Works inside southern circuits and links to coastal travel</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Side tabs: one destination at a time, pure CSS, keyboard-navigable -->
+      <div class="kambu-vtabs">
+        <input type="radio" name="kambu-dest" id="kambu-d1" checked>
+        <input type="radio" name="kambu-dest" id="kambu-d2">
+        <input type="radio" name="kambu-dest" id="kambu-d3">
+        <input type="radio" name="kambu-dest" id="kambu-d4">
+        <input type="radio" name="kambu-dest" id="kambu-d5">
+        <input type="radio" name="kambu-dest" id="kambu-d6">
+
+        <div class="kambu-vtablist" aria-label="Kenya safari destinations">
+          <b>Choose a destination</b>
+          <label class="kambu-vtablab" for="kambu-d1" style="--kambu-vc:var(--kambu-teal)"><i></i><span>Masai Mara<s>Big cats &amp; migration</s></span></label>
+          <label class="kambu-vtablab" for="kambu-d2" style="--kambu-vc:var(--kambu-magenta)"><i></i><span>Amboseli<s>Elephants &amp; Kilimanjaro</s></span></label>
+          <label class="kambu-vtablab" for="kambu-d3" style="--kambu-vc:var(--kambu-gold)"><i></i><span>Nakuru &amp; Naivasha<s>Rift Valley lakes</s></span></label>
+          <label class="kambu-vtablab" for="kambu-d4" style="--kambu-vc:var(--kambu-cobalt)"><i></i><span>Samburu<s>Northern drylands</s></span></label>
+          <label class="kambu-vtablab" for="kambu-d5" style="--kambu-vc:var(--kambu-clay)"><i></i><span>Tsavo &amp; the coast<s>Coast corridor</s></span></label>
+          <label class="kambu-vtablab" for="kambu-d6" style="--kambu-vc:var(--kambu-navy)"><i></i><span>Further extensions<s>Highland extras</s></span></label>
+        </div>
+
+        <div class="kambu-vpanels">
+          <div class="kambu-vpanel">
+            <div class="kambu-vsplit">
+              <div>
+                <h3>Masai Mara</h3>
+                <p>The Masai Mara is one of Kambu's core destinations. Travellers choose it for game drives across open wildlife-viewing country and for the breadth of species a single circuit can produce.</p>
+                <p>Migration timing shapes planning, but wildlife movement and river crossings stay unpredictable. Travelling inside a recognised migration window improves your odds; it does not guarantee a crossing, and no operator who tells you otherwise is being straight with you.</p>
+                <p>You can reach the Mara by road from Nairobi or by scheduled flight to one of the airstrips. That single decision changes how much of day one is left for a game drive and how the rest of the itinerary is built.</p>
+                <p>Read the complete <a href="/masai-mara/">Masai Mara safari guide</a>, compare <a href="/masai-mara/safaris/">Masai Mara safaris</a>, or explore <a href="/masai-mara/game-drives/">game drives in the Masai Mara</a>.</p>
+              </div>
+              <div class="kambu-spec">
+                <ul>
+                  <li><b>Best for</b>Big cats, broad game drives, migration season</li>
+                  <li><b>Access</b>Road from Nairobi, or a scheduled flight to a Mara airstrip</li>
+                  <li><b>Typical stay</b>2–3 nights</li>
+                  <li><b>Pairs with</b>Lake Nakuru, Lake Naivasha</li>
+                </ul>
+                <p class="kambu-note">Indicative planning guidance. Kambu confirms the actual access, transfer estimate and night count with your quote.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="kambu-vpanel">
+            <div class="kambu-vsplit">
+              <div>
+                <h3>Amboseli</h3>
+                <p>Amboseli pairs elephant-focused wildlife viewing with open pans and views towards Mount Kilimanjaro. Whether you see the mountain depends on weather and atmospheric conditions — early morning and late afternoon are usually the better windows.</p>
+                <p>Its position in southern Kenya makes it a natural component of routes involving Tsavo or the coast. It is not automatically the right addition to a Mara itinerary: the transfer between the two is long, and on a short trip that time comes straight out of your game-drive hours.</p>
+                <p>See the <a href="/amboseli/">Amboseli National Park guide</a>, or compare the <a href="/kenya-safaris/masai-mara-amboseli/">Masai Mara and Amboseli</a> route.</p>
+              </div>
+              <div class="kambu-spec">
+                <ul>
+                  <li><b>Best for</b>Elephant herds, open landscapes, photography</li>
+                  <li><b>Access</b>Road from Nairobi, or a scheduled flight to the airstrip</li>
+                  <li><b>Typical stay</b>1–2 nights</li>
+                  <li><b>Pairs with</b>Tsavo, Nairobi, the coast</li>
+                </ul>
+                <p class="kambu-note">Indicative planning guidance. Kambu confirms the actual access, transfer estimate and night count with your quote.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="kambu-vpanel">
+            <div class="kambu-vsplit">
+              <div>
+                <h3>Lake Nakuru and the Rift Valley</h3>
+                <p>Lake Nakuru adds a Rift Valley park to a Mara route without a long detour. Lake Naivasha and Hell's Gate open up different possibilities again — boat trips, walking and cycling among wildlife rather than a full day in a vehicle.</p>
+                <p>These destinations work well inside a broader circuit, but the number of nights and the transfer sequence decide whether they earn their place. Adding a park is only worth it when it adds an experience you would not otherwise have — not when it simply raises the destination count.</p>
+                <p>Explore <a href="/lake-nakuru/">Lake Nakuru</a>, <a href="/lake-naivasha/">Lake Naivasha</a> and <a href="/hells-gate-national-park/">Hell's Gate National Park</a>, or review the <a href="/kenya-safaris/masai-mara-lake-nakuru/">Masai Mara and Lake Nakuru route</a>.</p>
+              </div>
+              <div class="kambu-spec">
+                <ul>
+                  <li><b>Best for</b>Rift Valley scenery, birdlife, walking and cycling</li>
+                  <li><b>Access</b>Road from Nairobi; the shortest add-on in the circuit</li>
+                  <li><b>Typical stay</b>1 night each</li>
+                  <li><b>Pairs with</b>Masai Mara, on the way out or back</li>
+                </ul>
+                <p class="kambu-note">Indicative planning guidance. Kambu confirms the actual access, transfer estimate and night count with your quote.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="kambu-vpanel">
+            <div class="kambu-vsplit">
+              <div>
+                <h3>Samburu and northern Kenya</h3>
+                <p>Samburu is a distinct dryland environment, not a smaller version of the southern circuit. Its landscape, its northern species associations, its community-conservation context and its distance from Nairobi all call for a more deliberate itinerary.</p>
+                <p>It suits travellers who have the time to do the northern route properly. It is a poor choice for a visitor trying to fit one more park into a short trip — the drive is long enough that a rushed Samburu leg usually costs more than it returns.</p>
+                <p>Read the <a href="/samburu/">Samburu safari guide</a>.</p>
+              </div>
+              <div class="kambu-spec">
+                <ul>
+                  <li><b>Best for</b>Dryland species, fewer vehicles, northern landscapes</li>
+                  <li><b>Access</b>Long road transfer from Nairobi, or a scheduled flight</li>
+                  <li><b>Typical stay</b>2 nights minimum</li>
+                  <li><b>Pairs with</b>Longer circuits of 7 nights or more</li>
+                </ul>
+                <p class="kambu-note">Indicative planning guidance. Kambu confirms the actual access, transfer estimate and night count with your quote.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="kambu-vpanel">
+            <div class="kambu-vsplit">
+              <div>
+                <h3>Tsavo and Kenya's coast</h3>
+                <p>Tsavo offers southern Kenya at a much larger scale, and it sits naturally on routes involving Amboseli, Nairobi or the coast.</p>
+                <p>A safari-and-beach itinerary needs more planning than it first appears: recovery time after the safari leg, luggage handling, the transport link, coastal check-in times and a clean handover between the safari and coastal providers. Kambu plans these combinations where the route and every service provider are confirmed.</p>
+                <p>Explore <a href="/tsavo/">Tsavo</a> and <a href="/kenya-safaris/safari-and-beach/">Kenya safari and beach holidays</a>.</p>
+              </div>
+              <div class="kambu-spec">
+                <ul>
+                  <li><b>Best for</b>Large landscapes, safari-and-beach combinations</li>
+                  <li><b>Access</b>Road or rail corridor between Nairobi and the coast</li>
+                  <li><b>Typical stay</b>1–2 nights</li>
+                  <li><b>Pairs with</b>Amboseli, Diani and the Mombasa coast</li>
+                </ul>
+                <p class="kambu-note">Indicative planning guidance. Kambu confirms the actual access, transfer estimate and night count with your quote.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="kambu-vpanel">
+            <div class="kambu-vsplit">
+              <div>
+                <h3>Further extensions</h3>
+                <p>Beyond the main circuit, Kambu also plans routes taking in <a href="/mount-kenya/">Mount Kenya</a>, <a href="/aberdare-national-park/">Aberdare National Park</a> and <a href="/laikipia/">Laikipia</a>.</p>
+                <p>These fit trips of ten days or longer, or travellers returning to Kenya for a second safari who want highland forest, mountain scenery or conservancy-based wildlife viewing rather than another round of the classic parks.</p>
+                <p>If one of these is the reason for your trip, say so in your enquiry — it changes the route order, not just the destination list.</p>
+              </div>
+              <div class="kambu-spec">
+                <ul>
+                  <li><b>Best for</b>Second safaris, highland and mountain scenery</li>
+                  <li><b>Access</b>Road from Nairobi, on the central highlands corridor</li>
+                  <li><b>Typical stay</b>2 nights or more</li>
+                  <li><b>Pairs with</b>Trips of 10 days and longer</li>
+                </ul>
+                <p class="kambu-note">Indicative planning guidance. Kambu confirms the actual access, transfer estimate and night count with your quote.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Orientation map. Without a Mapbox token the legend below stands on its own. -->
+      <div style="margin-top:1.6rem;">
+        <div id="kambu-map" class="kambu-map">
+          <div class="kambu-legend" id="kambu-map-fallback">
+            <h3 style="margin:0 0 .2rem;font-size:1.15rem;">Kenya safari destinations at a glance</h3>
+            <p class="kambu-note" style="margin:0;">Where each destination sits relative to Nairobi and to the Masai Mara.</p>
+            <ul>
+              <li style="--kambu-vc:var(--kambu-teal)"><i></i><span>Masai Mara <em>— south-west, Kambu's home base</em></span></li>
+              <li style="--kambu-vc:var(--kambu-magenta)"><i></i><span>Amboseli <em>— south, on the Kilimanjaro side</em></span></li>
+              <li style="--kambu-vc:var(--kambu-gold)"><i></i><span>Lake Nakuru <em>— Rift Valley, north-west of Nairobi</em></span></li>
+              <li style="--kambu-vc:var(--kambu-gold)"><i></i><span>Lake Naivasha <em>— Rift Valley, closest to Nairobi</em></span></li>
+              <li style="--kambu-vc:var(--kambu-cobalt)"><i></i><span>Samburu <em>— north, beyond Mount Kenya</em></span></li>
+              <li style="--kambu-vc:var(--kambu-clay)"><i></i><span>Tsavo <em>— south-east, on the coast corridor</em></span></li>
+              <li style="--kambu-vc:var(--kambu-navy)"><i></i><span>Kambu Mara Camp <em>— approx. 8 km from Sekenani Gate</em></span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== START WITH THE MASAI MARA ==================== -->
+  <section class="kambu-section" id="kambu-mara">
+    <p class="kambu-eyebrow">Our home ground</p>
+    <h2>Start with the Masai Mara</h2>
+    <p class="kambu-lead">If your priority is concentrated wildlife viewing and time in the vehicle, the Mara is the practical place to start a conversation with Kambu. Which Mara trip is right for you still depends on duration, access, accommodation area, season and transport.</p>
+
+    <div class="kambu-grid kambu-grid--2">
+      <div class="kambu-card kambu-card--accent" style="--kambu-ac:var(--kambu-teal)">
+        <h3>Masai Mara safaris</h3>
+        <p>Begin by choosing the kind of Mara experience you want:</p>
+        <ul>
+          <li><a href="/masai-mara/safaris/">Compare Masai Mara safari options</a></li>
+          <li><a href="/kenya-safaris/packages/masai-mara/">Browse Masai Mara safari packages</a></li>
+          <li><a href="/masai-mara/cost/">Understand Masai Mara safari cost</a></li>
+          <li><a href="/masai-mara/best-time/">Choose the best time to visit the Mara</a></li>
+          <li><a href="/masai-mara/how-many-days/">Decide how many days to spend there</a></li>
+          <li><a href="/masai-mara/getting-there/">Learn how to get to the Masai Mara</a></li>
+        </ul>
+        <p style="margin-bottom:0;">Daily schedules, inclusions, exclusions and live availability sit on the relevant product and package pages, where they can be kept current.</p>
+      </div>
+
+      <div class="kambu-card kambu-card--accent" style="--kambu-ac:var(--kambu-magenta)">
+        <h3>Stay at Kambu Mara Camp</h3>
+        <figure class="kambu-figure" style="margin-bottom:1rem;">
+          <div class="kambu-imgslot">Replace with an original photograph of Kambu Mara Camp<br>(alt: "Kambu Mara Camp tents near Sekenani Gate, Masai Mara")</div>
+        </figure>
+        <p>Kambu Mara Camp is our own accommodation base near Sekenani Gate — not a third-party camp we resell. Our current location record places it approximately 8&nbsp;km from the gate. Driving time varies with route, weather, road condition, stops and access arrangements, so confirm the current estimate when you enquire.</p>
+        <p>Staying there puts accommodation, meals, gate access and game-drive planning inside one operating context. It does not remove the need to compare accommodation areas when a different location suits your itinerary better — and we will tell you when that is the case.</p>
+        <p style="margin-bottom:0;"><a href="/kambu-mara-camp/">Explore Kambu Mara Camp</a></p>
+      </div>
+    </div>
+
+    <div class="kambu-callout" style="margin-top:1.5rem;">
+      <p>The Mara is a working landscape shared by wildlife, pastoral communities, conservancies and tourism. Responsible planning therefore means following reserve and conservancy rules, giving animals space, staying out of the crowd at a sighting, and approaching cultural visits with consent and dignity.</p>
+      <p style="margin:0;">Kambu treats these as operating questions with verifiable answers, not as an unmeasured "eco-friendly" label. Read <a href="/masai-mara/conservation/">conservation in the Masai Mara ecosystem</a> and <a href="/responsible-tourism/">responsible safari operations at Kambu Campers</a>.</p>
+    </div>
+  </section>
+
+  <!-- ==================== TRIP LENGTH — segmented tabs ==================== -->
+  <section class="kambu-section--tint" id="kambu-length">
+    <div class="kambu-inner">
+      <p class="kambu-eyebrow">Step three</p>
+      <h2>Choose your Kenya safari by trip length</h2>
+      <p class="kambu-answer">Three days suits one destination done properly. Five days can carry a realistic two-destination route. Seven days allows a broader circuit or a slower pace. Ten days or more supports northern extensions or a safari-and-coast combination. Duration is not just a night count — every transfer takes hours out of the game-drive day.</p>
+
+      <div class="kambu-tabs" data-kambu-tabs>
+        <div class="kambu-tablist" role="tablist" aria-label="Safari trip length">
+          <button class="kambu-tab" type="button" role="tab" aria-selected="true"  aria-controls="kambu-len-3"  id="kambu-lentab-3">3 days</button>
+          <button class="kambu-tab" type="button" role="tab" aria-selected="false" aria-controls="kambu-len-5"  id="kambu-lentab-5">5 days</button>
+          <button class="kambu-tab" type="button" role="tab" aria-selected="false" aria-controls="kambu-len-7"  id="kambu-lentab-7">7 days</button>
+          <button class="kambu-tab" type="button" role="tab" aria-selected="false" aria-controls="kambu-len-10" id="kambu-lentab-10">10 days &amp; longer</button>
+        </div>
+
+        <div class="kambu-panel" role="tabpanel" tabindex="0" id="kambu-len-3" aria-labelledby="kambu-lentab-3">
+          <h3>3-day safaris</h3>
+          <p><strong>Shape of the trip:</strong> one destination, two nights, minimal transfer time.</p>
+          <p>Three days works for travellers with limited time who would rather concentrate on one core destination than spend the trip driving between parks. A three-day Mara safari gives you two nights in the destination and game drives on either side of the transfer days — subject to the confirmed itinerary, vehicle, accommodation and availability.</p>
+          <p>See the <a href="/kenya-safaris/packages/3-day-masai-mara-safari/">3-day Masai Mara safari</a>, or read <a href="/kenya-safaris/how-many-days/">how long should a Kenya safari be?</a></p>
+        </div>
+
+        <div class="kambu-panel" role="tabpanel" tabindex="0" id="kambu-len-5" aria-labelledby="kambu-lentab-5">
+          <h3>5-day safaris</h3>
+          <p><strong>Shape of the trip:</strong> two destinations, four nights, one significant transfer.</p>
+          <p>Five days can carry a two-destination route when the sequence and transfer times are realistic — most often the Masai Mara with Lake Nakuru, or the Masai Mara with Amboseli. The second destination earns its place through what it adds, measured against the hours the transfer consumes.</p>
+          <p>Compare the <a href="/kenya-safaris/masai-mara-lake-nakuru/">Masai Mara and Lake Nakuru</a> and <a href="/kenya-safaris/masai-mara-amboseli/">Masai Mara and Amboseli</a> routes before choosing a package.</p>
+        </div>
+
+        <div class="kambu-panel" role="tabpanel" tabindex="0" id="kambu-len-7" aria-labelledby="kambu-lentab-7">
+          <h3>7-day safaris</h3>
+          <p><strong>Shape of the trip:</strong> two or three destinations, or one destination at an unhurried pace.</p>
+          <p>A week gives you room for a broader circuit or a slower stay, and the flexibility to spend a full morning with one sighting instead of moving on. It absorbs a weather day, a rest day or a long photographic session in a way a compressed itinerary cannot.</p>
+          <p>Pace it around experiences rather than a checklist of parks. Review the <a href="/kenya-safaris/packages/7-day-kenya-safari/">7-day Kenya safari</a> and our <a href="/kenya-safaris/itineraries/">Kenya safari itineraries</a>.</p>
+        </div>
+
+        <div class="kambu-panel" role="tabpanel" tabindex="0" id="kambu-len-10" aria-labelledby="kambu-lentab-10">
+          <h3>10-day and longer Kenya safaris</h3>
+          <p><strong>Shape of the trip:</strong> a custom circuit — northern Kenya, a longer Mara stay, or safari plus coast.</p>
+          <p>At this length a route conversation is more useful than picking a package by duration. Ten days or more supports a slower circuit, a northern extension into Samburu or Laikipia, a properly unhurried Mara stay, or a safari followed by time on the coast.</p>
+          <p>Tell us your preferred destinations, interests, accommodation style, travel dates and starting point through a <a href="/contact/">custom safari enquiry</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== VEHICLES ==================== -->
+  <section class="kambu-section" id="kambu-vehicles">
+    <p class="kambu-eyebrow">What you travel in</p>
+    <h2>Safari vehicles built for Kenya's roads and game drives</h2>
+    <p class="kambu-answer">Kambu runs safari-configured 4×4 Toyota Land Cruisers. The vehicle decides which tracks you can use, how comfortable a long transfer is, how much luggage travels with you, and how game drives are actually conducted — which makes it part of itinerary design, not a comfort upgrade.</p>
+
+    <div class="kambu-grid kambu-grid--2">
+      <figure class="kambu-figure">
+        <div class="kambu-imgslot">Replace with an original photograph of a Kambu safari Land Cruiser<br>(alt: "Kambu Campers 4×4 Toyota Land Cruiser on a Kenyan game drive")</div>
+      </figure>
+      <div>
+        <h3>Safari Land Cruisers</h3>
+        <p>Because Kambu owns and runs its own fleet rather than buying transport in per trip, the vehicle is a thing we can describe honestly and be held to. The exact configuration and allocation are still confirmed safari by safari.</p>
+        <p>A quote should make clear, where relevant:</p>
+        <ul>
+          <li>passenger capacity and seating configuration;</li>
+          <li>the roof arrangement;</li>
+          <li>luggage space and luggage limits;</li>
+          <li>charging and communication equipment;</li>
+          <li>recovery equipment;</li>
+          <li>whether a specific vehicle is guaranteed or subject to allocation; and</li>
+          <li>whether the transfer vehicle differs from the game-drive vehicle.</li>
+        </ul>
+        <p>See <a href="/our-vehicles/">Kambu's safari vehicles</a> for first-party fleet information, and <a href="/kenya-safaris/safari-vehicle-guide/">choosing a safari vehicle in Kenya</a> for route and traveller-fit guidance.</p>
+        <p style="margin-bottom:0;">How a vehicle is driven also affects the place it is driven through. Staying on permitted tracks, following the guide's instructions, keeping distance and refusing to join a crowd at a sighting are the practical ways a game drive reduces avoidable disturbance.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== COST ==================== -->
+  <section class="kambu-section--tint" id="kambu-cost">
+    <div class="kambu-inner">
+      <p class="kambu-eyebrow">What it costs</p>
+      <h2>What does a Kenya safari cost?</h2>
+      <p class="kambu-answer">There is no single Kenya safari price. A total is built from duration, park or conservancy fees, accommodation, vehicle and guide, group size, season, activities and transport mode — which is why two seven-day safaris can differ by thousands of dollars and both be honestly quoted.</p>
+
+      <div class="kambu-callout kambu-formula"><strong>duration + park or conservancy fees + accommodation + vehicle and guide + group size + season + activities + road or fly-in transport</strong></div>
+
+      <p style="margin-top:1.1rem;">Accommodation is usually the largest single variable, and it moves in steps rather than smoothly. The table below is the ladder your quote is priced against.</p>
+
+      <div class="kambu-tablewrap" style="margin-bottom:1.5rem;">
+        <table class="kambu-table">
+          <caption>The Kenyan safari accommodation ladder — indicative nightly rates per person</caption>
+          <thead><tr><th scope="col">Rung</th><th scope="col">Indicative USD per night</th><th scope="col">What you actually get</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Public or special campsite</th><td>20–40</td><td>Your own tent, basic shared facilities, no power</td></tr>
+            <tr><th scope="row">Budget tented camp</th><td>40–80</td><td>Dome tents, shared ablutions, simple meals</td></tr>
+            <tr class="kambu-row--us"><th scope="row">Permanent tented camp — where Kambu operates</th><td>90–180</td><td>Walk-in canvas tent, en-suite bathroom, real bed, structured meals</td></tr>
+            <tr><th scope="row">Mid-range lodge</th><td>180–300</td><td>Brick rooms, pool, larger property</td></tr>
+            <tr><th scope="row">Luxury tented camp or lodge</th><td>400–1,500+</td><td>Private conservancy, all-inclusive, dedicated guiding</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="kambu-note" style="margin-top:-.6rem;margin-bottom:1.5rem;">Indicative market ranges for planning and comparison, not a Kambu price list. Confirm current rates for your dates in a quote or on the relevant package page.</p>
+
+      <div class="kambu-card">
+        <h3 style="font-size:1.25rem;">Before you accept any quote, check:</h3>
+        <ul>
+          <li>what accommodation is included, and at which rung of the ladder above;</li>
+          <li>whether park or conservancy fees are included;</li>
+          <li>which vehicle and guide arrangement applies;</li>
+          <li>whether meals and activities are included;</li>
+          <li>whether transfers or flights are quoted separately;</li>
+          <li>which services Kambu operates and which are arranged through partners; and</li>
+          <li>the validity period and the assumptions the price rests on.</li>
+        </ul>
+        <p style="margin:0;">See <a href="/kenya-safaris/cost/">how much does a Kenya safari cost?</a> for the complete framework, or <a href="/masai-mara/cost/">how much does a Masai Mara safari cost?</a> for the Mara arithmetic.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== WHY KAMBU ==================== -->
+  <section class="kambu-section" id="kambu-why">
+    <p class="kambu-eyebrow">The operator</p>
+    <h2>Why travel with Kambu Campers?</h2>
+    <p class="kambu-answer">Because the operator, the camp and the vehicles are the same company. Kambu is Kenya-based, runs its own fleet, hosts guests at its own camp near Sekenani, and works with destination-based guides — so the route, the bed and the vehicle are answerable to one accountable party rather than three.</p>
+    <p>The proof for that should be specific and checkable, not a list of superlatives. Here is what each part of it means in practice.</p>
+
+    <div class="kambu-grid kambu-grid--2">
+      <div class="kambu-card kambu-card--accent" style="--kambu-ac:var(--kambu-teal)">
+        <h3>Kenya-based safari operations</h3>
+        <p>Kambu is a Kenya-based operator with Nairobi operations and a Masai Mara home base. That is the operating context behind departures, route planning, vehicles, guides, accommodation and local supplier arrangements — not a sales office abroad forwarding your booking to somebody else.</p>
+        <p style="margin-bottom:0;">Read <a href="/about/">about Kambu Campers</a> for the company's identity, operating scope and evidence.</p>
+      </div>
+      <div class="kambu-card kambu-card--accent" style="--kambu-ac:var(--kambu-magenta)">
+        <h3>First-hand route knowledge</h3>
+        <p>The route knowledge that matters is practical: how destination order changes transfer time, how the road-or-fly decision reshapes a day, and how accommodation access connects to game-drive planning.</p>
+        <p>We do not claim to know every road in Kenya or to guarantee exact travel times. We build itineraries that make the relationship between time, distance, vehicle, accommodation and wildlife viewing visible before you commit.</p>
+        <p style="margin-bottom:0;">Read <a href="/kenya-safaris/itineraries/">how to plan a Kenya safari itinerary</a>.</p>
+      </div>
+      <div class="kambu-card kambu-card--accent" style="--kambu-ac:var(--kambu-gold)">
+        <h3>Kambu Mara Camp</h3>
+        <p>Owning the camp gives us a first-party relationship with accommodation, gate access and guest services near Sekenani. Facilities, tent types, rates, meals and policies should always be checked against the current camp record rather than an older page.</p>
+        <p style="margin-bottom:0;"><a href="/kambu-mara-camp/">Explore Kambu Mara Camp</a></p>
+      </div>
+      <div class="kambu-card kambu-card--accent" style="--kambu-ac:var(--kambu-cobalt)">
+        <h3>Safari vehicles</h3>
+        <p>Transport is planned as part of the safari, not booked as an unnamed line item. Exact fleet features, seating, allocation and equipment stay quote-level details until they are confirmed for your trip.</p>
+        <p style="margin-bottom:0;"><a href="/our-vehicles/">View Kambu's safari vehicles</a></p>
+      </div>
+      <div class="kambu-card kambu-card--accent" style="--kambu-ac:var(--kambu-clay)">
+        <h3>Local guides</h3>
+        <p>Kambu works with destination-based guides whose role, destination assignment and verified experience are stated plainly. A guide sets the pace of a route, decides how wildlife is approached, and determines how much of the ecosystem you actually understand by the end of the week.</p>
+        <p>Meet <a href="/about/our-guides/">Kambu's Kenya safari guides</a>.</p>
+        <p style="margin-bottom:0;">Feedback is most useful when it is attached to the thing it describes — a camp stay, a guide, a vehicle, a route, a booking. Read <a href="/reviews/">guest reviews of Kambu Campers</a>.</p>
+      </div>
+      <div class="kambu-card kambu-card--accent" style="--kambu-ac:var(--kambu-navy)">
+        <h3>A practical conservation lens</h3>
+        <p>Wildlife, vehicles, roads, camps and communities are connected, so visitor behaviour affects disturbance, waste, water use and cultural dignity. The useful question is never whether a safari has zero impact — it does not — but which practices are documented and what a traveller can reasonably do.</p>
+        <p style="margin-bottom:0;">See <a href="/responsible-tourism/">how Kambu approaches responsible tourism</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== HOW PLANNING WORKS ==================== -->
+  <section class="kambu-section--tint" id="kambu-plan">
+    <div class="kambu-inner">
+      <p class="kambu-eyebrow">Step four</p>
+      <h2>How planning a safari with Kambu works</h2>
+      <p class="kambu-lead">Six steps from an enquiry to a confirmed booking. Nothing is confirmed until availability, supplier arrangements and terms are all in place — and we will say so plainly at each stage.</p>
+      <ol class="kambu-steps">
+        <li class="kambu-step kambu-card">
+          <h3>Tell us your dates and group</h3>
+          <p style="margin:0;">Send your travel dates, the number of travellers and their ages, your starting point, your budget range, accommodation expectations, and any mobility, dietary or scheduling needs.</p>
+        </li>
+        <li class="kambu-step kambu-card">
+          <h3>Choose destinations and interests</h3>
+          <p>Tell us what the trip is actually for: game drives, migration timing, elephants, photography, camping, a family-friendly pace, northern Kenya, the coast — or a combination.</p>
+          <p style="margin:0;">Use <a href="/kenya-safaris/destinations/">Kenya safari destinations</a> to compare the main route choices.</p>
+        </li>
+        <li class="kambu-step kambu-card">
+          <h3>Build the route</h3>
+          <p>We sequence destinations around realistic transfer time, game-drive hours, road conditions, accommodation access and the number of nights you actually have.</p>
+          <p style="margin:0;">The <a href="/kenya-safaris/itineraries/">Kenya safari itinerary guide</a> sets out the planning logic in detail.</p>
+        </li>
+        <li class="kambu-step kambu-card">
+          <h3>Confirm accommodation and transport</h3>
+          <p>The proposal names the accommodation, the vehicle, the guide arrangement, the road or fly-in component and any partner-delivered service.</p>
+          <p style="margin:0;">For Mara stays, compare <a href="/kambu-mara-camp/">Kambu Mara Camp</a> against the wider <a href="/masai-mara/where-to-stay/">Masai Mara accommodation options</a>.</p>
+        </li>
+        <li class="kambu-step kambu-card">
+          <h3>Review the quote and inclusions</h3>
+          <p>Before you pay, check the route, dates, accommodation, vehicle, meals, activities, park and conservancy fees, inclusions, exclusions, payment terms and cancellation conditions.</p>
+          <p style="margin:0;">Review <a href="/kenya-safaris/packages/">Kenya safari packages</a>, the <a href="/terms-and-conditions/">booking terms and conditions</a> and the <a href="/cancellation-policy/">cancellation policy</a>.</p>
+        </li>
+        <li class="kambu-step kambu-card">
+          <h3>Confirm the safari</h3>
+          <p style="margin:0;">A request becomes a booking only once availability, supplier arrangements and the applicable terms are confirmed. Start with <a href="/booking/">book with Kambu Campers</a>, or send a <a href="/contact/">custom safari enquiry</a>.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ==================== FAQ — native accordion ==================== -->
+  <section class="kambu-section" id="kambu-faq">
+    <p class="kambu-eyebrow">Before you enquire</p>
+    <h2>Kenya safari FAQs</h2>
+    <div class="kambu-accordion">
+      <details class="kambu-acc-item" open>
+        <summary><span>What does Kambu Campers offer?</span> <span class="kambu-acc-icon" aria-hidden="true">+</span></summary>
+        <div class="kambu-acc-body"><p>Kambu Campers plans Kenya safaris — private, customised, camping, accommodation-based, road and selected fly-in. Kambu also operates Kambu Mara Camp near Sekenani Gate and coordinates its own safari vehicles, destination-based guides, accommodation and selected partner services.</p></div>
+      </details>
+      <details class="kambu-acc-item">
+        <summary><span>Is Kambu Campers based in Kenya?</span> <span class="kambu-acc-icon" aria-hidden="true">+</span></summary>
+        <div class="kambu-acc-body"><p>Yes. Kambu Campers is a Kenya-based safari operator with Nairobi operations and a Masai Mara home base. Learn more on <a href="/about/">about Kambu Campers</a>.</p></div>
+      </details>
+      <details class="kambu-acc-item">
+        <summary><span>Does Kambu organise Masai Mara safaris?</span> <span class="kambu-acc-icon" aria-hidden="true">+</span></summary>
+        <div class="kambu-acc-body"><p>Yes — the Mara is one of Kambu's core destinations. Compare <a href="/masai-mara/safaris/">Masai Mara safaris</a>, browse <a href="/kenya-safaris/packages/masai-mara/">Masai Mara safari packages</a>, or ask for a tailored route.</p></div>
+      </details>
+      <details class="kambu-acc-item">
+        <summary><span>Can I book a private Kenya safari?</span> <span class="kambu-acc-icon" aria-hidden="true">+</span></summary>
+        <div class="kambu-acc-body"><p>Yes, subject to current availability and confirmation. A private safari normally gives your party a dedicated vehicle and guide arrangement, and with it more control over timing, pace and route.</p></div>
+      </details>
+      <details class="kambu-acc-item">
+        <summary><span>Does Kambu offer camping safaris?</span> <span class="kambu-acc-icon" aria-hidden="true">+</span></summary>
+        <div class="kambu-acc-body"><p>Yes. "Camping" covers two different products: a campsite arrangement with simpler shared facilities, and a permanent tented camp with a real bed, an en-suite bathroom and structured meals. Kambu plans both, and operates the second. See <a href="/masai-mara/camping/">camping in and around the Masai Mara</a>.</p></div>
+      </details>
+      <details class="kambu-acc-item">
+        <summary><span>Can families travel with Kambu?</span> <span class="kambu-acc-icon" aria-hidden="true">+</span></summary>
+        <div class="kambu-acc-body"><p>Yes. Family planning has to account for children's ages, vehicle space, room layout, route pace and meals — plus the separate rules applied by parks, accommodation providers, airlines and individual activities. See <a href="/kenya-safaris/family/">Kenya safaris for families</a>.</p></div>
+      </details>
+      <details class="kambu-acc-item">
+        <summary><span>How many days should I spend on safari in Kenya?</span> <span class="kambu-acc-icon" aria-hidden="true">+</span></summary>
+        <div class="kambu-acc-body"><p>Three days works for a focused single-destination safari. Five to seven days allows a considered multi-destination route. Ten days or longer supports slower circuits, northern extensions or a safari-and-coast combination. Read <a href="/kenya-safaris/how-many-days/">how long should a Kenya safari be?</a></p></div>
+      </details>
+      <details class="kambu-acc-item">
+        <summary><span>Can Kambu arrange a safari from Nairobi?</span> <span class="kambu-acc-icon" aria-hidden="true">+</span></summary>
+        <div class="kambu-acc-body"><p>Yes. Nairobi is the usual starting point for Kenya safari planning. The final route depends on destination, dates, vehicle, accommodation, transfer time and current availability.</p></div>
+      </details>
+      <details class="kambu-acc-item">
+        <summary><span>Can a Kenya safari include the coast?</span> <span class="kambu-acc-icon" aria-hidden="true">+</span></summary>
+        <div class="kambu-acc-body"><p>Yes, where the route, transport, accommodation and coastal service providers are all confirmed. Explore <a href="/kenya-safaris/safari-and-beach/">Kenya safari and beach holidays</a>.</p></div>
+      </details>
+      <details class="kambu-acc-item">
+        <summary><span>Can Kambu arrange a Kenya–Tanzania safari?</span> <span class="kambu-acc-icon" aria-hidden="true">+</span></summary>
+        <div class="kambu-acc-body"><p>Kambu plans selected Kenya–Tanzania journeys where the route, the border or flight connection, the licensed providers and the vehicle or guide handovers are all documented. See <a href="/kenya-tanzania-safaris/">Kenya and Tanzania safaris</a>.</p></div>
+      </details>
+      <details class="kambu-acc-item">
+        <summary><span>How do I request a safari quote?</span> <span class="kambu-acc-icon" aria-hidden="true">+</span></summary>
+        <div class="kambu-acc-body"><p>Send your dates, group size and ages, starting point, preferred destinations, travel style, accommodation expectations, interests and approximate budget through <a href="/contact/">contact Kambu Campers</a>. For ready-to-book options, start at <a href="/booking/">book with Kambu Campers</a>.</p></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ==================== FINAL CTA ==================== -->
+  <section class="kambu-section--tint" id="kambu-book">
+    <div class="kambu-inner">
+      <p class="kambu-eyebrow">Next step</p>
+      <h2>Plan your Kenya safari</h2>
+      <p class="kambu-lead">Tell us your dates, your group and what you want out of the trip, and we will come back with a route rather than a brochure.</p>
+      <div class="kambu-ctarow" style="margin-bottom:2rem;">
+        <a class="kambu-cta" href="/contact/">Send a custom safari enquiry</a>
+        <a class="kambu-cta--solid" href="/kenya-safaris/packages/">Browse safari packages</a>
+      </div>
+      <ul class="kambu-linklist">
+        <li class="kambu-card"><a href="/kenya-safaris/">Compare Kenya safari routes and formats</a></li>
+        <li class="kambu-card"><a href="/kenya-safaris/packages/">Browse Kenya safari packages</a></li>
+        <li class="kambu-card"><a href="/masai-mara/safaris/">Explore Masai Mara safaris</a></li>
+        <li class="kambu-card"><a href="/kambu-mara-camp/">Stay at Kambu Mara Camp</a></li>
+        <li class="kambu-card"><a href="/our-vehicles/">Learn about Kambu's safari vehicles</a></li>
+        <li class="kambu-card"><a href="/about/our-guides/">Meet Kambu's safari guides</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var root = document.currentScript ? document.currentScript.closest('.kambu-wrap') : document.querySelector('.kambu-wrap');
+      if (!root) return;
+
+      /* ---- Horizontal tabs. Panels are visible in the markup, so a reader
+              without JavaScript gets every panel stacked as ordinary prose. ---- */
+      Array.prototype.forEach.call(root.querySelectorAll('[data-kambu-tabs]'), function (group) {
+        var tabs = Array.prototype.slice.call(group.querySelectorAll('[role="tab"]'));
+        if (!tabs.length) return;
+
+        function select(tab, focus) {
+          tabs.forEach(function (t) {
+            var on = t === tab;
+            t.setAttribute('aria-selected', String(on));
+            t.tabIndex = on ? 0 : -1;
+            var panel = group.querySelector('#' + t.getAttribute('aria-controls'));
+            if (panel) panel.hidden = !on;
+          });
+          if (focus) tab.focus();
+        }
+
+        group.setAttribute('data-enhanced', 'true');
+        tabs.forEach(function (tab, i) {
+          tab.addEventListener('click', function () { select(tab); });
+          tab.addEventListener('keydown', function (e) {
+            var next;
+            if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+            else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+            else if (e.key === 'Home') next = tabs[0];
+            else if (e.key === 'End') next = tabs[tabs.length - 1];
+            if (next) { e.preventDefault(); select(next, true); }
+          });
+        });
+        select(tabs.filter(function (t) { return t.getAttribute('aria-selected') === 'true'; })[0] || tabs[0]);
+      });
+
+      /* ---- Section rail: highlight the section currently in view. ---- */
+      var railLinks = Array.prototype.slice.call(root.querySelectorAll('#kambu-raillinks a'));
+      if (railLinks.length && 'IntersectionObserver' in window) {
+        var targets = railLinks.map(function (a) { return root.querySelector(a.getAttribute('href')); }).filter(Boolean);
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            railLinks.forEach(function (a) {
+              a.setAttribute('aria-current', String(a.getAttribute('href') === '#' + entry.target.id));
+            });
+          });
+        }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+        targets.forEach(function (t) { io.observe(t); });
+      }
+
+      /* ---- Optional orientation map. Paste a Mapbox PUBLIC token to enable it;
+              with no token the destination legend stays as the designed content. ---- */
+      var KAMBU_MAPBOX_TOKEN = 'YOUR_MAPBOX_PUBLIC_TOKEN';
+      var mapEl = document.getElementById('kambu-map');
+      if (mapEl && KAMBU_MAPBOX_TOKEN.indexOf('YOUR_MAPBOX') === -1) {
+        var css = document.createElement('link');
+        css.rel = 'stylesheet';
+        css.href = 'https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css';
+        document.head.appendChild(css);
+        var js = document.createElement('script');
+        js.src = 'https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js';
+        js.onload = function () {
+          try {
+            mapboxgl.accessToken = KAMBU_MAPBOX_TOKEN;
+            var fb = document.getElementById('kambu-map-fallback');
+            if (fb) fb.style.display = 'none';
+            mapEl.style.height = '440px';
+            mapEl.setAttribute('role', 'img');
+            mapEl.setAttribute('aria-label', 'Orientation map of the Kenya safari destinations listed on this page');
+            var places = [
+              ['Masai Mara', 35.14, -1.49], ['Amboseli', 37.26, -2.65],
+              ['Lake Nakuru', 36.09, -0.36], ['Lake Naivasha', 36.35, -0.77],
+              ['Samburu', 37.53, 0.57], ['Tsavo', 38.47, -2.98],
+              ['Kambu Mara Camp (near Sekenani)', 35.28, -1.42]
+            ];
+            var map = new mapboxgl.Map({ container: 'kambu-map', style: 'mapbox://styles/mapbox/outdoors-v12', center: [36.6, -1.2], zoom: 5.2 });
+            map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+            map.on('load', function () {
+              var b = new mapboxgl.LngLatBounds();
+              places.forEach(function (p) {
+                new mapboxgl.Marker({ color: '#0d7d8f' })
+                  .setLngLat([p[1], p[2]])
+                  .setPopup(new mapboxgl.Popup({ offset: 18 }).setText(p[0]))
+                  .addTo(map);
+                b.extend([p[1], p[2]]);
+              });
+              map.fitBounds(b, { padding: 50, maxZoom: 7 });
+            });
+          } catch (e) { /* leave the legend visible */ }
+        };
+        document.head.appendChild(js);
+      }
+    })();
+  </script>
+
+  <!-- Structured data. Mirrors visible content only: Organization, WebSite and the
+       FAQ block above. No Product or Offer markup on the homepage.
+       SET THE DOMAIN before go-live if the site is not yet on kambucampers.com. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TravelAgency",
+        "@id": "https://kambucampers.com/#organization",
+        "name": "Kambu Campers",
+        "url": "https://kambucampers.com/",
+        "description": "Kenya-based Masai Mara tour operator planning private, camping, accommodation-based, road and selected fly-in safaris, and operating Kambu Mara Camp near Sekenani Gate.",
+        "areaServed": { "@type": "Country", "name": "Kenya" },
+        "knowsAbout": ["Masai Mara safaris", "Amboseli", "Lake Nakuru", "Lake Naivasha", "Samburu", "Tsavo", "Kenya camping safaris", "Kenya safari itineraries"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://kambucampers.com/#website",
+        "url": "https://kambucampers.com/",
+        "name": "Kambu Campers",
+        "publisher": { "@id": "https://kambucampers.com/#organization" }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://kambucampers.com/#faq",
+        "mainEntity": [
+          { "@type": "Question", "name": "What does Kambu Campers offer?", "acceptedAnswer": { "@type": "Answer", "text": "Kambu Campers plans Kenya safaris - private, customised, camping, accommodation-based, road and selected fly-in. Kambu also operates Kambu Mara Camp near Sekenani Gate and coordinates its own safari vehicles, destination-based guides, accommodation and selected partner services." } },
+          { "@type": "Question", "name": "Is Kambu Campers based in Kenya?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Kambu Campers is a Kenya-based safari operator with Nairobi operations and a Masai Mara home base." } },
+          { "@type": "Question", "name": "Does Kambu organise Masai Mara safaris?", "acceptedAnswer": { "@type": "Answer", "text": "Yes - the Mara is one of Kambu's core destinations. Travellers can compare Masai Mara safaris, browse Masai Mara safari packages, or ask for a tailored route." } },
+          { "@type": "Question", "name": "Can I book a private Kenya safari?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, subject to current availability and confirmation. A private safari normally gives your party a dedicated vehicle and guide arrangement, and with it more control over timing, pace and route." } },
+          { "@type": "Question", "name": "Does Kambu offer camping safaris?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Camping covers two different products: a campsite arrangement with simpler shared facilities, and a permanent tented camp with a real bed, an en-suite bathroom and structured meals. Kambu plans both, and operates the second." } },
+          { "@type": "Question", "name": "Can families travel with Kambu?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Family planning has to account for children's ages, vehicle space, room layout, route pace and meals, plus the separate rules applied by parks, accommodation providers, airlines and individual activities." } },
+          { "@type": "Question", "name": "How many days should I spend on safari in Kenya?", "acceptedAnswer": { "@type": "Answer", "text": "Three days works for a focused single-destination safari. Five to seven days allows a considered multi-destination route. Ten days or longer supports slower circuits, northern extensions or a safari-and-coast combination." } },
+          { "@type": "Question", "name": "Can Kambu arrange a safari from Nairobi?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Nairobi is the usual starting point for Kenya safari planning. The final route depends on destination, dates, vehicle, accommodation, transfer time and current availability." } },
+          { "@type": "Question", "name": "Can a Kenya safari include the coast?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, where the route, transport, accommodation and coastal service providers are all confirmed." } },
+          { "@type": "Question", "name": "Can Kambu arrange a Kenya-Tanzania safari?", "acceptedAnswer": { "@type": "Answer", "text": "Kambu plans selected Kenya-Tanzania journeys where the route, the border or flight connection, the licensed providers and the vehicle or guide handovers are all documented." } },
+          { "@type": "Question", "name": "How do I request a safari quote?", "acceptedAnswer": { "@type": "Answer", "text": "Send your dates, group size and ages, starting point, preferred destinations, travel style, accommodation expectations, interests and approximate budget through the Kambu Campers contact page. For ready-to-book options, start at the booking page." } }
+        ]
+      }
+    ]
+  }
+  </script>
+</div>
+
+<!-- ============================================================================
+     PUBLICATION CONTROLS (from the source brief — kept, not rendered):
+     Before publishing, verify the current operator and legal details, supported
+     destinations, camp distance and facilities, fleet configuration, guide
+     profiles, product inventory, reviews, contact details, booking terms and
+     conservation claims. Use original Kambu photographs for the hero, camp,
+     vehicle and destination modules. Structured data must match visible content:
+     Organization/WebSite and eligible FAQ markup only — no Product or Offer
+     markup on the homepage.
+
+     ADDITIONS TO VERIFY BEFORE GO-LIVE (new on this build, not in the source):
+       - Hero fact rail: "approx. 8 km from Sekenani Gate", "4x4 Toyota Land Cruisers"
+       - Accommodation-ladder table: indicative USD nightly ranges per rung
+       - Destination spec grids: "typical stay" night counts and access notes
+     ============================================================================ -->
