@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nairobiadventures.com/sitemap-index.xml

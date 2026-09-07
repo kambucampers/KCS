@@ -93,3 +93,10 @@ then posts normally and the mailto fallback is skipped automatically.
 npm run build
 npx wrangler pages deploy ./dist --project-name nairobi-adventures
 ```
+
+## The built site is committed
+
+`dist/` is checked into this repository so the finished static site can be pulled and
+uploaded to a host without running a build first. After editing anything in `src/`, run
+`npm run build` and commit the regenerated `dist/` alongside the source change, otherwise
+the two fall out of step.
