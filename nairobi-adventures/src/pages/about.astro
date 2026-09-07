@@ -2,14 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import PlaceholderPhoto from '../components/PlaceholderPhoto.astro';
+import Photo from '../components/Photo.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { site } from '../data/site';
 
 const principles = [
   {
-    t: 'Quote it, do not bundle it',
-    b: 'Park entry, transport, guiding and attraction tickets appear as separate lines in your quote, because a single lump sum makes it impossible to see what you are paying for or to drop a stop you do not want.',
+    t: 'Publish the price, fees included',
+    b: 'Each tour page carries a price table by group size with park and attraction entry already inside the figure, because a headline price that excludes the gate fee tells a traveller almost nothing about what the day will cost.',
   },
   {
     t: 'Say no when the day does not work',
@@ -74,9 +74,10 @@ const principles = [
       <h2>How we work with guests</h2>
       <p>
         Booking starts with a conversation rather than a checkout. You send dates, a pick-up address and who is
-        travelling. We reply with availability, an itemised quote and a suggested running order for that specific
-        day, including the pick-up time we recommend and why. Nothing is confirmed until the plan makes sense to
-        you, because a day tour that starts with a misunderstanding about fees or timing rarely recovers.
+        travelling. We reply with availability, the confirmed price for that group size and a suggested running
+        order for the day, including the pick-up time we recommend and why. Nothing is confirmed until the plan
+        makes sense to you, because a day tour that starts with a misunderstanding about fees or timing rarely
+        recovers.
       </p>
 
       <h2>Why book direct rather than through a platform</h2>
@@ -85,31 +86,48 @@ const principles = [
         a four-hour layover is enough, whether the gorge walk suits your children or whether the flamingos are at
         Nakuru this month get answered by someone who was on those roads recently, not by a call centre reading a
         listing. Direct booking also keeps the commission inside the business that provides the service, which is
-        what makes honest, itemised pricing possible.
+        what lets us publish prices with the park fees already inside them.
       </p>
 
-      <h2>The company</h2>
+      <h2>How our prices are built</h2>
       <p>
-        [PLACEHOLDER: add the founding story here. Who started Nairobi Adventures, in what year, and why. Two or
-        three paragraphs of genuine history will do more for trust than any other section on this site.]
+        Every price on this site is assembled from two numbers rather than pulled from the air. The first is the
+        entry fee, charged per person per day by Kenya Wildlife Service for the national parks and by each
+        attraction for its own gate. The second is the cost of the vehicle, the fuel and the driver guide for the
+        day, which is charged once and shared by everyone in the car.
       </p>
       <p>
-        [PLACEHOLDER: add credentials that can be verified, for example company registration, tourism regulatory
-        licensing, membership of an industry body, insurance cover, and the guiding qualifications your team holds.]
+        That is why the per-person price falls steeply as a group grows, and why we publish a table by group size
+        instead of a single headline figure. It is also why we ask about residency before quoting: Kenyan citizens
+        and East African residents pay materially lower park rates than non-residents, so quoting one price for
+        everybody would overcharge half the people who ask.
+      </p>
+
+      <h2>Standards on the road</h2>
+      <p>
+        Wildlife tourism is easy to do badly, so we work to a few fixed rules. Vehicles stay on the mapped tracks,
+        because off-road driving damages the grassland the plains game depends on. Sightings are approached quietly
+        and at a distance that lets the animal carry on doing what it was doing. We do not crowd a predator with
+        other vehicles, and we do not bait, feed or call to wildlife for a photograph.
       </p>
       <p>
-        [PLACEHOLDER: describe the fleet. Vehicle types, whether roofs are pop-up, seat numbers, and anything that
-        matters to a photographer or a family with a child seat.]
+        The same applies to people. Cultural stops are places of work and worship rather than exhibits, so your
+        guide will tell you where photography is welcome and where it is not.
+      </p>
+
+      <h2>Booking terms in plain words</h2>
+      <p>
+        A 30 percent deposit confirms your date and the balance is paid on the morning of the tour, by bank
+        transfer, M-Pesa or cash in US dollars or Kenyan shillings. Cancel more than seven days ahead and the
+        deposit comes back in full. Cancel between three and seven days ahead and half the total is refunded.
+        Inside 72 hours a booking is not refundable, because the vehicle is committed and park bookings are already
+        paid. If we cancel, or a flight delay makes a layover tour unsafe against your check-in time, you are
+        refunded in full.
       </p>
     </article>
 
     <aside class="md:col-span-5">
-      <PlaceholderPhoto
-        alt="A Nairobi Adventures guide beside the tour vehicle at the edge of Nairobi National Park"
-        note="[PLACEHOLDER: photo of the team or the vehicle]"
-        ratio="4 / 5"
-        tone="acacia"
-      />
+      <Photo slot="guide-vehicle" ratio="4 / 5" tone="acacia" />
       <div class="mt-8 border border-ink/15 p-7">
         <p class="eyebrow">In short</p>
         <ul class="mt-5 space-y-4 text-[0.96rem] text-slate">

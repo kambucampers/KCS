@@ -1,0 +1,80 @@
+---
+import manifest from '../data/media.json';
+import { slotByKey } from '../data/media-sources';
+
+/**
+ * Renders a real photograph once `npm run media` has fetched it, and a quiet
+ * landscape graphic in the same colours until then, so the layout never shifts.
+ */
+interface Props {
+  slot: string;
+  ratio?: string;
+  tone?: 'sand' | 'ink' | 'acacia';
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  showCredit?: boolean;
+}
+
+type Entry = {
+  file: string;
+  width: number;
+  height: number;
+  source: string;
+  sourceUrl: string;
+  author: string;
+  authorUrl?: string;
+  license: string;
+};
+
+const { slot, ratio = '4 / 3', tone = 'sand', class: className = '', loading = 'lazy', showCredit = true } =
+  Astro.props;
+
+const entry = (manifest as Record<string, Entry>)[slot];
+const alt = slotByKey(slot)?.alt ?? '';
+
+const tones = {
+  sand: { bg: '#E8DFCE', fg: '#17513A', sky: '#F7F3EA', sun: '#E0A33E' },
+  ink: { bg: '#14231C', fg: '#0d1712', sky: '#22382E', sun: '#E0A33E' },
+  acacia: { bg: '#17513A', fg: '#0f3a29', sky: '#1F6B4B', sun: '#F2CE8C' },
+} as const;
+const c = tones[tone];
+---
+
+<figure class:list={['relative overflow-hidden bg-sand', className]} style={`aspect-ratio:${ratio}`}>
+  {
+    entry ? (
+      <img
+        src={entry.file}
+        alt={alt}
+        width={entry.width}
+        height={entry.height}
+        loading={loading}
+        decoding="async"
+        class="h-full w-full object-cover"
+      />
+    ) : (
+      <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" class="h-full w-full" role="img" aria-label={alt}>
+        <rect width="800" height="600" fill={c.sky} />
+        <circle cx="620" cy="170" r="72" fill={c.sun} opacity="0.85" />
+        <path d="M0 380c120-40 220 10 320-20s180-70 300-40 180 60 180 60v220H0Z" fill={c.bg} />
+        <path d="M0 470c140-30 240 20 360-10s220-40 440 10v130H0Z" fill={c.fg} opacity="0.9" />
+        <g fill={c.fg}>
+          <rect x="118" y="360" width="5" height="110" />
+          <path d="M60 356c18-26 46-38 62-38s44 12 62 38c-24-10-40-14-62-14s-38 4-62 14Z" />
+          <rect x="638" y="370" width="4" height="100" />
+          <path d="M596 366c14-20 34-30 46-30s32 10 46 30c-18-8-30-11-46-11s-28 3-46 11Z" />
+        </g>
+      </svg>
+    )
+  }
+  {
+    entry && showCredit && (
+      <figcaption class="absolute bottom-0 right-0 bg-ink/70 px-2 py-1 text-[0.62rem] tracking-wide text-bone/80">
+        <a href={entry.sourceUrl} rel="nofollow noopener" target="_blank" class="hover:text-marigold">
+          {entry.author} / {entry.source}
+          {entry.license !== 'Pexels License' && ` (${entry.license})`}
+        </a>
+      </figcaption>
+    )
+  }
+</figure>

@@ -8,7 +8,9 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "media": "node scripts/fetch-media.mjs",
+    "media:force": "node scripts/fetch-media.mjs --force"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.0",

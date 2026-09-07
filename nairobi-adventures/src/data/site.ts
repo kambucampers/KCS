@@ -4,16 +4,15 @@ export const site = {
   tagline: 'Day excursions and Nairobi National Park tours',
   url: 'https://nairobiadventures.com',
   email: 'bookings@nairobiadventures.com',
-  // [PLACEHOLDER: phone / WhatsApp number] - add here and it appears in the
-  // header, footer, contact page and LocalBusiness schema automatically.
+  // Add a phone or WhatsApp number here and it appears in the header, footer,
+  // contact page and LocalBusiness schema automatically.
   phone: '',
   city: 'Nairobi',
   region: 'Nairobi County',
   country: 'KE',
-  // [PLACEHOLDER: street address for the office, if you list one publicly]
   streetAddress: '',
   social: {
-    // [PLACEHOLDER: social profile URLs - delete any you do not use]
+    // Add profile URLs here and they render in the footer.
     instagram: '',
     facebook: '',
     tripadvisor: '',
@@ -48,6 +47,8 @@ export type Tour = {
   bestFor: string;
   pickup: string;
   accent: 'acacia' | 'clay' | 'marigold' | 'ink';
+  /** Key from media-sources.json, used for the card image. */
+  photo: string;
 };
 
 export const tours: Tour[] = [
@@ -57,10 +58,11 @@ export const tours: Tour[] = [
     navTitle: 'Nairobi National Park',
     summary:
       'A guided game drive through the only national park inside a capital city, where lions, rhinos and giraffe graze against the Nairobi skyline.',
-    duration: '[PLACEHOLDER: duration, e.g. 4 to 6 hours]',
+    duration: '4 to 5 hours, or a full day with Karen',
     bestFor: 'First-time safari-goers, photographers, families with a free morning',
     pickup: 'Nairobi hotels, Airbnbs and JKIA',
     accent: 'acacia',
+    photo: 'lion-plains',
   },
   {
     slug: 'nairobi-city-excursions',
@@ -68,10 +70,11 @@ export const tours: Tour[] = [
     navTitle: 'City excursions',
     summary:
       'The Sheldrick elephant orphanage, the Giraffe Centre, the Karen Blixen Museum, Bomas of Kenya and the Kazuri bead workshop, combined into one unhurried day.',
-    duration: '[PLACEHOLDER: duration, e.g. half day or full day]',
+    duration: '5 hours half day, 9 hours full day',
     bestFor: 'Visitors with one free day, families with children, culture-first travellers',
     pickup: 'Nairobi hotels, Airbnbs and JKIA',
     accent: 'clay',
+    photo: 'elephant-orphanage',
   },
   {
     slug: 'day-trips-from-nairobi',
@@ -79,10 +82,11 @@ export const tours: Tour[] = [
     navTitle: 'Day trips',
     summary:
       'Long single days out of the city to Lake Naivasha, Hell&rsquo;s Gate, Lake Nakuru, Amboseli, Ngong Hills and the Great Rift Valley, back in Nairobi by evening.',
-    duration: '[PLACEHOLDER: typical departure and return times]',
+    duration: '11 to 14 hours, dawn until evening',
     bestFor: 'Travellers without time for an overnight safari, weekend residents',
     pickup: 'Nairobi hotels, Airbnbs and JKIA',
     accent: 'ink',
+    photo: 'lake-nakuru',
   },
   {
     slug: 'airport-layover-tours',
@@ -90,10 +94,11 @@ export const tours: Tour[] = [
     navTitle: 'Layover tours',
     summary:
       'A short excursion built around your connecting flight, timed backwards from check-in so you reach the terminal with hours to spare.',
-    duration: '[PLACEHOLDER: minimum layover length you accept]',
+    duration: 'Layovers of 6 hours or longer',
     bestFor: 'Transit passengers at JKIA with a long connection',
     pickup: 'Jomo Kenyatta International Airport',
     accent: 'marigold',
+    photo: 'jkia-airport',
   },
 ];
 

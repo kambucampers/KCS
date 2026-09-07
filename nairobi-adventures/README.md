@@ -10,10 +10,16 @@ and deployable to Cloudflare Pages with no server, database or paid tooling.
 
 ```bash
 npm install
-npm run dev      # http://localhost:4321
-npm run build    # static output in dist/
-npm run preview  # serve the built dist/ locally
+cp .env.example .env          # then paste your Pexels key into it
+npm run media                 # fetch photographs into public/images/
+npm run dev                   # http://localhost:4321
+npm run build                 # static output in dist/
+npm run preview               # serve the built dist/ locally
 ```
+
+The site builds and runs without the media step. Until photographs are fetched, each image slot
+renders a quiet landscape graphic in the same palette, so nothing looks broken and no layout
+shifts when the photographs arrive.
 
 `dist/` must be served by a web server. Do not open `dist/index.html` from the file
 system: clean URLs such as `/tours/` only resolve when a host serves the folder.
@@ -66,14 +72,40 @@ To capture submissions server-side instead, create a free endpoint (Formspree, W
 a Cloudflare Pages Function) and set `FORM_ENDPOINT` at the top of that component. The form
 then posts normally and the mailto fallback is skipped automatically.
 
+## Photography
+
+`npm run media` fills every image slot defined in `src/data/media-sources.json`, writing files to
+`public/images/` and a manifest to `src/data/media.json`.
+
+Two sources, in this order per slot:
+
+1. **Wikimedia Commons** for named Nairobi places, filtered to free licences only (CC0, public
+   domain, CC BY and CC BY-SA). The author and licence are recorded and rendered as a credit.
+2. **Pexels** for general wildlife and travel photography, using `PEXELS_API_KEY` from `.env`.
+
+```bash
+npm run media                      # fetch anything missing
+npm run media:force                # refetch everything
+npm run media -- --only=rhino,amboseli
+```
+
+Alt text lives with the slot in `src/data/media-sources.json`, not with the fetched file, so it
+stays accurate whichever photograph comes back. Replace any fetched file with your own
+photograph of the same name to use real Nairobi Adventures imagery.
+
+## Pricing
+
+Prices are generated, not typed into pages. `src/data/pricing.ts` holds the entry fees, the
+vehicle day rates and a `MARKUP` constant of 1.2, and every price table, "from" figure and
+schema.org offer is derived from it. `PRICING.md` documents the method, the market anchors and
+the sources.
+
 ## Before going live
 
 1. Set the production domain in `astro.config.mjs` (`site`) and in `public/robots.txt`.
    Canonical URLs, Open Graph URLs, the sitemap and schema all derive from that one value.
-2. Fill in every `[PLACEHOLDER: ...]` (see `PLACEHOLDERS.md`).
-3. Replace the placeholder photo slots with real photography. Each slot already carries
-   written alt text: swap the `<PlaceholderPhoto />` component for an `<Image />` and keep
-   the `alt` string.
+2. Read `ASSUMPTIONS.md` and correct anything stated on your behalf, prices included.
+3. Run `npm run media`, then replace any fetched photograph with your own where you have one.
 4. Add a phone or WhatsApp number in `src/data/site.ts` and it appears in the footer, the
    contact page and the LocalBusiness schema automatically.
 

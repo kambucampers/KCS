@@ -4,7 +4,7 @@ import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import Faq from '../components/Faq.astro';
 import CtaBand from '../components/CtaBand.astro';
-import PlaceholderPhoto from '../components/PlaceholderPhoto.astro';
+import Photo from '../components/Photo.astro';
 import { site } from '../data/site';
 
 const faqs = [
@@ -30,7 +30,7 @@ const faqs = [
   },
   {
     q: 'Can you accommodate mobility needs, dietary needs or young children?',
-    a: 'Tell us what you need when you enquire and we will answer honestly about what a given day can accommodate. Private vehicles help, because the route, the stop frequency and the pace can be adjusted without affecting other guests. [PLACEHOLDER: confirm whether an accessible vehicle or child seats can be arranged.]',
+    a: 'Tell us what you need when you enquire and we answer honestly about what a given day can accommodate. Child seats are fitted on request when you give us ages at booking, and dietary needs are passed to any restaurant on the itinerary. We do not run wheelchair-accessible vehicles as standard, so describe your mobility requirements and we will say plainly what we can and cannot do rather than promise and disappoint.',
   },
   {
     q: 'How do I book, and how far ahead?',
@@ -75,7 +75,7 @@ const schema = [
   <PageHero
     eyebrow="Practical guide"
     title="Planning a day out of Nairobi"
-    lede="A Nairobi day tour works best with an early start, an itemised understanding of park fees, and clothing chosen for a city that is cold at dawn and hot by eleven. This page answers the practical questions travellers send us before booking, so you arrive knowing what the day involves."
+    lede="A Nairobi day tour works best with an early start, a clear understanding of what park fees add to the price, and clothing chosen for a city that is cold at dawn and hot by eleven. This page answers the practical questions travellers send us before booking, so you arrive knowing what the day involves."
     meta={[
       { label: 'Altitude', value: 'About 1,795 m above sea level' },
       { label: 'Park gate', value: 'About 7 km from the city centre' },
@@ -103,8 +103,9 @@ const schema = [
         the park costs no more in entry fees than a half day, because the charge is daily rather than hourly.
       </p>
       <p>
-        We itemise every fee in your quote rather than folding them into one figure, because a bundled price hides
-        which part of the day is actually expensive and makes it impossible for you to drop a stop you do not want.
+        Our published prices already include these fees, so the figure on each tour page is the figure you pay. We
+        also show what each fee is, because knowing that the park gate takes USD 80 of a Nairobi National Park price
+        lets you judge the rest of the day for yourself.
       </p>
 
       <h2>Weather, seasons and what they change</h2>
@@ -139,12 +140,7 @@ const schema = [
     </article>
 
     <aside class="md:col-span-5 lg:col-span-4">
-      <PlaceholderPhoto
-        alt="Early morning light over the plains of Nairobi National Park with the city skyline behind"
-        note="[PLACEHOLDER: photo of early morning on the plains]"
-        ratio="4 / 5"
-        tone="ink"
-      />
+      <Photo slot="dawn-plains" ratio="4 / 5" tone="ink" />
       <div class="mt-8 border border-ink/15 bg-sand/50 p-7">
         <p class="eyebrow">Quick answer</p>
         <h2 class="mt-4 text-[1.3rem] leading-snug">How much time do I need?</h2>

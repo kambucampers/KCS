@@ -1,7 +1,11 @@
 ---
 import TourPageLayout from '../../layouts/TourPageLayout.astro';
 import { tourBySlug } from '../../data/site';
+import { twoPersonFor, fromFor } from '../../data/pricing';
 const tour = tourBySlug('nairobi-national-park-game-drive');
+const halfDayTwo = twoPersonFor('parkHalfDay');
+const halfDaySix = fromFor('parkHalfDay');
+const fullDayTwo = twoPersonFor('parkFullDay');
 
 const itinerary = [
   {
@@ -32,29 +36,30 @@ const itinerary = [
 ];
 
 const included = [
+  'Nairobi National Park conservation fee at the current Kenya Wildlife Service rate',
   'Private vehicle with a pop-up roof for game viewing and photography',
   'Professional driver guide who knows the park circuits',
   'Door-to-door pick-up and drop-off in Nairobi, JKIA or Wilson Airport',
-  'Drinking water on board',
-  '[PLACEHOLDER: confirm whether binoculars, snacks or a picnic breakfast are included]',
+  'Bottled drinking water and a pair of binoculars in the vehicle',
+  'All fuel, parking and road tolls',
 ];
 
 const notIncluded = [
-  'Nairobi National Park entry fees, charged by Kenya Wildlife Service per person per day',
-  'Meals and drinks beyond what is listed above',
-  'Entry to the elephant orphanage, Giraffe Centre or Karen Blixen Museum if added to the day',
+  'Meals and drinks beyond the water in the vehicle',
+  'Entry to the elephant orphanage, Giraffe Centre or Karen Blixen Museum unless you book the full-day combination',
   'Tips for your guide, which are welcome but never expected',
   'Travel insurance',
+  'Anything personal, from souvenirs to extra bottled drinks',
 ];
 
 const costFactors = [
   {
     t: 'Residency status',
-    b: 'Kenya Wildlife Service publishes different park entry rates for citizens, East African residents and non-residents, so the same drive costs different amounts depending on who is in the vehicle. Bring your ID or residency card if a lower rate applies to you.',
+    b: 'The prices above use the non-resident conservation fee of USD 80 per person per day. Kenya Wildlife Service charges Kenyan citizens and East African residents considerably less, so tell us if that applies and we requote with the lower fee. Bring your ID or residency card on the day.',
   },
   {
     t: 'How long you stay in the park',
-    b: 'Entry is charged per person per day rather than per hour, so a full day inside the park costs the same in fees as a half day. The variable is vehicle and guide time, which is why a half-day drive quotes lower overall.',
+    b: 'The conservation fee is charged per person per day rather than per hour, so a full day inside the park costs the same in fees as a half day. Only the vehicle and guide time changes, which is why the half-day drive quotes lower overall.',
   },
   {
     t: 'Group size',
@@ -62,7 +67,7 @@ const costFactors = [
   },
   {
     t: 'What you add to the day',
-    b: 'The orphanage, the Giraffe Centre, the Karen Blixen Museum and lunch each carry their own entry or bill, which is why we list them separately in your quote instead of folding them into one number.',
+    b: 'The full-day combination adds the elephant orphanage, the Giraffe Centre and the Karen Blixen Museum, which carry USD 34 per person in entry between them. Lunch is paid at the restaurant, so you choose the bill.',
   },
 ];
 
@@ -101,21 +106,29 @@ const faqs = [
   h1="Nairobi National Park game drive"
   lede="A Nairobi National Park game drive is a guided wildlife drive through the only national park that borders a capital city, seven kilometres from downtown Nairobi. Lion, black rhino, buffalo, giraffe and zebra graze on open plains with the skyline behind them. Nairobi Adventures collects you from your hotel or the airport, handles the gate formalities and drives the circuits that are producing sightings that week."
   heroMeta={[
+    { label: 'From', value: `$${halfDaySix} per person, fees included` },
     { label: 'Duration', value: tour.duration },
     { label: 'Departs', value: 'Daily, early morning or afternoon' },
-    { label: 'Vehicle', value: 'Private, pop-up roof' },
   ]}
   itinerary={itinerary}
   included={included}
   notIncluded={notIncluded}
   costFactors={costFactors}
   faqs={faqs}
-  photoAlt="Zebra and giraffe grazing on the plains of Nairobi National Park with the Nairobi city skyline in the distance"
-  photoNote="[PLACEHOLDER: hero photo of wildlife with the Nairobi skyline]"
+  photo="hero-park-skyline"
+  priceKeys={['parkHalfDay', 'parkFullDay']}
+  priceNote="Lunch on the full-day combination is paid at the restaurant, so you choose what you spend."
   ctaTitle="Check a morning in the park"
-  ctaBody="Send your dates and your Nairobi address. We reply with availability, an itemised quote including current Kenya Wildlife Service entry rates for your group, and a suggested pick-up time."
+  ctaBody="Send your dates and your Nairobi address. We reply with availability, the exact price for your group size and a suggested pick-up time, usually within one working day."
 >
   <Fragment slot="intro">
+    <p class="border-l-2 border-marigold pl-5 text-[length:var(--text-lede)] leading-relaxed text-ink">
+      A half-day game drive costs <strong>${halfDayTwo} per person for two travellers</strong> and{' '}
+      <strong>${halfDaySix} per person at six</strong>, with the Kenya Wildlife Service conservation fee already
+      inside that figure. The full day, which adds the elephant orphanage, the Giraffe Centre and the Karen Blixen
+      Museum, is ${fullDayTwo} per person for two.
+    </p>
+
     <h2>Why this park is unlike any other in the world</h2>
     <p>
       Nairobi National Park was gazetted in 1946 as Kenya&rsquo;s first national park, and it remains the only
@@ -154,7 +167,7 @@ const faqs = [
       bead workshop all sit within a short drive of the park&rsquo;s Lang&rsquo;ata gate, which is why most guests
       pair a morning game drive with an afternoon in Karen. The orphanage opens to the public for one short window
       each day, so the running order of a combined day is dictated by that window rather than by preference. We
-      build the timing around it and tell you exactly what the day will look like before you book. See the
+      build the timing around it and tell you exactly what the day will look like before you book. See the{' '}
       <a href="/tours/nairobi-city-excursions/">Nairobi city excursions</a> page for the full afternoon.
     </p>
     <h2>What to bring</h2>

@@ -1,7 +1,11 @@
 ---
 import TourPageLayout from '../../layouts/TourPageLayout.astro';
 import { tourBySlug } from '../../data/site';
+import { twoPersonFor, fromFor } from '../../data/pricing';
 const tour = tourBySlug('nairobi-city-excursions');
+const halfDayTwo = twoPersonFor('cityHalfDay');
+const fullDayTwo = twoPersonFor('cityFullDay');
+const fullDaySix = fromFor('cityFullDay');
 
 const itinerary = [
   {
@@ -37,17 +41,18 @@ const itinerary = [
 ];
 
 const included = [
-  'Private vehicle and driver guide for the full day',
+  'Entry to every attraction on your itinerary, booked in advance where booking is required',
+  'Private vehicle and driver guide for the whole excursion',
   'Door-to-door pick-up and drop-off in Nairobi, JKIA or Wilson Airport',
   'A route planned around the orphanage visiting window so nothing is missed',
-  'Drinking water on board',
-  '[PLACEHOLDER: confirm whether attraction entry fees are included or quoted separately]',
+  'Bottled drinking water in the vehicle',
+  'All fuel, parking and road tolls',
 ];
 
 const notIncluded = [
-  'Entry fees for the elephant orphanage, Giraffe Centre, Karen Blixen Museum, Bomas of Kenya and the National Museum',
-  'Lunch and drinks',
-  'Purchases at the Kazuri workshop or museum shops',
+  'Lunch and drinks, which you pay at the restaurant so you choose the bill',
+  'Nairobi National Park conservation fee, if you add a game drive to the day',
+  'Purchases at the Kazuri workshop or the museum shops',
   'Tips for your guide',
   'Travel insurance',
 ];
@@ -55,11 +60,11 @@ const notIncluded = [
 const costFactors = [
   {
     t: 'How many attractions you include',
-    b: 'Each site charges its own entry fee, so a three-stop day and a five-stop day are different quotes. We list every entry line separately rather than bundling them, because bundled pricing hides which stop is expensive.',
+    b: 'The half day covers the elephant orphanage, the Giraffe Centre and the Karen Blixen Museum, which carry USD 34 per person in entry. The full day adds Bomas of Kenya at USD 10 more. Drop a stop and the quote drops with it.',
   },
   {
     t: 'Residency status',
-    b: 'Most Nairobi attractions publish separate rates for citizens, residents and non-residents, so the same itinerary costs different amounts depending on who is travelling. Carry your ID or residency card if a lower rate applies.',
+    b: 'These prices use non-resident entry rates. Kenyan citizens and East African residents pay less at every one of these attractions, so tell us if that applies and we requote. Carry your ID or residency card on the day.',
   },
   {
     t: 'Group size',
@@ -67,7 +72,7 @@ const costFactors = [
   },
   {
     t: 'Half day or full day',
-    b: 'A half day covers the orphanage and the Giraffe Centre comfortably. Adding Karen, Kazuri and Bomas turns it into a full day, because the driving between Karen and the city has to be paid for in time as well as fuel.',
+    b: 'A half day of about five hours covers the orphanage, the Giraffe Centre and Karen comfortably. Adding Kazuri and Bomas turns it into a nine-hour day, because the driving between Karen and the city has to be paid for in time as well as fuel.',
   },
 ];
 
@@ -102,21 +107,28 @@ const faqs = [
   h1="Nairobi city excursions"
   lede="A Nairobi city excursion is a guided day around the attractions clustered in Karen and Lang&rsquo;ata: the Sheldrick Wildlife Trust elephant orphanage, the Giraffe Centre, the Karen Blixen Museum, the Kazuri bead workshop and Bomas of Kenya. Nairobi Adventures plans the running order around the orphanage&rsquo;s single daily visiting window, because that window is the one fixed point in the day."
   heroMeta={[
+    { label: 'From', value: `$${fullDaySix} per person, entry included` },
     { label: 'Duration', value: tour.duration },
     { label: 'Departs', value: 'Daily, timed to the orphanage window' },
-    { label: 'Vehicle', value: 'Private, air conditioned' },
   ]}
   itinerary={itinerary}
   included={included}
   notIncluded={notIncluded}
   costFactors={costFactors}
   faqs={faqs}
-  photoAlt="A Rothschild's giraffe being fed from the raised platform at the Giraffe Centre in Lang'ata, Nairobi"
-  photoNote="[PLACEHOLDER: photo at the Giraffe Centre or elephant orphanage]"
+  photo="giraffe-centre"
+  priceKeys={['cityHalfDay', 'cityFullDay']}
+  priceNote="Lunch is paid at the restaurant on the day."
   ctaTitle="Plan your day around Karen and Lang&rsquo;ata"
-  ctaBody="Tell us which attractions matter most and how long you have. We reply with a running order that respects the orphanage window, an itemised quote and a pick-up time."
+  ctaBody="Tell us which attractions matter most and how long you have. We reply with a running order that respects the orphanage window, the confirmed price for your group and a pick-up time."
 >
   <Fragment slot="intro">
+    <p class="border-l-2 border-marigold pl-5 text-[length:var(--text-lede)] leading-relaxed text-ink">
+      A half-day city excursion costs <strong>${halfDayTwo} per person for two travellers</strong>, and the full day
+      with Bomas of Kenya added is <strong>${fullDayTwo} per person for two</strong>. Entry to every attraction on
+      the itinerary is inside that price.
+    </p>
+
     <h2>What a Nairobi city excursion actually covers</h2>
     <p>
       Nairobi&rsquo;s best-known visitor attractions are not spread across the city, they are concentrated in the
@@ -151,7 +163,7 @@ const faqs = [
     <p>
       Nairobi National Park&rsquo;s Lang&rsquo;ata gate sits minutes from the Karen attractions, so a morning game
       drive followed by an afternoon in Karen is one continuous day rather than two separate outings. Guests who
-      want both should expect an early pick-up, because the park rewards a first-light start. The
+      want both should expect an early pick-up, because the park rewards a first-light start. The{' '}
       <a href="/tours/nairobi-national-park-game-drive/">Nairobi National Park game drive</a> page explains how that
       morning runs.
     </p>

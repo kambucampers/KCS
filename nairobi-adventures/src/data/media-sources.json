@@ -1,0 +1,102 @@
+[
+  {
+    "key": "hero-park-skyline",
+    "alt": "Wildlife grazing on the plains of Nairobi National Park with the Nairobi city skyline behind",
+    "pexels": "Nairobi national park skyline wildlife",
+    "commons": "Nairobi National Park skyline",
+    "prefer": "commons"
+  },
+  {
+    "key": "game-drive",
+    "alt": "A safari vehicle on a game drive track in Nairobi National Park",
+    "pexels": "safari game drive vehicle kenya",
+    "commons": "Game drive Nairobi National Park"
+  },
+  {
+    "key": "lion-plains",
+    "alt": "A lion resting on the open grass plains of Nairobi National Park",
+    "pexels": "lion kenya savannah",
+    "commons": "Lion Nairobi National Park"
+  },
+  {
+    "key": "rhino",
+    "alt": "A black rhino grazing in Nairobi National Park, one of Kenya of the most reliable rhino sanctuaries",
+    "pexels": "black rhino kenya",
+    "commons": "Black rhinoceros Nairobi National Park"
+  },
+  {
+    "key": "giraffe-centre",
+    "alt": "A Rothschild giraffe being fed by hand at the Giraffe Centre in Langata, Nairobi",
+    "pexels": "giraffe feeding nairobi giraffe centre",
+    "commons": "Giraffe Centre Nairobi",
+    "prefer": "commons"
+  },
+  {
+    "key": "elephant-orphanage",
+    "alt": "Orphaned elephant calves being fed by keepers at an elephant orphanage in Nairobi",
+    "pexels": "baby elephant orphanage kenya keeper",
+    "commons": "David Sheldrick Wildlife Trust elephants",
+    "prefer": "commons"
+  },
+  {
+    "key": "karen-blixen",
+    "alt": "The Karen Blixen Museum farmhouse in Karen, Nairobi, with its garden and the Ngong Hills beyond",
+    "pexels": "colonial farmhouse kenya museum",
+    "commons": "Karen Blixen Museum",
+    "prefer": "commons"
+  },
+  {
+    "key": "lake-naivasha",
+    "alt": "Lake Naivasha with hippos and fever trees, a day trip destination from Nairobi",
+    "pexels": "lake naivasha kenya boat hippo",
+    "commons": "Lake Naivasha",
+    "prefer": "commons"
+  },
+  {
+    "key": "hells-gate",
+    "alt": "Cyclists on the track between the rock towers of Hell's Gate National Park in Kenya",
+    "pexels": "hells gate national park kenya cycling",
+    "commons": "Hell's Gate National Park",
+    "prefer": "commons"
+  },
+  {
+    "key": "lake-nakuru",
+    "alt": "Flamingos and rhino on the shoreline of Lake Nakuru National Park in the Rift Valley",
+    "pexels": "lake nakuru flamingos kenya",
+    "commons": "Lake Nakuru National Park",
+    "prefer": "commons"
+  },
+  {
+    "key": "amboseli",
+    "alt": "Elephants crossing the Amboseli plains with Mount Kilimanjaro rising behind them",
+    "pexels": "amboseli elephants kilimanjaro",
+    "commons": "Amboseli National Park elephants",
+    "prefer": "commons"
+  },
+  {
+    "key": "jkia-airport",
+    "alt": "Jomo Kenyatta International Airport in Nairobi, where layover tours start and end",
+    "pexels": "airport terminal africa aircraft",
+    "commons": "Jomo Kenyatta International Airport",
+    "prefer": "commons"
+  },
+  {
+    "key": "nairobi-city",
+    "alt": "The Nairobi city skyline seen across the plains on the southern edge of the city",
+    "pexels": "nairobi city skyline kenya",
+    "commons": "Nairobi skyline",
+    "prefer": "commons"
+  },
+  {
+    "key": "dawn-plains",
+    "alt": "Early morning light over the grass plains and acacia trees of Nairobi National Park",
+    "pexels": "african savannah sunrise acacia",
+    "commons": "Nairobi National Park landscape"
+  },
+  {
+    "key": "guide-vehicle",
+    "alt": "A driver guide beside a safari vehicle with a pop-up roof at a Nairobi National Park gate",
+    "pexels": "safari guide land cruiser kenya",
+    "commons": "Safari vehicle Kenya"
+  }
+]

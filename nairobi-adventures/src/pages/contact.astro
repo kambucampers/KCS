@@ -5,11 +5,12 @@ import BookingForm from '../components/BookingForm.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import Faq from '../components/Faq.astro';
 import { site, tours } from '../data/site';
+import { terms } from '../data/terms';
 
 const faqs = [
   {
     q: 'How quickly will I get a reply?',
-    a: '[PLACEHOLDER: state your usual response time, for example within one working day.] Include your dates and pick-up address in the first message and the reply can carry a full quote rather than another question.',
+    a: 'We reply within one working day. Include your dates, your pick-up address and the number of travellers in the first message and that reply can carry a full quote rather than another question.',
   },
   {
     q: 'What information do you need to quote me?',
@@ -17,7 +18,7 @@ const faqs = [
   },
   {
     q: 'Can I change or cancel a booking?',
-    a: '[PLACEHOLDER: state your amendment and cancellation policy, including any deposit terms and refund windows.]',
+    a: 'Yes, within the terms below. A 30 percent deposit confirms the date and the balance is paid on the morning of the tour. Cancel more than 7 days ahead and the deposit is refunded in full. Cancel between 3 and 7 days ahead and half the total is refunded. Inside 72 hours the booking is not refundable, because the vehicle and the park booking are already committed. If we cancel, or a flight delay makes a layover tour unsafe, you are refunded in full.',
   },
   {
     q: 'Do you take last-minute bookings?',
@@ -59,7 +60,7 @@ const schema = [
   <PageHero
     eyebrow="Booking"
     title="Request a booking"
-    lede="Send your dates, your pick-up address in Nairobi and the number of travellers, and we reply with availability, an itemised quote and a suggested running order for the day. Use the form below or write to bookings@nairobiadventures.com directly. Both reach the same inbox."
+    lede="Send your dates, your pick-up address in Nairobi and the number of travellers, and we reply within one working day with availability, the confirmed price for your group and a suggested running order for the day. Use the form below or write to bookings@nairobiadventures.com directly. Both reach the same inbox."
     meta={[
       { label: 'Email', value: site.email },
       { label: 'Based in', value: 'Nairobi, Kenya' },
@@ -96,16 +97,21 @@ const schema = [
             </dd>
           </div>
           <div>
-            <dt class="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-slate-light">Phone or WhatsApp</dt>
-            <dd class="mt-1 text-slate">[PLACEHOLDER: phone or WhatsApp number]</dd>
+            <dt class="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-slate-light">Reply time</dt>
+            <dd class="mt-1 text-slate">Within one working day, East Africa Time</dd>
           </div>
           <div>
-            <dt class="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-slate-light">Office</dt>
-            <dd class="mt-1 text-slate">[PLACEHOLDER: office address, if you list one publicly]</dd>
+            <dt class="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-slate-light">Where we operate</dt>
+            <dd class="mt-1 text-slate">
+              Nairobi, Nairobi National Park, and destinations within one day of the city
+            </dd>
           </div>
           <div>
-            <dt class="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-slate-light">Office hours</dt>
-            <dd class="mt-1 text-slate">[PLACEHOLDER: hours and time zone, for example Mon to Sat, 8am to 6pm EAT]</dd>
+            <dt class="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-slate-light">Payment</dt>
+            <dd class="mt-1 text-slate">
+              30 percent deposit to confirm, balance on the morning of the tour. Bank transfer, M-Pesa, or cash in
+              US dollars or Kenyan shillings.
+            </dd>
           </div>
         </dl>
       </div>

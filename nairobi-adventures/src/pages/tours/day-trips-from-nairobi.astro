@@ -1,7 +1,12 @@
 ---
 import TourPageLayout from '../../layouts/TourPageLayout.astro';
 import { tourBySlug } from '../../data/site';
+import { twoPersonFor, fromFor } from '../../data/pricing';
 const tour = tourBySlug('day-trips-from-nairobi');
+const naivashaTwo = twoPersonFor('naivashaHellsGate');
+const nakuruTwo = twoPersonFor('lakeNakuru');
+const amboseliTwo = twoPersonFor('amboseli');
+const naivashaSix = fromFor('naivashaHellsGate');
 
 const itinerary = [
   {
@@ -37,37 +42,37 @@ const itinerary = [
 ];
 
 const included = [
+  'Park entry and activity fees for the destination you choose, at non-resident rates',
   'Private vehicle and driver guide for the whole day',
   'Fuel and all road tolls',
   'Door-to-door pick-up and drop-off in Nairobi, JKIA or Wilson Airport',
-  'Drinking water on board',
-  '[PLACEHOLDER: confirm whether lunch, park fees and activity fees are included per destination]',
+  'Bottled drinking water in the vehicle',
 ];
 
 const notIncluded = [
-  'National park and conservation area entry fees, which differ by destination and residency',
-  'Boat hire at Lake Naivasha and bicycle hire in Hell&rsquo;s Gate',
-  'Meals and drinks unless stated in your quote',
-  'Guide fees inside walking areas such as Crescent Island or Hell&rsquo;s Gate gorge',
+  'Lunch, taken at a lakeside restaurant or lodge and paid there',
+  'Bicycle hire at Hell&rsquo;s Gate, which is optional and paid at the gate',
+  'Balloon flights, spa stops and any activity not on your confirmed itinerary',
   'Tips and personal purchases',
+  'Travel insurance',
 ];
 
 const costFactors = [
   {
     t: 'Which destination you choose',
-    b: 'Distance drives the cost. Lake Naivasha and Hell&rsquo;s Gate sit around 90 to 100 km from Nairobi, Lake Nakuru around 160 km, and Amboseli around 240 km, so the vehicle and guide hours differ substantially between them.',
+    b: 'Distance drives the cost. Lake Naivasha and Hell&rsquo;s Gate sit around 90 to 100 km from Nairobi, Lake Nakuru around 160 km and Amboseli around 240 km, so the vehicle and guide hours differ substantially between them.',
   },
   {
     t: 'Park and activity fees',
-    b: 'Each protected area sets its own entry rate, and activities such as a Crescent Island walk, a Naivasha boat ride or a Hell&rsquo;s Gate bicycle carry separate charges. We quote each line so you can drop any activity you do not want.',
+    b: 'Fees are the second half of the price. Hell&rsquo;s Gate entry with the Naivasha boat ride and Crescent Island walk comes to USD 75 per person, while Lake Nakuru and Amboseli each charge USD 90 per person for the day.',
   },
   {
     t: 'Residency status',
-    b: 'Kenyan citizens, East African residents and non-residents pay different park rates, so the same day trip prices differently depending on the group. Bring documentation if a lower rate applies.',
+    b: 'These prices use non-resident park rates. Kenyan citizens and East African residents pay markedly less, so tell us if that applies and we requote before you pay anything.',
   },
   {
-    t: 'Group size and vehicle',
-    b: 'Vehicle hire is quoted per vehicle, so a larger party lowers the per-person figure. Longer trips such as Amboseli may need a four-wheel drive rather than a saloon, which changes the vehicle rate.',
+    t: 'Group size',
+    b: 'The vehicle is quoted once and shared, so the per-person price falls sharply as the group grows. Two travellers to Amboseli pay $' + String(amboseliTwo) + ' each, while six pay far less each for the same vehicle.',
   },
 ];
 
@@ -102,21 +107,28 @@ const faqs = [
   h1="Day trips from Nairobi"
   lede="A day trip from Nairobi is a single-day guided excursion out of the city and back the same evening, most often to Lake Naivasha, Hell&rsquo;s Gate National Park, Lake Nakuru, Mount Longonot, the Ngong Hills or Amboseli. Nairobi Adventures runs these as private trips with an early start, because the driving is what makes or breaks a one-day itinerary."
   heroMeta={[
+    { label: 'From', value: `$${naivashaSix} per person, fees included` },
     { label: 'Departs', value: 'Daily, early morning' },
     { label: 'Returns', value: 'Same evening to Nairobi' },
-    { label: 'Vehicle', value: 'Private, saloon or 4x4' },
   ]}
   itinerary={itinerary}
   included={included}
   notIncluded={notIncluded}
   costFactors={costFactors}
   faqs={faqs}
-  photoAlt="A boat on Lake Naivasha with hippos and the Rift Valley escarpment behind, on a day trip from Nairobi"
-  photoNote="[PLACEHOLDER: photo of Lake Naivasha, Hell's Gate or Lake Nakuru]"
+  photo="lake-naivasha"
+  priceKeys={['naivashaHellsGate', 'lakeNakuru', 'amboseli']}
+  priceNote="Mount Longonot and the Ngong Hills run on the same basis and quote lower, because their entry fees are smaller and the driving is shorter."
   ctaTitle="Pick a destination and we will tell you if the day works"
   ctaBody="Send the date you have free and where you want to go. If a destination is too far to enjoy in one day, we say so and suggest a better use of the same hours."
 >
   <Fragment slot="intro">
+    <p class="border-l-2 border-marigold pl-5 text-[length:var(--text-lede)] leading-relaxed text-ink">
+      For two travellers, Lake Naivasha with Hell&rsquo;s Gate costs <strong>${naivashaTwo} per person</strong>,
+      Lake Nakuru <strong>${nakuruTwo}</strong> and Amboseli <strong>${amboseliTwo}</strong>, park and activity fees
+      included. Every price falls as the group grows, because the vehicle is shared.
+    </p>
+
     <h2>Where a single day from Nairobi can genuinely reach</h2>
     <p>
       Nairobi sits at the edge of the Great Rift Valley, so several of Kenya&rsquo;s best-known landscapes are within
@@ -159,7 +171,7 @@ const faqs = [
     </p>
     <h2>If you only have one day</h2>
     <p>
-      Choose a destination by what you want the day to feel like. For maximum wildlife with minimum driving, the
+      Choose a destination by what you want the day to feel like. For maximum wildlife with minimum driving, the{' '}
       <a href="/tours/nairobi-national-park-game-drive/">Nairobi National Park game drive</a> is the strongest
       option. For a change of landscape and a boat on the water, Lake Naivasha. For something active on your own
       legs, Hell&rsquo;s Gate or Mount Longonot. Tell us your priority and we will make the recommendation before

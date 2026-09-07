@@ -6,34 +6,42 @@ import SectionHeading from '../../components/SectionHeading.astro';
 import Faq from '../../components/Faq.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { site, tours } from '../../data/site';
+import { fromFor, twoPersonFor } from '../../data/pricing';
+
+const priceKeyByTour: Record<string, Parameters<typeof fromFor>[0]> = {
+  'nairobi-national-park-game-drive': 'parkHalfDay',
+  'nairobi-city-excursions': 'cityHalfDay',
+  'day-trips-from-nairobi': 'naivashaHellsGate',
+  'airport-layover-tours': 'layoverCity',
+};
 
 const comparison = [
   {
     day: 'Nairobi National Park game drive',
     href: '/tours/nairobi-national-park-game-drive/',
     time: 'Half day or full day',
-    leaves: 'Stays inside Nairobi',
+    price: `$${twoPersonFor('parkHalfDay')} pp for two, $${fromFor('parkHalfDay')} at six`,
     pick: 'You want wildlife and have limited time',
   },
   {
     day: 'Nairobi city excursions',
     href: '/tours/nairobi-city-excursions/',
     time: 'Half day or full day',
-    leaves: 'Karen and Lang&rsquo;ata',
+    price: `$${twoPersonFor('cityHalfDay')} pp for two, $${fromFor('cityHalfDay')} at six`,
     pick: 'You want elephants, giraffe, history and craft',
   },
   {
     day: 'Day trips from Nairobi',
     href: '/tours/day-trips-from-nairobi/',
     time: 'Full day, early start',
-    leaves: 'Rift Valley or Amboseli',
+    price: `$${twoPersonFor('naivashaHellsGate')} pp for two to Naivasha`,
     pick: 'You want a change of landscape and will accept the driving',
   },
   {
     day: 'Airport layover tours',
     href: '/tours/airport-layover-tours/',
     time: 'Fits your connection',
-    leaves: 'Starts and ends at JKIA',
+    price: `$${twoPersonFor('layoverCity')} pp for two, city option`,
     pick: 'You are in transit and hold entry permission for Kenya',
   },
 ];
@@ -45,7 +53,7 @@ const faqs = [
   },
   {
     q: 'Are your tours private or shared?',
-    a: 'Every excursion listed here runs as a private tour for your party alone, which is why departure times, stop lengths and the route can be adjusted on the day. [PLACEHOLDER: confirm whether you also offer shared or seat-in-vehicle departures.]',
+    a: 'Every excursion listed here is private, for your party alone. We do not sell seat-in-vehicle departures, because a shared vehicle cannot be timed around one group&rsquo;s flight, one family&rsquo;s pace or the day a photographer wants to sit with a sighting.',
   },
   {
     q: 'Do you pick up outside central Nairobi?',
@@ -57,7 +65,7 @@ const faqs = [
   },
   {
     q: 'How do I pay?',
-    a: '[PLACEHOLDER: state accepted payment methods, deposit requirements and cancellation terms.]',
+    a: 'A 30 percent deposit confirms the date and the balance is paid on the morning of the tour. We accept bank transfer, M-Pesa, or cash in US dollars or Kenyan shillings. Cancel more than 7 days ahead and the deposit is refunded in full, between 3 and 7 days half the total is refunded, and inside 72 hours the booking is not refundable because the vehicle and park booking are already committed.',
   },
 ];
 
@@ -99,7 +107,7 @@ const schema = [
   <PageHero
     eyebrow="Tours"
     title="Every excursion we run, and who each one suits"
-    lede="Nairobi Adventures runs four kinds of day: a game drive in Nairobi National Park, a city excursion around the Karen and Lang&rsquo;ata attractions, a longer day trip into the Rift Valley or to Amboseli, and a layover tour built around a connecting flight at JKIA. All four are private, all four include pick-up, and all four are quoted with the fees itemised."
+    lede="Nairobi Adventures runs four kinds of day: a game drive in Nairobi National Park, a city excursion around the Karen and Lang&rsquo;ata attractions, a longer day trip into the Rift Valley or to Amboseli, and a layover tour built around a connecting flight at JKIA. All four are private, all four include pick-up, and all four are priced with park and attraction entry fees already inside the figure."
     meta={[
       { label: 'All tours', value: 'Private, your party only' },
       { label: 'Pick-up', value: 'Nairobi, JKIA and Wilson Airport' },
@@ -111,7 +119,7 @@ const schema = [
     <SectionHeading
       eyebrow="Choose by the time you have"
       title="Four days, compared honestly"
-      lede="The right excursion is decided by how many hours you have and how much driving you are willing to do. This table is the short version, and each tour page gives the full detail."
+      lede="The right excursion is decided by how many hours you have, how much driving you will accept and what the day costs. Prices are per person and include park and attraction entry. Each tour page carries the full table by group size."
       align="wide"
     />
 
@@ -121,7 +129,7 @@ const schema = [
           <tr class="border-b border-ink/25">
             <th class="py-4 pr-6 text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-slate-light">Tour</th>
             <th class="py-4 pr-6 text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-slate-light">Time needed</th>
-            <th class="py-4 pr-6 text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-slate-light">Where it goes</th>
+            <th class="py-4 pr-6 text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-slate-light">Price, fees included</th>
             <th class="py-4 text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-slate-light">Choose it when</th>
           </tr>
         </thead>
@@ -135,7 +143,7 @@ const schema = [
                   </a>
                 </td>
                 <td class="py-5 pr-6 text-[0.95rem] text-slate">{row.time}</td>
-                <td class="py-5 pr-6 text-[0.95rem] text-slate" set:html={row.leaves} />
+                <td class="py-5 pr-6 text-[0.95rem] text-slate">{row.price}</td>
                 <td class="py-5 text-[0.95rem] text-slate">{row.pick}</td>
               </tr>
             ))
@@ -151,12 +159,7 @@ const schema = [
       <div class="mt-14 grid gap-x-10 gap-y-14 md:grid-cols-2">
         {
           tours.map((tour, i) => (
-            <TourCard
-              tour={tour}
-              index={i}
-              photoAlt={`${tour.title} run by Nairobi Adventures`}
-              photoNote={`[PLACEHOLDER: photo of ${tour.navTitle.toLowerCase()}]`}
-            />
+            <TourCard tour={tour} index={i} priceKey={priceKeyByTour[tour.slug]} />
           ))
         }
       </div>

@@ -1,12 +1,27 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroArt from '../components/HeroArt.astro';
+import media from '../data/media.json';
+import { slotByKey } from '../data/media-sources';
 import SectionHeading from '../components/SectionHeading.astro';
 import TourCard from '../components/TourCard.astro';
-import PlaceholderPhoto from '../components/PlaceholderPhoto.astro';
+import Photo from '../components/Photo.astro';
 import Faq from '../components/Faq.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { site, tours } from '../data/site';
+import { fromFor } from '../data/pricing';
+
+const heroPhoto = (media as Record<string, { file: string; author: string; source: string; sourceUrl: string }>)[
+  'hero-park-skyline'
+];
+const heroAlt = slotByKey('hero-park-skyline')?.alt ?? '';
+
+const priceKeyByTour: Record<string, Parameters<typeof fromFor>[0]> = {
+  'nairobi-national-park-game-drive': 'parkHalfDay',
+  'nairobi-city-excursions': 'cityHalfDay',
+  'day-trips-from-nairobi': 'naivashaHellsGate',
+  'airport-layover-tours': 'layoverCity',
+};
 
 const faqs = [
   {
@@ -19,7 +34,7 @@ const faqs = [
   },
   {
     q: 'Are park entry fees included in the price?',
-    a: 'Tell us who is travelling and we quote park fees line by line. The Kenya Wildlife Service charges Nairobi National Park entry per person per day at published rates that differ for citizens, residents and non-residents, so a quote is only honest once we know your group. Send your dates through the booking form and we itemise everything before you pay.',
+    a: 'Yes. Every price on this site includes the entry fees for that day, so the Kenya Wildlife Service conservation fee of USD 80 per person for Nairobi National Park is already inside the figure you see. The published prices use non-resident rates, and Kenyan citizens and East African residents pay less, so tell us if that applies and we requote.',
   },
   {
     q: 'Do you pick up from Jomo Kenyatta International Airport?',
@@ -73,7 +88,22 @@ const timeline = [
   <!-- HERO -->
   <section class="bg-ink">
     <div class="hero-sky relative isolate overflow-hidden">
-    <div class="absolute inset-x-0 bottom-0 -z-10"><HeroArt /></div>
+    {
+      heroPhoto ? (
+        <img
+          src={heroPhoto.file}
+          alt={heroAlt}
+          class="absolute inset-0 -z-10 h-full w-full object-cover"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      ) : (
+        <div class="absolute inset-x-0 bottom-0 -z-10">
+          <HeroArt />
+        </div>
+      )
+    }
     <div class="hero-scrim absolute inset-0 -z-10" aria-hidden="true"></div>
     <div class="wrap relative grid gap-12 py-20 md:grid-cols-12 md:py-32">
       <div class="md:col-span-7">
@@ -91,6 +121,16 @@ const timeline = [
           <a href="/contact/" class="btn btn-primary">Request a booking</a>
           <a href="/tours/" class="btn btn-ghost-light">Browse the four excursions</a>
         </div>
+        {
+          heroPhoto && (
+            <p class="mt-8 text-[0.72rem] text-bone/45">
+              Photograph:{' '}
+              <a class="hover:text-marigold" href={heroPhoto.sourceUrl} rel="nofollow noopener" target="_blank">
+                {heroPhoto.author} / {heroPhoto.source}
+              </a>
+            </p>
+          )
+        }
         <p class="mt-6 text-[0.92rem] text-bone/65">
           <span class="block sm:inline">Prefer email?{' '}</span>
           <a class="font-semibold text-marigold underline underline-offset-4" href={`mailto:${site.email}`}
@@ -138,12 +178,7 @@ const timeline = [
     <div class="mt-16 grid gap-x-10 gap-y-14 md:grid-cols-2">
       {
         tours.map((tour, i) => (
-          <TourCard
-            tour={tour}
-            index={i}
-            photoAlt={`${tour.title} with Nairobi Adventures`}
-            photoNote={`[PLACEHOLDER: photo of ${tour.navTitle.toLowerCase()}]`}
-          />
+          <TourCard tour={tour} index={i} priceKey={priceKeyByTour[tour.slug]} />
         ))
       }
     </div>
@@ -158,13 +193,7 @@ const timeline = [
           title="How a Nairobi National Park morning actually runs"
           lede="Nairobi National Park rewards an early start, because the plains game moves at dawn and the park sits on the traffic-heavy southern side of the city. Here is the shape of a typical morning."
         />
-        <PlaceholderPhoto
-          class="mt-10"
-          alt="Guests on a Nairobi Adventures game drive watching zebra on the Athi plains with the Nairobi skyline behind"
-          note="[PLACEHOLDER: photo of a game drive with the skyline behind]"
-          ratio="4 / 3"
-          tone="acacia"
-        />
+        <Photo class="mt-10" slot="game-drive" ratio="4 / 3" tone="acacia" />
       </div>
       <ol class="md:col-span-7 md:pl-6">
         {
@@ -212,8 +241,8 @@ const timeline = [
               b: 'Layover and last-day guests get a route timed backwards from airport check-in, so the schedule protects the flight first and the sightseeing second.',
             },
             {
-              t: 'Honest quotes, itemised',
-              b: 'Park entry, transport, guiding and any extras are listed separately in your quote, because a single lump sum hides where your money goes.',
+              t: 'Prices published, fees inside them',
+              b: 'Every tour page shows the price per person by group size with park and attraction entry already included, because a headline figure that excludes the gate fee is not a price, it is a deposit on a surprise.',
             },
             {
               t: 'Nairobi knowledge, not a script',
@@ -254,6 +283,6 @@ const timeline = [
 
   <CtaBand
     title="Tell us the day you have free"
-    body="Send your dates, your Nairobi address and the number of travellers. We reply with availability, an itemised quote and a suggested route for that day."
+    body="Send your dates, your Nairobi address and the number of travellers. We reply within one working day with availability, the confirmed price for your group and a suggested route for that day."
   />
 </BaseLayout>
