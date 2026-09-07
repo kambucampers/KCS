@@ -1,0 +1,8 @@
+node_modules/
+# dist/ is committed on purpose so the finished site can be pulled and
+# uploaded without running a build. Re-run `npm run build` after editing src/.
+.astro/
+.DS_Store
+*.log
+.env
+.env.production

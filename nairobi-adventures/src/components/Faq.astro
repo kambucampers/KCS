@@ -1,0 +1,37 @@
+---
+interface Props {
+  items: { q: string; a: string }[];
+  tone?: 'dark' | 'light';
+}
+const { items, tone = 'dark' } = Astro.props;
+---
+
+<div class:list={['divide-y', tone === 'light' ? 'divide-bone/20' : 'divide-ink/12']}>
+  {
+    items.map((item) => (
+      <details class="group py-5">
+        <summary
+          class:list={[
+            'flex cursor-pointer list-none items-start justify-between gap-6 font-[var(--font-display)] text-[1.15rem] font-medium',
+            tone === 'light' ? 'text-bone' : 'text-ink',
+          ]}
+        >
+          <span>{item.q}</span>
+          <span
+            class:list={[
+              'mt-1 shrink-0 text-xl leading-none transition-transform duration-300 group-open:rotate-45',
+              tone === 'light' ? 'text-marigold' : 'text-acacia',
+            ]}
+            aria-hidden="true"
+          >
+            +
+          </span>
+        </summary>
+        <div
+          class:list={['mt-3 max-w-[68ch] leading-relaxed', tone === 'light' ? 'text-bone/75' : 'text-slate']}
+          set:html={item.a}
+        />
+      </details>
+    ))
+  }
+</div>

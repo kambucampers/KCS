@@ -1,0 +1,181 @@
+---
+import TourPageLayout from '../../layouts/TourPageLayout.astro';
+import { tourBySlug } from '../../data/site';
+import { twoPersonFor, fromFor } from '../../data/pricing';
+const tour = tourBySlug('nairobi-national-park-game-drive');
+const halfDayTwo = twoPersonFor('parkHalfDay');
+const halfDaySix = fromFor('parkHalfDay');
+const fullDayTwo = twoPersonFor('parkFullDay');
+
+const itinerary = [
+  {
+    time: 'Pick-up',
+    title: 'Collected from your Nairobi address',
+    body: 'Your guide arrives at your hotel, apartment or airport terminal at the time confirmed by email. Early departures matter here, because the drive to the main gate crosses the southern side of the city and Nairobi traffic builds quickly after 7am.',
+  },
+  {
+    time: 'At the gate',
+    title: 'Entry formalities at Nairobi National Park',
+    body: 'Kenya Wildlife Service takes entry payment per person per day at the gate. Your guide handles the paperwork while you get your camera ready, so the group is on the plains rather than in a queue.',
+  },
+  {
+    time: 'Morning',
+    title: 'The plains, the dams and the gorge',
+    body: 'The route follows where wildlife has been moving that week: the open Athi plains for lion, zebra and eland, the dams for hippo and waterbirds, and the Mokoyeti gorge and Hyena Dam circuits when the grass is high. Your guide adjusts the loop on the morning rather than repeating a fixed circuit.',
+  },
+  {
+    time: 'Mid morning',
+    title: 'A stop with the skyline behind you',
+    body: 'A pause at a permitted viewpoint for coffee and the photograph most visitors come for: grazing herds in the foreground and Nairobi towers on the horizon, which no other national park in the world offers.',
+  },
+  {
+    time: 'Return',
+    title: 'Back to your door, or on to the afternoon',
+    body: 'Half-day guests are dropped back in time for lunch. Guests combining the park with the elephant orphanage, the Giraffe Centre and Karen continue straight from the gate, because those attractions sit minutes from the park boundary.',
+  },
+];
+
+const included = [
+  'Nairobi National Park conservation fee at the current Kenya Wildlife Service rate',
+  'Private vehicle with a pop-up roof for game viewing and photography',
+  'Professional driver guide who knows the park circuits',
+  'Door-to-door pick-up and drop-off in Nairobi, JKIA or Wilson Airport',
+  'Bottled drinking water and a pair of binoculars in the vehicle',
+  'All fuel, parking and road tolls',
+];
+
+const notIncluded = [
+  'Meals and drinks beyond the water in the vehicle',
+  'Entry to the elephant orphanage, Giraffe Centre or Karen Blixen Museum unless you book the full-day combination',
+  'Tips for your guide, which are welcome but never expected',
+  'Travel insurance',
+  'Anything personal, from souvenirs to extra bottled drinks',
+];
+
+const costFactors = [
+  {
+    t: 'Residency status',
+    b: 'The prices above use the non-resident conservation fee of USD 80 per person per day. Kenya Wildlife Service charges Kenyan citizens and East African residents considerably less, so tell us if that applies and we requote with the lower fee. Bring your ID or residency card on the day.',
+  },
+  {
+    t: 'How long you stay in the park',
+    b: 'The conservation fee is charged per person per day rather than per hour, so a full day inside the park costs the same in fees as a half day. Only the vehicle and guide time changes, which is why the half-day drive quotes lower overall.',
+  },
+  {
+    t: 'Group size',
+    b: 'A private vehicle is quoted per vehicle, so the per-person figure falls as the group grows. Two travellers pay more each than a family of five in the same car.',
+  },
+  {
+    t: 'What you add to the day',
+    b: 'The full-day combination adds the elephant orphanage, the Giraffe Centre and the Karen Blixen Museum, which carry USD 34 per person in entry between them. Lunch is paid at the restaurant, so you choose the bill.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'What animals live in Nairobi National Park?',
+    a: 'Nairobi National Park holds lion, leopard, cheetah, black rhino, buffalo, Masai giraffe, zebra, eland, impala, warthog, hippo, crocodile and over 400 recorded bird species. The park has no elephants, so travellers who want elephants add the Sheldrick orphanage in the afternoon or take the Amboseli day trip instead.',
+  },
+  {
+    q: 'How far is Nairobi National Park from the city centre?',
+    a: 'The main gate on Lang&rsquo;ata Road sits roughly 7 km from Nairobi&rsquo;s central business district, which is why a game drive fits inside a morning. Real journey time depends on traffic rather than distance, so pick-up times are set to travel before the peak.',
+  },
+  {
+    q: 'Is a half day long enough to see the park?',
+    a: 'Yes for a first visit. Nairobi National Park covers about 117 square kilometres, and the main circuits can be driven in four to six hours with unhurried stops. A full day suits photographers and birders who want to sit with a sighting rather than move on.',
+  },
+  {
+    q: 'What is the best time of year for a Nairobi National Park game drive?',
+    a: 'The park is open every day of the year, and each season reads differently. Dry months keep grass short and animals near the dams, which makes spotting easier. Green months after the rains bring newborn plains game and the strongest birdlife, because migrant species arrive and the park fills with water.',
+  },
+  {
+    q: 'Can children come on the game drive?',
+    a: 'Yes. Children of any age can join a private game drive, and a private vehicle is the practical choice with young ones because the day can be shortened or paused without affecting other guests. Tell us their ages so the route and stop frequency suit them.',
+  },
+  {
+    q: 'Will I definitely see a rhino or a lion?',
+    a: 'No operator can guarantee a sighting, because Nairobi National Park is unfenced to the south and its wildlife moves freely. Nairobi National Park is one of Kenya&rsquo;s most reliable black rhino sanctuaries, so rhino sightings are common, and an early start improves the odds on every species.',
+  },
+];
+---
+
+<TourPageLayout
+  tour={tour}
+  title="Nairobi National Park Game Drive | Half Day & Full Day Tours"
+  description="Private guided game drive in Nairobi National Park, 7 km from the city centre. Lion, black rhino and giraffe against the skyline, with hotel and JKIA pick-up."
+  h1="Nairobi National Park game drive"
+  lede="A Nairobi National Park game drive is a guided wildlife drive through the only national park that borders a capital city, seven kilometres from downtown Nairobi. Lion, black rhino, buffalo, giraffe and zebra graze on open plains with the skyline behind them. Nairobi Adventures collects you from your hotel or the airport, handles the gate formalities and drives the circuits that are producing sightings that week."
+  heroMeta={[
+    { label: 'From', value: `$${halfDaySix} per person, fees included` },
+    { label: 'Duration', value: tour.duration },
+    { label: 'Departs', value: 'Daily, early morning or afternoon' },
+  ]}
+  itinerary={itinerary}
+  included={included}
+  notIncluded={notIncluded}
+  costFactors={costFactors}
+  faqs={faqs}
+  photo="hero-park-skyline"
+  priceKeys={['parkHalfDay', 'parkFullDay']}
+  priceNote="Lunch on the full-day combination is paid at the restaurant, so you choose what you spend."
+  ctaTitle="Check a morning in the park"
+  ctaBody="Send your dates and your Nairobi address. We reply with availability, the exact price for your group size and a suggested pick-up time, usually within one working day."
+>
+  <Fragment slot="intro">
+    <p class="border-l-2 border-marigold pl-5 text-[length:var(--text-lede)] leading-relaxed text-ink">
+      A half-day game drive costs <strong>${halfDayTwo} per person for two travellers</strong> and{' '}
+      <strong>${halfDaySix} per person at six</strong>, with the Kenya Wildlife Service conservation fee already
+      inside that figure. The full day, which adds the elephant orphanage, the Giraffe Centre and the Karen Blixen
+      Museum, is ${fullDayTwo} per person for two.
+    </p>
+
+    <h2>Why this park is unlike any other in the world</h2>
+    <p>
+      Nairobi National Park was gazetted in 1946 as Kenya&rsquo;s first national park, and it remains the only
+      national park anywhere that sits on the doorstep of a capital city&rsquo;s business district. The park covers
+      roughly 117 square kilometres of open plain, acacia bush, seasonal dams and river gorge. It is fenced along
+      its city boundaries and left open on the southern side, which keeps the migration corridor towards the Athi
+      Kapiti plains alive and explains why the park holds genuinely wild animals rather than a fixed population.
+    </p>
+    <p>
+      That geography is what makes the drive worth doing even for travellers heading to the Masai Mara later.
+      Because the park is minutes from the city, a visitor with one free morning gets a real game drive rather than
+      a compromise, and because the herds graze against a skyline, the photographs are unrepeatable anywhere else.
+    </p>
+    <h2>Who this game drive suits</h2>
+    <ul>
+      <li><strong>First-time visitors to Kenya</strong> who want a proper introduction before a longer safari.</li>
+      <li><strong>Travellers with a single free day</strong> in Nairobi between flights, meetings or a conference.</li>
+      <li><strong>Photographers</strong> after the skyline-and-wildlife frame that only this park produces.</li>
+      <li><strong>Families</strong> who need a short, flexible day that can end when the children have had enough.</li>
+      <li><strong>Birders</strong>, because over 400 species have been recorded inside the park boundary.</li>
+    </ul>
+  </Fragment>
+
+  <Fragment slot="body">
+    <h2>Morning or afternoon, and why the morning usually wins</h2>
+    <p>
+      Wildlife in Nairobi National Park is most active in the cool hours after dawn and again in the last hours
+      before the gates close, because midday heat pushes predators into shade. An early departure also beats the
+      traffic on Lang&rsquo;ata Road, so the same pick-up time buys more time in the park in the morning than it does
+      later in the day. Afternoon drives still work well, particularly for guests landing at JKIA before lunch, and
+      the low light through the last hour is excellent for photography.
+    </p>
+    <h2>Combining the park with the rest of Nairobi</h2>
+    <p>
+      The Sheldrick Wildlife Trust elephant orphanage, the Giraffe Centre, the Karen Blixen Museum and the Kazuri
+      bead workshop all sit within a short drive of the park&rsquo;s Lang&rsquo;ata gate, which is why most guests
+      pair a morning game drive with an afternoon in Karen. The orphanage opens to the public for one short window
+      each day, so the running order of a combined day is dictated by that window rather than by preference. We
+      build the timing around it and tell you exactly what the day will look like before you book. See the{' '}
+      <a href="/tours/nairobi-city-excursions/">Nairobi city excursions</a> page for the full afternoon.
+    </p>
+    <h2>What to bring</h2>
+    <p>
+      Nairobi sits at roughly 1,795 metres above sea level, so mornings are cold before the sun climbs and warm by
+      mid morning. Bring a fleece or jacket you can shed, sunscreen, a hat, binoculars if you own a pair, a camera
+      with a zoom lens, and a means of payment for entry fees. Neutral colours help, bright white does not. The
+      full list, with seasonal notes, is on the <a href="/plan-your-day/">planning guide</a>.
+    </p>
+  </Fragment>
+</TourPageLayout>

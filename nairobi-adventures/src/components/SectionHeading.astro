@@ -1,0 +1,33 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lede?: string;
+  align?: 'left' | 'wide';
+  tone?: 'dark' | 'light';
+  as?: 'h2' | 'h3';
+}
+const { eyebrow, title, lede, align = 'left', tone = 'dark', as: Tag = 'h2' } = Astro.props;
+---
+
+<div class:list={[align === 'wide' ? 'max-w-3xl' : 'max-w-2xl']}>
+  {eyebrow && <p class:list={['eyebrow', tone === 'light' && 'eyebrow-light']}>{eyebrow}</p>}
+  <Tag
+    class:list={[
+      'mt-4 text-[length:var(--text-display)] leading-[1.08]',
+      tone === 'light' && '!text-bone',
+    ]}
+    set:html={title}
+  />
+  {
+    lede && (
+      <p
+        class:list={[
+          'mt-5 text-[length:var(--text-lede)] leading-relaxed',
+          tone === 'light' ? 'text-bone/75' : 'text-slate',
+        ]}
+        set:html={lede}
+      />
+    )
+  }
+</div>

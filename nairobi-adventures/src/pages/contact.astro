@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import BookingForm from '../components/BookingForm.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Faq from '../components/Faq.astro';
+import { site, tours } from '../data/site';
+import { terms } from '../data/terms';
+
+const faqs = [
+  {
+    q: 'How quickly will I get a reply?',
+    a: 'We reply within one working day. Include your dates, your pick-up address and the number of travellers in the first message and that reply can carry a full quote rather than another question.',
+  },
+  {
+    q: 'What information do you need to quote me?',
+    a: 'Four things: the date, the excursion you want, where in Nairobi we are collecting you, and how many travellers are coming with their residency status. Residency matters because Kenya Wildlife Service and the Nairobi attractions publish different entry rates for citizens, residents and non-residents.',
+  },
+  {
+    q: 'Can I change or cancel a booking?',
+    a: 'Yes, within the terms below. A 30 percent deposit confirms the date and the balance is paid on the morning of the tour. Cancel more than 7 days ahead and the deposit is refunded in full. Cancel between 3 and 7 days ahead and half the total is refunded. Inside 72 hours the booking is not refundable, because the vehicle and the park booking are already committed. If we cancel, or a flight delay makes a layover tour unsafe, you are refunded in full.',
+  },
+  {
+    q: 'Do you take last-minute bookings?',
+    a: 'Often yes for game drives and city excursions, because those depend on vehicle availability rather than third-party slots. The Sheldrick elephant orphanage requires advance booking, so a same-day request may have to leave that stop out.',
+  },
+];
+
+const schema = [
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${site.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Contact', item: `${site.url}/contact/` },
+    ],
+  },
+  {
+    '@type': 'ContactPage',
+    '@id': `${site.url}/contact/#contact`,
+    url: `${site.url}/contact/`,
+    about: { '@id': `${site.url}/#organization` },
+  },
+  {
+    '@type': 'FAQPage',
+    '@id': `${site.url}/contact/#faq`,
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="Book a Nairobi Day Tour | Contact Nairobi Adventures"
+  description="Request a booking for a Nairobi game drive, city excursion, day trip or JKIA layover tour. Use the form or email bookings@nairobiadventures.com."
+  schema={schema}
+>
+  <PageHero
+    eyebrow="Booking"
+    title="Request a booking"
+    lede="Send your dates, your pick-up address in Nairobi and the number of travellers, and we reply within one working day with availability, the confirmed price for your group and a suggested running order for the day. Use the form below or write to bookings@nairobiadventures.com directly. Both reach the same inbox."
+    meta={[
+      { label: 'Email', value: site.email },
+      { label: 'Based in', value: 'Nairobi, Kenya' },
+      { label: 'Pick-up', value: 'Hotels, apartments, JKIA and Wilson Airport' },
+    ]}
+  />
+
+  <div class="wrap grid gap-14 py-16 md:grid-cols-12 md:py-24">
+    <div class="md:col-span-7 lg:col-span-8">
+      <SectionHeading
+        eyebrow="Booking form"
+        title="Tell us about the day you want"
+        lede="The more you tell us now, the more useful the first reply is. Flight numbers, children&rsquo;s ages, mobility needs and anything already booked all change what we recommend."
+      />
+      <div class="mt-10"><BookingForm /></div>
+
+      <div class="mt-16 border-t border-ink/15 pt-10">
+        <SectionHeading eyebrow="Booking questions" title="Before you send" />
+        <div class="mt-6"><Faq items={faqs} /></div>
+      </div>
+    </div>
+
+    <aside class="md:col-span-5 lg:col-span-4">
+      <div class="border border-ink/15 bg-sand/50 p-7">
+        <p class="eyebrow">Direct contact</p>
+        <h2 class="mt-4 text-[1.4rem] leading-snug">Reach us</h2>
+        <dl class="mt-6 space-y-5 text-[0.96rem]">
+          <div>
+            <dt class="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-slate-light">Email</dt>
+            <dd class="mt-1">
+              <a class="break-words font-semibold text-acacia underline underline-offset-4" href={`mailto:${site.email}`}
+                >{site.email}</a
+              >
+            </dd>
+          </div>
+          <div>
+            <dt class="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-slate-light">Reply time</dt>
+            <dd class="mt-1 text-slate">Within one working day, East Africa Time</dd>
+          </div>
+          <div>
+            <dt class="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-slate-light">Where we operate</dt>
+            <dd class="mt-1 text-slate">
+              Nairobi, Nairobi National Park, and destinations within one day of the city
+            </dd>
+          </div>
+          <div>
+            <dt class="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-slate-light">Payment</dt>
+            <dd class="mt-1 text-slate">
+              30 percent deposit to confirm, balance on the morning of the tour. Bank transfer, M-Pesa, or cash in
+              US dollars or Kenyan shillings.
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="mt-8 border border-ink/15 p-7">
+        <p class="eyebrow">Read first</p>
+        <h2 class="mt-4 text-[1.25rem] leading-snug">Not sure which tour to ask for?</h2>
+        <ul class="mt-5 space-y-3 text-[0.95rem]">
+          {
+            tours.map((tour) => (
+              <li>
+                <a class="text-acacia underline underline-offset-4 hover:text-ink" href={`/tours/${tour.slug}/`}>
+                  {tour.title}
+                </a>
+              </li>
+            ))
+          }
+          <li>
+            <a class="text-acacia underline underline-offset-4 hover:text-ink" href="/plan-your-day/">
+              Planning guide: timings, fees and packing
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</BaseLayout>

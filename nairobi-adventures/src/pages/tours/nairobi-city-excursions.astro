@@ -1,0 +1,178 @@
+---
+import TourPageLayout from '../../layouts/TourPageLayout.astro';
+import { tourBySlug } from '../../data/site';
+import { twoPersonFor, fromFor } from '../../data/pricing';
+const tour = tourBySlug('nairobi-city-excursions');
+const halfDayTwo = twoPersonFor('cityHalfDay');
+const fullDayTwo = twoPersonFor('cityFullDay');
+const fullDaySix = fromFor('cityFullDay');
+
+const itinerary = [
+  {
+    time: 'Morning',
+    title: 'Collected from your hotel or apartment',
+    body: 'The day starts with a pick-up at the time agreed by email. Karen and Lang&rsquo;ata sit southwest of the centre, so an early start protects the schedule against Nairobi traffic on Ngong Road.',
+  },
+  {
+    time: 'Late morning',
+    title: 'The Sheldrick Wildlife Trust elephant orphanage',
+    body: 'Orphaned elephant calves are fed and mud-bathed in front of visitors while keepers explain each calf&rsquo;s rescue. The orphanage opens to the public for one short window each day, so the whole day is planned around that window rather than the other way round.',
+  },
+  {
+    time: 'Midday',
+    title: 'The Giraffe Centre in Lang&rsquo;ata',
+    body: 'A raised feeding platform brings you eye to eye with endangered Rothschild&rsquo;s giraffe. The centre was founded to breed and reintroduce the subspecies, so the visit funds conservation rather than a photo opportunity alone.',
+  },
+  {
+    time: 'Afternoon',
+    title: 'Karen Blixen Museum and the Kazuri bead workshop',
+    body: 'The Karen Blixen Museum is the farmhouse the Danish author of Out of Africa lived in from 1917 to 1931, kept with its original layout and coffee-farm setting. Kazuri Beads nearby is a working ceramic studio employing Kenyan women, where you watch beads being rolled, fired and glazed.',
+  },
+  {
+    time: 'Optional',
+    title: 'Bomas of Kenya or the Nairobi National Museum',
+    body: 'Bomas of Kenya recreates homesteads from Kenyan communities and stages a daily programme of traditional dance. The Nairobi National Museum covers Kenyan prehistory, culture and art, and sits closer to the centre for guests short on time.',
+  },
+  {
+    time: 'Evening',
+    title: 'Dropped back at your door',
+    body: 'You are returned to your hotel, apartment or the airport. Guests flying out the same evening are dropped at JKIA with the buffer we agree in advance.',
+  },
+];
+
+const included = [
+  'Entry to every attraction on your itinerary, booked in advance where booking is required',
+  'Private vehicle and driver guide for the whole excursion',
+  'Door-to-door pick-up and drop-off in Nairobi, JKIA or Wilson Airport',
+  'A route planned around the orphanage visiting window so nothing is missed',
+  'Bottled drinking water in the vehicle',
+  'All fuel, parking and road tolls',
+];
+
+const notIncluded = [
+  'Lunch and drinks, which you pay at the restaurant so you choose the bill',
+  'Nairobi National Park conservation fee, if you add a game drive to the day',
+  'Purchases at the Kazuri workshop or the museum shops',
+  'Tips for your guide',
+  'Travel insurance',
+];
+
+const costFactors = [
+  {
+    t: 'How many attractions you include',
+    b: 'The half day covers the elephant orphanage, the Giraffe Centre and the Karen Blixen Museum, which carry USD 34 per person in entry. The full day adds Bomas of Kenya at USD 10 more. Drop a stop and the quote drops with it.',
+  },
+  {
+    t: 'Residency status',
+    b: 'These prices use non-resident entry rates. Kenyan citizens and East African residents pay less at every one of these attractions, so tell us if that applies and we requote. Carry your ID or residency card on the day.',
+  },
+  {
+    t: 'Group size',
+    b: 'Vehicle and guide time is quoted per vehicle, so per-person cost falls as the party grows, while entry fees stay per person.',
+  },
+  {
+    t: 'Half day or full day',
+    b: 'A half day of about five hours covers the orphanage, the Giraffe Centre and Karen comfortably. Adding Kazuri and Bomas turns it into a nine-hour day, because the driving between Karen and the city has to be paid for in time as well as fuel.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Can I visit the elephant orphanage and the Giraffe Centre on the same day?',
+    a: 'Yes, and most guests do. The Sheldrick Wildlife Trust orphanage and the Giraffe Centre sit within a short drive of each other in Lang&rsquo;ata and Karen, so both fit in one morning. The orphanage opens to the public for one short daily window, so that visit sets the start time for the whole day.',
+  },
+  {
+    q: 'Do I need to book the elephant orphanage in advance?',
+    a: 'Yes. The Sheldrick Wildlife Trust asks visitors to book their slot in advance, and slots do sell out in high season. Tell us your dates as early as you can and we will confirm what is available before your day is finalised.',
+  },
+  {
+    q: 'Is the Karen Blixen Museum worth visiting if I have not read Out of Africa?',
+    a: 'Yes. The Karen Blixen Museum works as a preserved colonial-era farmhouse and coffee estate with the Ngong Hills behind it, so the visit reads as Kenyan social history rather than a literary pilgrimage. Guides at the house explain the estate, the farm and the period.',
+  },
+  {
+    q: 'How much time does a Nairobi city tour need?',
+    a: 'Two attractions fit into a half day of roughly four to five hours. Four or five attractions need a full day, because Karen, Lang&rsquo;ata and the city centre are separated by traffic that swallows more time than distance suggests.',
+  },
+  {
+    q: 'Can a city excursion be combined with a game drive?',
+    a: 'Yes, and it is the most popular combination we run. A morning in Nairobi National Park followed by an afternoon at the orphanage, the Giraffe Centre and Karen makes one long day, because the park gate and the Karen attractions are minutes apart.',
+  },
+];
+---
+
+<TourPageLayout
+  tour={tour}
+  title="Nairobi City Tours | Elephant Orphanage, Giraffe Centre & Karen"
+  description="Private Nairobi city tour of the Sheldrick elephant orphanage, Giraffe Centre, Karen Blixen Museum and Kazuri Beads, timed around the orphanage window."
+  h1="Nairobi city excursions"
+  lede="A Nairobi city excursion is a guided day around the attractions clustered in Karen and Lang&rsquo;ata: the Sheldrick Wildlife Trust elephant orphanage, the Giraffe Centre, the Karen Blixen Museum, the Kazuri bead workshop and Bomas of Kenya. Nairobi Adventures plans the running order around the orphanage&rsquo;s single daily visiting window, because that window is the one fixed point in the day."
+  heroMeta={[
+    { label: 'From', value: `$${fullDaySix} per person, entry included` },
+    { label: 'Duration', value: tour.duration },
+    { label: 'Departs', value: 'Daily, timed to the orphanage window' },
+  ]}
+  itinerary={itinerary}
+  included={included}
+  notIncluded={notIncluded}
+  costFactors={costFactors}
+  faqs={faqs}
+  photo="giraffe-centre"
+  priceKeys={['cityHalfDay', 'cityFullDay']}
+  priceNote="Lunch is paid at the restaurant on the day."
+  ctaTitle="Plan your day around Karen and Lang&rsquo;ata"
+  ctaBody="Tell us which attractions matter most and how long you have. We reply with a running order that respects the orphanage window, the confirmed price for your group and a pick-up time."
+>
+  <Fragment slot="intro">
+    <p class="border-l-2 border-marigold pl-5 text-[length:var(--text-lede)] leading-relaxed text-ink">
+      A half-day city excursion costs <strong>${halfDayTwo} per person for two travellers</strong>, and the full day
+      with Bomas of Kenya added is <strong>${fullDayTwo} per person for two</strong>. Entry to every attraction on
+      the itinerary is inside that price.
+    </p>
+
+    <h2>What a Nairobi city excursion actually covers</h2>
+    <p>
+      Nairobi&rsquo;s best-known visitor attractions are not spread across the city, they are concentrated in the
+      southwestern suburbs of Karen and Lang&rsquo;ata, a short drive from Nairobi National Park&rsquo;s main gate.
+      That clustering is what makes a single well-planned day workable. The constraint is not distance, it is
+      timing: the elephant orphanage opens to the public for one short window each day, so an itinerary that
+      ignores that window loses the stop most guests came for.
+    </p>
+    <p>
+      Nairobi Adventures builds the day backwards from that window and fills the hours around it with the Giraffe
+      Centre, the Karen Blixen Museum, Kazuri Beads and, for guests with a full day, Bomas of Kenya or the Nairobi
+      National Museum.
+    </p>
+    <h2>Who this day suits</h2>
+    <ul>
+      <li><strong>Families with children</strong>, because feeding a giraffe and watching elephant calves is the part children remember.</li>
+      <li><strong>Travellers with one free day</strong> who want Nairobi&rsquo;s highlights without renting a car or negotiating taxis.</li>
+      <li><strong>Culture-first visitors</strong> more interested in Kenyan history, craft and music than in game viewing.</li>
+      <li><strong>Guests on a rest day</strong> between safari legs, because the pace is gentle and the drives are short.</li>
+    </ul>
+  </Fragment>
+
+  <Fragment slot="body">
+    <h2>Why the orphanage sets the timetable</h2>
+    <p>
+      The Sheldrick Wildlife Trust operates a working elephant nursery, not a visitor attraction with all-day
+      opening. Public access is limited to a short daily window and is booked in advance, because the calves keep a
+      feeding and rest routine that visitors have to fit around. That is why we ask for your dates early and why the
+      rest of the day is arranged after that slot is confirmed.
+    </p>
+    <h2>Adding a game drive to the same day</h2>
+    <p>
+      Nairobi National Park&rsquo;s Lang&rsquo;ata gate sits minutes from the Karen attractions, so a morning game
+      drive followed by an afternoon in Karen is one continuous day rather than two separate outings. Guests who
+      want both should expect an early pick-up, because the park rewards a first-light start. The{' '}
+      <a href="/tours/nairobi-national-park-game-drive/">Nairobi National Park game drive</a> page explains how that
+      morning runs.
+    </p>
+    <h2>Practical notes</h2>
+    <ul>
+      <li>Karen and Lang&rsquo;ata are leafy and cool, so bring a light layer even on a bright day.</li>
+      <li>Attraction entry is usually paid on arrival, and several sites accept mobile money or card as well as cash.</li>
+      <li>Photography is welcome at all of these sites, and a modest zoom lens is more useful than a wide angle at the orphanage.</li>
+      <li>Kazuri Beads is a working factory, so the visit is best on a weekday when the studio is in production.</li>
+    </ul>
+  </Fragment>
+</TourPageLayout>

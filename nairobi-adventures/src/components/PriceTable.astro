@@ -1,0 +1,56 @@
+---
+import { tableFor, type OptionKey, options, CURRENCY } from '../data/pricing';
+
+interface Props {
+  keys: OptionKey[];
+  note?: string;
+}
+const { keys, note } = Astro.props;
+const tables = keys.map((k) => ({ key: k, option: options[k], rows: tableFor(k) }));
+const sizes = tables[0].rows.map((r) => r.travellers);
+---
+
+<div class="overflow-x-auto">
+  <table class="w-full min-w-[38rem] border-collapse text-left">
+    <caption class="sr-only">Price per person in {CURRENCY} by group size</caption>
+    <thead>
+      <tr class="border-b border-ink/25">
+        <th scope="col" class="py-4 pr-6 text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-slate-light">
+          Travellers
+        </th>
+        {
+          tables.map((t) => (
+            <th scope="col" class="py-4 pr-6 text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-slate-light">
+              {t.option.name}
+            </th>
+          ))
+        }
+      </tr>
+    </thead>
+    <tbody>
+      {
+        sizes.map((n) => (
+          <tr class="border-b border-ink/12">
+            <th scope="row" class="py-4 pr-6 font-medium text-ink">
+              {n === 1 ? 'Solo traveller' : `${n} travellers`}
+            </th>
+            {tables.map((t) => {
+              const row = t.rows.find((r) => r.travellers === n)!;
+              return (
+                <td class="py-4 pr-6">
+                  <span class="font-[var(--font-display)] text-[1.15rem] text-ink">${row.perPerson}</span>
+                  <span class="text-[0.85rem] text-slate-light"> pp</span>
+                  <span class="block text-[0.8rem] text-slate-light">${row.total} total</span>
+                </td>
+              );
+            })}
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>
+<p class="mt-4 max-w-[68ch] text-[0.88rem] leading-relaxed text-slate">
+  Prices are per person in US dollars and include {tables.map((t) => t.option.feeNote).join(', ')}, private
+  transport, fuel, your driver guide and drinking water. {note}
+</p>

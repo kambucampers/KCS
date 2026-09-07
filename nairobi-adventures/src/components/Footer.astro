@@ -1,0 +1,71 @@
+---
+import { nav, site, tours } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-ink text-bone/80">
+  <div class="wrap grid gap-12 py-16 md:grid-cols-12 md:py-20">
+    <div class="md:col-span-4">
+      <p class="font-[var(--font-display)] text-[1.6rem] font-medium text-bone">Nairobi Adventures</p>
+      <p class="mt-4 max-w-sm text-[0.98rem] leading-relaxed">
+        Guided excursions inside Nairobi and single-day tours starting from the city, including game drives in
+        Nairobi National Park. Book direct by email or through the booking form.
+      </p>
+      <a href="/contact/" class="btn btn-primary mt-7">Request a booking</a>
+    </div>
+
+    <div class="md:col-span-3">
+      <h2 class="text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-marigold">Tours</h2>
+      <ul class="mt-5 space-y-3 text-[0.95rem]">
+        {
+          tours.map((tour) => (
+            <li>
+              <a class="hover:text-marigold" href={`/tours/${tour.slug}/`}>
+                {tour.navTitle}
+              </a>
+            </li>
+          ))
+        }
+        <li><a class="hover:text-marigold" href="/tours/">All tours</a></li>
+      </ul>
+    </div>
+
+    <div class="md:col-span-2">
+      <h2 class="text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-marigold">Site</h2>
+      <ul class="mt-5 space-y-3 text-[0.95rem]">
+        {
+          nav
+            .filter((i) => !['Tours'].includes(i.label))
+            .map((item) => (
+              <li>
+                <a class="hover:text-marigold" href={item.href}>
+                  {item.label}
+                </a>
+              </li>
+            ))
+        }
+      </ul>
+    </div>
+
+    <div class="md:col-span-3">
+      <h2 class="text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-marigold">Contact</h2>
+      <ul class="mt-5 space-y-3 text-[0.95rem]">
+        <li>
+          <a class="break-words hover:text-marigold" href={`mailto:${site.email}`}>{site.email}</a>
+        </li>
+        {site.phone && (
+          <li>
+            <a class="hover:text-marigold" href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phone}</a>
+          </li>
+        )}
+        <li>Nairobi, Kenya</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="rule-light"></div>
+  <div class="wrap flex flex-col gap-2 py-6 text-[0.85rem] text-bone/55 md:flex-row md:items-center md:justify-between">
+    <p>&copy; {year} Nairobi Adventures. All rights reserved.</p>
+    <p>Nairobi National Park game drives, city excursions and day trips from Nairobi.</p>
+  </div>
+</footer>

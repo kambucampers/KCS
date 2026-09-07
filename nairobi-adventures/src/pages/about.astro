@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Photo from '../components/Photo.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
+
+const principles = [
+  {
+    t: 'Publish the price, fees included',
+    b: 'Each tour page carries a price table by group size with park and attraction entry already inside the figure, because a headline price that excludes the gate fee tells a traveller almost nothing about what the day will cost.',
+  },
+  {
+    t: 'Say no when the day does not work',
+    b: 'If a layover is too tight or a destination is too far to enjoy in the hours available, we say so and propose something that fits. An oversold day produces a bad review and a traveller who misses a flight.',
+  },
+  {
+    t: 'Plan around the fixed points',
+    b: 'The elephant orphanage opens for one short window a day and airlines close check-in at a set time. We build every itinerary backwards from constraints like these, so the flexible parts flex and the fixed parts hold.',
+  },
+  {
+    t: 'One party per vehicle',
+    b: 'Private departures mean the route, the stops and the pace follow your group rather than a shared timetable, which matters most with young children, photographers and anyone on a schedule.',
+  },
+];
+---
+
+<BaseLayout
+  title="About Nairobi Adventures | Nairobi Day Tour Operator"
+  description="Nairobi Adventures is a Nairobi tour operator running private day excursions in the city and day trips from it, with itemised quotes and direct booking."
+  schema={[
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${site.url}/` },
+        { '@type': 'ListItem', position: 2, name: 'About', item: `${site.url}/about/` },
+      ],
+    },
+    {
+      '@type': 'AboutPage',
+      '@id': `${site.url}/about/#about`,
+      about: { '@id': `${site.url}/#organization` },
+      url: `${site.url}/about/`,
+    },
+  ]}
+>
+  <PageHero
+    eyebrow="About"
+    title="A Nairobi operator, running Nairobi days"
+    lede="Nairobi Adventures is a Nairobi-based tour operator offering guided excursions inside the city and single-day tours starting from it, including game drives in Nairobi National Park. We answer our own email, plan our own routes and drive our own days, so the person who confirms your booking is the person who knows what the roads and the wildlife are doing that week."
+    meta={[
+      { label: 'Based in', value: 'Nairobi, Kenya' },
+      { label: 'We run', value: 'Private day excursions only' },
+      { label: 'Bookings', value: site.email },
+    ]}
+  />
+
+  <div class="wrap grid gap-14 py-16 md:grid-cols-12 md:py-24">
+    <article class="prose-na md:col-span-7">
+      <h2>What we do, stated plainly</h2>
+      <p>
+        Nairobi Adventures builds days rather than packages. Every excursion we sell starts and ends in Nairobi on
+        the same calendar day, which is a deliberate limit: it is the kind of travel that visitors most often need
+        help with and least often find planned properly. A traveller with one free morning, a connecting flight or a
+        rest day between safari legs does not need a multi-day itinerary, they need one day that works.
+      </p>
+      <p>
+        That focus is why our four excursions cover the whole realistic range of a Nairobi day, from a first-light
+        game drive seven kilometres from the business district to a long run down the Rift Valley escarpment and
+        back before dark.
+      </p>
+
+      <h2>How we work with guests</h2>
+      <p>
+        Booking starts with a conversation rather than a checkout. You send dates, a pick-up address and who is
+        travelling. We reply with availability, the confirmed price for that group size and a suggested running
+        order for the day, including the pick-up time we recommend and why. Nothing is confirmed until the plan
+        makes sense to you, because a day tour that starts with a misunderstanding about fees or timing rarely
+        recovers.
+      </p>
+
+      <h2>Why book direct rather than through a platform</h2>
+      <p>
+        Booking direct puts you in contact with the operator who will actually run your day. Questions about whether
+        a four-hour layover is enough, whether the gorge walk suits your children or whether the flamingos are at
+        Nakuru this month get answered by someone who was on those roads recently, not by a call centre reading a
+        listing. Direct booking also keeps the commission inside the business that provides the service, which is
+        what lets us publish prices with the park fees already inside them.
+      </p>
+
+      <h2>How our prices are built</h2>
+      <p>
+        Every price on this site is assembled from two numbers rather than pulled from the air. The first is the
+        entry fee, charged per person per day by Kenya Wildlife Service for the national parks and by each
+        attraction for its own gate. The second is the cost of the vehicle, the fuel and the driver guide for the
+        day, which is charged once and shared by everyone in the car.
+      </p>
+      <p>
+        That is why the per-person price falls steeply as a group grows, and why we publish a table by group size
+        instead of a single headline figure. It is also why we ask about residency before quoting: Kenyan citizens
+        and East African residents pay materially lower park rates than non-residents, so quoting one price for
+        everybody would overcharge half the people who ask.
+      </p>
+
+      <h2>Standards on the road</h2>
+      <p>
+        Wildlife tourism is easy to do badly, so we work to a few fixed rules. Vehicles stay on the mapped tracks,
+        because off-road driving damages the grassland the plains game depends on. Sightings are approached quietly
+        and at a distance that lets the animal carry on doing what it was doing. We do not crowd a predator with
+        other vehicles, and we do not bait, feed or call to wildlife for a photograph.
+      </p>
+      <p>
+        The same applies to people. Cultural stops are places of work and worship rather than exhibits, so your
+        guide will tell you where photography is welcome and where it is not.
+      </p>
+
+      <h2>Booking terms in plain words</h2>
+      <p>
+        A 30 percent deposit confirms your date and the balance is paid on the morning of the tour, by bank
+        transfer, M-Pesa or cash in US dollars or Kenyan shillings. Cancel more than seven days ahead and the
+        deposit comes back in full. Cancel between three and seven days ahead and half the total is refunded.
+        Inside 72 hours a booking is not refundable, because the vehicle is committed and park bookings are already
+        paid. If we cancel, or a flight delay makes a layover tour unsafe against your check-in time, you are
+        refunded in full.
+      </p>
+    </article>
+
+    <aside class="md:col-span-5">
+      <Photo slot="guide-vehicle" ratio="4 / 5" tone="acacia" />
+      <div class="mt-8 border border-ink/15 p-7">
+        <p class="eyebrow">In short</p>
+        <ul class="mt-5 space-y-4 text-[0.96rem] text-slate">
+          <li><strong class="text-ink">Where we operate:</strong> Nairobi city, Nairobi National Park and destinations within one day&rsquo;s drive.</li>
+          <li><strong class="text-ink">What we sell:</strong> private, guided single-day excursions.</li>
+          <li><strong class="text-ink">Who we serve:</strong> visitors to Nairobi, safari travellers with a free day, and transit passengers at JKIA.</li>
+          <li><strong class="text-ink">How to reach us:</strong> <a class="text-acacia underline underline-offset-4" href={`mailto:${site.email}`}>{site.email}</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <section class="grain bg-sand/50 py-16 md:py-24">
+    <div class="wrap grid gap-12 md:grid-cols-12">
+      <div class="md:col-span-4">
+        <SectionHeading
+          eyebrow="How we operate"
+          title="Four rules we hold to"
+          lede="These are the working principles behind every quote and every itinerary we send."
+        />
+      </div>
+      <div class="grid gap-x-10 gap-y-9 md:col-span-8 md:grid-cols-2">
+        {
+          principles.map((p) => (
+            <div class="border-t border-ink/15 pt-5">
+              <h3 class="text-[1.2rem] leading-snug">{p.t}</h3>
+              <p class="mt-3 text-[0.96rem] leading-relaxed text-slate">{p.b}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Talk to the people who will drive your day"
+    body="Send your dates and questions. You will get a considered reply with a plan, a quote and an honest view of what fits into the time you have."
+  />
+</BaseLayout>
