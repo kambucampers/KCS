@@ -1,0 +1,31 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  lede: string;
+  meta?: { label: string; value: string }[];
+}
+const { eyebrow, title, lede, meta = [] } = Astro.props;
+---
+
+<section class="grain border-b border-ink/10 bg-sand/60">
+  <div class="wrap grid gap-10 py-16 md:grid-cols-12 md:py-24">
+    <div class="md:col-span-8">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1 class="mt-5 text-[length:var(--text-display)] leading-[1.05]" set:html={title} />
+      <p class="mt-6 max-w-2xl text-[length:var(--text-lede)] leading-relaxed text-slate" set:html={lede} />
+    </div>
+    {
+      meta.length > 0 && (
+        <dl class="self-end md:col-span-4 md:border-l md:border-ink/15 md:pl-8">
+          {meta.map((m) => (
+            <div class="border-t border-ink/10 py-3 first:border-t-0 md:first:border-t md:first:border-ink/10">
+              <dt class="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-slate-light">{m.label}</dt>
+              <dd class="mt-1 text-ink" set:html={m.value} />
+            </div>
+          ))}
+        </dl>
+      )
+    }
+  </div>
+</section>

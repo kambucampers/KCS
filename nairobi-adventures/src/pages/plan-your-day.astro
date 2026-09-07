@@ -1,0 +1,199 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import PlaceholderPhoto from '../components/PlaceholderPhoto.astro';
+import { site } from '../data/site';
+
+const faqs = [
+  {
+    q: 'Do I need a visa or eTA to visit Nairobi?',
+    a: 'Most visitors need a Kenyan Electronic Travel Authorisation obtained online before departure, and the requirement applies even to a short layover if you intend to leave the airport. Requirements change, so confirm the current rule for your passport with the Kenyan authorities or your airline before you fly.',
+  },
+  {
+    q: 'What currency do I need on a day tour?',
+    a: 'The Kenyan shilling is the working currency, and card payment is widely accepted at major attractions and restaurants in Nairobi. Carrying some shillings is still useful for tips, roadside purchases and small stops. Mobile money is used everywhere in Kenya but usually needs a local number.',
+  },
+  {
+    q: 'Is Nairobi safe for visitors on a day tour?',
+    a: 'A guided day tour is a low-risk way to see Nairobi, because you are driven door to door and never left to navigate the city alone. Ordinary city sense applies: keep valuables out of sight in traffic, use your guide&rsquo;s advice on where to walk, and agree pick-up points rather than improvising.',
+  },
+  {
+    q: 'What is the weather like in Nairobi?',
+    a: 'Nairobi sits at roughly 1,795 metres, so the climate is mild rather than tropical. Mornings are genuinely cold before sunrise, midday is warm and bright, and evenings cool quickly. Rain arrives in heavy short bursts rather than all-day drizzle, which is why an early start usually beats the weather.',
+  },
+  {
+    q: 'When is the best time of year to visit Nairobi National Park?',
+    a: 'The park is open every day of the year. Drier months keep the grass short and animals close to water, which makes spotting easier. The months after the rains are green, quiet and excellent for birds, because migrant species arrive and the plains fill with newborn game.',
+  },
+  {
+    q: 'Can you accommodate mobility needs, dietary needs or young children?',
+    a: 'Tell us what you need when you enquire and we will answer honestly about what a given day can accommodate. Private vehicles help, because the route, the stop frequency and the pace can be adjusted without affecting other guests. [PLACEHOLDER: confirm whether an accessible vehicle or child seats can be arranged.]',
+  },
+  {
+    q: 'How do I book, and how far ahead?',
+    a: 'Send the booking form or email bookings@nairobiadventures.com with your dates, pick-up address and group size. Book as early as you can if your day includes the Sheldrick elephant orphanage, because its daily visiting window is limited and slots sell out in high season.',
+  },
+];
+
+const packing = [
+  { t: 'A warm layer', b: 'Nairobi mornings before sunrise are cold at altitude, and open game-drive roofs make them colder.' },
+  { t: 'Sun protection', b: 'The equatorial sun at 1,795 metres burns faster than the temperature suggests, so a hat and sunscreen matter by mid morning.' },
+  { t: 'Neutral clothing', b: 'Greens, browns and greys read better on a game drive and in photographs than bright white or black.' },
+  { t: 'Binoculars', b: 'A pair between two people transforms distant sightings, particularly for birds and for rhino across open plain.' },
+  { t: 'A zoom lens', b: 'A telephoto lens is more useful than a wide angle in Nairobi National Park, because vehicles keep a respectful distance from wildlife.' },
+  { t: 'Payment for fees', b: 'Park entry, attraction entry and lunch are usually paid on the day, so bring a card and some shillings.' },
+];
+
+const schema = [
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${site.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Plan your day', item: `${site.url}/plan-your-day/` },
+    ],
+  },
+  {
+    '@type': 'FAQPage',
+    '@id': `${site.url}/plan-your-day/#faq`,
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="Plan Your Day in Nairobi | Timings, Fees, Weather & What to Bring"
+  description="Practical planning for a Nairobi day tour: start times, how park fees work, weather at altitude, what to pack, and how far ahead to book."
+  schema={schema}
+>
+  <PageHero
+    eyebrow="Practical guide"
+    title="Planning a day out of Nairobi"
+    lede="A Nairobi day tour works best with an early start, an itemised understanding of park fees, and clothing chosen for a city that is cold at dawn and hot by eleven. This page answers the practical questions travellers send us before booking, so you arrive knowing what the day involves."
+    meta={[
+      { label: 'Altitude', value: 'About 1,795 m above sea level' },
+      { label: 'Park gate', value: 'About 7 km from the city centre' },
+      { label: 'Bookings', value: site.email },
+    ]}
+  />
+
+  <div class="wrap grid gap-14 py-16 md:grid-cols-12 md:py-24">
+    <article class="prose-na md:col-span-7 lg:col-span-8">
+      <h2>Start early, and here is why it matters</h2>
+      <p>
+        Every Nairobi excursion is shaped by two things that move on the clock: wildlife activity and city traffic.
+        Plains game and predators are most active in the cool hours after dawn, so an early gate arrival sees more.
+        Nairobi traffic thickens sharply through the morning, so a late departure spends its first hour stationary.
+        The two effects compound, which is why we push pick-up times earlier than most visitors expect and why the
+        difference in what you see is not marginal.
+      </p>
+
+      <h2>How park and attraction fees work</h2>
+      <p>
+        Kenya Wildlife Service charges Nairobi National Park entry per person per day, at published rates that
+        differ for Kenyan citizens, East African residents and non-residents. Attractions in Karen and
+        Lang&rsquo;ata set their own rates on the same three-tier basis. Two consequences follow. First, a quote is
+        only accurate once we know who is travelling, which is why we ask about residency. Second, a full day inside
+        the park costs no more in entry fees than a half day, because the charge is daily rather than hourly.
+      </p>
+      <p>
+        We itemise every fee in your quote rather than folding them into one figure, because a bundled price hides
+        which part of the day is actually expensive and makes it impossible for you to drop a stop you do not want.
+      </p>
+
+      <h2>Weather, seasons and what they change</h2>
+      <p>
+        Nairobi&rsquo;s altitude of roughly 1,795 metres gives it a mild highland climate rather than a tropical one.
+        Expect cold before sunrise, warm dry light through the middle of the day and a quick cool in the evening.
+        Kenya&rsquo;s long rains fall around March to May and the short rains around November to December.
+      </p>
+      <p>
+        Rain does not cancel a Nairobi day, it changes it. Wet months soften park tracks and can restrict gorge
+        walking at Hell&rsquo;s Gate, while delivering dramatic light, thin crowds, newborn plains game and the
+        strongest birding of the year, because migrant species arrive with the water. Dry months concentrate animals
+        near dams and rivers, which makes spotting more predictable.
+      </p>
+
+      <h2>Getting picked up</h2>
+      <p>
+        Pick-up is included from Nairobi hotels, serviced apartments and private homes, from Jomo Kenyatta
+        International Airport and from Wilson Airport. Give us the exact address and, if you are flying in, the
+        flight number, because we track actual landing times rather than scheduled ones. Guests staying outside the
+        city should tell us where they are, and we will confirm whether pick-up carries an extra transfer charge
+        before you commit.
+      </p>
+
+      <h2>Combining a Nairobi day with a longer safari</h2>
+      <p>
+        Many guests use Nairobi as a hinge between flights and a longer trip. A morning in Nairobi National Park
+        pairs naturally with an afternoon flight to the Masai Mara, and a city excursion is a gentle way to spend the
+        day you land before a safari begins. Tell us what the rest of your itinerary looks like and we will fit the
+        day around it rather than treating it as an isolated booking.
+      </p>
+    </article>
+
+    <aside class="md:col-span-5 lg:col-span-4">
+      <PlaceholderPhoto
+        alt="Early morning light over the plains of Nairobi National Park with the city skyline behind"
+        note="[PLACEHOLDER: photo of early morning on the plains]"
+        ratio="4 / 5"
+        tone="ink"
+      />
+      <div class="mt-8 border border-ink/15 bg-sand/50 p-7">
+        <p class="eyebrow">Quick answer</p>
+        <h2 class="mt-4 text-[1.3rem] leading-snug">How much time do I need?</h2>
+        <ul class="mt-5 space-y-3 text-[0.95rem] text-slate">
+          <li><strong class="text-ink">4 to 6 hours:</strong> a game drive in Nairobi National Park.</li>
+          <li><strong class="text-ink">Half a day:</strong> the elephant orphanage and the Giraffe Centre.</li>
+          <li><strong class="text-ink">A full day:</strong> park in the morning, Karen in the afternoon.</li>
+          <li><strong class="text-ink">A long day:</strong> Lake Naivasha, Hell&rsquo;s Gate or Lake Nakuru.</li>
+        </ul>
+        <a href="/contact/" class="btn btn-primary mt-7 w-full">Request a booking</a>
+      </div>
+    </aside>
+  </div>
+
+  <section class="grain bg-sand/50 py-16 md:py-24">
+    <div class="wrap">
+      <SectionHeading
+        eyebrow="What to bring"
+        title="Six things that change the day"
+        lede="Packing for a Nairobi excursion is about altitude and light rather than heat. These six make the most difference to how the day feels."
+        align="wide"
+      />
+      <div class="mt-12 grid gap-x-10 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          packing.map((item, i) => (
+            <div class="border-t border-ink/15 pt-5">
+              <p class="font-[var(--font-display)] text-[0.9rem] text-marigold">{String(i + 1).padStart(2, '0')}</p>
+              <h3 class="mt-2 text-[1.15rem] leading-snug">{item.t}</h3>
+              <p class="mt-2 text-[0.95rem] leading-relaxed text-slate">{item.b}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap grid gap-12 py-16 md:grid-cols-12 md:py-24">
+    <div class="md:col-span-4">
+      <SectionHeading
+        eyebrow="Before you travel"
+        title="Visas, money, safety and weather"
+        lede="The questions travellers send us most often, answered directly."
+      />
+    </div>
+    <div class="md:col-span-8"><Faq items={faqs} /></div>
+  </section>
+
+  <CtaBand
+    title="Still deciding? Ask us the awkward question"
+    body="Whether a layover is long enough, whether Amboseli is worth the driving, whether your children will cope with a full day. We answer straight, because an oversold day helps nobody."
+  />
+</BaseLayout>

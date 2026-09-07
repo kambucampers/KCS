@@ -1,0 +1,107 @@
+---
+import '@fontsource-variable/fraunces';
+import '@fontsource-variable/hanken-grotesk';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Extra JSON-LD graph nodes for this page (FAQPage, TouristTrip, BreadcrumbList). */
+  schema?: Record<string, unknown>[];
+  ogType?: string;
+}
+
+const { title, description, schema = [], ogType = 'website' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
+const ogImage = new URL('/og-nairobi-adventures.svg', Astro.site ?? site.url).href;
+
+const organization = {
+  '@type': ['Organization', 'TravelAgency'],
+  '@id': `${site.url}/#organization`,
+  name: site.name,
+  url: `${site.url}/`,
+  email: site.email,
+  description:
+    'Nairobi Adventures is a Nairobi-based tour operator running guided excursions inside Nairobi and day tours starting from Nairobi, including Nairobi National Park game drives.',
+  areaServed: { '@type': 'City', name: 'Nairobi' },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: site.city,
+    addressRegion: site.region,
+    addressCountry: site.country,
+    ...(site.streetAddress ? { streetAddress: site.streetAddress } : {}),
+  },
+  ...(site.phone ? { telephone: site.phone } : {}),
+};
+
+const localBusiness = {
+  '@type': 'LocalBusiness',
+  '@id': `${site.url}/#localbusiness`,
+  name: site.name,
+  url: `${site.url}/`,
+  email: site.email,
+  parentOrganization: { '@id': `${site.url}/#organization` },
+  priceRange: '[PLACEHOLDER: price range, e.g. $$]',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: site.city,
+    addressRegion: site.region,
+    addressCountry: site.country,
+  },
+  ...(site.phone ? { telephone: site.phone } : {}),
+};
+
+const website = {
+  '@type': 'WebSite',
+  '@id': `${site.url}/#website`,
+  url: `${site.url}/`,
+  name: site.name,
+  publisher: { '@id': `${site.url}/#organization` },
+};
+
+const graph = { '@context': 'https://schema.org', '@graph': [organization, localBusiness, website, ...schema] };
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#14231C" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_KE" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(graph)} is:inline />
+  </head>
+  <body>
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-ink focus:px-4 focus:py-2 focus:text-bone"
+      >Skip to content</a
+    >
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

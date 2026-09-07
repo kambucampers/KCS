@@ -1,0 +1,28 @@
+---
+import { site } from '../data/site';
+interface Props {
+  title: string;
+  body: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+}
+const {
+  title,
+  body,
+  primaryLabel = 'Request a booking',
+  primaryHref = '/contact/',
+} = Astro.props;
+---
+
+<section class="bg-acacia text-bone">
+  <div class="wrap grid gap-8 py-16 md:grid-cols-12 md:items-center md:py-20">
+    <div class="md:col-span-7">
+      <h2 class="!text-bone text-[length:var(--text-title)] leading-tight" set:html={title} />
+      <p class="mt-4 max-w-xl text-bone/80" set:html={body} />
+    </div>
+    <div class="flex flex-col gap-3 sm:flex-row md:col-span-5 md:justify-end">
+      <a href={primaryHref} class="btn btn-primary">{primaryLabel}</a>
+      <a href={`mailto:${site.email}`} class="btn btn-ghost-light">Email {site.email}</a>
+    </div>
+  </div>
+</section>

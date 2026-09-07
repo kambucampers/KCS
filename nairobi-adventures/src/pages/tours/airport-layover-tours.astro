@@ -1,0 +1,161 @@
+---
+import TourPageLayout from '../../layouts/TourPageLayout.astro';
+import { tourBySlug } from '../../data/site';
+const tour = tourBySlug('airport-layover-tours');
+
+const itinerary = [
+  {
+    time: 'On arrival',
+    title: 'Met at the terminal',
+    body: 'Your guide waits in the arrivals hall at Jomo Kenyatta International Airport with a name board, so there is no hunting for a driver after a long flight. Send your flight number and we track the actual landing time rather than the scheduled one.',
+  },
+  {
+    time: 'First hour',
+    title: 'Straight into the park or into Karen',
+    body: 'JKIA sits on the southeastern side of Nairobi, close to Nairobi National Park&rsquo;s eastern approach, which is why a layover tour can be inside the park quickly. Guests who prefer wildlife on foot head for the Giraffe Centre and the elephant orphanage in Karen instead.',
+  },
+  {
+    time: 'Middle of the layover',
+    title: 'The main activity, with the clock managed for you',
+    body: 'A game drive circuit, an orphanage visit, a museum or a Nairobi city loop, chosen to fit the hours you actually have. Your guide holds the schedule so you can enjoy it without checking your watch.',
+  },
+  {
+    time: 'Optional',
+    title: 'A meal and somewhere to freshen up',
+    body: '[PLACEHOLDER: confirm whether a day room, shower or restaurant stop can be arranged as part of a layover tour.]',
+  },
+  {
+    time: 'Return',
+    title: 'Back at the terminal with buffer to spare',
+    body: 'We return you to departures with the buffer agreed in advance, calculated from your airline&rsquo;s check-in cut-off rather than from the departure time, because those are not the same thing.',
+  },
+];
+
+const included = [
+  'Meet and greet at JKIA arrivals with a name board',
+  'Private vehicle and driver guide for the length of the layover',
+  'A route timed backwards from your check-in cut-off',
+  'Return to the departure terminal',
+  'Drinking water on board',
+];
+
+const notIncluded = [
+  'Kenyan Electronic Travel Authorisation or visa, which you must hold before you fly',
+  'Park or attraction entry fees',
+  'Meals, drinks and any day-room booking',
+  'Airport departure procedures and airline fees',
+  'Tips for your guide',
+];
+
+const costFactors = [
+  {
+    t: 'How long the layover is',
+    b: 'Vehicle and guide time is the main cost, so a five-hour layover and a ten-hour layover are different quotes. Longer layovers also open up destinations that a short one cannot reach safely.',
+  },
+  {
+    t: 'What you choose to do',
+    b: 'A game drive carries Kenya Wildlife Service entry fees per person per day, while a city loop or a museum visit costs less to enter. We quote the entry lines separately so you can choose with the numbers in front of you.',
+  },
+  {
+    t: 'Time of day',
+    b: 'A layover crossing the Nairobi morning or evening peak needs more allowance for traffic, so the usable activity time inside the same number of hours is shorter.',
+  },
+  {
+    t: 'Group size',
+    b: 'The vehicle is quoted per vehicle rather than per seat, so a couple pays more each than a family travelling together.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'How long a layover do I need for a tour from JKIA?',
+    a: 'The honest answer depends on the activity, the time of day and your airline&rsquo;s check-in cut-off. Send your inbound and outbound flight numbers and we will tell you what fits, and we will say plainly when a layover is too tight to leave the airport at all. [PLACEHOLDER: state the minimum layover length you accept.]',
+  },
+  {
+    q: 'Can I leave the airport during a layover in Nairobi?',
+    a: 'Only if you hold valid entry permission for Kenya. Travellers who stay airside in transit are treated differently from travellers who clear immigration, so leaving the terminal normally requires a Kenyan Electronic Travel Authorisation or a visa obtained before you fly. Check the current requirement for your nationality with the Kenyan authorities or your airline well before departure.',
+  },
+  {
+    q: 'What can I actually see on a layover tour?',
+    a: 'A game drive in Nairobi National Park, the Sheldrick elephant orphanage, the Giraffe Centre, the Karen Blixen Museum or a city loop are all realistic on a layover, because JKIA sits on the same side of the city as the park and Karen. The limiting factor is the check-in cut-off, not the distance.',
+  },
+  {
+    q: 'What happens if my inbound flight is delayed?',
+    a: 'Give us your flight number and we monitor the actual arrival, so a delayed landing shortens the itinerary rather than losing it. If a delay makes the tour unsafe against your check-in time, we say so and cancel rather than gamble with your connection. [PLACEHOLDER: state your cancellation and refund policy for delayed flights.]',
+  },
+  {
+    q: 'Can I store my luggage during the tour?',
+    a: '[PLACEHOLDER: confirm whether luggage stays in the vehicle, is left at the airport left-luggage facility, or another arrangement applies.]',
+  },
+];
+---
+
+<TourPageLayout
+  tour={tour}
+  title="JKIA Layover Tours | Nairobi Excursions Between Flights"
+  description="Nairobi layover tours from JKIA, timed backwards from your check-in cut-off: a game drive, the elephant orphanage, the Giraffe Centre or a city loop."
+  h1="Airport layover tours from JKIA"
+  lede="A layover tour is a short guided excursion built around your connecting flight, starting and ending at Jomo Kenyatta International Airport. Nairobi Adventures times the route backwards from your airline&rsquo;s check-in cut-off, so the schedule protects the flight first and the sightseeing second. You need valid entry permission for Kenya to leave the terminal."
+  heroMeta={[
+    { label: 'Starts', value: 'JKIA arrivals hall' },
+    { label: 'Ends', value: 'JKIA departures, with buffer' },
+    { label: 'Minimum layover', value: tour.duration },
+  ]}
+  itinerary={itinerary}
+  included={included}
+  notIncluded={notIncluded}
+  costFactors={costFactors}
+  faqs={faqs}
+  photoAlt="A safari vehicle waiting outside the terminal at Jomo Kenyatta International Airport in Nairobi for a layover tour"
+  photoNote="[PLACEHOLDER: photo of the vehicle at JKIA or a layover guest on a drive]"
+  ctaTitle="Send your two flight numbers"
+  ctaBody="Give us the inbound and outbound flights and we will tell you exactly what fits between them, including the buffer we hold back before check-in. If nothing fits safely, we will say so."
+>
+  <Fragment slot="intro">
+    <h2>Why a Nairobi layover is worth leaving the airport for</h2>
+    <p>
+      Jomo Kenyatta International Airport is one of Africa&rsquo;s busiest connecting hubs, so thousands of
+      travellers spend half a day in Nairobi without ever seeing it. JKIA sits on the southeastern side of the city,
+      minutes from Nairobi National Park&rsquo;s eastern approach and a manageable drive from Karen, which means a
+      long connection can hold a genuine game drive rather than a shopping-mall lunch.
+    </p>
+    <p>
+      The whole exercise depends on time discipline, and that is the part we take responsibility for. A layover tour
+      is planned from your check-in cut-off backwards, with an explicit buffer, because a missed connection would
+      cost you far more than the tour is worth.
+    </p>
+    <h2>Before you book, check one thing</h2>
+    <p>
+      You must hold valid permission to enter Kenya to leave the terminal. Passengers remaining airside are treated
+      differently from passengers clearing immigration, so most visitors need a Kenyan Electronic Travel
+      Authorisation or a visa arranged before departure. Confirm the current requirement for your passport with the
+      Kenyan authorities or your airline, because it is the one thing we cannot fix on the day.
+    </p>
+  </Fragment>
+
+  <Fragment slot="body">
+    <h2>What fits into how many hours</h2>
+    <ul>
+      <li><strong>A short layover</strong> suits the Giraffe Centre, a single museum or a Nairobi city loop, because each has a predictable visit length.</li>
+      <li><strong>A medium layover</strong> opens up the Sheldrick elephant orphanage, provided the visit falls inside its single daily window, and a short game drive circuit.</li>
+      <li><strong>A long layover</strong> allows a full Nairobi National Park game drive with time for the Karen attractions afterwards.</li>
+    </ul>
+    <p>
+      Because we do not know your airline&rsquo;s cut-off or the traffic on your date, we do not publish fixed
+      layover packages. Send the flight numbers and we build the itinerary that actually fits.
+    </p>
+    <h2>Arriving overnight or very early</h2>
+    <p>
+      Early arrivals suit this tour best, because Nairobi National Park is at its most productive in the hours after
+      dawn and you are already awake. Guests landing overnight often go straight from the terminal to the gate,
+      which turns dead time into the best few hours of the connection.
+    </p>
+    <h2>Related days</h2>
+    <p>
+      If your connection is long enough to feel like a full day, look at the
+      <a href="/tours/nairobi-national-park-game-drive/">Nairobi National Park game drive</a> or the
+      <a href="/tours/nairobi-city-excursions/">Nairobi city excursions</a>, both of which we run from the airport
+      as easily as from a hotel.
+    </p>
+  </Fragment>
+</TourPageLayout>

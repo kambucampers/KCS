@@ -1,0 +1,46 @@
+---
+import type { Tour } from '../data/site';
+import PlaceholderPhoto from './PlaceholderPhoto.astro';
+interface Props {
+  tour: Tour;
+  index: number;
+  photoNote: string;
+  photoAlt: string;
+}
+const { tour, index, photoNote, photoAlt } = Astro.props;
+const num = String(index + 1).padStart(2, '0');
+---
+
+<article class="group flex flex-col border-t border-ink/15 pt-6">
+  <div class="flex items-baseline gap-4">
+    <span class="font-[var(--font-display)] text-[0.95rem] text-marigold">{num}</span>
+    <h3 class="text-[1.45rem] leading-snug">
+      <a class="transition-colors group-hover:text-acacia" href={`/tours/${tour.slug}/`}>{tour.title}</a>
+    </h3>
+  </div>
+  <PlaceholderPhoto
+    class="mt-5"
+    alt={photoAlt}
+    note={photoNote}
+    ratio="16 / 10"
+    tone={tour.accent === 'ink' ? 'ink' : tour.accent === 'acacia' ? 'acacia' : 'sand'}
+  />
+  <p class="mt-5 text-[0.98rem] leading-relaxed text-slate" set:html={tour.summary} />
+  <dl class="mt-5 space-y-2 text-[0.88rem]">
+    <div class="flex gap-3">
+      <dt class="w-24 shrink-0 uppercase tracking-[0.12em] text-slate-light">Best for</dt>
+      <dd class="text-ink/85">{tour.bestFor}</dd>
+    </div>
+    <div class="flex gap-3">
+      <dt class="w-24 shrink-0 uppercase tracking-[0.12em] text-slate-light">Pick-up</dt>
+      <dd class="text-ink/85">{tour.pickup}</dd>
+    </div>
+  </dl>
+  <a
+    href={`/tours/${tour.slug}/`}
+    class="mt-6 inline-flex items-center gap-2 self-start border-b border-acacia/40 pb-1 text-[0.92rem] font-semibold text-acacia transition-colors hover:border-acacia"
+  >
+    See the {tour.navTitle} tour
+    <span aria-hidden="true">&rarr;</span>
+  </a>
+</article>

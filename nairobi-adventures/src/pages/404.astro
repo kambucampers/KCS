@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { tours } from '../data/site';
+---
+
+<BaseLayout
+  title="Page not found | Nairobi Adventures"
+  description="That page does not exist. Browse Nairobi Adventures day tours, Nairobi National Park game drives and day trips from Nairobi instead."
+>
+  <section class="wrap py-24 md:py-36">
+    <p class="eyebrow">404</p>
+    <h1 class="mt-5 text-[length:var(--text-display)] leading-[1.05]">That page took a wrong turn</h1>
+    <p class="mt-6 max-w-xl text-[length:var(--text-lede)] text-slate">
+      The page you asked for does not exist. The excursions below cover everything Nairobi Adventures runs, and the
+      booking form is one click away.
+    </p>
+    <ul class="mt-10 grid gap-4 sm:grid-cols-2">
+      {
+        tours.map((tour) => (
+          <li class="border-t border-ink/15 pt-4">
+            <a class="font-[var(--font-display)] text-[1.2rem] text-ink hover:text-acacia" href={`/tours/${tour.slug}/`}>
+              {tour.title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <a href="/contact/" class="btn btn-solid mt-12">Request a booking</a>
+  </section>
+</BaseLayout>

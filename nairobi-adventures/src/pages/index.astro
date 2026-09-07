@@ -1,0 +1,259 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroArt from '../components/HeroArt.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import TourCard from '../components/TourCard.astro';
+import PlaceholderPhoto from '../components/PlaceholderPhoto.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site, tours } from '../data/site';
+
+const faqs = [
+  {
+    q: 'Can you really see lions and rhinos within sight of Nairobi city?',
+    a: 'Yes. Nairobi National Park sits directly on the southern edge of the city, so lion, black rhino, buffalo, giraffe, zebra and eland graze on open plains with office towers on the horizon. The park has no elephants, because the fenced northern boundary and its size suit plains game rather than large elephant herds.',
+  },
+  {
+    q: 'How early do Nairobi National Park game drives start?',
+    a: 'Early, because wildlife is most active in the cool hours after dawn and Nairobi traffic thickens through the morning. An early pick-up puts your vehicle at the gate close to opening, which is why first-light departures see far more than late-morning ones. Tell us your hotel and we confirm an exact pick-up time.',
+  },
+  {
+    q: 'Are park entry fees included in the price?',
+    a: 'Tell us who is travelling and we quote park fees line by line. The Kenya Wildlife Service charges Nairobi National Park entry per person per day at published rates that differ for citizens, residents and non-residents, so a quote is only honest once we know your group. Send your dates through the booking form and we itemise everything before you pay.',
+  },
+  {
+    q: 'Do you pick up from Jomo Kenyatta International Airport?',
+    a: 'Yes. Pick-up from JKIA, Wilson Airport, Nairobi hotels and private apartments is standard on every excursion, and layover guests are collected at the terminal and returned there with time to spare before check-in.',
+  },
+  {
+    q: 'What should I bring on a day tour?',
+    a: 'Bring a warm layer for the early start, sunscreen and a hat for midday, binoculars if you own a pair, a camera with a zoom lens, and cash or a card for entry fees and lunch. Nairobi sits at roughly 1,795 metres, so mornings are genuinely cold before the sun climbs.',
+  },
+];
+
+const faqSchema = {
+  '@type': 'FAQPage',
+  '@id': `${site.url}/#faq`,
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
+  })),
+};
+
+const timeline = [
+  {
+    time: 'Before dawn',
+    title: 'Pick-up at your door',
+    body: 'Your guide arrives at your hotel, apartment or airport terminal at the time agreed by email, so nobody is negotiating with taxis in the dark.',
+  },
+  {
+    time: 'First light',
+    title: 'Through the gate',
+    body: 'Reaching the gate near opening puts you on the plains while predators are still moving, which is when lion, cheetah and rhino sightings are most likely.',
+  },
+  {
+    time: 'Mid morning',
+    title: 'Coffee on the plains',
+    body: 'A pause at a viewpoint over the Athi plains or the Mokoyeti gorge, with the skyline behind you and the herds in front.',
+  },
+  {
+    time: 'Midday',
+    title: 'City attractions or the road home',
+    body: 'Half-day guests are back for lunch. Full-day guests continue to the elephant orphanage, the Giraffe Centre and Karen, or press on to the Rift Valley.',
+  },
+];
+---
+
+<BaseLayout
+  title="Nairobi Adventures | Nairobi National Park Tours & Day Excursions"
+  description="Guided day excursions in Nairobi: national park game drives, city attraction tours, Rift Valley day trips and JKIA layover tours. Book direct by email."
+  schema={[faqSchema]}
+>
+  <!-- HERO -->
+  <section class="bg-ink">
+    <div class="hero-sky relative isolate overflow-hidden">
+    <div class="absolute inset-x-0 bottom-0 -z-10"><HeroArt /></div>
+    <div class="hero-scrim absolute inset-0 -z-10" aria-hidden="true"></div>
+    <div class="wrap relative grid gap-12 py-20 md:grid-cols-12 md:py-32">
+      <div class="md:col-span-7">
+        <p class="eyebrow eyebrow-light">Nairobi, Kenya</p>
+        <h1 class="mt-6 !text-bone text-[length:var(--text-hero)] leading-[1.02]">
+          Wild Nairobi,<br />in a single day
+        </h1>
+        <p class="mt-7 max-w-xl text-[length:var(--text-lede)] leading-relaxed text-bone/80">
+          Nairobi Adventures is a Nairobi-based tour operator running guided day excursions inside the city and
+          single-day tours from it. We take visitors into Nairobi National Park at first light, around the
+          orphanage, Giraffe Centre and Karen in the afternoon, and out to the Rift Valley and Amboseli on longer
+          days. Every tour starts and ends at your Nairobi address or the airport.
+        </p>
+        <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+          <a href="/contact/" class="btn btn-primary">Request a booking</a>
+          <a href="/tours/" class="btn btn-ghost-light">Browse the four excursions</a>
+        </div>
+        <p class="mt-6 text-[0.92rem] text-bone/65">
+          <span class="block sm:inline">Prefer email?{' '}</span>
+          <a class="font-semibold text-marigold underline underline-offset-4" href={`mailto:${site.email}`}
+            >{site.email}</a
+          >
+        </p>
+      </div>
+    </div>
+    </div>
+
+    <div class="relative border-t border-bone/15 bg-ink/70">
+      <dl class="wrap grid gap-6 py-8 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          [
+            { k: 'Park at the city edge', v: 'The main gate sits about 7 km from the city centre' },
+            { k: 'Pick-up included', v: 'Nairobi hotels, apartments, JKIA and Wilson Airport' },
+            { k: 'Small groups', v: 'Private vehicles, so the day runs on your timing' },
+            { k: 'Direct booking', v: 'You deal with the operator, not a reseller' },
+          ].map((item) => (
+            <div>
+              <dt class="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-marigold">{item.k}</dt>
+              <dd class="mt-2 text-[0.95rem] leading-relaxed text-bone/75">{item.v}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <!-- WHAT WE RUN -->
+  <section class="wrap py-20 md:py-28">
+    <div class="grid gap-10 md:grid-cols-12 md:items-end">
+      <div class="md:col-span-8">
+        <SectionHeading
+          eyebrow="What we run"
+          title="Four kinds of day, all starting in Nairobi"
+          lede="Every excursion is built to fit into one day, because most visitors reach Nairobi with a gap between flights or a spare morning before a safari begins. Choose the day that matches the time you have."
+        />
+      </div>
+      <div class="md:col-span-4 md:text-right">
+        <a href="/tours/" class="btn btn-outline">All tours in detail</a>
+      </div>
+    </div>
+
+    <div class="mt-16 grid gap-x-10 gap-y-14 md:grid-cols-2">
+      {
+        tours.map((tour, i) => (
+          <TourCard
+            tour={tour}
+            index={i}
+            photoAlt={`${tour.title} with Nairobi Adventures`}
+            photoNote={`[PLACEHOLDER: photo of ${tour.navTitle.toLowerCase()}]`}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- SIGNATURE DAY -->
+  <section class="grain bg-sand/50 py-20 md:py-28">
+    <div class="wrap grid gap-14 md:grid-cols-12">
+      <div class="md:col-span-5">
+        <SectionHeading
+          eyebrow="A day in the park"
+          title="How a Nairobi National Park morning actually runs"
+          lede="Nairobi National Park rewards an early start, because the plains game moves at dawn and the park sits on the traffic-heavy southern side of the city. Here is the shape of a typical morning."
+        />
+        <PlaceholderPhoto
+          class="mt-10"
+          alt="Guests on a Nairobi Adventures game drive watching zebra on the Athi plains with the Nairobi skyline behind"
+          note="[PLACEHOLDER: photo of a game drive with the skyline behind]"
+          ratio="4 / 3"
+          tone="acacia"
+        />
+      </div>
+      <ol class="md:col-span-7 md:pl-6">
+        {
+          timeline.map((step, i) => (
+            <li class="border-t border-ink/15 py-7">
+              <div class="grid gap-3 md:grid-cols-12 md:gap-8">
+                <p class="md:col-span-3 text-[0.78rem] font-semibold uppercase tracking-[0.16em] text-acacia">
+                  {step.time}
+                </p>
+                <div class="md:col-span-9">
+                  <h3 class="text-[1.3rem] leading-snug">
+                    <span class="mr-3 font-[var(--font-display)] text-[0.95rem] text-marigold">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    {step.title}
+                  </h3>
+                  <p class="mt-2 max-w-[60ch] text-slate">{step.body}</p>
+                </div>
+              </div>
+            </li>
+          ))
+        }
+        <li class="border-t border-ink/15 pt-7">
+          <a href="/plan-your-day/" class="btn btn-outline">Read the full planning guide</a>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="wrap py-20 md:py-28">
+    <div class="grid gap-12 md:grid-cols-12">
+      <div class="md:col-span-5">
+        <SectionHeading
+          eyebrow="Why book direct"
+          title="You are booking the operator, not a listing"
+          lede="Nairobi Adventures answers its own email, plans its own routes and drives its own days, so the person who confirms your booking is the person who knows what the road and the weather are doing that week."
+        />
+      </div>
+      <div class="grid gap-x-10 gap-y-9 md:col-span-7 md:grid-cols-2">
+        {
+          [
+            {
+              t: 'One day, planned around your flight',
+              b: 'Layover and last-day guests get a route timed backwards from airport check-in, so the schedule protects the flight first and the sightseeing second.',
+            },
+            {
+              t: 'Honest quotes, itemised',
+              b: 'Park entry, transport, guiding and any extras are listed separately in your quote, because a single lump sum hides where your money goes.',
+            },
+            {
+              t: 'Nairobi knowledge, not a script',
+              b: 'Routes change with the rains, the road works and where the lions were seen yesterday, so your guide adjusts on the morning rather than repeating a fixed loop.',
+            },
+            {
+              t: 'Straight answers before you pay',
+              b: 'Ask what you can realistically see in four hours and you get a realistic answer, because an oversold day costs us the review that brings the next guest.',
+            },
+          ].map((item) => (
+            <div class="border-t border-ink/15 pt-5">
+              <h3 class="text-[1.2rem] leading-snug">{item.t}</h3>
+              <p class="mt-3 text-[0.97rem] leading-relaxed text-slate">{item.b}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-ink py-20 text-bone md:py-28">
+    <div class="wrap grid gap-12 md:grid-cols-12">
+      <div class="md:col-span-4">
+        <SectionHeading
+          eyebrow="Common questions"
+          title="Asked before nearly every booking"
+          lede="If your question is not here, send it to us and we answer it directly rather than pointing you at a brochure."
+          tone="light"
+        />
+        <a href="/plan-your-day/" class="btn btn-ghost-light mt-8">More practical detail</a>
+      </div>
+      <div class="md:col-span-8">
+        <Faq items={faqs} tone="light" />
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Tell us the day you have free"
+    body="Send your dates, your Nairobi address and the number of travellers. We reply with availability, an itemised quote and a suggested route for that day."
+  />
+</BaseLayout>

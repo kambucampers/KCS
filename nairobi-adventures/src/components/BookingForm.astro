@@ -1,0 +1,134 @@
+---
+import { site, tours } from '../data/site';
+
+/**
+ * Booking form.
+ *
+ * Out of the box this form needs no backend: the submit handler composes a
+ * structured email to bookings@nairobiadventures.com and opens it in the
+ * visitor's mail client, so a static host is enough.
+ *
+ * To collect submissions server-side instead, create a free form endpoint
+ * (Formspree, Web3Forms, or a Cloudflare Pages Function) and set FORM_ENDPOINT
+ * below to that URL. The form then posts normally and the mailto fallback is
+ * skipped automatically.
+ */
+const FORM_ENDPOINT = ''; // [PLACEHOLDER: form endpoint URL, e.g. https://formspree.io/f/xxxxxxx]
+
+interface Props {
+  compact?: boolean;
+}
+const { compact = false } = Astro.props;
+const fieldClass =
+  'w-full border border-ink/20 bg-bone px-4 py-3 text-ink placeholder:text-slate-light/70 focus:border-acacia focus:outline-none';
+const labelClass = 'block text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-ink';
+---
+
+<form
+  id="booking-form"
+  class:list={['grid gap-5', compact ? 'md:grid-cols-2' : 'md:grid-cols-2']}
+  action={FORM_ENDPOINT || undefined}
+  method="post"
+  data-endpoint={FORM_ENDPOINT}
+  data-email={site.email}
+  novalidate
+>
+  <div>
+    <label class={labelClass} for="bf-name">Your name</label>
+    <input class={`mt-2 ${fieldClass}`} id="bf-name" name="name" type="text" required autocomplete="name" />
+  </div>
+  <div>
+    <label class={labelClass} for="bf-email">Email address</label>
+    <input class={`mt-2 ${fieldClass}`} id="bf-email" name="email" type="email" required autocomplete="email" />
+  </div>
+  <div>
+    <label class={labelClass} for="bf-tour">Which tour</label>
+    <select class={`mt-2 ${fieldClass}`} id="bf-tour" name="tour">
+      {tours.map((tour) => <option value={tour.title}>{tour.title}</option>)}
+      <option value="Not sure yet, please advise">Not sure yet, please advise</option>
+    </select>
+  </div>
+  <div>
+    <label class={labelClass} for="bf-date">Preferred date</label>
+    <input class={`mt-2 ${fieldClass}`} id="bf-date" name="date" type="date" />
+  </div>
+  <div>
+    <label class={labelClass} for="bf-people">Number of travellers</label>
+    <input class={`mt-2 ${fieldClass}`} id="bf-people" name="people" type="number" min="1" value="2" />
+  </div>
+  <div>
+    <label class={labelClass} for="bf-pickup">Pick-up point in Nairobi</label>
+    <input
+      class={`mt-2 ${fieldClass}`}
+      id="bf-pickup"
+      name="pickup"
+      type="text"
+      placeholder="Hotel, apartment or JKIA terminal"
+    />
+  </div>
+  <div class="md:col-span-2">
+    <label class={labelClass} for="bf-message">Anything we should plan around</label>
+    <textarea
+      class={`mt-2 ${fieldClass}`}
+      id="bf-message"
+      name="message"
+      rows="4"
+      placeholder="Flight times, children's ages, mobility needs, places you already have booked"></textarea>
+  </div>
+
+  <!-- Honeypot: bots fill this, people never see it -->
+  <div class="hidden" aria-hidden="true">
+    <label for="bf-company">Company</label>
+    <input id="bf-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <div class="md:col-span-2 flex flex-col gap-4 sm:flex-row sm:items-center">
+    <button type="submit" class="btn btn-primary">Send booking request</button>
+    <p class="text-[0.88rem] text-slate">
+      Or email <a class="font-semibold text-acacia underline underline-offset-4" href={`mailto:${site.email}`}
+        >{site.email}</a
+      > directly.
+    </p>
+  </div>
+  <p id="booking-status" class="md:col-span-2 hidden text-[0.92rem] text-acacia" role="status"></p>
+</form>
+
+<script is:inline>
+  (() => {
+    const form = document.getElementById('booking-form');
+    if (!form) return;
+    const status = document.getElementById('booking-status');
+    const endpoint = form.dataset.endpoint;
+    form.addEventListener('submit', (event) => {
+      if (form.querySelector('[name="company"]').value) {
+        event.preventDefault();
+        return;
+      }
+      if (!form.reportValidity()) {
+        event.preventDefault();
+        return;
+      }
+      if (endpoint) return; // real endpoint configured, let the browser post it
+      event.preventDefault();
+      const data = new FormData(form);
+      const line = (label, key) => (data.get(key) ? `${label}: ${data.get(key)}\n` : '');
+      const body =
+        `Booking request from the Nairobi Adventures website\n\n` +
+        line('Name', 'name') +
+        line('Email', 'email') +
+        line('Tour', 'tour') +
+        line('Preferred date', 'date') +
+        line('Travellers', 'people') +
+        line('Pick-up point', 'pickup') +
+        (data.get('message') ? `\nNotes:\n${data.get('message')}\n` : '');
+      const subject = `Booking request: ${data.get('tour') || 'Nairobi day tour'}`;
+      window.location.href =
+        `mailto:${form.dataset.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      if (status) {
+        status.textContent =
+          'Your email app should now be open with the request filled in. Press send and we will reply with availability and a quote.';
+        status.classList.remove('hidden');
+      }
+    });
+  })();
+</script>

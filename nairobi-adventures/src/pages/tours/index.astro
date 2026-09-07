@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import TourCard from '../../components/TourCard.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { site, tours } from '../../data/site';
+
+const comparison = [
+  {
+    day: 'Nairobi National Park game drive',
+    href: '/tours/nairobi-national-park-game-drive/',
+    time: 'Half day or full day',
+    leaves: 'Stays inside Nairobi',
+    pick: 'You want wildlife and have limited time',
+  },
+  {
+    day: 'Nairobi city excursions',
+    href: '/tours/nairobi-city-excursions/',
+    time: 'Half day or full day',
+    leaves: 'Karen and Lang&rsquo;ata',
+    pick: 'You want elephants, giraffe, history and craft',
+  },
+  {
+    day: 'Day trips from Nairobi',
+    href: '/tours/day-trips-from-nairobi/',
+    time: 'Full day, early start',
+    leaves: 'Rift Valley or Amboseli',
+    pick: 'You want a change of landscape and will accept the driving',
+  },
+  {
+    day: 'Airport layover tours',
+    href: '/tours/airport-layover-tours/',
+    time: 'Fits your connection',
+    leaves: 'Starts and ends at JKIA',
+    pick: 'You are in transit and hold entry permission for Kenya',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Which Nairobi tour should I choose if I only have one day?',
+    a: 'Take the Nairobi National Park game drive in the morning and add the Karen attractions in the afternoon. That combination gives you wildlife, elephants and giraffe in a single day, because the park gate and the Karen sites are minutes apart on the same side of the city.',
+  },
+  {
+    q: 'Are your tours private or shared?',
+    a: 'Every excursion listed here runs as a private tour for your party alone, which is why departure times, stop lengths and the route can be adjusted on the day. [PLACEHOLDER: confirm whether you also offer shared or seat-in-vehicle departures.]',
+  },
+  {
+    q: 'Do you pick up outside central Nairobi?',
+    a: 'Yes. Pick-up covers Nairobi hotels, apartments, Jomo Kenyatta International Airport and Wilson Airport. Tell us the address when you enquire and we confirm the pick-up time with your quote.',
+  },
+  {
+    q: 'How far in advance should I book?',
+    a: 'As early as you can, because the Sheldrick elephant orphanage requires advance booking and its slots sell out in high season. Game drives and day trips can often be arranged at short notice, but short notice narrows what we can include.',
+  },
+  {
+    q: 'How do I pay?',
+    a: '[PLACEHOLDER: state accepted payment methods, deposit requirements and cancellation terms.]',
+  },
+];
+
+const schema = [
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${site.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Tours', item: `${site.url}/tours/` },
+    ],
+  },
+  {
+    '@type': 'ItemList',
+    name: 'Nairobi Adventures day tours and excursions',
+    itemListElement: tours.map((tour, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: tour.title,
+      url: `${site.url}/tours/${tour.slug}/`,
+    })),
+  },
+  {
+    '@type': 'FAQPage',
+    '@id': `${site.url}/tours/#faq`,
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="Nairobi Tours & Excursions | Park Game Drives and Day Trips"
+  description="All Nairobi Adventures day tours: national park game drives, Karen and Lang'ata city excursions, Rift Valley day trips and JKIA layover tours."
+  schema={schema}
+>
+  <PageHero
+    eyebrow="Tours"
+    title="Every excursion we run, and who each one suits"
+    lede="Nairobi Adventures runs four kinds of day: a game drive in Nairobi National Park, a city excursion around the Karen and Lang&rsquo;ata attractions, a longer day trip into the Rift Valley or to Amboseli, and a layover tour built around a connecting flight at JKIA. All four are private, all four include pick-up, and all four are quoted with the fees itemised."
+    meta={[
+      { label: 'All tours', value: 'Private, your party only' },
+      { label: 'Pick-up', value: 'Nairobi, JKIA and Wilson Airport' },
+      { label: 'Booking', value: 'By email or booking form' },
+    ]}
+  />
+
+  <section class="wrap py-16 md:py-24">
+    <SectionHeading
+      eyebrow="Choose by the time you have"
+      title="Four days, compared honestly"
+      lede="The right excursion is decided by how many hours you have and how much driving you are willing to do. This table is the short version, and each tour page gives the full detail."
+      align="wide"
+    />
+
+    <div class="mt-12 overflow-x-auto">
+      <table class="w-full min-w-[42rem] border-collapse text-left">
+        <thead>
+          <tr class="border-b border-ink/25">
+            <th class="py-4 pr-6 text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-slate-light">Tour</th>
+            <th class="py-4 pr-6 text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-slate-light">Time needed</th>
+            <th class="py-4 pr-6 text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-slate-light">Where it goes</th>
+            <th class="py-4 text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-slate-light">Choose it when</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            comparison.map((row) => (
+              <tr class="border-b border-ink/12 align-top">
+                <td class="py-5 pr-6">
+                  <a class="font-[var(--font-display)] text-[1.1rem] text-ink hover:text-acacia" href={row.href}>
+                    {row.day}
+                  </a>
+                </td>
+                <td class="py-5 pr-6 text-[0.95rem] text-slate">{row.time}</td>
+                <td class="py-5 pr-6 text-[0.95rem] text-slate" set:html={row.leaves} />
+                <td class="py-5 text-[0.95rem] text-slate">{row.pick}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="grain bg-sand/50 py-16 md:py-24">
+    <div class="wrap">
+      <SectionHeading eyebrow="In detail" title="The four excursions" align="wide" />
+      <div class="mt-14 grid gap-x-10 gap-y-14 md:grid-cols-2">
+        {
+          tours.map((tour, i) => (
+            <TourCard
+              tour={tour}
+              index={i}
+              photoAlt={`${tour.title} run by Nairobi Adventures`}
+              photoNote={`[PLACEHOLDER: photo of ${tour.navTitle.toLowerCase()}]`}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap grid gap-12 py-16 md:grid-cols-12 md:py-24">
+    <div class="md:col-span-4">
+      <SectionHeading eyebrow="Before you book" title="Questions we answer most days" />
+    </div>
+    <div class="md:col-span-8"><Faq items={faqs} /></div>
+  </section>
+
+  <CtaBand
+    title="Not sure which day to pick?"
+    body="Tell us how many hours you have, who is travelling and what you most want to see. We will recommend one of the four and explain why the others fit less well."
+  />
+</BaseLayout>
