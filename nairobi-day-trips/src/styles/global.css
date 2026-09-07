@@ -1,0 +1,326 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/figtree-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url("/fonts/fraunces-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+/* =========================================================================
+   Nairobi Day Trips — design system
+   Palette: cream paper, acacia green depth, sunrise amber as the single
+   action colour. Type: Fraunces (display) + Figtree (body).
+   Spacing rhythm: 4px base, sections on 64 / 96 / 128.
+   ========================================================================= */
+
+@theme {
+  /* --- colour ------------------------------------------------------- */
+  --color-paper:      #FBF6EE;
+  --color-paper-warm: #F6EDE0;
+  --color-sand:       #F0E4D2;
+  --color-sand-deep:  #E4D2B8;
+
+  --color-ink:        #23201C;
+  --color-ink-soft:   #4A4239;
+  --color-muted:      #6B6257;
+
+  --color-acacia-50:  #EAF2ED;
+  --color-acacia-100: #CBE0D4;
+  --color-acacia-400: #2E7D5B;
+  --color-acacia-600: #1B6A4A;
+  --color-acacia-800: #14523C;
+  --color-acacia-900: #0E3A2A;
+
+  --color-amber-100:  #FBE3D6;
+  --color-amber-300:  #F3A481;
+  --color-amber-500:  #E4572E;
+  --color-amber-600:  #C9481F;
+  --color-amber-700:  #A83A17;
+
+  --color-sky-500:    #2E7DA8;
+  --color-sky-100:    #D8EAF3;
+
+  /* --- type --------------------------------------------------------- */
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "Figtree", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --text-2xs: 0.6875rem;
+
+  /* --- rhythm ------------------------------------------------------- */
+  --spacing-section: 6rem;
+  --spacing-section-lg: 8rem;
+
+  --radius-card: 1.25rem;
+  --radius-pill: 999px;
+
+  --shadow-lift: 0 1px 2px rgb(35 32 28 / 0.05), 0 12px 32px -12px rgb(35 32 28 / 0.18);
+  --shadow-lift-lg: 0 2px 4px rgb(35 32 28 / 0.06), 0 28px 60px -24px rgb(35 32 28 / 0.28);
+
+  --ease-out-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    /* Restating wght is required: font-variation-settings overrides font-weight. */
+    font-variation-settings: "wght" 600, "SOFT" 24, "WONK" 1, "opsz" 40;
+    letter-spacing: -0.015em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  :focus-visible {
+    outline: 3px solid var(--color-amber-500);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--color-amber-100);
+    color: var(--color-ink);
+  }
+}
+
+@layer components {
+  /* --- containers ---------------------------------------------------- */
+  .shell {
+    width: 100%;
+    max-width: 78rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) { .shell { padding-inline: 2rem; } }
+
+  .shell-narrow {
+    width: 100%;
+    max-width: 46rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) { .shell-narrow { padding-inline: 2rem; } }
+
+  /* --- buttons ------------------------------------------------------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    line-height: 1;
+    text-align: center;
+    transition: transform 0.16s var(--ease-out-soft),
+                background-color 0.16s var(--ease-out-soft),
+                box-shadow 0.16s var(--ease-out-soft),
+                color 0.16s var(--ease-out-soft);
+  }
+  .btn:active { transform: translateY(1px); }
+
+  .btn-lg { padding: 1rem 1.75rem; font-size: 1.0625rem; }
+  .btn-md { padding: 0.8125rem 1.375rem; font-size: 0.9375rem; }
+  .btn-sm { padding: 0.625rem 1.0625rem; font-size: 0.875rem; }
+
+  .btn-primary {
+    background-color: var(--color-amber-500);
+    color: #fff;
+    box-shadow: 0 10px 22px -12px rgb(228 87 46 / 0.85);
+  }
+  .btn-primary:hover {
+    background-color: var(--color-amber-600);
+    box-shadow: 0 14px 28px -12px rgb(201 72 31 / 0.9);
+  }
+
+  .btn-ghost {
+    background-color: transparent;
+    color: var(--color-ink);
+    box-shadow: inset 0 0 0 1.5px rgb(35 32 28 / 0.18);
+  }
+  .btn-ghost:hover {
+    background-color: rgb(35 32 28 / 0.05);
+    box-shadow: inset 0 0 0 1.5px rgb(35 32 28 / 0.35);
+  }
+
+  .btn-on-dark {
+    background-color: transparent;
+    color: #fff;
+    box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.35);
+  }
+  .btn-on-dark:hover {
+    background-color: rgb(255 255 255 / 0.1);
+    box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / 0.7);
+  }
+
+  /* --- eyebrow ------------------------------------------------------- */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-amber-600);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 1.75rem;
+    height: 2px;
+    background-color: currentColor;
+    border-radius: 2px;
+  }
+  .eyebrow-light { color: var(--color-amber-300); }
+
+  /* --- cards --------------------------------------------------------- */
+  .card {
+    background-color: #fff;
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-lift);
+    border: 1px solid rgb(35 32 28 / 0.06);
+    transition: transform 0.22s var(--ease-out-soft), box-shadow 0.22s var(--ease-out-soft);
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift-lg);
+  }
+
+  /* --- forms --------------------------------------------------------- */
+  .field-label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--color-ink-soft);
+    margin-bottom: 0.375rem;
+  }
+  .field {
+    width: 100%;
+    background-color: #fff;
+    border: 1.5px solid rgb(35 32 28 / 0.16);
+    border-radius: 0.75rem;
+    padding: 0.75rem 0.875rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-ink);
+    transition: border-color 0.16s var(--ease-out-soft), box-shadow 0.16s var(--ease-out-soft);
+  }
+  .field::placeholder { color: rgb(107 98 87 / 0.65); }
+  .field:focus {
+    outline: none;
+    border-color: var(--color-amber-500);
+    box-shadow: 0 0 0 3px rgb(228 87 46 / 0.16);
+  }
+  select.field {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='%236B6257' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5 6 6.5l5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.875rem center;
+    background-size: 0.75rem;
+    padding-right: 2.25rem;
+  }
+
+  /* --- prose --------------------------------------------------------- */
+  .prose-nd > * + * { margin-top: 1.125rem; }
+  .prose-nd h2 {
+    font-size: 1.75rem;
+    margin-top: 3rem;
+    margin-bottom: 0.25rem;
+  }
+  .prose-nd h3 {
+    font-size: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 0.25rem;
+  }
+  .prose-nd p { color: var(--color-ink-soft); }
+  .prose-nd ul { padding-left: 0; list-style: none; }
+  .prose-nd ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+    color: var(--color-ink-soft);
+  }
+  .prose-nd ul li::before {
+    content: "";
+    position: absolute;
+    left: 0.125rem;
+    top: 0.6875rem;
+    width: 0.4375rem;
+    height: 0.4375rem;
+    border-radius: 999px;
+    background-color: var(--color-amber-500);
+  }
+  .prose-nd a {
+    color: var(--color-acacia-800);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
+    font-weight: 500;
+  }
+  .prose-nd a:hover { color: var(--color-amber-600); }
+
+  /* --- texture ------------------------------------------------------- */
+  .band-dark {
+    background-color: var(--color-acacia-900);
+    color: var(--color-paper);
+    position: relative;
+    overflow: hidden;
+  }
+  .band-dark h2, .band-dark h3 { color: #fff; }
+
+  .rule-dotted {
+    background-image: radial-gradient(circle, rgb(35 32 28 / 0.22) 1px, transparent 1px);
+    background-size: 8px 8px;
+    height: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer components {
+  /* Header CTA: grows from the small size to the medium size at the md
+     breakpoint. Written in CSS because .btn-md is a component class and
+     Tailwind variants such as md: only apply to utilities. */
+  .btn-responsive { padding: 0.625rem 1.0625rem; font-size: 0.875rem; }
+  @media (min-width: 768px) {
+    .btn-responsive { padding: 0.8125rem 1.375rem; font-size: 0.9375rem; }
+  }
+}

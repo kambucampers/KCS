@@ -1,0 +1,4 @@
+# Build artifacts produced for hand-off. Regenerate with:
+#   cd nairobi-day-trips && npm run build
+nairobi-day-trips-site.zip
+nairobi-day-trips-site.tar.gz

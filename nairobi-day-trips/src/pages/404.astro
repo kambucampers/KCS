@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { tours } from '../data/tours';
+---
+<BaseLayout
+  title="Page not found | Nairobi Day Trips"
+  description="That page does not exist. Browse the eight Nairobi half-day and full-day tours instead."
+  path="/404/"
+>
+  <section class="shell py-24 lg:py-32">
+    <span class="eyebrow">Error 404</span>
+    <h1 class="mt-5 max-w-2xl text-[2.4rem] leading-[1.05] sm:text-5xl">That page has wandered off</h1>
+    <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
+      The address you followed does not exist on nairobidaytrips.com. Every tour we run is
+      listed below, or start again from the home page.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="/tours/" class="btn btn-primary btn-lg">See all eight tours</a>
+      <a href="/" class="btn btn-ghost btn-lg">Back to the home page</a>
+    </div>
+    <ul class="mt-14 grid gap-x-10 gap-y-3 border-t border-ink/12 pt-8 sm:grid-cols-2">
+      {tours.map((t) => (
+        <li>
+          <a href={`/tours/${t.slug}/`} class="text-acacia-800 underline-offset-4 hover:text-amber-600 hover:underline">{t.h1}</a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>

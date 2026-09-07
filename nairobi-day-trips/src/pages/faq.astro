@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
+
+const groups = [
+  {
+    title: 'Timing and duration',
+    faqs: [
+      { q: 'How long is a half-day tour in Nairobi?', a: 'Every half-day tour runs 4 to 6 hours door to door, measured from hotel pickup to hotel drop-off rather than from park gate to park gate. The full-day Nairobi day trip runs 7 to 9 hours.' },
+      { q: 'What time do morning tours start?', a: 'Pickup is usually between 5:45am and 6:15am so that you reach the gate close to the 6:00am opening. If you are staying in Karen or Langata the pickup is later, because the gate is minutes away.' },
+      { q: 'What time do afternoon tours finish?', a: 'All vehicles must be out of Nairobi National Park by 6:00pm, so afternoon tours put you back at your hotel between 6:00pm and 6:45pm depending on where you are staying.' },
+      { q: 'Is morning or afternoon better for a game drive?', a: 'Morning is better for wildlife, because predators are active in the cool hours after gates open at 6:00am. Afternoon is better for comfort and light, and it does not cost you a night of sleep. Choose on which of those matters more to you.' },
+      { q: 'Can I do two half-day tours in one day?', a: 'Some pairings work, such as a morning game drive followed by an afternoon Maasai market run. Send us both and we will tell you honestly whether the timings hold, because two half days is a long day.' },
+    ],
+  },
+  {
+    title: 'Wildlife and the park',
+    faqs: [
+      { q: 'What animals will I see in Nairobi National Park?', a: 'Lion, leopard, cheetah, buffalo, black and white rhino, Maasai giraffe, common zebra, eland, impala, warthog, hippo and over 400 recorded bird species are all resident in Nairobi National Park.' },
+      { q: 'Are there elephants in Nairobi National Park?', a: 'No. At 117 square kilometres the park is too small to support elephants safely, so there are none. Seeing elephants near Nairobi means visiting the Sheldrick Wildlife Trust orphanage, which is a separate stop we combine with the park.' },
+      { q: 'Can I see the Big Five in Nairobi National Park?', a: 'You can see four of the five, which are lion, leopard, buffalo and rhino. The fifth, elephant, is not present, so a complete Big Five sighting is not possible in this park.' },
+      { q: 'Are sightings guaranteed?', a: 'No, and any operator who guarantees them is selling you something they cannot deliver. What a morning start does is improve the odds substantially, because animals move most in the first cool hours of the day.' },
+      { q: 'How big is Nairobi National Park?', a: 'About 117 square kilometres. It was gazetted in 1946, which makes it the oldest national park in Kenya, and it is fenced on three sides with an open southern boundary towards the Kitengela plains so wildlife can still migrate.' },
+    ],
+  },
+  {
+    title: 'Pickup, vehicles and logistics',
+    faqs: [
+      { q: 'Do you pick up from my hotel?', a: 'Yes. Pickup and drop-off anywhere inside Nairobi is included, including hotels, Airbnbs, serviced apartments, Jomo Kenyatta International Airport and Wilson Airport. Tell us the address when you book.' },
+      { q: 'Can I do a tour on an airport layover?', a: 'Yes, with 8 hours or more for a half day and 12 hours or more for the full day, and provided you can clear Kenyan immigration. Most visitors now need an approved electronic travel authorisation obtained before flying, so check your own requirement well ahead.' },
+      { q: 'What vehicle will I be in?', a: 'A private 4x4 or a safari van with a pop-up roof for photography, depending on group size, season and road conditions. In the rainy months a 4x4 is worth having on the park’s black cotton soil tracks.' },
+      { q: 'Are your tours private or shared?', a: 'All tours are private. Nobody else is in your vehicle, which is why start times can move, the plan can change mid-tour and the vehicle is priced per trip rather than per seat.' },
+      { q: 'How many people fit in one vehicle?', a: 'Most bookings of up to six people fit one vehicle comfortably. Larger groups are run in two vehicles travelling together, so tell us your group size and we will confirm the arrangement in the quote.' },
+    ],
+  },
+  {
+    title: 'Cost and payment',
+    faqs: [
+      { q: 'How much does a Nairobi half-day tour cost?', a: '[PLACEHOLDER: pricing] No prices are published on this site yet. Every enquiry is answered with an itemised written quote covering the vehicle, the guide and the fees payable at the gate.' },
+      { q: 'Are park entry fees included?', a: 'No. Kenya Wildlife Service sets and collects park entry fees per person per day, at different rates for Kenyan citizens, Kenyan residents and non-residents. We quote them separately so you can see exactly what goes to KWS.' },
+      { q: 'Why is the vehicle priced per trip rather than per person?', a: 'Because the cost of running a private vehicle and guide for four hours does not change with the number of passengers. Four people therefore split the same vehicle cost between four, which is why small groups get a much better per-person rate.' },
+      { q: 'How do I pay?', a: '[PLACEHOLDER: accepted payment methods, deposit policy and cancellation terms]. Nothing is charged at enquiry stage.' },
+    ],
+  },
+  {
+    title: 'Practical questions',
+    faqs: [
+      { q: 'What should I wear on a Nairobi game drive?', a: 'Layers. Nairobi sits at about 1,795 metres, so a dawn start in an open-roof vehicle is genuinely cold at 12 to 15 degrees Celsius, and the same morning is warm by 10:00am. Bring a fleece, sunscreen and a hat.' },
+      { q: 'When is the best time of year to visit Nairobi National Park?', a: 'The dry months of January to February and June to September give the easiest tracks and the most concentrated wildlife around water. The rains, roughly March to May and October to December, bring greener scenery, dramatic light and far better birding.' },
+      { q: 'Is Nairobi safe for tourists?', a: 'Nairobi is a large capital city and ordinary city sense applies, particularly in the central business district and at busy markets. Keep valuables out of sight, do not walk with your phone in your hand and stay with your guide in crowded places.' },
+      { q: 'Are your tours suitable for children?', a: 'Yes. The Giraffe Centre and the Sheldrick elephant orphanage hold children’s attention better than a long game drive, and an afternoon start is far kinder to young children than a 5:45am one. Tell us their ages and we will suggest the right tour.' },
+      { q: 'Can you cater for mobility needs?', a: 'Tell us what you need when you enquire. Game drives happen from inside a vehicle so they suit many mobility needs well, while the walking tour by definition does not. We will say honestly which tours work and which do not.' },
+      { q: 'What if I need to cancel?', a: '[PLACEHOLDER: cancellation and refund policy]. Contact us as early as you can and we will do what we can to move the booking rather than cancel it.' },
+    ],
+  },
+];
+
+const all = groups.flatMap((g) => g.faqs);
+
+const schema = [
+  {
+    '@type': 'FAQPage',
+    '@id': `${site.url}faq/#faq`,
+    mainEntity: all.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: site.url },
+      { '@type': 'ListItem', position: 2, name: 'Questions', item: `${site.url}faq/` },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Nairobi Tour Questions Answered | Nairobi Day Trips"
+  description="Answers on Nairobi half-day tour timings, what animals live in Nairobi National Park, hotel and airport pickup, vehicles, park fees, what to wear and the best time of year to visit."
+  path="/faq/"
+  schema={schema}
+>
+  <Breadcrumbs trail={[{ label: 'Home', href: '/' }, { label: 'Questions' }]} />
+
+  <section class="shell pb-14 pt-10 lg:pb-16 lg:pt-14">
+    <div class="max-w-3xl">
+      <span class="eyebrow">Everything asked, answered</span>
+      <h1 class="mt-5 text-[2.4rem] leading-[1.05] sm:text-5xl">Nairobi tour questions, answered properly</h1>
+      <p class="mt-6 text-lg leading-relaxed text-ink-soft">
+        Half-day tours run 4 to 6 hours from hotel pickup to hotel drop-off, Nairobi National
+        Park opens its gates at 6:00am and closes them at 6:00pm, and park entry fees are set
+        by Kenya Wildlife Service rather than by us. Everything else worth knowing before you
+        book is below.
+      </p>
+    </div>
+  </section>
+
+  {groups.map((g) => (
+    <section class="shell border-t border-ink/10 py-14">
+      <div class="grid gap-10 lg:grid-cols-[0.6fr_1.4fr] lg:gap-16">
+        <h2 class="text-2xl lg:sticky lg:top-28 lg:self-start">{g.title}</h2>
+        <div class="divide-y divide-ink/10">
+          {g.faqs.map((f) => (
+            <details class="group py-5 first:pt-0">
+              <summary class="flex cursor-pointer list-none items-start justify-between gap-6 text-[1.0625rem] font-semibold leading-snug">
+                {f.q}
+                <span class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-ink/20 transition group-open:rotate-45 group-open:border-amber-500 group-open:bg-amber-500 group-open:text-white" aria-hidden="true">
+                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 1v10M1 6h10"/></svg>
+                </span>
+              </summary>
+              <p class="mt-3 max-w-2xl pr-12 leading-relaxed text-ink-soft">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <CtaBand
+    heading="Still have a question about your day?"
+    body="Ask it in the booking form and it gets answered by a person, alongside the quote."
+    cta="Ask us and check availability"
+  />
+</BaseLayout>

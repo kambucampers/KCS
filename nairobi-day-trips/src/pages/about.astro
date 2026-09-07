@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import SceneArt from '../components/SceneArt.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
+
+const schema = [
+  {
+    '@type': 'AboutPage',
+    '@id': `${site.url}about/#page`,
+    name: 'About Nairobi Day Trips',
+    about: { '@id': `${site.url}#organization` },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: site.url },
+      { '@type': 'ListItem', position: 2, name: 'About', item: `${site.url}about/` },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="About Nairobi Day Trips | Half-Day Tours in Nairobi, Kenya"
+  description="Nairobi Day Trips is a Nairobi-based tour operator running private half-day tours of 4 to 6 hours in Nairobi National Park and the city, plus full-day trips of 7 to 9 hours."
+  path="/about/"
+  schema={schema}
+>
+  <Breadcrumbs trail={[{ label: 'Home', href: '/' }, { label: 'About' }]} />
+
+  <section class="shell grid items-center gap-12 pb-16 pt-10 lg:grid-cols-[1.05fr_0.95fr] lg:pb-20 lg:pt-14">
+    <div>
+      <span class="eyebrow">About us</span>
+      <h1 class="mt-5 text-[2.4rem] leading-[1.05] sm:text-5xl">We only run tours that fit in a day</h1>
+      <p class="mt-6 text-lg leading-relaxed text-ink-soft">
+        Nairobi Day Trips is a Nairobi-based tour operator that runs private half-day tours
+        of 4 to 6 hours and full-day trips of 7 to 9 hours. Every tour starts and ends in
+        Nairobi on the same day, because that is the gap most visitors to this city
+        actually have.
+      </p>
+    </div>
+    <div class="overflow-hidden rounded-[2rem] shadow-[var(--shadow-lift-lg)]">
+      <SceneArt scene="private" alt="Illustration of a private safari vehicle with a guide, ready for a Nairobi day trip" class="aspect-4/3 w-full" />
+    </div>
+  </section>
+
+  <section class="border-y border-ink/10 bg-acacia-50">
+    <div class="shell py-16 lg:py-20">
+      <div class="grid gap-x-12 gap-y-10 sm:grid-cols-3">
+        {[
+          { h: 'Half days only, by choice', p: 'A tour operator that also sells ten-day safaris treats a four-hour game drive as filler. We do not run ten-day safaris, so the half day gets the attention.' },
+          { h: 'Private vehicles as standard', p: 'Every tour is private. That is why start times move to suit you, why the plan can change mid-morning and why the vehicle is priced per trip rather than per seat.' },
+          { h: 'Written quotes, itemised', p: 'Kenya Wildlife Service fees and attraction entries are quoted separately from the tour price, because a single bundled number hides which part you are actually paying for.' },
+        ].map((c) => (
+          <div>
+            <h2 class="font-display text-lg font-semibold">{c.h}</h2>
+            <p class="mt-2.5 leading-relaxed text-ink-soft">{c.p}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="shell py-20 lg:py-28">
+    <div class="prose-nd max-w-3xl">
+      <h2>Why Nairobi rewards a short visit better than most capitals</h2>
+      <p>
+        Nairobi is the only capital city in the world with a national park inside its
+        boundary. Nairobi National Park was gazetted in 1946, covers about 117 square
+        kilometres, and its main gate sits roughly 7 kilometres from the central business
+        district on Langata Road. That single geographic fact is why a genuine game drive
+        fits inside a morning here and would not fit anywhere else.
+      </p>
+      <p>
+        The consequence for a visitor is worth stating plainly. You do not need a spare week,
+        an internal flight or a second hotel to see rhino, buffalo, giraffe, zebra and lion in
+        Kenya. You need one free morning and a vehicle at your hotel by 5:45am.
+      </p>
+
+      <h2>What we do, precisely</h2>
+      <p>
+        Nairobi Day Trips runs eight tours. Seven are half days of 4 to 6 hours, covering
+        morning and afternoon game drives in Nairobi National Park, the park paired with the
+        Sheldrick Wildlife Trust elephant orphanage, the park paired with the Giraffe Centre,
+        a guided Maasai market shopping trip, a walking tour of the central business district
+        and a private city tour built around stops you choose. The eighth is a full-day
+        Nairobi day trip of 7 to 9 hours covering four stops.
+      </p>
+      <p>
+        Every one of those tours includes pickup and drop-off inside Nairobi, a licensed
+        driver-guide and a private vehicle. None of them includes Kenya Wildlife Service park
+        fees or attraction entry fees, because those are set by third parties and vary by
+        residency status, so bundling them into one figure would hide what you are paying.
+      </p>
+
+      <h2>How we handle the things that go wrong</h2>
+      <p>
+        Nairobi traffic is the most common thing that threatens a schedule, so we plan
+        around it rather than hope. Pickup times are set by where you are staying, not by a
+        single departure time for everyone, and afternoon tours build in the Mombasa Road and
+        Langata Road build-up as a known cost rather than a surprise.
+      </p>
+      <p>
+        Rain is the second. Nairobi has long rains from roughly March to May and short rains
+        from roughly October to December, and both usually mean a heavy hour rather than a
+        lost day. Drives go ahead, the vehicle roof closes and your guide reroutes away from
+        the softest black cotton tracks. If conditions genuinely make the park unsafe we move
+        your booking rather than run a poor tour.
+      </p>
+      <p>
+        The third is a flight. If you are touring on a layover or on a departure day, send
+        your flight numbers and not just your times, because a guide who is tracking the
+        actual flight can build a hard cut-off into the day instead of guessing.
+      </p>
+
+      <h2>What we will tell you that other operators might not</h2>
+      <ul>
+        <li>There are no elephants in Nairobi National Park, so a Big Five sighting is not possible there. Seeing elephants near Nairobi means the Sheldrick orphanage.</li>
+        <li>Afternoon game drives give lower odds on predators than morning ones. We will say so before you book rather than after.</li>
+        <li>Four to six hours fits three city stops well and five stops badly, so we will tell you when your wish list does not fit the time you have.</li>
+        <li>The Maasai market moves venue on every day of the week and published schedules go out of date, which is why we confirm the location on the morning of your tour.</li>
+      </ul>
+
+      <h2>Booking, plainly</h2>
+      <p>
+        Send an enquiry with your date, your tour, how many of you there are and where you
+        are staying. You get a written reply with a pickup time, a vehicle, an itemised price
+        and the fees payable at the gate. Nothing is charged at enquiry stage, because you
+        should be able to compare a real quote before committing to anything.
+      </p>
+      <p>
+        Company registration, licensing and insurance details are
+        <strong>[PLACEHOLDER: company registration number, tourism licence and insurance details]</strong>
+        and will be published here once supplied.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand
+    heading="Tell us the day you have free"
+    body="Send your dates and where you are staying in Nairobi, and you get a written quote with timings, the vehicle and the fees payable at the gate."
+  />
+</BaseLayout>

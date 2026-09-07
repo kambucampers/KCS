@@ -1,0 +1,260 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SceneArt from '../../components/SceneArt.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import BookingForm from '../../components/BookingForm.astro';
+import TourCard from '../../components/TourCard.astro';
+import { tours, categoryLabel, type Tour } from '../../data/tours';
+import { site } from '../../data/site';
+
+export function getStaticPaths() {
+  return tours.map((tour) => ({ params: { slug: tour.slug }, props: { tour } }));
+}
+
+interface Props { tour: Tour }
+const { tour } = Astro.props;
+const url = `${site.url}tours/${tour.slug}/`;
+const related = tours.filter((t) => t.slug !== tour.slug).slice(0, 3);
+
+const schema = [
+  {
+    '@type': 'TouristTrip',
+    '@id': `${url}#trip`,
+    name: tour.h1,
+    description: tour.answer,
+    url,
+    touristType: tour.forWho,
+    provider: { '@id': `${site.url}#organization` },
+    itinerary: {
+      '@type': 'ItemList',
+      numberOfItems: tour.timeline.length,
+      itemListElement: tour.timeline.map((s, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: s.label,
+        description: s.text,
+      })),
+    },
+    subjectOf: { '@type': 'WebPage', url },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: site.url },
+      { '@type': 'ListItem', position: 2, name: 'Tours', item: `${site.url}tours/` },
+      { '@type': 'ListItem', position: 3, name: tour.short, item: url },
+    ],
+  },
+  {
+    '@type': 'FAQPage',
+    '@id': `${url}#faq`,
+    mainEntity: tour.faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title={tour.metaTitle}
+  description={tour.metaDescription}
+  path={`/tours/${tour.slug}/`}
+  ogType="article"
+  schema={schema}
+>
+  <Breadcrumbs
+    trail={[{ label: 'Home', href: '/' }, { label: 'Tours', href: '/tours/' }, { label: tour.short }]}
+  />
+
+  <!-- ============================== HERO ============================== -->
+  <article>
+    <header class="shell grid items-center gap-12 pb-16 pt-8 lg:grid-cols-[1.05fr_0.95fr] lg:pb-20 lg:pt-10">
+      <div>
+        <span class="eyebrow">{categoryLabel[tour.category]}</span>
+        <h1 class="mt-5 text-[2.3rem] leading-[1.05] sm:text-[3rem]">{tour.h1}</h1>
+        <p class="mt-6 text-lg leading-relaxed text-ink-soft">{tour.answer}</p>
+
+        <div class="mt-9 flex flex-wrap gap-3">
+          <a href="#booking" class="btn btn-primary btn-lg">Check availability for this tour</a>
+        </div>
+
+        <dl class="mt-11 grid gap-6 border-t border-ink/12 pt-8 sm:grid-cols-3">
+          <div>
+            <dt class="text-2xs font-bold uppercase tracking-[0.14em] text-muted">Duration</dt>
+            <dd class="mt-1.5 font-display text-xl font-semibold">{tour.duration}</dd>
+          </div>
+          <div>
+            <dt class="text-2xs font-bold uppercase tracking-[0.14em] text-muted">Starts</dt>
+            <dd class="mt-1.5 text-[0.9375rem] leading-snug text-ink-soft">{tour.startWindow}</dd>
+          </div>
+          <div>
+            <dt class="text-2xs font-bold uppercase tracking-[0.14em] text-muted">Pickup</dt>
+            <dd class="mt-1.5 text-[0.9375rem] leading-snug text-ink-soft">{tour.pickup}</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="overflow-hidden rounded-[2rem] shadow-[var(--shadow-lift-lg)]">
+        <SceneArt
+          scene={tour.art}
+          alt={`Illustration representing the ${tour.h1.toLowerCase()} in Nairobi, Kenya`}
+          class="aspect-4/3 w-full lg:aspect-5/4"
+        />
+      </div>
+    </header>
+
+    <!-- =========================== HIGHLIGHTS ========================= -->
+    <section class="border-y border-ink/10 bg-acacia-50">
+      <div class="shell py-16 lg:py-20">
+        <h2 class="max-w-xl text-2xl sm:text-3xl">What this tour gives you</h2>
+        <ul class="mt-9 grid gap-x-10 gap-y-5 sm:grid-cols-2">
+          {tour.highlights.map((h) => (
+            <li class="relative border-t border-acacia-800/15 pl-7 pt-5 leading-relaxed text-ink-soft">
+              <svg class="absolute left-0 top-6 text-amber-500" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 8.5 6 12l7.5-8"/></svg>
+              {h}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================ TIMELINE ========================== -->
+    <section class="shell py-20 lg:py-24">
+      <div class="grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
+        <div class="lg:sticky lg:top-28 lg:self-start">
+          <span class="eyebrow">Hour by hour</span>
+          <h2 class="mt-4 text-2xl sm:text-3xl">How the {tour.duration.replace(' hours', ' hour')} tour runs</h2>
+          <p class="mt-5 leading-relaxed text-ink-soft">
+            Times shift with traffic and with what the animals are doing, so treat this as
+            the shape of the day rather than a train timetable.
+          </p>
+        </div>
+        <ol class="relative border-l-2 border-dashed border-ink/15 pl-8">
+          {tour.timeline.map((s) => (
+            <li class="relative pb-10 last:pb-0">
+              <span class="absolute -left-[2.4rem] top-1.5 flex h-4 w-4 items-center justify-center rounded-full border-[3px] border-paper bg-amber-500" aria-hidden="true"></span>
+              <p class="text-2xs font-bold uppercase tracking-[0.14em] text-amber-600">{s.time}</p>
+              <h3 class="mt-1.5 text-lg">{s.label}</h3>
+              <p class="mt-2 max-w-2xl leading-relaxed text-ink-soft">{s.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- ======================= INCLUDED / NOT ======================== -->
+    <section class="bg-sand">
+      <div class="shell grid gap-10 py-20 lg:grid-cols-2 lg:gap-16 lg:py-24">
+        <div class="card p-8">
+          <h2 class="text-xl">What is included</h2>
+          <ul class="mt-6 space-y-3.5">
+            {tour.included.map((i) => (
+              <li class="relative pl-8 leading-relaxed text-ink-soft">
+                <svg class="absolute left-0 top-1.5 text-acacia-600" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="currentColor" opacity=".12"/><path d="M5 9.2 7.7 12 13 6.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                {i}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="card border-dashed p-8">
+          <h2 class="text-xl">What is not included</h2>
+          <ul class="mt-6 space-y-3.5">
+            {tour.notIncluded.map((i) => (
+              <li class="relative pl-8 leading-relaxed text-ink-soft">
+                <svg class="absolute left-0 top-1.5 text-muted" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="9" fill="currentColor" opacity=".12"/><path d="M6 6l6 6M12 6l-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                {i}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= DEPTH ============================ -->
+    <section class="shell py-20 lg:py-24">
+      <div class="prose-nd max-w-3xl">
+        {tour.depth.map((block) => (
+          <>
+            <h2>{block.heading}</h2>
+            {block.body.map((p) => <p>{p}</p>)}
+          </>
+        ))}
+      </div>
+    </section>
+
+    <!-- ============================ WHO FOR =========================== -->
+    <section class="band-dark">
+      <div class="shell grid gap-12 py-20 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <span class="eyebrow eyebrow-light">Who it suits</span>
+          <h2 class="mt-4 text-2xl sm:text-3xl">Book this tour if you are</h2>
+          <ul class="mt-7 space-y-4">
+            {tour.forWho.map((w) => (
+              <li class="relative border-t border-white/15 pl-7 pt-4 leading-relaxed text-paper/75">
+                <span class="absolute left-0 top-[1.55rem] h-1.5 w-1.5 rounded-full bg-amber-500"></span>{w}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <span class="eyebrow eyebrow-light">Who it does not suit</span>
+          <h2 class="mt-4 text-2xl sm:text-3xl">Book something else if</h2>
+          <p class="mt-7 border-l-2 border-amber-500 pl-6 text-lg leading-relaxed text-paper/85">{tour.notForWho}</p>
+
+          <h3 class="mt-12 text-xl">What affects the price</h3>
+          <ul class="mt-5 space-y-3">
+            {tour.costFactors.map((c) => (
+              <li class="relative pl-7 text-[0.9375rem] leading-relaxed text-paper/70">
+                <span class="absolute left-0 top-2.5 h-1.5 w-1.5 rounded-full bg-paper/40"></span>{c}
+              </li>
+            ))}
+          </ul>
+          <p class="mt-6 text-[0.9375rem] leading-relaxed text-paper/60">
+            <strong class="text-amber-300">[PLACEHOLDER: pricing]</strong> No prices are published on
+            this site yet, because none were supplied. Every enquiry is answered with an
+            itemised written quote.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== FAQ ============================= -->
+    <section class="shell py-20 lg:py-24">
+      <div class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+        <div>
+          <span class="eyebrow">Straight answers</span>
+          <h2 class="mt-4 text-2xl sm:text-3xl">Questions about this tour</h2>
+        </div>
+        <div class="divide-y divide-ink/10 border-y border-ink/10">
+          {tour.faqs.map((f) => (
+            <details class="group py-5">
+              <summary class="flex cursor-pointer list-none items-start justify-between gap-6 text-[1.0625rem] font-semibold leading-snug">
+                {f.q}
+                <span class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-ink/20 transition group-open:rotate-45 group-open:border-amber-500 group-open:bg-amber-500 group-open:text-white" aria-hidden="true">
+                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 1v10M1 6h10"/></svg>
+                </span>
+              </summary>
+              <p class="mt-3 max-w-2xl pr-12 leading-relaxed text-ink-soft">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <BookingForm
+    preselect={tour.slug}
+    heading={`Check availability for the ${tour.short.toLowerCase()}`}
+    intro="Send your date and pickup point and you get a written reply with the exact timings for this tour, the vehicle, the fees payable at the gate and a total price."
+  />
+
+  <!-- =========================== RELATED ============================= -->
+  <section class="shell py-20 lg:py-24">
+    <h2 class="text-2xl sm:text-3xl">Other Nairobi tours</h2>
+    <div class="mt-9 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {related.map((t) => <TourCard tour={t} />)}
+    </div>
+  </section>
+</BaseLayout>

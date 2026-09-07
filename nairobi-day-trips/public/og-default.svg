@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="s" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F7C99B"/><stop offset="55%" stop-color="#F3A481"/><stop offset="100%" stop-color="#E4572E"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#s)"/>
+  <circle cx="920" cy="200" r="86" fill="#FBE3D6" opacity=".85"/>
+  <g fill="#14523C" opacity=".42">
+    <rect x="90" y="300" width="40" height="140"/><rect x="142" y="336" width="28" height="104"/>
+    <rect x="182" y="264" width="44" height="176"/><rect x="238" y="312" width="30" height="128"/>
+    <rect x="280" y="238" width="24" height="202"/><rect x="288" y="200" width="6" height="42"/>
+    <rect x="318" y="322" width="50" height="118"/><rect x="380" y="284" width="32" height="156"/>
+    <rect x="424" y="338" width="42" height="102"/><rect x="478" y="300" width="26" height="140"/>
+    <rect x="516" y="350" width="58" height="90"/><rect x="586" y="318" width="30" height="122"/>
+    <rect x="628" y="278" width="38" height="162"/><rect x="678" y="340" width="24" height="100"/>
+  </g>
+  <path d="M0 440h1200v56c-180 30-330-12-510 8S210 540 0 516Z" fill="#2E7D5B" opacity=".55"/>
+  <path d="M0 500c220 32 390-20 600-6s376 48 600 18v118H0Z" fill="#1B6A4A"/>
+  <path d="M0 566c270 38 450-14 660 4s330 36 540 10v50H0Z" fill="#14523C"/>
+  <text x="86" y="150" font-family="Georgia, serif" font-size="76" font-weight="700" fill="#23201C">Nairobi Day Trips</text>
+  <text x="86" y="212" font-family="Helvetica, Arial, sans-serif" font-size="34" fill="#23201C" opacity=".78">Half-day tours of Nairobi National Park and the city, 4 to 6 hours</text>
+</svg>

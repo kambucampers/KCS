@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import BookingForm from '../components/BookingForm.astro';
+import { site } from '../data/site';
+
+const schema = [
+  {
+    '@type': 'ContactPage',
+    '@id': `${site.url}contact/#page`,
+    name: 'Contact Nairobi Day Trips',
+    about: { '@id': `${site.url}#organization` },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: site.url },
+      { '@type': 'ListItem', position: 2, name: 'Contact', item: `${site.url}contact/` },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Book a Nairobi Half-Day Tour | Contact Nairobi Day Trips"
+  description="Send your dates and pickup point and get a written quote for a Nairobi half-day tour, with timings, the vehicle and the park fees payable at the gate itemised separately."
+  path="/contact/"
+  schema={schema}
+>
+  <Breadcrumbs trail={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} />
+
+  <section class="shell pb-12 pt-10 lg:pb-14 lg:pt-14">
+    <div class="max-w-3xl">
+      <span class="eyebrow">Booking enquiry</span>
+      <h1 class="mt-5 text-[2.4rem] leading-[1.05] sm:text-5xl">Tell us the day you have free</h1>
+      <p class="mt-6 text-lg leading-relaxed text-ink-soft">
+        Send your date, your tour and where you are staying in Nairobi, and you get a written
+        reply with the pickup time, the vehicle, an itemised price and the Kenya Wildlife
+        Service fees payable at the gate. Nothing is charged at enquiry stage, so you can
+        compare a real quote before committing.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-6 sm:grid-cols-3">
+      {[
+        { h: 'What to include', p: 'Your date, the tour, how many travellers, your hotel or area of Nairobi, and any flight numbers if you are touring on an arrival, departure or layover day.' },
+        { h: 'How fast we reply', p: '[PLACEHOLDER: reply time commitment, for example within 4 hours during office hours]. Every enquiry gets a written answer from a person, not an automated price list.' },
+        { h: 'Late bookings', p: 'Same-day and next-day bookings are often possible, because our vehicles are based in Nairobi rather than dispatched from outside the city. Send the enquiry and we will tell you quickly.' },
+      ].map((c) => (
+        <div class="card p-6">
+          <h2 class="font-display text-lg font-semibold">{c.h}</h2>
+          <p class="mt-2.5 text-[0.9375rem] leading-relaxed text-ink-soft">{c.p}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <BookingForm
+    id="booking"
+    tone="light"
+    eyebrow="Send it over"
+    heading="Booking and enquiry form"
+    intro="Every field marked required helps us give you an accurate quote first time, so you do not need a second exchange of emails to find out the total."
+  />
+
+  <section class="shell py-20 lg:py-24">
+    <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+      <div>
+        <span class="eyebrow">Other ways to reach us</span>
+        <h2 class="mt-4 text-2xl sm:text-3xl">If you would rather not use a form</h2>
+        <p class="mt-5 leading-relaxed text-ink-soft">
+          Phone and WhatsApp are the fastest routes for a same-day or next-day booking,
+          because a form reply depends on somebody being at a desk and a WhatsApp message
+          does not.
+        </p>
+      </div>
+      <dl class="grid gap-x-10 gap-y-8 sm:grid-cols-2">
+        <div class="border-t border-ink/12 pt-5">
+          <dt class="text-2xs font-bold uppercase tracking-[0.14em] text-muted">Phone and WhatsApp</dt>
+          <dd class="mt-2 font-display text-xl font-semibold">
+            {site.phoneHref ? <a href={site.phoneHref} class="underline underline-offset-4">{site.phone}</a> : <span class="text-amber-600">{site.phone}</span>}
+          </dd>
+        </div>
+        <div class="border-t border-ink/12 pt-5">
+          <dt class="text-2xs font-bold uppercase tracking-[0.14em] text-muted">Email</dt>
+          <dd class="mt-2 font-display text-xl font-semibold break-words">
+            {site.emailHref ? <a href={site.emailHref} class="underline underline-offset-4">{site.email}</a> : <span class="text-amber-600">{site.email}</span>}
+          </dd>
+        </div>
+        <div class="border-t border-ink/12 pt-5">
+          <dt class="text-2xs font-bold uppercase tracking-[0.14em] text-muted">Office hours</dt>
+          <dd class="mt-2 leading-relaxed text-ink-soft">{site.openingHours}. All times {site.timezone}.</dd>
+        </div>
+        <div class="border-t border-ink/12 pt-5">
+          <dt class="text-2xs font-bold uppercase tracking-[0.14em] text-muted">Where we operate</dt>
+          <dd class="mt-2 leading-relaxed text-ink-soft">
+            Nairobi and Nairobi National Park, Kenya. Pickup anywhere inside the city, including both airports.
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+</BaseLayout>

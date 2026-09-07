@@ -1,0 +1,68 @@
+---
+import Logo from './Logo.astro';
+import { site } from '../data/site';
+import { tours } from '../data/tours';
+const year = new Date().getFullYear();
+const half = tours.filter((t) => t.category !== 'full-day');
+---
+<footer class="band-dark mt-0">
+  <div class="shell grid gap-12 py-16 lg:grid-cols-[1.1fr_1fr_1fr_1.1fr] lg:gap-10 lg:py-20">
+    <div>
+      <Logo tone="light" />
+      <p class="mt-5 max-w-xs text-[0.9375rem] leading-relaxed text-paper/70">
+        Guided half-day tours of Nairobi National Park and Nairobi city attractions,
+        each 4 to 6 hours, with hotel pickup across Nairobi.
+      </p>
+    </div>
+
+    <nav aria-labelledby="f-tours">
+      <h2 id="f-tours" class="text-2xs font-bold uppercase tracking-[0.16em] text-amber-300">Half-day tours</h2>
+      <ul class="mt-4 space-y-2.5">
+        {half.map((t) => (
+          <li><a href={`/tours/${t.slug}/`} class="text-[0.9375rem] text-paper/75 underline-offset-4 hover:text-white hover:underline">{t.short}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <nav aria-labelledby="f-more">
+      <h2 id="f-more" class="text-2xs font-bold uppercase tracking-[0.16em] text-amber-300">More</h2>
+      <ul class="mt-4 space-y-2.5">
+        <li><a href="/tours/nairobi-day-trip/" class="text-[0.9375rem] text-paper/75 underline-offset-4 hover:text-white hover:underline">Full-day Nairobi day trip</a></li>
+        <li><a href="/tours/" class="text-[0.9375rem] text-paper/75 underline-offset-4 hover:text-white hover:underline">All tours</a></li>
+        <li><a href="/about/" class="text-[0.9375rem] text-paper/75 underline-offset-4 hover:text-white hover:underline">About</a></li>
+        <li><a href="/faq/" class="text-[0.9375rem] text-paper/75 underline-offset-4 hover:text-white hover:underline">Common questions</a></li>
+        <li><a href="/contact/" class="text-[0.9375rem] text-paper/75 underline-offset-4 hover:text-white hover:underline">Contact and booking</a></li>
+      </ul>
+    </nav>
+
+    <div>
+      <h2 class="text-2xs font-bold uppercase tracking-[0.16em] text-amber-300">Get in touch</h2>
+      <ul class="mt-4 space-y-3 text-[0.9375rem] text-paper/75">
+        <li>
+          <span class="block text-2xs uppercase tracking-wider text-paper/45">Phone and WhatsApp</span>
+          {site.phoneHref
+            ? <a href={site.phoneHref} class="hover:text-white hover:underline">{site.phone}</a>
+            : <span class="text-amber-300">{site.phone}</span>}
+        </li>
+        <li>
+          <span class="block text-2xs uppercase tracking-wider text-paper/45">Email</span>
+          {site.emailHref
+            ? <a href={site.emailHref} class="hover:text-white hover:underline">{site.email}</a>
+            : <span class="text-amber-300">{site.email}</span>}
+        </li>
+        <li>
+          <span class="block text-2xs uppercase tracking-wider text-paper/45">Based in</span>
+          Nairobi, Kenya. All times {site.timezone}.
+        </li>
+      </ul>
+      <a href="/contact/" class="btn btn-on-dark btn-sm mt-6">Send a booking enquiry</a>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="shell flex flex-col gap-2 py-6 text-xs text-paper/50 sm:flex-row sm:items-center sm:justify-between">
+      <p>&copy; {year} {site.name}. {site.domain}</p>
+      <p>Nairobi National Park is managed by Kenya Wildlife Service. Park fees are set and collected by KWS.</p>
+    </div>
+  </div>
+</footer>
