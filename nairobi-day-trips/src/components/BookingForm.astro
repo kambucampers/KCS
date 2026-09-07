@@ -1,0 +1,204 @@
+---
+import { site } from '../data/site';
+import { tours } from '../data/tours';
+
+interface Props {
+  /** Preselects the tour dropdown on a tour page. */
+  preselect?: string;
+  id?: string;
+  heading?: string;
+  intro?: string;
+  tone?: 'light' | 'dark';
+  /** Small label above the heading. */
+  eyebrow?: string;
+}
+const {
+  preselect = '',
+  id = 'booking',
+  heading = 'Check availability for your dates',
+  intro = 'Tell us your dates and where you are staying. You get a written reply with the tour timings, the vehicle, the park fees payable at the gate and a total price, so nothing is a surprise on the day.',
+  tone = 'light',
+  eyebrow = 'Booking enquiry',
+} = Astro.props;
+
+const configured = site.formEndpoint !== '';
+const today = new Date().toISOString().slice(0, 10);
+const dark = tone === 'dark';
+---
+
+<section id={id} class:list={['scroll-mt-24', dark ? 'band-dark' : 'bg-sand']}>
+  <div class="shell grid gap-12 py-20 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16 lg:py-28">
+    <div>
+      <span class:list={['eyebrow', dark && 'eyebrow-light']}>{eyebrow}</span>
+      <h2 class="mt-4 text-3xl sm:text-4xl">{heading}</h2>
+      <p class:list={['mt-5 text-[1.0625rem] leading-relaxed', dark ? 'text-paper/75' : 'text-ink-soft']}>{intro}</p>
+
+      <dl class:list={['mt-9 space-y-5 border-t pt-8', dark ? 'border-white/15' : 'border-ink/12']}>
+        <div>
+          <dt class:list={['text-2xs font-bold uppercase tracking-[0.16em]', dark ? 'text-amber-300' : 'text-amber-600']}>What happens next</dt>
+          <dd class:list={['mt-1.5 text-[0.9375rem]', dark ? 'text-paper/75' : 'text-ink-soft']}>
+            A real person reads your enquiry and replies with a written quote and a suggested pickup time. No deposit is taken at this stage.
+          </dd>
+        </div>
+        <div>
+          <dt class:list={['text-2xs font-bold uppercase tracking-[0.16em]', dark ? 'text-amber-300' : 'text-amber-600']}>Prefer to talk</dt>
+          <dd class:list={['mt-1.5 text-[0.9375rem]', dark ? 'text-paper/75' : 'text-ink-soft']}>
+            {site.phoneHref
+              ? <a href={site.phoneHref} class="underline underline-offset-4">{site.phone}</a>
+              : <span class:list={[dark ? 'text-amber-300' : 'text-amber-600', 'font-semibold']}>{site.phone}</span>}
+            {' '}on phone or WhatsApp, or email{' '}
+            {site.emailHref
+              ? <a href={site.emailHref} class="underline underline-offset-4">{site.email}</a>
+              : <span class:list={[dark ? 'text-amber-300' : 'text-amber-600', 'font-semibold']}>{site.email}</span>}.
+          </dd>
+        </div>
+        <div>
+          <dt class:list={['text-2xs font-bold uppercase tracking-[0.16em]', dark ? 'text-amber-300' : 'text-amber-600']}>Flying in or out that day</dt>
+          <dd class:list={['mt-1.5 text-[0.9375rem]', dark ? 'text-paper/75' : 'text-ink-soft']}>
+            Put your flight numbers in the message box. Your guide tracks the flight and builds a hard cut-off into the day.
+          </dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="card p-6 sm:p-9">
+      <form
+        id={`${id}-form`}
+        class="grid gap-5 sm:grid-cols-2"
+        method="POST"
+        action={configured ? site.formEndpoint : undefined}
+        novalidate
+      >
+        {site.formAccessKey && <input type="hidden" name="access_key" value={site.formAccessKey} />}
+        <input type="hidden" name="_subject" value="Nairobi Day Trips booking enquiry" />
+        <input type="hidden" name="source" value={Astro.url.pathname} />
+        <div class="hidden" aria-hidden="true">
+          <label>Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+        </div>
+
+        <div class="sm:col-span-1">
+          <label class="field-label" for={`${id}-name`}>Your name</label>
+          <input class="field" id={`${id}-name`} name="name" type="text" autocomplete="name" required placeholder="Jane Wanjiru" />
+        </div>
+
+        <div class="sm:col-span-1">
+          <label class="field-label" for={`${id}-email`}>Email</label>
+          <input class="field" id={`${id}-email`} name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+        </div>
+
+        <div class="sm:col-span-1">
+          <label class="field-label" for={`${id}-phone`}>Phone or WhatsApp <span class="font-normal text-muted">(optional)</span></label>
+          <input class="field" id={`${id}-phone`} name="phone" type="tel" autocomplete="tel" placeholder="Include your country code" />
+        </div>
+
+        <div class="sm:col-span-1">
+          <label class="field-label" for={`${id}-travellers`}>How many travellers</label>
+          <select class="field" id={`${id}-travellers`} name="travellers" required>
+            <option value="">Choose</option>
+            <option>1 traveller</option>
+            <option>2 travellers</option>
+            <option>3 travellers</option>
+            <option>4 travellers</option>
+            <option>5 to 6 travellers</option>
+            <option>7 or more travellers</option>
+          </select>
+        </div>
+
+        <div class="sm:col-span-2">
+          <label class="field-label" for={`${id}-tour`}>Which tour</label>
+          <select class="field" id={`${id}-tour`} name="tour" required>
+            <option value="">Choose a tour</option>
+            {tours.map((t) => (
+              <option value={t.h1} selected={t.slug === preselect}>{t.short} ({t.duration})</option>
+            ))}
+            <option value="Not sure yet">Not sure yet, please advise</option>
+          </select>
+        </div>
+
+        <div class="sm:col-span-1">
+          <label class="field-label" for={`${id}-date`}>Preferred date</label>
+          <input class="field" id={`${id}-date`} name="date" type="date" min={today} required />
+        </div>
+
+        <div class="sm:col-span-1">
+          <label class="field-label" for={`${id}-pickup`}>Pickup point</label>
+          <input class="field" id={`${id}-pickup`} name="pickup" type="text" required placeholder="Hotel name or area of Nairobi" />
+        </div>
+
+        <div class="sm:col-span-2">
+          <label class="field-label" for={`${id}-message`}>Anything else we should plan around <span class="font-normal text-muted">(optional)</span></label>
+          <textarea class="field" id={`${id}-message`} name="message" rows="4" placeholder="Flight numbers, children's ages, mobility needs, what you most want to see"></textarea>
+        </div>
+
+        <div class="sm:col-span-2">
+          <button type="submit" class="btn btn-primary btn-lg w-full">Send my booking enquiry</button>
+          <p class="mt-3 text-center text-[0.8125rem] text-muted">
+            We reply to every enquiry. Your details are used to answer it and nothing else.
+          </p>
+          {!configured && (
+            <p class="mt-4 rounded-xl border border-amber-500/40 bg-amber-100/60 px-4 py-3 text-[0.8125rem] text-amber-700">
+              <strong>[PLACEHOLDER: form endpoint not configured]</strong> Set <code>formEndpoint</code> in
+              <code>src/data/site.ts</code> to a free Formspree or Web3Forms URL. Until then this form
+              tells the visitor to email instead of losing the enquiry.
+            </p>
+          )}
+        </div>
+
+        <p id={`${id}-status`} role="status" aria-live="polite" class="sm:col-span-2 hidden rounded-xl px-4 py-3 text-[0.9375rem]"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ formId: `${id}-form`, statusId: `${id}-status`, endpoint: site.formEndpoint, fallbackEmail: site.email }}>
+  (() => {
+    const form = document.getElementById(formId);
+    const status = document.getElementById(statusId);
+    if (!form || !status) return;
+
+    const show = (msg, ok) => {
+      status.textContent = msg;
+      status.className =
+        'sm:col-span-2 rounded-xl px-4 py-3 text-[0.9375rem] ' +
+        (ok ? 'bg-acacia-50 text-acacia-800 border border-acacia-100' : 'bg-amber-100 text-amber-700 border border-amber-300');
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      if (!endpoint) {
+        show(
+          'This form is not connected to an inbox yet. Please email your dates to ' + fallbackEmail + ' and we will reply the same day.',
+          false
+        );
+        return;
+      }
+
+      const btn = form.querySelector('button[type="submit"]');
+      const label = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Sending your enquiry';
+
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        if (!res.ok) throw new Error('Request failed');
+        form.reset();
+        show('Thank you. Your enquiry is with us and you will get a written reply with timings and a full price.', true);
+      } catch {
+        show('Something went wrong sending that. Please email ' + fallbackEmail + ' and we will pick it up straight away.', false);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = label;
+      }
+    });
+  })();
+</script>

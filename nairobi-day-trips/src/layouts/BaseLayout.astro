@@ -1,0 +1,109 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Path with leading and trailing slash, e.g. '/tours/'. */
+  path: string;
+  ogType?: string;
+  /** Extra JSON-LD nodes for this page. */
+  schema?: unknown[];
+}
+
+const { title, description, path, ogType = 'website', schema = [] } = Astro.props;
+const canonical = new URL(path, site.url).href;
+const ogImage = new URL('/og-default.svg', site.url).href;
+
+const organization = {
+  '@type': ['Organization', 'TravelAgency'],
+  '@id': `${site.url}#organization`,
+  name: site.name,
+  url: site.url,
+  description: site.description,
+  areaServed: { '@type': 'City', name: 'Nairobi', addressCountry: 'KE' },
+  knowsLanguage: site.languages,
+};
+
+const localBusiness = {
+  '@type': 'TouristInformationCenter',
+  '@id': `${site.url}#localbusiness`,
+  name: site.name,
+  url: site.url,
+  description: site.description,
+  parentOrganization: { '@id': `${site.url}#organization` },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: site.city,
+    addressRegion: site.region,
+    addressCountry: site.countryCode,
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: site.geo.lat, longitude: site.geo.lng },
+  areaServed: { '@type': 'City', name: 'Nairobi' },
+  ...(site.phoneHref ? { telephone: site.phone } : {}),
+  ...(site.emailHref ? { email: site.email } : {}),
+};
+
+const website = {
+  '@type': 'WebSite',
+  '@id': `${site.url}#website`,
+  url: site.url,
+  name: site.name,
+  publisher: { '@id': `${site.url}#organization` },
+  inLanguage: 'en',
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [organization, localBusiness, website, ...schema],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#14523C" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_KE" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+  </head>
+
+  <body>
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:text-paper"
+      >Skip to content</a
+    >
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

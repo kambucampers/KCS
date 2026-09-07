@@ -1,0 +1,247 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SceneArt from '../components/SceneArt.astro';
+import TourCard from '../components/TourCard.astro';
+import BookingForm from '../components/BookingForm.astro';
+import FaqList from '../components/FaqList.astro';
+import { tours } from '../data/tours';
+import { site } from '../data/site';
+
+const featured = tours.filter((t) => t.category !== 'full-day');
+const fullDay = tours.find((t) => t.category === 'full-day')!;
+
+const homeFaqs = [
+  {
+    q: 'How long is a half-day tour in Nairobi?',
+    a: 'Every half-day tour runs 4 to 6 hours door to door, including hotel pickup and drop-off. The full-day Nairobi day trip runs 7 to 9 hours and covers four stops instead of one.',
+  },
+  {
+    q: 'Is Nairobi National Park really inside the city?',
+    a: 'Yes. The main gate sits about 7 kilometres from the city centre on Langata Road, so most Nairobi hotels are 20 to 40 minutes away. That proximity is what makes a 4 hour game drive possible at all.',
+  },
+  {
+    q: 'Do I need a full day to see anything worthwhile?',
+    a: 'No. A morning half day in Nairobi National Park regularly produces rhino, buffalo, giraffe, zebra and lion, because the park is compact and the animals do not have far to hide.',
+  },
+  {
+    q: 'Can I book a tour for the same day or tomorrow?',
+    a: 'Often yes, because our vehicles are based in Nairobi rather than dispatched from outside the city. Send your enquiry with the date and we will tell you within hours whether a guide and vehicle are free.',
+  },
+  {
+    q: 'Are park entry fees included in your prices?',
+    a: 'No. Kenya Wildlife Service sets and collects park entry fees per person per day, and rates differ for citizens, residents and non-residents. We quote them separately in writing before you confirm so the gate is never a surprise.',
+  },
+];
+
+const schema = [
+  {
+    '@type': 'FAQPage',
+    '@id': `${site.url}#homefaq`,
+    mainEntity: homeFaqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="Nairobi Half-Day Tours, 4 to 6 Hours | Nairobi Day Trips"
+  description="Nairobi Day Trips runs guided half-day tours of Nairobi National Park and Nairobi city attractions, each 4 to 6 hours, with hotel pickup. Full-day trips of 7 to 9 hours too."
+  path="/"
+  schema={schema}
+>
+  <!-- ============================== HERO ============================== -->
+  <section class="relative overflow-hidden bg-paper-warm">
+    <div class="shell relative grid items-center gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:py-24">
+      <div class="relative z-10">
+        <span class="eyebrow">Nairobi, Kenya</span>
+        <h1 class="mt-5 text-[2.6rem] leading-[1.03] sm:text-[3.4rem] lg:text-[3.9rem]">
+          A wild morning in Nairobi,<br class="hidden sm:block" />
+          <span class="text-acacia-800">back before lunch.</span>
+        </h1>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
+          Nairobi Day Trips runs guided half-day tours of Nairobi National Park and the city,
+          each lasting 4 to 6 hours with hotel pickup included. The park gate is roughly
+          7 kilometres from the city centre, so a single free morning is genuinely enough
+          to see rhino, buffalo and giraffe against the skyline.
+        </p>
+
+        <div class="mt-9 flex flex-wrap items-center gap-3">
+          <a href="/contact/" class="btn btn-primary btn-lg">Check availability for your dates</a>
+          <a href="/tours/" class="btn btn-ghost btn-lg">Compare the 8 tours</a>
+        </div>
+
+        <dl class="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-ink/12 pt-8">
+          <div>
+            <dt class="text-2xs font-bold uppercase tracking-[0.14em] text-muted">Each tour</dt>
+            <dd class="mt-1 font-display text-2xl font-semibold">4 to 6 hrs</dd>
+          </div>
+          <div>
+            <dt class="text-2xs font-bold uppercase tracking-[0.14em] text-muted">City to gate</dt>
+            <dd class="mt-1 font-display text-2xl font-semibold">7 km</dd>
+          </div>
+          <div>
+            <dt class="text-2xs font-bold uppercase tracking-[0.14em] text-muted">Pickup from</dt>
+            <dd class="mt-1 font-display text-2xl font-semibold">Your hotel</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="relative">
+        <div class="overflow-hidden rounded-[2rem] shadow-[var(--shadow-lift-lg)]">
+          <SceneArt
+            scene="sunrise"
+            alt="Illustration of a safari vehicle on the plains of Nairobi National Park at sunrise with the Nairobi city skyline behind"
+            class="aspect-4/3 w-full lg:aspect-square"
+          />
+        </div>
+        <div class="card absolute -bottom-6 -left-4 max-w-[15rem] p-5 sm:-left-8">
+          <p class="text-2xs font-bold uppercase tracking-[0.14em] text-amber-600">Gates open</p>
+          <p class="mt-1 font-display text-3xl font-semibold leading-none">6:00am</p>
+          <p class="mt-2 text-[0.8125rem] leading-snug text-muted">
+            The first hour after opening is the best wildlife window of the whole day.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== FACT STRIP =========================== -->
+  <section class="border-y border-ink/10 bg-acacia-50">
+    <div class="shell grid gap-8 py-12 sm:grid-cols-3">
+      <div>
+        <h2 class="font-display text-lg font-semibold">No elephants in the park</h2>
+        <p class="mt-2 text-[0.9375rem] leading-relaxed text-ink-soft">
+          Nairobi National Park is too small to hold elephants safely, so if elephants are
+          the point of your trip, take the Sheldrick combination instead.
+        </p>
+      </div>
+      <div>
+        <h2 class="font-display text-lg font-semibold">Four of the Big Five</h2>
+        <p class="mt-2 text-[0.9375rem] leading-relaxed text-ink-soft">
+          Lion, leopard, buffalo and rhino are all resident. The park holds one of Kenya's
+          more reliable rhino populations for a reserve of 117 square kilometres.
+        </p>
+      </div>
+      <div>
+        <h2 class="font-display text-lg font-semibold">Fees are quoted separately</h2>
+        <p class="mt-2 text-[0.9375rem] leading-relaxed text-ink-soft">
+          Kenya Wildlife Service sets park entry fees and charges different rates by
+          residency, so we put them in writing rather than bury them in a price.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= TOURS ============================== -->
+  <section class="shell py-20 lg:py-28">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-2xl">
+        <span class="eyebrow">The half-day tours</span>
+        <h2 class="mt-4 text-3xl sm:text-4xl">Seven half days, each doing one thing properly</h2>
+        <p class="mt-5 text-[1.0625rem] leading-relaxed text-ink-soft">
+          Each tour below is 4 to 6 hours. Choose by what you want to see and when you can
+          start, because a dawn game drive and a midday market run are very different days
+          out and both are half days.
+        </p>
+      </div>
+      <a href="/tours/" class="btn btn-ghost btn-md">Compare all tours</a>
+    </div>
+
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {featured.map((t, i) => <TourCard tour={t} featured={i === 0} />)}
+    </div>
+  </section>
+
+  <!-- ============================ FULL DAY ============================ -->
+  <section class="bg-sand">
+    <div class="shell grid items-center gap-12 py-20 lg:grid-cols-2 lg:gap-16 lg:py-24">
+      <div class="overflow-hidden rounded-[2rem] shadow-[var(--shadow-lift)]">
+        <SceneArt
+          scene="fullday"
+          alt="Illustration of a full-day Nairobi tour, showing a safari vehicle, acacia trees and the city skyline"
+          class="aspect-16/10 w-full"
+        />
+      </div>
+      <div>
+        <span class="eyebrow">If you have longer</span>
+        <h2 class="mt-4 text-3xl sm:text-4xl">{fullDay.h1}</h2>
+        <p class="mt-5 text-[1.0625rem] leading-relaxed text-ink-soft">{fullDay.answer}</p>
+        <ul class="mt-7 space-y-2.5">
+          {fullDay.highlights.slice(0, 4).map((h) => (
+            <li class="relative pl-6 text-[0.9375rem] leading-relaxed text-ink-soft">
+              <span class="absolute left-0.5 top-2.5 h-1.5 w-1.5 rounded-full bg-amber-500"></span>{h}
+            </li>
+          ))}
+        </ul>
+        <a href={`/tours/${fullDay.slug}/`} class="btn btn-primary btn-md mt-8">See the full-day itinerary</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== HOW IT RUNS ========================== -->
+  <section class="shell py-20 lg:py-28">
+    <div class="max-w-2xl">
+      <span class="eyebrow">How a half day actually runs</span>
+      <h2 class="mt-4 text-3xl sm:text-4xl">Four steps, no surprises at the gate</h2>
+      <p class="mt-5 text-[1.0625rem] leading-relaxed text-ink-soft">
+        Most people booking a Nairobi tour have never done one, so here is the whole
+        process end to end before you commit to anything.
+      </p>
+    </div>
+
+    <ol class="mt-14 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+      {[
+        { n: '01', h: 'You send your dates', p: 'Tell us the day, the tour, how many of you there are and where you are staying in Nairobi. The form takes under a minute.' },
+        { n: '02', h: 'You get a written quote', p: 'A real reply with the pickup time, the vehicle, the total price and the Kenya Wildlife Service fees payable at the gate, itemised separately.' },
+        { n: '03', h: 'You confirm', p: 'Confirm the day and we lock the guide and vehicle. We send the driver name and vehicle details the evening before so you know who is arriving.' },
+        { n: '04', h: 'Your guide arrives', p: 'Pickup at the agreed time from your hotel lobby, apartment or airport terminal. You are back at the time we told you, not the time we hoped for.' },
+      ].map((s) => (
+        <li>
+          <span class="font-display text-4xl font-semibold text-amber-500">{s.n}</span>
+          <div class="rule-dotted my-4"></div>
+          <h3 class="text-lg">{s.h}</h3>
+          <p class="mt-2.5 text-[0.9375rem] leading-relaxed text-ink-soft">{s.p}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- ============================ WHO FOR ============================= -->
+  <section class="band-dark">
+    <div class="shell grid gap-12 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:py-28">
+      <div>
+        <span class="eyebrow eyebrow-light">Who these tours are for</span>
+        <h2 class="mt-4 text-3xl sm:text-4xl">Built for visitors with one day, not one week</h2>
+        <p class="mt-5 leading-relaxed text-paper/75">
+          Nairobi is where most Kenyan journeys begin and end, which means a lot of visitors
+          have a spare half day rather than a spare week. Every tour on this site is built
+          for exactly that gap, so nothing depends on you having a second day free.
+        </p>
+      </div>
+      <div class="grid gap-x-10 gap-y-8 sm:grid-cols-2">
+        {[
+          { h: 'Long-layover passengers', p: 'Eight hours or more at Jomo Kenyatta International Airport is enough for a game drive, because the park gate is about 20 minutes from the terminal outside peak traffic.' },
+          { h: 'Business travellers', p: 'A free morning before meetings or a free afternoon after them. Private vehicles mean you can cut the day short without asking anyone.' },
+          { h: 'Safari bookends', p: 'The day before you fly to the Mara, or the day after you come back. A Nairobi half day fills it without a hotel change.' },
+          { h: 'Families in Nairobi', p: 'The Giraffe Centre and the elephant orphanage hold children better than four hours of game driving, and they slot into the same half day.' },
+        ].map((c) => (
+          <div class="border-t border-white/15 pt-6">
+            <h3 class="text-lg">{c.h}</h3>
+            <p class="mt-2.5 text-[0.9375rem] leading-relaxed text-paper/70">{c.p}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FaqList
+    faqs={homeFaqs}
+    heading="What visitors ask before they book"
+    lead="If your question is not here, the full list is on the questions page, and anything specific to a tour is answered on that tour's own page."
+  />
+
+  <BookingForm tone="light" />
+</BaseLayout>

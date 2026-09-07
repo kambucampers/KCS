@@ -1,0 +1,247 @@
+---
+/**
+ * Hand-built SVG scenes, one per tour, used instead of stock photography.
+ *
+ * Composition rule: the horizon sits at y=300 and every subject stands on a
+ * baseline of y=430, leaving 70px of ground beneath it. Cards crop these
+ * scenes vertically with preserveAspectRatio="xMidYMax slice", which anchors
+ * the crop to the ground rather than the sky, so keeping subjects
+ * inside that band is what stops a giraffe losing its feet in a thumbnail.
+ *
+ * Swap any scene for a real photograph later by replacing the <SceneArt> call
+ * with an <img>. Nothing else in the site depends on this file.
+ */
+interface Props {
+  scene: string;
+  class?: string;
+  /** Accessible description. An empty string marks the art as decorative. */
+  alt?: string;
+}
+const { scene, class: className = '', alt = '' } = Astro.props;
+const decorative = alt === '';
+const a11y = decorative
+  ? { 'aria-hidden': 'true', role: 'presentation' }
+  : { role: 'img', 'aria-label': alt };
+
+const SKY: Record<string, [string, string, string]> = {
+  sunrise: ['#FBE3D6', '#F3A481', '#E4572E'],
+  goldenhour: ['#FBE3D6', '#F0B48D', '#C9481F'],
+  elephant: ['#EAF4F9', '#C6DFEC', '#7FB4CE'],
+  giraffe: ['#FBF6EE', '#F0E4D2', '#DEC7A4'],
+  market: ['#FBE3D6', '#F5E0CB', '#E4D2B8'],
+  city: ['#E4F0F6', '#D3E6EF', '#EFE2CE'],
+  private: ['#EDF5F0', '#D3E5DA', '#EFE2CE'],
+  fullday: ['#FBE3D6', '#F3B389', '#D9C39C'],
+};
+const sky = SKY[scene] ?? SKY.sunrise;
+
+/* Deterministic id so two scenes on one page never collide. */
+const uid = `${scene}-${Math.random().toString(36).slice(2, 8)}`;
+
+/** Acacia: a straight trunk under a flat umbrella canopy. */
+const acacia = (x: number, y: number, s: number, fill: string) => `
+  <g transform="translate(${x} ${y}) scale(${s})" fill="${fill}">
+    <path d="M-3 0v-44h6V0z"/>
+    <path d="M0 -32 l-20 -12 M0 -38 l19 -13" stroke="${fill}" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M-44 -46c4-18 23-30 44-30s40 12 44 30c-13-8-27-12-44-12s-31 4-44 12z"/>
+    <path d="M-30 -58c5-9 17-14 30-14s25 5 30 14c-9-4-19-6-30-6s-21 2-30 6z"/>
+  </g>`;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 800 500"
+  preserveAspectRatio="xMidYMax slice"
+  xmlns="http://www.w3.org/2000/svg"
+  {...a11y}
+>
+  <defs>
+    <linearGradient id={`sky-${uid}`} x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color={sky[0]} />
+      <stop offset="60%" stop-color={sky[1]} />
+      <stop offset="100%" stop-color={sky[2]} />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill={`url(#sky-${uid})`} />
+
+  {['sunrise', 'goldenhour', 'fullday'].includes(scene) && (
+    <circle cx="612" cy="150" r="54" fill="#FDF0E4" opacity="0.9" />
+  )}
+
+  <!-- Nairobi skyline on the horizon: the detail that fixes the location -->
+  <g fill="#14523C" opacity={['city', 'market'].includes(scene) ? '0.82' : '0.34'}>
+    <rect x="40" y="222" width="24" height="80" />
+    <rect x="72" y="246" width="17" height="56" />
+    <rect x="96" y="200" width="28" height="102" />
+    <rect x="132" y="234" width="19" height="68" />
+    <path d="M158 302V206a22 22 0 0 1 44 0v96Z" />
+    <rect x="212" y="178" width="15" height="124" />
+    <rect x="217" y="152" width="4" height="28" />
+    <rect x="236" y="238" width="32" height="64" />
+    <rect x="278" y="214" width="21" height="88" />
+    <rect x="307" y="250" width="26" height="52" />
+    <rect x="342" y="228" width="17" height="74" />
+    <rect x="367" y="258" width="38" height="44" />
+    <rect x="413" y="236" width="19" height="66" />
+    <rect x="440" y="208" width="25" height="94" />
+    <rect x="473" y="252" width="15" height="50" />
+    <rect x="496" y="230" width="29" height="72" />
+    <rect x="533" y="256" width="19" height="46" />
+    <rect x="560" y="222" width="23" height="80" />
+    <rect x="591" y="244" width="32" height="58" />
+    <rect x="631" y="216" width="17" height="86" />
+    <rect x="656" y="254" width="27" height="48" />
+    <rect x="691" y="234" width="21" height="68" />
+    <rect x="720" y="256" width="30" height="46" />
+    <rect x="758" y="240" width="18" height="62" />
+  </g>
+
+  <!-- plains: three bands, horizon at 300 -->
+  <path d="M0 302h800v34c-130 20-236-8-368 4S128 366 0 350Z" fill="#5C9A72" opacity="0.6" />
+  <path d="M0 340c150 22 258-14 398-5s248 32 402 11v154H0Z" fill="#2E7D5B" />
+  <path d="M0 392c176 24 296-10 434 2s216 24 366 6v100H0Z" fill="#1B6A4A" />
+  <path d="M0 448c210 20 330-6 470 4s210 14 330 2v46H0Z" fill="#14523C" />
+
+  <g set:html={acacia(96, 400, 1.05, '#0E3A2A') + acacia(714, 404, 1.2, '#0E3A2A')} />
+
+  <!-- ---------------------------------------------------------------- -->
+  {scene === 'giraffe' && (
+    <g fill="#23201C">
+      <!-- adult giraffe, hooves on the 430 baseline -->
+      <g transform="translate(292 0)">
+        <rect x="42" y="394" width="11" height="36" rx="4" />
+        <rect x="62" y="394" width="11" height="36" rx="4" />
+        <rect x="114" y="394" width="11" height="36" rx="4" />
+        <rect x="134" y="394" width="11" height="36" rx="4" />
+        <path d="M40 360c-9 9-12 24-7 37l7-2c-4-11-2-23 5-30Z" />
+        <rect x="36" y="350" width="114" height="54" rx="26" />
+        <path d="M140 372 124 366 158 250l17 5Z" />
+        <path d="M153 248l31-8 11 8-6 13-31 6Z" />
+        <path d="M162 242l-5-13M176 238l-3-13" stroke="#23201C" stroke-width="4.5" stroke-linecap="round" />
+        <circle cx="177" cy="249" r="2.6" fill="#FBF6EE" />
+      </g>
+      <!-- a second giraffe further out -->
+      <g transform="translate(492 96) scale(0.58)" opacity="0.42">
+        <rect x="42" y="394" width="11" height="36" rx="4" />
+        <rect x="62" y="394" width="11" height="36" rx="4" />
+        <rect x="114" y="394" width="11" height="36" rx="4" />
+        <rect x="134" y="394" width="11" height="36" rx="4" />
+        <rect x="36" y="350" width="114" height="54" rx="26" />
+        <path d="M140 372 124 366 158 250l17 5Z" />
+        <path d="M153 248l31-8 11 8-6 13-31 6Z" />
+      </g>
+      <ellipse cx="380" cy="436" rx="86" ry="8" fill="#0E3A2A" opacity="0.3" />
+    </g>
+  )}
+
+  {scene === 'elephant' && (
+    <g fill="#23201C">
+      <path d="M400 430v-52c0-42 33-72 76-72s76 30 76 72v52h-20v-36h-16v36h-22v-36h-16v36Z" />
+      <path d="M400 388c-20-4-31-20-27-40 4-18 20-27 31-22Z" />
+      <path d="M380 366c-15 13-18 36-7 52 7 11 20 11 24-2Z" />
+      <circle cx="442" cy="342" r="5" fill="#FBF6EE" />
+      <!-- a calf alongside -->
+      <path d="M566 430v-32c0-25 18-43 43-43s43 18 43 43v32h-13v-23h-11v23h-15v-23h-11v23Z" opacity="0.72" />
+      <path d="M566 402c-12-3-18-13-15-24 3-10 11-15 18-12Z" opacity="0.72" />
+      <path d="M554 390c-9 8-11 21-4 30 4 6 12 6 14-1Z" opacity="0.72" />
+    </g>
+  )}
+
+  {(scene === 'sunrise' || scene === 'fullday' || scene === 'private') && (
+    <g>
+      <!-- safari vehicle: body, raised pop-top roof, snorkel, wheels -->
+      <path d="M318 414v-46c0-9 7-16 16-16h172c9 0 16 7 16 16v46Z" fill="#23201C" />
+      <path d="M330 352v-26c0-7 6-13 13-13h154c7 0 13 6 13 13v26Z" fill="#3A342C" />
+      <path d="M322 306h180l10 12H312Z" fill="#0E3A2A" />
+      <rect x="344" y="322" width="42" height="24" rx="3" fill={sky[0]} opacity="0.85" />
+      <rect x="396" y="322" width="42" height="24" rx="3" fill={sky[0]} opacity="0.85" />
+      <rect x="448" y="322" width="42" height="24" rx="3" fill={sky[0]} opacity="0.85" />
+      <rect x="510" y="330" width="7" height="52" rx="3" fill="#23201C" />
+      <rect x="316" y="378" width="196" height="7" fill="#0E3A2A" />
+      <circle cx="360" cy="414" r="21" fill="#23201C" />
+      <circle cx="360" cy="414" r="8" fill="#6B6257" />
+      <circle cx="482" cy="414" r="21" fill="#23201C" />
+      <circle cx="482" cy="414" r="8" fill="#6B6257" />
+      <ellipse cx="421" cy="436" rx="120" ry="9" fill="#0E3A2A" opacity="0.35" />
+    </g>
+  )}
+
+  {scene === 'goldenhour' && (
+    <g fill="#23201C">
+      <!-- white rhino grazing, hooves on the 430 baseline -->
+      <rect x="300" y="396" width="17" height="34" rx="5" />
+      <rect x="327" y="396" width="17" height="34" rx="5" />
+      <rect x="379" y="396" width="17" height="34" rx="5" />
+      <rect x="403" y="396" width="17" height="34" rx="5" />
+      <path d="M292 404v-32c0-27 28-46 64-46s64 19 64 46v32Z" />
+      <path d="M418 354c19 2 36 11 47 24l-5 21-42-7Z" />
+      <path d="M459 379l15-24 4 26Z" />
+      <path d="M476 384l10-14 3 15Z" />
+      <path d="M422 346l6-15 9 13Z" />
+      <path d="M292 364c-11 4-15 17-13 27l7-1c-3-9 1-18 8-21Z" />
+      <ellipse cx="368" cy="436" rx="92" ry="8" fill="#0E3A2A" opacity="0.3" />
+      <!-- a second rhino grazing further back, on the ridge -->
+      <g opacity="0.4" transform="translate(310 76) scale(0.6)">
+        <rect x="300" y="396" width="17" height="34" rx="5" />
+        <rect x="327" y="396" width="17" height="34" rx="5" />
+        <rect x="379" y="396" width="17" height="34" rx="5" />
+        <rect x="403" y="396" width="17" height="34" rx="5" />
+        <path d="M292 404v-30c0-25 28-42 64-42s64 17 64 42v30Z" />
+        <path d="M418 358c18 2 34 10 45 22l-5 20-40-7Z" />
+        <path d="M458 380l14-22 4 24Z" />
+      </g>
+    </g>
+  )}
+
+  {scene === 'market' && (
+    <g>
+      {[
+        { x: 96, w: 178, top: '#E4572E', valance: '#C9481F' },
+        { x: 318, w: 156, top: '#2E7DA8', valance: '#1F6F8B' },
+        { x: 520, w: 140, top: '#1B6A4A', valance: '#0E3A2A' },
+      ].map((st) => (
+        <g transform={`translate(${st.x} 0)`}>
+          <path d={`M-16 372 L${st.w / 2} 322 L${st.w + 16} 372 Z`} fill={st.top} />
+          <path d={`M-16 372h${st.w + 32}v13H-16Z`} fill={st.valance} />
+          <rect x="6" y="385" width="8" height="45" fill="#23201C" />
+          <rect x={st.w - 14} y="385" width="8" height="45" fill="#23201C" />
+          <g fill="#FBF6EE" opacity="0.9">
+            <rect x="24" y="392" width={st.w * 0.36} height="7" rx="3.5" />
+            <rect x="24" y="404" width={st.w * 0.24} height="7" rx="3.5" />
+            <circle cx={st.w - 46} cy="398" r="9" />
+            <circle cx={st.w - 28} cy="404" r="6" />
+          </g>
+          <rect x="-6" y="414" width={st.w + 12} height="10" rx="3" fill="#23201C" />
+        </g>
+      ))}
+      <g fill="#23201C">
+        <circle cx="296" cy="386" r="12" /><path d="M284 430v-32h24v32Z" />
+        <circle cx="497" cy="392" r="10" /><path d="M487 430v-28h20v28Z" />
+        <circle cx="694" cy="388" r="11" /><path d="M683 430v-30h22v30Z" />
+      </g>
+    </g>
+  )}
+
+  {scene === 'city' && (
+    <g>
+      <!-- pavement and pedestrians -->
+      <rect x="0" y="430" width="800" height="70" fill="#23201C" />
+      <g fill="#FBF6EE" opacity="0.42">
+        <rect x="40" y="458" width="58" height="6" rx="3" />
+        <rect x="158" y="458" width="58" height="6" rx="3" />
+        <rect x="276" y="458" width="58" height="6" rx="3" />
+        <rect x="394" y="458" width="58" height="6" rx="3" />
+        <rect x="512" y="458" width="58" height="6" rx="3" />
+        <rect x="630" y="458" width="58" height="6" rx="3" />
+      </g>
+      <g fill="#23201C">
+        <circle cx="214" cy="376" r="14" /><path d="M200 430v-38h28v38Z" />
+        <circle cx="262" cy="382" r="12" /><path d="M250 430v-34h24v34Z" />
+        <circle cx="470" cy="374" r="15" /><path d="M455 430v-40h30v40Z" />
+        <circle cx="516" cy="384" r="11" /><path d="M505 430v-32h22v32Z" />
+        <circle cx="560" cy="380" r="13" /><path d="M547 430v-36h26v36Z" />
+      </g>
+    </g>
+  )}
+</svg>

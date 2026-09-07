@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TourCard from '../../components/TourCard.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import FaqList from '../../components/FaqList.astro';
+import { tours } from '../../data/tours';
+import { site } from '../../data/site';
+
+const park = tours.filter((t) => t.category === 'park');
+const combo = tours.filter((t) => t.category === 'combo');
+const city = tours.filter((t) => t.category === 'city');
+const full = tours.filter((t) => t.category === 'full-day');
+
+const faqs = [
+  {
+    q: 'Which Nairobi tour should I book if I only have one morning?',
+    a: 'Book the morning half-day Nairobi National Park tour. It starts at the 6:00am gate opening, which is the highest-activity window of the day, and returns you to the city by late morning.',
+  },
+  {
+    q: 'What is the difference between a half-day and a full-day tour?',
+    a: 'A half-day tour runs 4 to 6 hours and covers one thing well, usually a game drive or one part of the city. The full-day Nairobi day trip runs 7 to 9 hours and covers four stops.',
+  },
+  {
+    q: 'Can two tours be combined into one day?',
+    a: 'Two half-day tours in one day is possible in some combinations, such as a morning game drive followed by an afternoon Maasai market run. Send us both and we will tell you honestly whether the timings work.',
+  },
+  {
+    q: 'Are all tours private?',
+    a: 'Yes. Every tour on this site is run as a private tour with your own vehicle and guide, which is why the vehicle is priced per trip rather than per seat and why start times can be moved to suit you.',
+  },
+];
+
+const schema = [
+  {
+    '@type': 'ItemList',
+    '@id': `${site.url}tours/#list`,
+    name: 'Nairobi half-day and full-day tours',
+    numberOfItems: tours.length,
+    itemListElement: tours.map((t, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `${site.url}tours/${t.slug}/`,
+      name: t.h1,
+    })),
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: site.url },
+      { '@type': 'ListItem', position: 2, name: 'Tours', item: `${site.url}tours/` },
+    ],
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+
+const groups = [
+  { title: 'Nairobi National Park game drives', blurb: 'The same park, two very different windows. Morning gives you predator activity, afternoon gives you comfort and light.', items: park },
+  { title: 'A game drive plus one animal stop', blurb: 'Because Nairobi National Park has no elephants and its giraffe stay at a distance, these two combinations add the close-up encounter the park itself cannot.', items: combo },
+  { title: 'Nairobi city half days', blurb: 'For visitors who have done the park, or who never wanted a game drive in the first place.', items: city },
+  { title: 'The full day', blurb: 'Seven to nine hours, four stops, one very full day. This is the itinerary for a single day in Nairobi.', items: full },
+];
+---
+
+<BaseLayout
+  title="All Nairobi Tours: 8 Half-Day and Full-Day Trips | Nairobi Day Trips"
+  description="Compare eight Nairobi tours: morning and afternoon national park game drives, park plus Sheldrick or the Giraffe Centre, Maasai market shopping, a walking tour, a private city tour and a full-day trip."
+  path="/tours/"
+  schema={schema}
+>
+  <Breadcrumbs trail={[{ label: 'Home', href: '/' }, { label: 'Tours' }]} />
+
+  <section class="shell pb-16 pt-10 lg:pb-20 lg:pt-14">
+    <div class="max-w-3xl">
+      <span class="eyebrow">Eight tours</span>
+      <h1 class="mt-5 text-[2.4rem] leading-[1.05] sm:text-5xl">Every Nairobi tour we run, side by side</h1>
+      <p class="mt-6 text-lg leading-relaxed text-ink-soft">
+        Nairobi Day Trips runs seven half-day tours of 4 to 6 hours and one full-day trip of
+        7 to 9 hours. Every tour is private, includes hotel pickup inside Nairobi, and is
+        listed below with its real duration and its honest trade-offs so you can choose on
+        facts rather than on photographs.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/contact/" class="btn btn-primary btn-lg">Check availability for your dates</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- comparison table -->
+  <section class="shell pb-20">
+    <div class="overflow-x-auto rounded-card border border-ink/10 bg-white shadow-[var(--shadow-lift)]">
+      <table class="w-full min-w-[46rem] border-collapse text-left text-[0.9375rem]">
+        <caption class="sr-only">Nairobi Day Trips tours compared by duration, start time and what each is best for</caption>
+        <thead>
+          <tr class="border-b border-ink/12 bg-paper-warm">
+            <th scope="col" class="px-5 py-4 font-display text-base font-semibold">Tour</th>
+            <th scope="col" class="px-5 py-4 font-display text-base font-semibold">Duration</th>
+            <th scope="col" class="px-5 py-4 font-display text-base font-semibold">Starts</th>
+            <th scope="col" class="px-5 py-4 font-display text-base font-semibold">Best for</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tours.map((t) => (
+            <tr class="border-b border-ink/8 last:border-0 hover:bg-paper-warm/60">
+              <th scope="row" class="px-5 py-4 font-semibold">
+                <a href={`/tours/${t.slug}/`} class="text-acacia-800 underline-offset-4 hover:text-amber-600 hover:underline">{t.short}</a>
+              </th>
+              <td class="px-5 py-4 whitespace-nowrap text-ink-soft">{t.duration}</td>
+              <td class="px-5 py-4 text-ink-soft">{t.startWindow.split(',')[0]}</td>
+              <td class="px-5 py-4 text-ink-soft">{t.forWho[0]}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  {groups.map((g) => (
+    <section class="shell pb-20">
+      <div class="max-w-2xl">
+        <h2 class="text-2xl sm:text-3xl">{g.title}</h2>
+        <p class="mt-4 leading-relaxed text-ink-soft">{g.blurb}</p>
+      </div>
+      <div class="mt-9 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {g.items.map((t) => <TourCard tour={t} />)}
+      </div>
+    </section>
+  ))}
+
+  <FaqList faqs={faqs} heading="Choosing between the tours" />
+  <CtaBand />
+</BaseLayout>

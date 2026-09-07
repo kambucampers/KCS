@@ -1,0 +1,27 @@
+---
+import type { Faq } from '../data/tours';
+interface Props { faqs: Faq[]; heading?: string; lead?: string }
+const { faqs, heading = 'Questions people ask before booking', lead } = Astro.props;
+---
+<section class="shell py-20 lg:py-28">
+  <div class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+    <div>
+      <span class="eyebrow">Straight answers</span>
+      <h2 class="mt-4 text-3xl sm:text-4xl">{heading}</h2>
+      {lead && <p class="mt-5 text-[1.0625rem] leading-relaxed text-ink-soft">{lead}</p>}
+    </div>
+    <div class="divide-y divide-ink/10 border-y border-ink/10">
+      {faqs.map((f) => (
+        <details class="group py-5">
+          <summary class="flex cursor-pointer list-none items-start justify-between gap-6 text-[1.0625rem] font-semibold leading-snug marker:hidden">
+            {f.q}
+            <span class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-ink/20 transition group-open:rotate-45 group-open:border-amber-500 group-open:bg-amber-500 group-open:text-white" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 1v10M1 6h10"/></svg>
+            </span>
+          </summary>
+          <p class="mt-3 max-w-2xl pr-12 leading-relaxed text-ink-soft">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
