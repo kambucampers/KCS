@@ -1,0 +1,350 @@
+/* ==========================================================================
+   Kambu Guide — components.css  (interactive and editorial components)
+   Version 1.0 · 1 October 2026
+
+   An additive layer. Load it AFTER styles.css and itinerary.css. Every
+   component class starts with .kg- so nothing here restyles the base page;
+   the only rules that touch existing elements are in "Base enhancements"
+   at the end, and each one says why.
+
+   Everything renders without JavaScript: tab panels stack as headed
+   sections, galleries scroll natively, accordions are native <details>.
+   components.js only upgrades what is already readable.
+
+   Token contract — read from styles.css, with fallbacks:
+   --ink --muted --forest --brass --brass-d --teal-d --paper --surface
+   --ivory --bone --line --line-strong --note --note-soft --radius
+   --radius-sm --header-h --font-display --font-body
+   ========================================================================== */
+
+:root {
+  --kg-ink: var(--ink, #191b18);
+  --kg-muted: var(--muted, #5a6259);
+  --kg-strong: var(--forest, #233a31);
+  --kg-accent: var(--brass-d, #7b5f37);
+  --kg-edge: var(--brass, #ad8b54);
+  --kg-focus: var(--teal-d, #0e7c78);
+  --kg-surface: var(--surface, #fff);
+  --kg-tint: var(--ivory, #f8f4ec);
+  --kg-tint-2: var(--bone, #f1e9db);
+  --kg-line: var(--line, #e4dbca);
+  --kg-line-strong: var(--line-strong, #c9bba1);
+  --kg-note: var(--note, #e3a43c);
+  --kg-note-soft: var(--note-soft, #fbf3e4);
+  --kg-radius: var(--radius, 12px);
+  --kg-radius-sm: var(--radius-sm, 8px);
+  --kg-header-h: var(--header-h, 72px);
+  --kg-display: var(--font-display, Georgia, serif);
+}
+
+/* ==========================================================================
+   1. Tabs — horizontal (.kg-tabs) and sidebar/vertical (.kg-tabs--vertical)
+   One engine. Without JS the button row stays hidden and every panel shows
+   in order under its own heading.
+   ========================================================================== */
+.kg-tabs { margin: 28px 0 32px; }
+.kg-tabs__list { display: flex; gap: 4px; }
+.kg-tabs__list[hidden] { display: none; }
+
+.kg-tabs__tab {
+  appearance: none; border: 0; background: none; cursor: pointer;
+  font: 600 .92rem/1.3 var(--font-body, inherit); color: var(--kg-muted);
+  text-align: left; display: flex; align-items: center; gap: 10px;
+  min-height: 44px; padding: 10px 16px; border-radius: var(--kg-radius-sm) var(--kg-radius-sm) 0 0;
+  border-bottom: 2px solid transparent; transition: color .15s, background .15s, border-color .15s;
+}
+.kg-tabs__tab:hover { color: var(--kg-strong); background: var(--kg-tint); }
+.kg-tabs__tab[aria-selected="true"] { color: var(--kg-strong); border-bottom-color: var(--kg-swatch, var(--kg-edge)); background: var(--kg-surface); }
+.kg-tabs__tab:focus-visible { outline: 3px solid var(--kg-focus); outline-offset: -3px; }
+.kg-tabs__label { display: block; }
+.kg-tabs__sub { display: block; font-size: .7rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--kg-muted); margin-top: 2px; }
+.kg-tabs__swatch { width: 8px; height: 8px; flex: none; border-radius: 2px; background: var(--kg-swatch, var(--kg-edge)); }
+
+/* Horizontal: a ruled strip that scrolls sideways on narrow screens */
+.kg-tabs:not(.kg-tabs--vertical) .kg-tabs__list {
+  border-bottom: 1px solid var(--kg-line-strong); overflow-x: auto; scrollbar-width: none;
+  scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
+  mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent);
+}
+.kg-tabs:not(.kg-tabs--vertical) .kg-tabs__list::-webkit-scrollbar { display: none; }
+.kg-tabs:not(.kg-tabs--vertical) .kg-tabs__tab { flex: none; scroll-snap-align: start; margin-bottom: -1px; }
+
+.kg-tabs__panel { padding: 24px 0 4px; }
+.kg-tabs__panel > :first-child { margin-top: 0; }
+.kg-tabs__panel:focus-visible { outline: 3px solid var(--kg-focus); outline-offset: 4px; border-radius: 4px; }
+/* No JS: panels stack, separated by a rule */
+.kg-tabs:not(.is-enhanced) .kg-tabs__panel + .kg-tabs__panel { border-top: 1px solid var(--kg-line); margin-top: 8px; }
+/* JS: only the active panel shows */
+.kg-tabs.is-enhanced > .kg-tabs__panels > .kg-tabs__panel:not(.is-active),
+.kg-tabs.is-enhanced > .kg-tabs__panel:not(.is-active) { display: none; }
+.kg-tabs.is-enhanced .kg-tabs__panel.is-active { animation: kg-fade .22s ease; }
+@keyframes kg-fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+/* Sidebar (vertical) tabs: a rail of labels beside the panel.
+   Uses a container query so it collapses to a scroll strip whenever its own
+   column is narrow — inside the article grid that happens well before the
+   viewport is phone-sized. */
+.kg-tabs--vertical {
+  container-type: inline-size; container-name: kgv;
+  background: var(--kg-surface); border: 1px solid var(--kg-line); border-radius: var(--kg-radius); overflow: hidden;
+}
+/* Flex, not grid: a container query cannot restyle its own container, but it
+   can resize these children, which is what lets the rail drop above the panel. */
+.kg-tabs--vertical.is-enhanced { display: flex; flex-wrap: wrap; align-items: stretch; }
+.kg-tabs--vertical.is-enhanced > .kg-tabs__list { flex: 0 0 252px; min-width: 0; }
+.kg-tabs--vertical.is-enhanced > .kg-tabs__panel { flex: 1 1 0; min-width: 0; }
+.kg-tabs--vertical:not(.is-enhanced) { padding: 0 24px; }
+.kg-tabs--vertical .kg-tabs__list {
+  flex-direction: column; gap: 4px; padding: 14px 10px; background: var(--kg-tint); border-right: 1px solid var(--kg-line);
+}
+.kg-tabs__eyebrow { margin: 4px 10px 8px; font-size: .66rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--kg-accent); }
+.kg-tabs--vertical .kg-tabs__tab { border-radius: var(--kg-radius-sm); border-bottom: 0; border-left: 2px solid transparent; padding: 11px 14px; }
+.kg-tabs--vertical .kg-tabs__tab:hover { background: var(--kg-surface); }
+.kg-tabs--vertical .kg-tabs__tab[aria-selected="true"] {
+  background: var(--kg-surface); border-left-color: var(--kg-swatch, var(--kg-edge));
+  box-shadow: 0 4px 14px -10px rgba(11, 23, 32, .45);
+}
+.kg-tabs--vertical .kg-tabs__panel { padding: 26px 28px 22px; }
+@container kgv (max-width: 640px) {
+  .kg-tabs--vertical.is-enhanced > .kg-tabs__list,
+  .kg-tabs--vertical.is-enhanced > .kg-tabs__panel { flex-basis: 100%; }
+  .kg-tabs--vertical .kg-tabs__list {
+    flex-direction: row; overflow-x: auto; scrollbar-width: none; border-right: 0; border-bottom: 1px solid var(--kg-line);
+    padding: 8px; mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent);
+  }
+  .kg-tabs--vertical .kg-tabs__list::-webkit-scrollbar { display: none; }
+  .kg-tabs__eyebrow { display: none; }
+  .kg-tabs--vertical .kg-tabs__tab { flex: none; white-space: nowrap; border-left: 0; border-bottom: 2px solid transparent; }
+  .kg-tabs--vertical .kg-tabs__tab[aria-selected="true"] { border-bottom-color: var(--kg-swatch, var(--kg-edge)); }
+  .kg-tabs--vertical .kg-tabs__panel { padding: 20px 18px; }
+}
+
+/* Two-up panel body: text beside a figure or fact grid */
+.kg-split { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+@container kgv (max-width: 980px) { .kg-split { grid-template-columns: 1fr; gap: 4px; } }
+@media (max-width: 760px) { .kg-split { grid-template-columns: 1fr; } }
+
+/* Hairline fact grid — the 1px gaps are the rules */
+.kg-facts { list-style: none; margin: 16px 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--kg-line); border: 1px solid var(--kg-line); border-radius: var(--kg-radius-sm); overflow: hidden; }
+.kg-facts li { background: var(--kg-surface); padding: 10px 14px; font-size: .88rem; line-height: 1.45; margin: 0; }
+.kg-facts li b { display: block; font-size: .66rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--kg-accent); margin-bottom: 2px; }
+.kg-facts li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+
+/* ==========================================================================
+   2. Accordions — native <details>, grouped in .kg-acc
+   ========================================================================== */
+.kg-acc { margin: 24px 0; border-top: 1px solid var(--kg-line-strong); }
+.kg-acc__item { border-bottom: 1px solid var(--kg-line-strong); }
+.kg-acc__item > summary {
+  list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) 28px; align-items: center; gap: 16px;
+  padding: 18px 4px; border-radius: 4px;
+}
+.kg-acc__item > summary::-webkit-details-marker { display: none; }
+.kg-acc__item > summary:hover .kg-acc__q { color: var(--kg-accent); }
+.kg-acc__q { margin: 0; font-family: var(--kg-display); font-size: 1.28rem; line-height: 1.25; color: var(--kg-strong); text-align: left; }
+.kg-acc__item > summary::after {
+  content: ""; width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--kg-line-strong);
+  background:
+    linear-gradient(var(--kg-strong), var(--kg-strong)) center / 11px 1.5px no-repeat,
+    linear-gradient(var(--kg-strong), var(--kg-strong)) center / 1.5px 11px no-repeat;
+  transition: transform .2s ease, background-color .2s ease;
+}
+.kg-acc__item[open] > summary::after { transform: rotate(45deg); background-color: var(--kg-tint); }
+.kg-acc__body { padding: 0 44px 20px 4px; }
+.kg-acc__body > :last-child { margin-bottom: 0; }
+@media (prefers-reduced-motion: reduce) { .kg-acc__item > summary::after { transition: none; } }
+/* Smooth open/close where the browser can animate to auto height */
+@supports (interpolate-size: allow-keywords) {
+  .kg-acc { interpolate-size: allow-keywords; }
+  .kg-acc__item::details-content { height: 0; overflow: clip; transition: height .25s ease, content-visibility .25s allow-discrete; }
+  .kg-acc__item[open]::details-content { height: auto; }
+  @media (prefers-reduced-motion: reduce) { .kg-acc__item::details-content { transition: none; } }
+}
+
+/* ==========================================================================
+   3. Gallery — scroll-snap strip + arrows + counter, and a lightbox
+   ========================================================================== */
+.kg-gallery { margin: 28px 0 32px; position: relative; }
+.kg-gallery__head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+.kg-gallery__title { margin: 0; font-size: .75rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--kg-accent); }
+.kg-gallery__viewport {
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; overscroll-behavior-x: contain;
+  scrollbar-width: thin; border-radius: var(--kg-radius); -webkit-overflow-scrolling: touch;
+}
+.kg-gallery__viewport:focus-visible { outline: 3px solid var(--kg-focus); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .kg-gallery__viewport { scroll-behavior: auto; } }
+.kg-gallery__track { list-style: none; margin: 0; padding: 0; display: grid; grid-auto-flow: column; grid-auto-columns: 100%; gap: 12px; }
+.kg-gallery--peek .kg-gallery__track { grid-auto-columns: 86%; }
+.kg-gallery__slide { scroll-snap-align: start; margin: 0; min-width: 0; }
+.kg-gallery__slide figure { margin: 0; }
+.kg-gallery__open { display: block; position: relative; border-radius: var(--kg-radius); overflow: hidden; background: var(--kg-tint-2); cursor: zoom-in; }
+.kg-gallery__open img { width: 100%; aspect-ratio: var(--kg-ratio, 3 / 2); object-fit: cover; transition: transform .35s ease; }
+.kg-gallery__open:hover img { transform: scale(1.02); }
+@media (prefers-reduced-motion: reduce) { .kg-gallery__open img { transition: none; } .kg-gallery__open:hover img { transform: none; } }
+.kg-gallery__open:focus-visible { outline: 3px solid var(--kg-focus); outline-offset: 3px; }
+.kg-gallery__slide figcaption b { color: var(--kg-strong); }
+.kg-credit { display: block; font-size: .78rem; margin-top: 2px; }
+
+.kg-gallery__controls { display: flex; align-items: center; gap: 10px; }
+.kg-gallery__controls[hidden] { display: none; }
+.kg-gallery__count { min-width: 3.6em; text-align: center; font-size: .85rem; font-weight: 600; color: var(--kg-muted); font-variant-numeric: tabular-nums; }
+.kg-iconbtn {
+  appearance: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid var(--kg-line-strong); background: var(--kg-surface); color: var(--kg-strong); cursor: pointer;
+  transition: background .15s, border-color .15s, opacity .15s;
+}
+.kg-iconbtn:hover { background: var(--kg-tint); border-color: var(--kg-edge); }
+.kg-iconbtn:focus-visible { outline: 3px solid var(--kg-focus); outline-offset: 2px; }
+.kg-iconbtn[aria-disabled="true"] { opacity: .4; cursor: default; }
+.kg-iconbtn svg { width: 18px; height: 18px; }
+.kg-gallery__dots { display: flex; justify-content: center; gap: 6px; margin-top: 12px; }
+.kg-gallery__dots[hidden] { display: none; }
+.kg-gallery__dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--kg-line-strong); transition: background .2s, transform .2s; }
+.kg-gallery__dots span.is-active { background: var(--kg-strong); transform: scale(1.25); }
+
+/* Lightbox (one <dialog>, created by components.js) */
+.kg-lightbox {
+  border: 0; padding: 0; margin: auto; width: min(1200px, 100vw - 32px); max-height: calc(100vh - 32px);
+  background: transparent; color: #f1eadc; overflow: visible;
+}
+.kg-lightbox::backdrop { background: rgba(13, 22, 18, .96); }
+.kg-lightbox__frame { margin: 0; display: grid; gap: 12px; }
+.kg-lightbox__img { width: 100%; max-height: calc(100vh - 190px); object-fit: contain; border-radius: var(--kg-radius-sm); background: #0d1612; }
+.kg-lightbox__caption { margin: 0; font-size: .9rem; line-height: 1.5; color: #d8d1c2; max-width: 70ch; }
+.kg-lightbox__caption a { color: #f1eadc; }
+.kg-lightbox__caption b { color: #fff; }
+.kg-lightbox__bar { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
+.kg-lightbox__bar .kg-gallery__count { color: #d8d1c2; margin-right: auto; text-align: left; }
+.kg-lightbox .kg-iconbtn { background: rgba(255, 255, 255, .08); border-color: rgba(255, 255, 255, .28); color: #fff; }
+.kg-lightbox .kg-iconbtn:hover { background: rgba(255, 255, 255, .18); }
+.kg-lightbox .kg-iconbtn:focus-visible { outline-color: #9be4e7; }
+html.kg-lock { overflow: hidden; }
+
+/* ==========================================================================
+   4. Editorial components (static — no JS)
+   ========================================================================== */
+
+/* Direct answer: the first thing a reader and an extractor see */
+.kg-answer {
+  margin: 0 0 1.2em; padding: 18px 22px; background: var(--kg-surface);
+  border: 1px solid var(--kg-line); border-left: 4px solid var(--kg-strong); border-radius: var(--kg-radius-sm);
+  font-size: 1.12rem; line-height: 1.65;
+}
+.kg-answer > :last-child { margin-bottom: 0; }
+
+/* Field note: first-party experience, attributed and specific */
+.kg-fieldnote {
+  margin: 1.6em 0; padding: 16px 20px 16px 22px; max-width: var(--measure, 46rem);
+  background: var(--kg-note-soft); border-left: 4px solid var(--kg-note); border-radius: 0 var(--kg-radius-sm) var(--kg-radius-sm) 0;
+}
+.kg-fieldnote__label { display: block; margin-bottom: 6px; font-size: .7rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--kg-accent); }
+.kg-fieldnote p { margin: 0 0 .6em; }
+.kg-fieldnote p:last-child { margin-bottom: 0; }
+
+/* Suits / does not suit */
+.kg-suit { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+.kg-suit > div { padding: 18px 20px; border-radius: var(--kg-radius); border: 1px solid var(--kg-line); background: var(--kg-surface); }
+.kg-suit h3 { margin: 0 0 10px; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+.kg-suit h3::before { content: ""; width: 22px; height: 22px; flex: none; border-radius: 50%; background: var(--kg-strong) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 14px no-repeat; }
+.kg-suit__no h3::before { background: var(--kg-accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 4.5l7 7m0-7l-7 7' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center / 12px no-repeat; }
+.kg-suit ul { margin: 0; padding-left: 1.1em; }
+.kg-suit li { margin-bottom: .45em; font-size: .95rem; }
+@media (max-width: 760px) { .kg-suit { grid-template-columns: 1fr; } }
+
+/* Choose A if / Choose B if */
+.kg-choose { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 12px; margin: 24px 0; }
+.kg-choose > div { padding: 16px 18px; border-radius: var(--kg-radius-sm); background: var(--kg-tint); border-top: 3px solid var(--kg-swatch, var(--kg-edge)); }
+.kg-choose p { margin: 0; font-size: .95rem; }
+.kg-choose b { display: block; font-family: var(--kg-display); font-size: 1.2rem; color: var(--kg-strong); margin-bottom: 4px; }
+
+/* Day-to-day navigation at the end of each day section */
+.kg-daynav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-top: 28px; }
+.kg-daynav a {
+  display: inline-flex; flex-direction: column; gap: 2px; max-width: 48%; min-height: 44px; padding: 10px 14px;
+  border: 1px solid var(--kg-line-strong); border-radius: var(--kg-radius-sm); text-decoration: none; background: var(--kg-surface);
+}
+.kg-daynav a:hover { border-color: var(--kg-edge); background: var(--kg-tint); }
+.kg-daynav small { font-size: .68rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--kg-accent); }
+.kg-daynav span { font-size: .9rem; color: var(--kg-strong); font-weight: 500; line-height: 1.35; }
+.kg-daynav [rel="next"] { margin-left: auto; text-align: right; }
+@media (max-width: 520px) { .kg-daynav a { max-width: 100%; flex: 1 1 100%; } }
+
+/* Sources register with evidence grades */
+.kg-sources { list-style: none; margin: 8px 0 0; padding: 0; counter-reset: kgsrc; }
+.kg-sources li { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 4px 12px; padding: 12px 0; border-bottom: 1px solid var(--kg-line); font-size: .9rem; line-height: 1.5; }
+.kg-sources li:last-child { border-bottom: 0; }
+.kg-grade {
+  display: grid; place-items: center; width: 1.8rem; height: 1.8rem; border-radius: 6px;
+  font-size: .78rem; font-weight: 700; background: var(--kg-tint-2); color: var(--kg-strong); border: 1px solid var(--kg-line-strong);
+}
+.kg-sources small { color: var(--kg-muted); }
+.kg-gradekey { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 0 0 8px; padding: 0; list-style: none; font-size: .8rem; color: var(--kg-muted); }
+.kg-gradekey b { color: var(--kg-strong); }
+
+/* Freshness line */
+.kg-reviewed { margin: 8px 0 0; font-size: .85rem; color: var(--kg-muted); }
+.kg-reviewed::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 8px; border-radius: 50%; background: var(--k-teal, #159c97); vertical-align: .05em; }
+
+/* ==========================================================================
+   5. Wayfinding — reading progress, active section, anchor links, toast,
+      floating back-to-top (all created or switched on by components.js)
+   ========================================================================== */
+.kg-progress {
+  position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; pointer-events: none;
+  background: var(--feather, var(--kg-strong)); transform-origin: 0 50%; transform: scaleX(var(--kg-p, 0));
+}
+.kg-progress[hidden] { display: none; }
+
+.sidebar-contents a[aria-current],
+.kg-spy a[aria-current] { color: var(--kg-strong); font-weight: 600; background: var(--kg-tint); box-shadow: inset 3px 0 0 var(--kg-edge); }
+
+.kg-anchor {
+  display: inline-grid; place-items: center; width: 1.5em; height: 1.5em; margin-left: .3em; vertical-align: middle;
+  border-radius: 6px; font-family: var(--font-body, sans-serif); font-size: .5em; font-weight: 600; text-decoration: none;
+  color: var(--kg-muted); opacity: 0; transition: opacity .15s, background .15s;
+}
+:is(h2, h3):hover > .kg-anchor, .kg-anchor:focus-visible { opacity: 1; }
+.kg-anchor:hover { background: var(--kg-tint); color: var(--kg-strong); }
+@media (hover: none) { .kg-anchor { opacity: .55; } }
+
+.kg-toast {
+  position: fixed; left: 50%; bottom: 24px; z-index: 90; transform: translate(-50%, 16px); opacity: 0; pointer-events: none;
+  background: var(--kg-strong); color: #fff; padding: 10px 18px; border-radius: 999px; font-size: .88rem; font-weight: 500;
+  transition: opacity .2s, transform .2s; box-shadow: 0 10px 24px -12px rgba(0, 0, 0, .5);
+}
+.kg-toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
+
+.kg-totop {
+  position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 60;
+  opacity: 0; transform: translateY(8px); pointer-events: none; transition: opacity .2s, transform .2s;
+  box-shadow: 0 8px 20px -12px rgba(0, 0, 0, .5);
+}
+.kg-totop.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+@media (min-width: 1024px) { .kg-totop { display: none; } }
+
+/* ==========================================================================
+   6. Base enhancements — the only rules that touch base classes
+   ========================================================================== */
+/* Anchored headings land below the sticky header instead of under it */
+:where(h2, h3, section, details, figure, li)[id] { scroll-margin-top: calc(var(--kg-header-h) + 20px); }
+/* Highlight the section a deep link lands on, briefly */
+:where(h2, h3)[id]:target { animation: kg-target 1.6s ease; }
+@keyframes kg-target { from { background: var(--kg-note-soft); } to { background: transparent; } }
+/* The header carries the progress bar */
+.site-header { position: sticky; }
+
+@media (prefers-reduced-motion: reduce) {
+  .kg-tabs.is-enhanced .kg-tabs__panel.is-active, :where(h2, h3)[id]:target { animation: none; }
+  .kg-toast, .kg-totop, .kg-tabs__tab, .kg-iconbtn { transition: none; }
+}
+
+/* ==========================================================================
+   7. Print — every panel, every answer, no controls
+   ========================================================================== */
+@media print {
+  .kg-tabs__list, .kg-gallery__controls, .kg-gallery__dots, .kg-anchor, .kg-progress, .kg-toast, .kg-totop, .kg-daynav { display: none !important; }
+  .kg-tabs.is-enhanced .kg-tabs__panel { display: block !important; }
+  .kg-tabs--vertical.is-enhanced { display: block; }
+  .kg-gallery__track { grid-auto-flow: row; grid-auto-columns: auto; }
+  .kg-acc__item > *:not(summary) { display: block !important; }
+}

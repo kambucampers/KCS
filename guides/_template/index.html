@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow"><!-- remove at publication, not before -->
+  <meta name="description" content="[[Meta description: the task and what the reader can compare or decide, ~150 characters]]">
+  <title>[[SEO title | Kambu Campers]]</title>
+  <!--
+    KAMBU GUIDE TEMPLATE v1.0 — copy this folder to guides/<slug>/ and fill every [[...]].
+    tools/check_guide.py fails while any [[ remains.
+    Writing rules: design-system/kambu-guide/docs/writing-framework.md
+    Components:    design-system/kambu-guide/docs/components.md
+    Worked example: guides/10-day-kenya-safari-itinerary/
+
+    PAGE CONTRACT
+    url:               [[/slug/ (existing or proposed)]]
+    archetype:         [[destination | planning | itinerary | comparison | cost | accommodation | wildlife | trust | help]]
+    dominant intent:   [[one task]]
+    this page helps:   [[reader]] answer [[question]] so they can [[decision]], routing [[excluded tasks]] to [[owners]]
+    parent hub:        [[owning URL from strategy/topical-map.md]]
+    commercial dest.:  [[product or hub a ready reader goes to]]
+    info gain:         [[what this page says that the ranking set does not]]
+    advice moments:    [[1-3 judgement calls]] · credential: [[experience_basis line]]
+    held back:         [[what is deliberately excluded and why]]
+    last reviewed:     [[YYYY-MM-DD of the last real fact check]]
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../../design-system/kambu-guide/styles.css">
+  <link rel="stylesheet" href="../../design-system/kambu-guide/itinerary.css">
+  <link rel="stylesheet" href="../../design-system/kambu-guide/components.css">
+  <script src="../../design-system/kambu-guide/components.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "[[H1, exactly]]",
+        "description": "[[Meta description, exactly]]",
+        "inLanguage": "en-GB",
+        "dateModified": "[[YYYY-MM-DD]]",
+        "author": { "@type": "Organization", "name": "Kambu Campers", "url": "https://kambucampers.com/" },
+        "publisher": { "@type": "Organization", "name": "Kambu Campers", "url": "https://kambucampers.com/" },
+        "about": [ { "@type": "Place", "name": "[[Main place]]", "sameAs": "[[Wikipedia or official URL]]" } ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://kambucampers.com/" },
+          { "@type": "ListItem", "position": 2, "name": "[[Breadcrumb label]]" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body id="top" class="itinerary-page" data-kg-totop>
+  <a class="skip-link" href="#article">Skip to article</a>
+  <header class="site-header">
+    <nav class="container nav-row" aria-label="Main navigation">
+      <a class="wordmark" href="https://kambucampers.com/" aria-label="Kambu Campers home">KAMBU <span>CAMPERS</span></a>
+      <div class="desktop-navigation">
+        <!-- up to four jump links to the guide's most-wanted sections -->
+        <a class="nav-button" href="#[[section-1]]">[[Label]]</a>
+        <a class="nav-button" href="#[[section-2]]">[[Label]]</a>
+        <a class="nav-button" href="#[[section-3]]">[[Label]]</a>
+      </div>
+      <a class="button header-cta" href="#plan"><span class="desktop-label">Plan My Safari</span><span class="mobile-label">Enquire</span></a>
+    </nav>
+    <div class="kg-progress" data-kg-progress="#article" hidden></div>
+  </header>
+  <main>
+    <div class="container">
+      <header class="article-header">
+        <nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="https://kambucampers.com/">Home</a></li><li aria-current="page">[[Breadcrumb label]]</li></ol></nav>
+        <h1>[[H1: the task in the reader's words]]</h1>
+        <p class="article-meta">[[Cluster, e.g. Kenya travel planning]] <span aria-hidden="true">/</span> [[Status, e.g. Research draft dated]] <time datetime="[[YYYY-MM-DD]]">[[D Month YYYY]]</time></p>
+        <p class="kg-reviewed">[[What was checked, e.g. Fees and travel times]] checked <time datetime="[[YYYY-MM-DD]]">[[D Month YYYY]]</time></p>
+      </header>
+      <div class="article-grid">
+        <article id="article" data-kg-anchors>
+          <!-- HERO: one photo of the guide's main place. Eager; credit in the caption. -->
+          <figure class="hero-figure">
+            <img src="assets/[[slug]]-800.webp" srcset="assets/[[slug]]-400.webp 400w, assets/[[slug]]-800.webp 800w, assets/[[slug]]-1200.webp 1200w" sizes="(max-width: 600px) 100vw, (max-width: 1023px) calc(100vw - 32px), (max-width: 1250px) calc(100vw - 432px), (max-width: 1599px) calc(100vw - 576px), 1024px" width="800" height="533" alt="[[What is in the photo, and where]]" fetchpriority="high" decoding="async">
+            <figcaption>[[What the photo shows.]] Photograph by [[Name]], [[licence]]. [[One thing it does not promise.]]</figcaption>
+          </figure>
+
+          <!-- OPTIONAL ROUTE STRIP (itineraries and multi-stop guides). Delete for single-place guides. -->
+          <figure class="route-figure" aria-labelledby="route-caption">
+            <div class="route-heading"><span>[[N days / N nights]]</span><span>[[Scope, e.g. Kenya only]]</span></div>
+            <ol class="route-stops">
+              <li><a href="#day-1"><span class="route-number">01</span><strong>[[Stop]]</strong><small>[[Days / nights]]</small></a></li>
+              <li><a href="#day-2"><span class="route-number">02</span><strong>[[Stop]]</strong><small>[[Days / nights]]</small></a></li>
+              <li><a href="#day-3"><span class="route-number">03</span><strong>[[Stop]]</strong><small>[[Days / nights]]</small></a></li>
+            </ol>
+            <figcaption id="route-caption">Planning route, not to scale.</figcaption>
+          </figure>
+
+          <!-- DIRECT ANSWER: resolve the entity, the question and the deciding factors in the first 100 words. -->
+          <div class="introduction prose">
+            <p class="kg-answer">[[The answer, 40-80 words, with scope, place, timing and conditions.]]</p>
+            <p>[[The most important supporting fact.]]</p>
+            <aside class="note"><p>[[Scope limit: what this guide is not, e.g. not a live quote.]]</p></aside>
+          </div>
+
+          <nav class="contents" aria-label="Article contents">
+            <h2 id="overview">In this guide</h2>
+            <a href="#[[section-1]]">[[Section]]</a><a href="#[[section-2]]">[[Section]]</a><a href="#faq">Frequently asked questions</a><a href="#plan">Plan with Kambu Campers</a><a href="#sources">Sources</a>
+          </nav>
+
+          <!-- SECTION: one per ledger row treated H2. The H2 states a claim or asks the reader's question. -->
+          <section class="article-section" aria-labelledby="[[section-1]]">
+            <h2 id="[[section-1]]">[[Heading that states something]]</h2>
+            <div class="prose">
+              <p>[[First sentence answers the heading. Then fact, mechanism, consequence, advice.]]</p>
+            </div>
+
+            <!-- HORIZONTAL TABS: 2-4 alternative views of one decision. Each panel keeps its own heading. -->
+            <div class="kg-tabs" data-kg-tabs data-kg-label="[[What the tabs choose between]]">
+              <div class="kg-tabs__list" hidden>
+                <button type="button" class="kg-tabs__tab" data-kg-tab="[[view-a]]" aria-selected="true"><span><span class="kg-tabs__label">[[View A]]</span><span class="kg-tabs__sub">[[qualifier]]</span></span></button>
+                <button type="button" class="kg-tabs__tab" data-kg-tab="[[view-b]]" style="--kg-swatch: var(--k-teal)"><span><span class="kg-tabs__label">[[View B]]</span><span class="kg-tabs__sub">[[qualifier]]</span></span></button>
+              </div>
+              <section class="kg-tabs__panel" id="[[view-a]]" aria-labelledby="[[view-a]]-h">
+                <h3 id="[[view-a]]-h">[[View A heading]]</h3>
+                <div class="prose"><p>[[Panel content]]</p></div>
+              </section>
+              <section class="kg-tabs__panel" id="[[view-b]]" aria-labelledby="[[view-b]]-h">
+                <h3 id="[[view-b]]-h">[[View B heading]]</h3>
+                <div class="prose"><p>[[Panel content]]</p></div>
+              </section>
+            </div>
+
+            <!-- TABLE: for options compared side by side, schedules, fees (never with package rates). -->
+            <div class="table-scroll" role="region" aria-label="[[Table name]]" tabindex="0">
+              <table><caption>[[Caption with date or basis]]</caption><thead><tr><th scope="col">[[Column]]</th><th scope="col">[[Column]]</th></tr></thead><tbody>
+                <tr><th scope="row">[[Row]]</th><td>[[Value]]</td></tr>
+              </tbody></table>
+            </div>
+
+            <!-- FIELD NOTE: first-party experience at a judgement call. Facts only from experience_basis.
+                 The single entity-home link on the page lives in the first one. -->
+            <aside class="kg-fieldnote" aria-label="Field note from [[place]]">
+              <span class="kg-fieldnote__label">[[From Kambu Mara Camp, near Sekenani]]</span>
+              <p>At <a href="https://kambucampers.com/">Kambu Campers</a> [[who, where based, how they know, then the advice only they could give]].</p>
+              <p>[[One thing we will not promise, and why.]]</p>
+            </aside>
+          </section>
+
+          <!-- DAY SECTION (itineraries): copy per day; keep the summary table above as the visible overview. -->
+          <section class="article-section day-section" aria-labelledby="day-1">
+            <p class="section-kicker">Day 01 / [[Main use of the day]]</p>
+            <h2 id="day-1">[[Day heading]]</h2>
+            <div class="prose">
+              <p>[[What the day is for, then how it runs.]]</p>
+              <dl class="day-summary"><dt>Overnight</dt><dd>[[Place]].</dd><dt>Planning priority</dt><dd>[[One sentence]]</dd></dl>
+            </div>
+            <nav class="kg-daynav" aria-label="Day 1 navigation"><a href="#day-2" rel="next"><small>Next &middot; Day 2</small><span>[[Day 2 heading]] &rarr;</span></a></nav>
+          </section>
+
+          <section class="article-section" aria-labelledby="[[section-2]]">
+            <h2 id="[[section-2]]">[[Heading that states something]]</h2>
+            <div class="prose"><p>[[Answer first.]]</p></div>
+
+            <!-- GALLERY: photos that let the reader judge something. Own photos for camp/fleet/team. -->
+            <figure class="kg-gallery" data-kg-gallery aria-label="[[Gallery name]]" style="--kg-ratio: 4 / 3">
+              <div class="kg-gallery__head">
+                <p class="kg-gallery__title">[[Gallery name]]</p>
+                <div class="kg-gallery__controls" hidden>
+                  <button type="button" class="kg-iconbtn" data-kg-prev aria-label="Previous photo">&lsaquo;</button>
+                  <span class="kg-gallery__count" aria-live="polite">1 / 2</span>
+                  <button type="button" class="kg-iconbtn" data-kg-next aria-label="Next photo">&rsaquo;</button>
+                </div>
+              </div>
+              <div class="kg-gallery__viewport" tabindex="0" aria-label="[[Gallery name]]; use the arrow keys to move between photos">
+                <ul class="kg-gallery__track">
+                  <li class="kg-gallery__slide"><figure>
+                    <a class="kg-gallery__open" href="assets/[[photo-1]]-1200.webp"><img src="assets/[[photo-1]]-800.webp" srcset="assets/[[photo-1]]-400.webp 400w, assets/[[photo-1]]-800.webp 800w, assets/[[photo-1]]-1200.webp 1200w" sizes="(max-width: 1023px) calc(100vw - 32px), (max-width: 1250px) calc(100vw - 432px), (max-width: 1599px) calc(100vw - 576px), 1024px" width="800" height="600" alt="[[What, where]]" loading="lazy" decoding="async"></a>
+                    <figcaption><b>[[Point.]]</b> [[What the reader can judge.]] <span class="kg-credit">Photo: [[Credit]]</span></figcaption>
+                  </figure></li>
+                  <li class="kg-gallery__slide"><figure>
+                    <a class="kg-gallery__open" href="assets/[[photo-2]]-1200.webp"><img src="assets/[[photo-2]]-800.webp" srcset="assets/[[photo-2]]-400.webp 400w, assets/[[photo-2]]-800.webp 800w, assets/[[photo-2]]-1200.webp 1200w" sizes="(max-width: 1023px) calc(100vw - 32px), (max-width: 1250px) calc(100vw - 432px), (max-width: 1599px) calc(100vw - 576px), 1024px" width="800" height="600" alt="[[What, where]]" loading="lazy" decoding="async"></a>
+                    <figcaption><b>[[Point.]]</b> [[What the reader can judge.]] <span class="kg-credit">Photo: [[Credit]]</span></figcaption>
+                  </figure></li>
+                </ul>
+              </div>
+              <div class="kg-gallery__dots" aria-hidden="true" hidden></div>
+            </figure>
+          </section>
+
+          <section class="article-section" aria-labelledby="[[section-3]]">
+            <h2 id="[[section-3]]">[[Comparison heading]]</h2>
+            <!-- SIDEBAR TABS: 4-6 alternatives with sub-labels. -->
+            <div class="kg-tabs kg-tabs--vertical" data-kg-tabs data-kg-label="[[What the tabs choose between]]">
+              <div class="kg-tabs__list" hidden>
+                <p class="kg-tabs__eyebrow">[[Choose a variation]]</p>
+                <button type="button" class="kg-tabs__tab" data-kg-tab="[[alt-1]]" aria-selected="true" style="--kg-swatch: var(--k-teal)"><i class="kg-tabs__swatch"></i><span><span class="kg-tabs__label">[[Option]]</span><span class="kg-tabs__sub">[[qualifier]]</span></span></button>
+                <button type="button" class="kg-tabs__tab" data-kg-tab="[[alt-2]]" style="--kg-swatch: var(--k-gold)"><i class="kg-tabs__swatch"></i><span><span class="kg-tabs__label">[[Option]]</span><span class="kg-tabs__sub">[[qualifier]]</span></span></button>
+              </div>
+              <section class="kg-tabs__panel" id="[[alt-1]]" aria-labelledby="[[alt-1]]-h">
+                <h3 id="[[alt-1]]-h">[[Option heading]]</h3>
+                <div class="kg-split">
+                  <div class="prose"><p>[[What it is and who it suits]]</p></div>
+                  <ul class="kg-facts"><li><b>[[Label]]</b>[[Value]]</li><li><b>[[Label]]</b>[[Value]]</li><li><b>You give up</b>[[Trade-off]]</li></ul>
+                </div>
+              </section>
+              <section class="kg-tabs__panel" id="[[alt-2]]" aria-labelledby="[[alt-2]]-h">
+                <h3 id="[[alt-2]]-h">[[Option heading]]</h3>
+                <div class="prose"><p>[[What it is and who it suits]]</p></div>
+              </section>
+            </div>
+            <div class="kg-choose">
+              <div style="--kg-swatch: var(--brass)"><p><b>Choose [[A]] if&hellip;</b>[[condition]]</p></div>
+              <div style="--kg-swatch: var(--k-teal)"><p><b>Choose [[B]] if&hellip;</b>[[condition]]</p></div>
+            </div>
+            <div class="kg-suit">
+              <div class="kg-suit__yes"><h3 id="suits-you">This [[route/guide subject]] suits you if</h3><ul><li>[[condition]]</li></ul></div>
+              <div class="kg-suit__no"><h3 id="choose-else">Choose something else if</h3><ul><li>[[condition, with a link to the alternative]]</li></ul></div>
+            </div>
+          </section>
+
+          <!-- FAQ: residual questions only, about eight, first open, prose answers that open with the answer. -->
+          <section class="article-section" aria-labelledby="faq">
+            <h2 id="faq">Frequently asked questions</h2>
+            <div class="kg-acc">
+              <details class="kg-acc__item" id="[[q1]]" open>
+                <summary><h3 class="kg-acc__q">[[A question people actually type?]]</h3></summary>
+                <div class="kg-acc__body prose"><p>[[Answer in the first sentence.]]</p></div>
+              </details>
+              <details class="kg-acc__item" id="[[q2]]">
+                <summary><h3 class="kg-acc__q">[[Question?]]</h3></summary>
+                <div class="kg-acc__body prose"><p>[[Answer.]]</p></div>
+              </details>
+            </div>
+          </section>
+
+          <!-- CONVERSION: one named destination, reached through prose first. -->
+          <section class="article-section" aria-labelledby="plan">
+            <h2 id="plan">[[Plan your ... with Kambu Campers]]</h2>
+            <div class="prose">
+              <p>[[What to send, and what the quotation will show.]]</p>
+              <p>Send <a href="mailto:bookings@kambucampers.com">bookings@kambucampers.com</a> [[the details needed]].</p>
+            </div>
+            <a class="button enquiry-link" href="mailto:bookings@kambucampers.com?subject=[[Subject]]">Request a tailored quotation <span aria-hidden="true">&rarr;</span></a>
+          </section>
+
+          <!-- SOURCES: every source graded A/B/C/D/S/K, with what it supports. -->
+          <section class="article-section" aria-labelledby="sources">
+            <h2 id="sources">Where the figures on this page come from</h2>
+            <div class="prose"><p>[[What was checked, and when; what to confirm before booking.]]</p></div>
+            <ul class="kg-gradekey" aria-label="Evidence grades">
+              <li><b>A</b> official instrument</li><li><b>B</b> authority notice</li><li><b>C</b> first-party subject</li><li><b>D</b> expert secondary</li><li><b>S</b> visitor sentiment</li><li><b>K</b> Kambu field record</li>
+            </ul>
+            <ol class="kg-sources">
+              <li><span class="kg-grade" title="Authority notice">B</span><span><a href="[[URL]]">[[Publisher: page title]]</a><br><small>[[What it supports]]</small></span></li>
+            </ol>
+            <a class="back-top" href="#top">Back to top <span aria-hidden="true">&uarr;</span></a>
+          </section>
+        </article>
+
+        <aside class="sidebar-column" aria-label="[[Guide]] summary">
+          <div class="sidebar-sticky">
+            <section class="planning-card" aria-labelledby="sidebar-title">
+              <h2 id="sidebar-title">[[Short promise of the guide]]</h2>
+              <ul><li><span class="fact-number">[[00]]</span><span>[[Fact true for the whole page]]</span></li><li><span class="fact-number">[[00]]</span><span>[[Fact]]</span></li><li><span class="fact-number">[[00]]</span><span>[[Fact]]</span></li></ul>
+              <a class="button" href="#plan">Plan My Safari</a>
+              <p class="sidebar-note">A planning guide, not a confirmed package or price.</p>
+            </section>
+            <nav class="sidebar-contents" aria-label="Planning shortcuts" data-kg-spy>
+              <a href="#[[section-1]]">[[Section]] <span aria-hidden="true">&rarr;</span></a>
+              <a href="#[[section-2]]">[[Section]] <span aria-hidden="true">&rarr;</span></a>
+              <a href="#faq">Questions <span aria-hidden="true">&rarr;</span></a>
+            </nav>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-bottom"><div><a href="https://kambucampers.com/">Kambu Campers</a><a href="mailto:bookings@kambucampers.com">bookings@kambucampers.com</a></div><p>[[Status / date]]</p><a href="#top">Back to top &uarr;</a></div>
+  </footer>
+</body>
+</html>
