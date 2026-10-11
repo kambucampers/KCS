@@ -1,0 +1,192 @@
+VERIFY: /ke/guides/kenya-travel-insurance/  (11 October 2026)
+
+== Gate 1: checks.py ==
+PASS no Pexels key
+PASS no Mapbox token
+PASS staging catalogue linked only in markup
+PASS staging host kept out of JSON-LD
+PASS exactly one h1
+PASS no h4/h5/h6
+PASS heading order never skips a level
+PASS one .kti root
+PASS no donor namespace
+PASS kti not nested in kti
+PASS third-party link _blank+noopener: https://insurance.ecitizen.go.ke/
+PASS third-party link _blank+noopener: https://etakenya.go.ke/
+PASS same-brand link not _blank: https://staging9.kambucampers.com/safari-packages/
+PASS third-party link _blank+noopener: https://insurance.ecitizen.go.ke/
+PASS third-party link _blank+noopener: https://insurance.ecitizen.go.ke/
+PASS same-brand link not _blank: https://staging9.kambucampers.com/safari-packages/
+PASS third-party link _blank+noopener: https://etakenya.go.ke/
+PASS third-party link _blank+noopener: https://etakenya.go.ke/
+PASS same-brand link not _blank: https://staging9.kambucampers.com/safari-packages/
+PASS third-party link _blank+noopener: https://www.health.go.ke/
+PASS third-party link _blank+noopener: https://www.ira.go.ke/
+PASS third-party link _blank+noopener: https://immigration.go.ke/eta/
+PASS third-party link _blank+noopener: https://insurance.ecitizen.go.ke/
+PASS third-party link _blank+noopener: https://etakenya.go.ke/general-information
+PASS third-party link _blank+noopener: https://new.kenyalaw.org/akn/ke/act/2023/16/eng@2023-11-24
+PASS third-party link _blank+noopener: https://etakenya.go.ke/faqs
+PASS third-party link _blank+noopener: https://eastleighvoice.co.ke/news/409360/high-court-upholds-mandatory-travel-insurance-for-foreigners-entering-kenya
+PASS third-party link _blank+noopener: https://visasnews.com/en/kenya-eta-portal-now-requires-44-travel-insurance/
+PASS third-party link _blank+noopener: https://visasnews.com/en/kenya-mandatory-travel-insurance-now-available-separately-from-eta-court-upholds-requirement/
+PASS third-party link _blank+noopener: https://visasnews.com/en/kenya-clarifies-mandatory-travel-insurance-rules-tied-to-the-eta/
+PASS third-party link _blank+noopener: https://katakenya.org/kenyas-new-mandatory-travel-insurance-rule-leaves-industry-waiting-for-the-fine-print/
+PASS third-party link _blank+noopener: https://www.clydeco.com/en/insights/2026/08/mandatory-inbound-travel-health-insurance-cover
+PASS third-party link _blank+noopener: https://www.fragomen.com/insights/kenya-travel-health-insurance-requirement-implemented.html
+PASS third-party link _blank+noopener: https://governorscamp.com/travel-planning/kenyas-mandatory-travel-insurance/
+PASS third-party link _blank+noopener: https://www.wka.co.ke/mandatory-travel-health-insurance-for-visitors-to-kenya/
+PASS same-brand link not _blank: https://staging9.kambucampers.com/safari-packages/
+PASS internal link carries data-plan: /nairobi-to-masai-mara-road/
+PASS internal link carries data-plan: /private-vs-group-joining-safari/
+PASS internal link carries data-plan: /vaccinations-and-malaria-kenya/
+PASS internal link carries data-plan: /jkia-airport-transfers/
+PASS internal link carries data-plan: /kenya-eta-and-entry-requirements/
+PASS internal link carries data-plan: /custom-safari-planning/
+PASS internal link carries data-plan: /cancellation-policy/
+PASS internal link carries data-plan: /contact/
+PASS no live kambucampers.com page autolinked
+PASS official eTA host present
+PASS no third-party eTA service: ivisa
+PASS no third-party eTA service: visahq
+PASS no third-party eTA service: action-visas
+PASS no third-party eTA service: byevisa
+PASS no third-party eTA service: evisa.express
+PASS no third-party eTA service: onlinevisa
+PASS one anchor phrase -> one URL (prose): {}
+PASS one URL -> one anchor phrase (prose), catalogue exempt: {}
+PASS JSON-LD contains no HTML entities
+PASS FAQ schema question visible as <summary>: Is travel insurance mandatory for Kenya?
+PASS FAQ schema question visible as <summary>: How much does Kenya's travel insurance cost?
+PASS FAQ schema question visible as <summary>: Do I need travel insurance to get a Kenya eTA?
+PASS FAQ schema question visible as <summary>: Can I use my existing travel insurance instead of 
+PASS FAQ schema question visible as <summary>: What does the USD 44 Kenya insurance cover?
+PASS FAQ schema question visible as <summary>: Is USD 50,000 the price of the insurance?
+PASS FAQ schema question visible as <summary>: Where do I buy Kenya's inbound travel health insur
+PASS FAQ schema question visible as <summary>: I already have an approved eTA. Do I still need th
+PASS FAQ schema question visible as <summary>: How long is the Kenya travel insurance valid?
+PASS FAQ schema question visible as <summary>: Do children need their own Kenya travel insurance?
+PASS FAQ schema question visible as <summary>: Do East African Community citizens need the insura
+PASS FAQ schema question visible as <summary>: What proof of insurance do I show at Jomo Kenyatta
+PASS FAQ schema question visible as <summary>: Was the Kenya insurance rule suspended by the cour
+PASS FAQ schema question visible as <summary>: Does Tanzania have the same rule for a combined Ke
+PASS FAQ schema question visible as <summary>: Does Kambu Campers arrange the insurance for me?
+PASS every summary has a schema entry (15/15)
+PASS HowTo steps match Route A steps (7/7)
+PASS no review markup
+PASS no year in H1 (G9)
+PASS no duration in H1 (G6)
+PASS no duration in h2: Yes, travel insurance is now <em>mandato
+PASS no duration in h2: USD 44 on the screen, <em>about USD 52 o
+PASS no duration in h2: A medical floor, <em>not a travel policy
+PASS no duration in h2: Buy it on eCitizen <em>before you start 
+PASS no duration in h2: Buy it inside the <em>eTA application</e
+PASS no duration in h2: Can you use the travel insurance <em>you
+PASS no duration in h2: What changes at JKIA, and <em>on the roa
+PASS no duration in h2: Exemptions, children and <em>eTA-exempt 
+PASS no duration in h2: Where the rule comes from, <em>and wheth
+PASS no duration in h2: Straight answers on <em>Kenya's travel i
+PASS no duration in h2: Plan a private safari <em>from Nairobi</
+PASS no duration in h2: The other <em>four pages to read</em>
+PASS no URL state (G12)
+PASS British spelling, no "traveler"
+PASS British spelling, no "color"
+PASS British spelling, no "catalog"
+PASS British spelling, no "labeled"
+PASS British spelling, no "organiz"
+PASS British spelling, no "authoriz"
+PASS British spelling, no "recogniz"
+PASS British spelling, no "license" (licensed is fine)
+PASS banned phrase absent: world-class
+PASS banned phrase absent: unparalleled
+PASS banned phrase absent: once-in-a-lifetime
+PASS banned phrase absent: breathtaking
+PASS banned phrase absent: click here
+PASS banned phrase absent: read more
+PASS banned phrase absent: learn more
+PASS banned phrase absent: nestled
+PASS banned phrase absent: boasts
+PASS banned phrase absent: expert guides
+PASS banned phrase absent: customers
+PASS banned phrase absent: clients
+PASS never-claim absent: kpsga
+PASS never-claim absent: kato member
+PASS never-claim absent: member of kato
+PASS never-claim absent: tra/
+PASS never-claim absent: licence no
+PASS never-claim absent: guarantee
+PASS never-claim absent: wheelchair
+PASS uses driver-guide
+PASS uses guests
+PASS no stale camp-distance figures
+PASS correct camp distance figure present
+PASS at most one exclamation mark
+PASS premium and checkout total both present
+PASS line-item arithmetic published
+PASS validity disagreement published
+PASS foreign-policy contradiction dated
+PASS something explicitly not promised
+PASS visible last-reviewed line
+PASS internal links are plan slugs
+PASS four screenshots, lazy
+PASS every image has descriptive alt
+PASS images carry dimensions
+PASS glance table has no thead
+PASS word count in band for a long guide incl. tables and register (6261)
+PASS greys are literal per system (informational)
+PASS gold used only as fill
+PASS Cormorant numerals lining
+PASS row headers wrap
+PASS no margin shorthand on .kti p
+PASS reduced motion respected
+PASS scroll margin for sticky nav
+
+words: 6261  external links: 26  internal links: 8  fails: 0
+
+== Gate 2: shot.mjs (1440x1000, 390x844) ==
+desktop {"broken":[],"overflow":false,"h1":1,"order":true,"clipped":0,"wide":[],"height":21041,"consoleErrors":0,"fontErrors":0}
+mobile {"broken":[],"overflow":false,"h1":1,"order":true,"clipped":0,"wide":["","","is-active","kti__btn kti__btn--brass kti__snav-cta",""],"height":35558,"consoleErrors":0,"fontErrors":0}
+
+== Gate 3: interaction test ==
+n/a: no tabs or scripted controls; accordions are native <details>; scroll-spy only
+
+== Gate 4: validate_palette.py ==
+not run: no colours beyond system tokens and documented greys; no SVG
+
+== Gate 5: crops opened and looked at ==
+desktop-00-kti__hero0.png
+desktop-01-answer.png
+desktop-02-cost.png
+desktop-03-cover.png
+desktop-04-buy-ecitizen.png
+desktop-05-buy-eta.png
+desktop-06-kti__ctastrip6.png
+desktop-07-own-policy.png
+desktop-08-arrival.png
+desktop-09-exemptions.png
+desktop-10-legal.png
+desktop-11-faqs.png
+desktop-12-kti__final12.png
+desktop-13-kti__rel13.png
+full-desktop.png
+full-mobile.png
+mobile-00-kti__hero0.png
+mobile-01-answer.png
+mobile-02-cost.png
+mobile-03-cover.png
+mobile-04-buy-ecitizen.png
+mobile-05-buy-eta.png
+mobile-06-kti__ctastrip6.png
+mobile-07-own-policy.png
+mobile-08-arrival.png
+mobile-09-exemptions.png
+mobile-10-legal.png
+mobile-11-faqs.png
+mobile-12-kti__final12.png
+mobile-13-kti__rel13.png
+
+Defects found by looking and fixed before delivery:
+- 62px horizontal overflow at 390px from a nowrap .kti__ui chip (fixed: chips wrap)
+- '~USD 52' broke across two lines in the cost table (fixed: .kti__price nowrap)
+- six government links rendered 4+2 (fixed: 3-column grid)
+- heading order skipped levels via furniture h3/h4 (fixed: furniture is styled <p>)
