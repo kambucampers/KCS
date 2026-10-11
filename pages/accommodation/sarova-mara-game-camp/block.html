@@ -1,0 +1,1192 @@
+<!-- ==============================================================
+     KAMBU CAMPERS · ACCOMMODATION GUIDE · SAROVA MARA GAME CAMP
+     Proposed URL: https://kambucampers.com/sarova-mara-game-camp/   (flat scheme)
+     Parent hub:   https://kambucampers.com/masai-mara/where-to-stay/
+     Design system: Executive Elegant · namespace .kac (accommodation template —
+       reusable for every Kambu in-park / gate-edge / conservancy stay guide)
+     Layout: property-dossier hero > two-column body with sticky "Stay sheet"
+       sidebar (toggle on mobile) > tent selector tabs > in-park fee calculator
+       > static + interactive map > click-through gallery > FAQ accordions.
+
+     WP SEO title (52): Sarova Mara Game Camp Guide: Tents, Location & Rates
+     Meta description (153): Sarova Mara Game Camp sits 2.4 km inside Sekenani
+       Gate. Compare Deluxe, Club and Family tents, 2026 rate references,
+       reserve fees and how Kambu books it.
+     H1: Sarova Mara Game Camp: tents, location, rates and how it fits a Kambu safari
+
+     KEYWORD DATA: SE Ranking Data API pull PENDING (key not supplied this
+       session). Query set below was assembled from live Google SERP and
+       People-Also-Ask observation on 11 Oct 2026, volumes/intent UNMEASURED:
+       sarova mara game camp · sarova mara game camp rates/price 2026 ·
+       sarova mara location / which gate / map · sarova mara tents (club tent,
+       deluxe tent, family tented suite) · is sarova mara inside the reserve ·
+       sarova mara airstrip · sarova mara vs keekorok / ashnil / sopa ·
+       sarova mara packages · sarova mara spa / pool / maasai village.
+
+     FIGURES & VERIFICATION (all checked 11 Oct 2026 unless stated):
+       - Coordinates: Sarova -1.53012, 35.31894 (Google Maps pin, verified in
+         Kambu accommodation export 29 Sep 2026); Sekenani Main Gate
+         -1.52194, 35.33684 (Google geocoding, 11 Oct 2026).
+       - Road legs: Google Maps Routes API, 11 Oct 2026 (free-flow times).
+       - Tent counts: sources disagree (72 / 73 / 75) — disclosed in copy.
+         Official sarovahotels.com pages blocked automated fetch; verify there.
+       - Rates: Booking.com live sample from Kambu export (stay 3–5 Nov 2026,
+         sampled 29 Sep 2026); Siyabona/kenyasafari.com feed and
+         masaimarasafari.travel via Kambu lodge-rate workbook (13 Sep 2026);
+         monkey.travel (accessed 11 Oct 2026). Sarova publishes no public rate
+         sheet. Kambu's own quoted price is NOT published here.
+       - Reserve fees: Kambu field workbook FEES_2026 (verified 14 Sep 2026);
+         non-resident figures reconfirmed Oct 2026.
+     IMAGES: camp and room photos are Sarova Hotels' own, hotlinked from the
+       Booking.com CDN (cf.bstatic.com) and Tripadvisor management uploads,
+       credited in captions. Confirm trade-media permission with Sarova and
+       re-host in WP Media (image pack supplied). Sekenani Gate and Mara River
+       images: Wikimedia Commons, licences in captions.
+     REVIEW/RATE DATA: Apify runs 11 Oct 2026 (voyager/booking-scraper,
+       voyager/booking-reviews-scraper, maxcopell/tripadvisor,
+       compass/crawler-google-places).
+     ============================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- tokens ---------- */
+.kac{
+  --ink:#191B18;--forest:#233A31;--forest-d:#16261F;
+  --brass:#AD8B54;--brass-d:#8C6C3E;--brass-l:#C7A874;
+  --ivory:#F8F4EC;--bone:#F1E9DB;--paper:#FCFAF4;--line:#E4DBCA;
+  --k-teal:#159C97;--k-gold:#E3A43C;--k-magenta:#C0448E;
+  --k-blue:#2B47A8;--k-coral:#E45C34;
+  --k-feather:linear-gradient(90deg,#C0448E 0%,#E45C34 26%,#E3A43C 50%,#159C97 74%,#2B47A8 100%);
+  --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:48px;--s6:64px;--s7:88px;
+  --rad:14px;--maxw:1400px;--measure:1180px;--copy:900px;
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  color:var(--ink);background:var(--bone);line-height:1.7;overflow-x:clip;
+  -webkit-font-smoothing:antialiased;font-size:16.5px;position:relative;font-variant-numeric:lining-nums;
+}
+/* ---------- base ---------- */
+.kac *,.kac *::before,.kac *::after{box-sizing:border-box}
+.kac img{max-width:100%;height:auto;display:block}
+.kac p{margin:0 0 1em}
+.kac a{color:var(--brass-d);text-decoration:none;border-bottom:1px solid rgba(173,139,84,.35)}
+.kac a:hover{color:var(--forest);border-bottom-color:var(--forest)}
+.kac a:focus-visible,.kac button:focus-visible,.kac summary:focus-visible,.kac input:focus-visible,.kac select:focus-visible{outline:2px solid var(--k-teal);outline-offset:2px}
+.kac h1,.kac h2,.kac h3,.kac h4{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;color:var(--forest);line-height:1.13;letter-spacing:-.01em;margin:0 0 .5em}
+.kac h1{font-size:clamp(2.15rem,5vw,3.4rem)}
+.kac h2{font-size:clamp(1.75rem,3.4vw,2.45rem);text-align:center;margin-left:auto;margin-right:auto;max-width:30ch}
+.kac h3{font-size:1.3rem}
+.kac em{font-style:italic;color:var(--brass-d);font-weight:600}
+.kac b,.kac strong{font-weight:600}
+.kac__kicker{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--brass-d);display:flex;align-items:center;justify-content:center;gap:12px;margin:0 0 1rem;text-align:center}
+.kac__kicker::before,.kac__kicker::after{content:"";width:36px;height:2px;background:var(--k-feather);border-radius:2px;flex:none}
+.kac__sub{color:#5A6259;font-size:.97rem;max-width:62ch;margin:-.1em auto 2em;line-height:1.7;text-align:center}
+.kac__note{font-size:.79rem;color:#6B7268;font-style:italic;margin:14px auto 0;text-align:center;max-width:var(--copy)}
+/* watermark */
+.kac__body::before{content:"kambucampers.com";position:absolute;top:420px;left:50%;transform:translateX(-50%) rotate(-24deg);font-family:'Cormorant Garamond',serif;font-size:clamp(4rem,11vw,9rem);font-weight:700;color:rgba(35,58,49,.035);white-space:nowrap;pointer-events:none;z-index:0}
+/* ---------- buttons ---------- */
+.kac a.kac__btn,.kac button.kac__btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;border-radius:999px;font-family:'Inter',sans-serif;font-size:.87rem;font-weight:600;letter-spacing:.02em;line-height:1;border:1px solid transparent;cursor:pointer;text-decoration:none;transition:transform .16s,box-shadow .16s,background .16s}
+.kac a.kac__btn:hover,.kac button.kac__btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px -8px rgba(25,27,24,.35)}
+.kac a.kac__btn--brass{background:var(--brass);color:#1A1207}
+.kac a.kac__btn--brass:hover{background:var(--brass-l);color:#1A1207}
+.kac a.kac__btn--forest,.kac button.kac__btn--forest{background:var(--forest);color:#F6F1E5}
+.kac a.kac__btn--forest:hover,.kac button.kac__btn--forest:hover{background:var(--forest-d);color:#fff}
+.kac a.kac__btn--teal{background:var(--k-teal);color:#fff}
+.kac a.kac__btn--teal:hover{background:#0E7C78;color:#fff}
+.kac a.kac__btn--ghost{background:transparent;color:var(--forest);border-color:var(--line)}
+.kac a.kac__btn--ghost:hover{border-color:var(--brass);color:var(--brass-d)}
+.kac__hero a.kac__btn--ghost,.kac__final a.kac__btn--ghost,.kac__ctastrip a.kac__btn--ghost{color:#F1EADC;border-color:rgba(255,255,255,.5)}
+.kac a.kac__btn--wide{width:100%}
+/* ---------- hero (property dossier) ---------- */
+.kac__hero{position:relative;color:#F1EADC;overflow:hidden;background:var(--forest-d)}
+.kac__hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 55%;opacity:.6}
+.kac__hero-tint{position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,20,16,.94) 0%,rgba(15,27,22,.8) 46%,rgba(22,38,31,.45) 100%)}
+.kac__hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--k-feather);z-index:2}
+.kac__hero-in{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:70px 24px 54px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:46px;align-items:center}
+.kac__crumb{font-size:.74rem;color:#A9BCB0;margin:0 0 18px}
+.kac__crumb a{color:#D8D1C2;border-bottom-color:rgba(255,255,255,.2)}
+.kac__pill{display:inline-flex;align-items:center;gap:8px;background:rgba(173,139,84,.18);border:1px solid rgba(199,168,116,.45);color:var(--brass-l);font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:18px}
+.kac__pill i{width:8px;height:8px;border-radius:50%;background:var(--k-magenta);font-style:normal}
+.kac__hero h1{color:#fff;margin:0 0 .45em;max-width:20ch}
+.kac__hero h1 em{color:var(--brass-l)}
+.kac__lead{font-size:1.02rem;color:#D8D1C2;max-width:64ch;margin:0 0 1em;line-height:1.75}
+.kac__lead b{color:#fff}
+.kac__lead a{color:var(--brass-l);border-bottom-color:rgba(199,168,116,.4)}
+.kac__chips{display:flex;flex-wrap:wrap;gap:9px;margin:20px 0 24px}
+.kac__chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:7px 15px;font-size:.79rem;color:#E4DCCC}
+.kac__chip i{width:7px;height:7px;border-radius:50%;font-style:normal;flex:none}
+.kac__hero-cta{display:flex;flex-wrap:wrap;gap:12px}
+/* dossier card */
+.kac__dossier{background:rgba(9,19,15,.62);border:1px solid rgba(199,168,116,.35);border-radius:16px;padding:22px 22px 18px;backdrop-filter:blur(6px)}
+.kac__dossier h2{font-size:1.45rem;color:#fff;text-align:left;margin:0 0 4px;max-width:none}
+.kac__dossier>p{font-size:.78rem;color:#A9BCB0;margin:0 0 14px}
+.kac__dl{display:grid;grid-template-columns:auto 1fr;gap:0;margin:0;font-size:.84rem}
+.kac__dl dt{color:#A9BCB0;padding:8px 14px 8px 0;border-top:1px solid rgba(255,255,255,.1);white-space:nowrap}
+.kac__dl dd{margin:0;color:#F1EADC;padding:8px 0;border-top:1px solid rgba(255,255,255,.1)}
+.kac__dl dt:first-of-type,.kac__dl dd:first-of-type{border-top:0}
+.kac__dl dd b{color:var(--brass-l)}
+.kac__classbadge{display:flex;gap:10px;align-items:center;margin-top:14px;padding:10px 12px;border-radius:10px;background:rgba(192,68,142,.16);border:1px solid rgba(192,68,142,.45);font-size:.78rem;color:#F1EADC}
+.kac__classbadge b{display:block;color:#fff;font-size:.82rem}
+/* ---------- sticky nav ---------- */
+.kac__snav{position:sticky;top:0;z-index:85;background:rgba(252,250,244,.97);backdrop-filter:blur(9px);border-bottom:1px solid var(--line);box-shadow:0 8px 22px -14px rgba(25,27,24,.3)}
+.kac__snav-in{max-width:var(--maxw);margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none}
+.kac__snav-in::-webkit-scrollbar{display:none}
+.kac__snav-in>a:not(.kac__btn){display:inline-flex;align-items:center;padding:15px 12px;font-size:.79rem;font-weight:600;color:#4C554B;border:0;border-bottom:3px solid transparent;white-space:nowrap;transition:.14s;flex:none}
+.kac__snav-in>a:not(.kac__btn):hover{color:var(--brass-d);border-bottom-color:var(--brass-l)}
+.kac__snav-in>a.is-active{color:var(--forest);font-weight:700;border-bottom-color:var(--brass)}
+.kac__snav a.kac__snav-cta{padding:10px 18px;font-size:.78rem;flex:none;margin-left:auto}
+.kac .kac__sec{scroll-margin-top:72px}
+/* ---------- two-column body with sticky stay sheet ---------- */
+.kac__body{position:relative;max-width:var(--maxw);margin:0 auto;padding:0 24px;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:40px;align-items:start}
+.kac__main{position:relative;z-index:1;min-width:0}
+.kac__side{position:sticky;top:76px;z-index:2;margin:48px 0}
+.kac__sheet{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 18px 40px -26px rgba(25,27,24,.4)}
+.kac__sheet-h{background:var(--forest);color:#F1EADC;padding:16px 18px;position:relative}
+.kac__sheet-h::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--k-feather)}
+.kac__sheet-h b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:#fff}
+.kac__sheet-h span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brass-l)}
+.kac__sheet-b{padding:14px 18px 18px}
+.kac__sheet ul{list-style:none;margin:0 0 14px;padding:0;font-size:.82rem}
+.kac__sheet li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid var(--line);color:#41493F}
+.kac__sheet li:first-child{border-top:0}
+.kac__sheet li span{color:#6B7268}
+.kac__sheet li b{color:var(--forest);text-align:right}
+.kac__sheet-toc{border-top:1px solid var(--line);padding-top:12px;margin-top:4px}
+.kac__sheet-toc p{font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brass-d);margin:0 0 8px}
+.kac__sheet-toc a{display:block;font-size:.8rem;padding:4px 0;border:0;color:#4C554B}
+.kac__sheet-toc a:hover,.kac__sheet-toc a.is-active{color:var(--brass-d);font-weight:600}
+.kac__sheet-cta{display:grid;gap:8px;margin-top:14px}
+.kac__sheet small{display:block;font-size:.7rem;color:#78806F;margin-top:10px;line-height:1.5}
+.kac__sidetoggle{display:none}
+/* ---------- sections ---------- */
+.kac__sec{position:relative;padding:64px 0 60px;text-align:center;border-bottom:1px solid var(--line)}
+.kac__sec::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:150px;height:3px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,var(--brass-d),var(--brass-l))}
+.kac__sec--plan::before{background:linear-gradient(90deg,var(--k-teal),#7CC5C2)}
+.kac__sec--plan .kac__kicker{color:#0E7C78}
+.kac__sec--exp::before{background:var(--k-feather)}
+.kac__sec--exp .kac__kicker{color:#A5397A}
+.kac__answer{position:relative;background:#fff;border:1px solid var(--line);border-left:4px solid var(--brass);border-radius:0 14px 14px 0;padding:22px 26px;margin:0 auto 28px;max-width:var(--copy);text-align:left}
+.kac__answer p:last-child{margin:0}
+.kac__answer b{color:var(--forest)}
+.kac__callout{background:#FBF6EA;border:1px solid var(--line);border-left:4px solid var(--k-gold);border-radius:0 12px 12px 0;padding:18px 22px;font-size:.92rem;margin:26px auto;max-width:var(--copy);text-align:left}
+.kac__callout b{color:var(--forest)}
+.kac__prose{max-width:var(--copy);margin:0 auto;text-align:left;font-size:.96rem;color:#3E463C}
+.kac__prose h3{margin-top:1.4em}
+.kac__lead-list{list-style:none;margin:0 auto 22px;padding:0;max-width:var(--copy);text-align:left}
+.kac__lead-list li{position:relative;padding:11px 0 11px 28px;border-top:1px solid var(--line);font-size:.91rem;color:#41493F}
+.kac__lead-list li:first-child{border-top:0}
+.kac__lead-list li::before{content:"";position:absolute;left:2px;top:19px;width:9px;height:9px;border-radius:2px;background:var(--brass);transform:rotate(45deg)}
+.kac__lead-list b{color:var(--forest)}
+/* glance table */
+.kac__tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:#fff;margin:22px auto 10px;max-width:var(--measure);box-shadow:0 8px 24px -16px rgba(25,27,24,.18)}
+.kac table{width:100%;border-collapse:collapse;font-size:.88rem;text-align:left}
+.kac th{background:var(--forest);color:#EFE7D8;text-align:left;padding:13px 16px;font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;font-weight:700;white-space:nowrap}
+.kac td{padding:12px 16px;border-top:1px solid var(--line);color:#39423A;vertical-align:top}
+.kac tbody tr:nth-child(even){background:var(--paper)}
+.kac tbody tr:hover{background:#FBF6EA}
+.kac td:first-child{color:var(--forest);font-weight:600;white-space:nowrap}
+.kac tr.kac__best td{background:#FBF1DC}
+.kac caption{caption-side:bottom;text-align:left;font-size:.76rem;color:#6B7268;padding:11px 16px;font-style:italic}
+.kac__price{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--forest);font-weight:700}
+.kac__tag{display:inline-block;white-space:nowrap;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--k-gold);color:#3A2A08;margin-left:6px}
+.kac__tag--teal{background:rgba(21,156,151,.14);color:#0E7C78}
+.kac__tag--mag{background:rgba(192,68,142,.14);color:#A5397A}
+/* distance strip */
+.kac__dist{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:var(--measure);margin:22px auto 0}
+.kac__dist div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 12px;position:relative;overflow:hidden}
+.kac__dist div::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--dot,var(--brass))}
+.kac__dist b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--forest);line-height:1}
+.kac__dist span{display:block;font-size:.74rem;color:#5A6259;margin-top:6px;line-height:1.4}
+/* map */
+.kac__map{max-width:var(--measure);margin:22px auto 0;border-radius:var(--rad);overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:0 16px 36px -22px rgba(25,27,24,.34);text-align:left}
+.kac__mapgrid{display:grid;grid-template-columns:2fr 1fr;gap:0}
+.kac__mapgrid>div+div{border-left:1px solid var(--line)}
+.kac__map .t{font-family:'Inter',sans-serif;fill:#233A31}
+.kac__map .t.i{fill:#5E7A54;font-style:italic}
+.kac__map .t.m{fill:#78806F}
+.kac__map figcaption{padding:14px 18px;font-size:.82rem;color:#5A6259;line-height:1.6;border-top:1px solid var(--line)}
+.kac__map figcaption b{color:var(--forest)}
+.kac__leaflet{height:420px;display:none;border-top:1px solid var(--line)}
+.kac__leaflet.is-on{display:block}
+.kac__maptools{display:flex;gap:10px;justify-content:center;padding:12px;border-top:1px solid var(--line);background:var(--paper)}
+/* cards / class tiles */
+.kac__cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:6px auto 4px;max-width:var(--measure)}
+.kac__card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 16px;position:relative;overflow:hidden;text-align:left;transition:transform .18s,box-shadow .18s}
+.kac__card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--dot,var(--brass))}
+.kac__card:hover{transform:translateY(-3px);box-shadow:0 14px 30px -14px rgba(25,27,24,.25)}
+.kac__card h4{font-family:'Inter',sans-serif;font-size:.9rem;font-weight:700;color:var(--forest);margin:0 0 7px}
+.kac__card p{font-size:.84rem;color:#5A6259;margin:0}
+.kac__card.is-this{border-color:var(--k-magenta);box-shadow:0 0 0 2px rgba(192,68,142,.2)}
+/* calculator */
+.kac__calc{max-width:var(--copy);margin:26px auto 0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 24px;text-align:left;box-shadow:0 14px 34px -22px rgba(25,27,24,.3)}
+.kac__calc h3{margin:0 0 4px}
+.kac__calc>p{font-size:.86rem;color:#5A6259}
+.kac__form{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 16px;margin:14px 0}
+.kac__form label{display:flex;flex-direction:column;gap:5px;font-size:.76rem;font-weight:600;color:#4C554B}
+.kac__form input,.kac__form select{font:inherit;font-size:.9rem;padding:9px 10px;border:1px solid var(--line);border-radius:9px;background:var(--paper);color:var(--ink)}
+.kac__form small{font-weight:400;color:#78806F;font-size:.7rem}
+.kac__out{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+.kac__out div{border-radius:12px;padding:14px 16px}
+.kac__out .o1{background:rgba(192,68,142,.08);border:1px solid rgba(192,68,142,.3)}
+.kac__out .o2{background:rgba(21,156,151,.08);border:1px solid rgba(21,156,151,.3)}
+.kac__out b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--forest);line-height:1.1}
+.kac__out span{display:block;font-size:.74rem;color:#5A6259;margin-top:4px}
+.kac__calc-note{font-size:.74rem;color:#78806F;margin:12px 0 0;font-style:italic}
+/* tabs */
+.kac__tabs{margin:12px auto 0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 20px 22px;box-shadow:0 14px 34px -20px rgba(25,27,24,.22);max-width:var(--measure);text-align:left}
+.kac__tabs input{position:absolute;opacity:0;pointer-events:none}
+.kac__tabhint{font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--brass-d);margin:0 0 14px;display:flex;align-items:center;justify-content:center;gap:9px}
+.kac__tablist{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:var(--s4)}
+.kac__tablab{display:inline-flex;align-items:center;gap:11px;padding:12px 20px 12px 12px;border:2px solid var(--line);background:#fff;border-radius:999px;font-size:.88rem;font-weight:700;color:#4C554B;cursor:pointer;transition:.18s;user-select:none;box-shadow:0 3px 0 rgba(25,27,24,.05)}
+.kac__tablab i{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:1.05rem;background:var(--ivory);flex:none;transition:.18s}
+.kac__tablab:hover{border-color:var(--brass-l);transform:translateY(-2px)}
+.kac__tabs input:focus-visible+*{outline:none}
+.kac__panel{display:none;animation:kacfade .25s ease}
+@keyframes kacfade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.kac__tierhead{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;margin-bottom:16px}
+.kac__tierhead h3{margin:0}
+.kac__tierhead span{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--brass-d);font-weight:700}
+/* tent tabs A0 */
+#kt1:checked~.kac__tablist label[for=kt1]{background:var(--k-gold);border-color:var(--k-gold);color:#33240A}
+#kt2:checked~.kac__tablist label[for=kt2]{background:var(--k-blue);border-color:var(--k-blue);color:#fff}
+#kt3:checked~.kac__tablist label[for=kt3]{background:var(--k-teal);border-color:var(--k-teal);color:#fff}
+#kt1:checked~.kac__tablist label[for=kt1] i,#kt2:checked~.kac__tablist label[for=kt2] i,#kt3:checked~.kac__tablist label[for=kt3] i{background:rgba(255,255,255,.9)}
+#kt1:checked~.kac__tablist label[for=kt1],#kt2:checked~.kac__tablist label[for=kt2],#kt3:checked~.kac__tablist label[for=kt3]{transform:translateY(-2px);box-shadow:0 10px 22px -10px rgba(25,27,24,.5)}
+#kt1:checked~.kac__panels .kac__panel:nth-child(1),#kt2:checked~.kac__panels .kac__panel:nth-child(2),#kt3:checked~.kac__panels .kac__panel:nth-child(3){display:block}
+#kt1:focus-visible~.kac__tablist label[for=kt1],#kt2:focus-visible~.kac__tablist label[for=kt2],#kt3:focus-visible~.kac__tablist label[for=kt3]{outline:3px solid var(--k-teal);outline-offset:3px}
+/* season tabs (segmented) */
+#ks1~.kac__tablist{background:var(--ivory);border:1px solid var(--line);border-radius:12px;padding:5px;gap:5px}
+#ks1~.kac__tablist .kac__tablab{border:0;background:transparent;border-radius:9px;flex:1;justify-content:center;min-width:150px;box-shadow:none}
+#ks1:checked~.kac__tablist label[for=ks1],#ks2:checked~.kac__tablist label[for=ks2],#ks3:checked~.kac__tablist label[for=ks3],#ks4:checked~.kac__tablist label[for=ks4]{background:var(--forest);color:#F6F1E5;box-shadow:0 3px 10px rgba(22,38,31,.3)}
+#ks1:checked~.kac__panels .kac__panel:nth-child(1),#ks2:checked~.kac__panels .kac__panel:nth-child(2),#ks3:checked~.kac__panels .kac__panel:nth-child(3),#ks4:checked~.kac__panels .kac__panel:nth-child(4){display:block}
+#ks1:focus-visible~.kac__tablist label[for=ks1],#ks2:focus-visible~.kac__tablist label[for=ks2],#ks3:focus-visible~.kac__tablist label[for=ks3],#ks4:focus-visible~.kac__tablist label[for=ks4]{outline:3px solid var(--k-teal);outline-offset:3px}
+/* split */
+.kac__split{display:grid;grid-template-columns:3fr 2fr;gap:28px;align-items:start}
+.kac__fig{margin:0;border-radius:var(--rad);overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:0 16px 34px -20px rgba(25,27,24,.34)}
+.kac__fig img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.kac__fig figcaption{font-size:.76rem;color:#6B7268;padding:10px 13px;text-align:left;line-height:1.5}
+.kac__fig figcaption b{color:var(--forest);font-weight:600}
+.kac__cred{color:#8A8F80}
+.kac__cred a{color:#8A8F80}
+.kac__swap{display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(228,92,52,.12);color:#B4431F;border-radius:999px;padding:2px 8px;margin-right:6px}
+/* day timeline */
+.kac__day{list-style:none;margin:10px auto 0;padding:0;max-width:var(--copy);text-align:left;position:relative}
+.kac__day::before{content:"";position:absolute;left:62px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--k-gold),var(--k-coral),var(--k-magenta),var(--k-blue))}
+.kac__day li{display:grid;grid-template-columns:52px 1fr;gap:28px;padding:0 0 20px;position:relative}
+.kac__day time{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.15rem;color:var(--forest);text-align:right;padding-top:1px}
+.kac__day li::after{content:"";position:absolute;left:57px;top:8px;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid var(--brass)}
+.kac__day b{display:block;color:var(--forest);font-size:.93rem}
+.kac__day p{margin:2px 0 0;font-size:.88rem;color:#4C554B}
+/* features */
+.kac__feats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:var(--measure);margin:0 auto}
+.kac__feat{display:flex;gap:13px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px;text-align:left;transition:transform .18s,box-shadow .18s}
+.kac__feat:hover{transform:translateY(-3px);box-shadow:0 14px 30px -14px rgba(25,27,24,.2)}
+.kac__feat i{width:36px;height:36px;border-radius:9px;background:var(--forest);color:var(--brass-l);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:.98rem;flex:none}
+.kac__feat b{display:block;font-size:.87rem;color:var(--forest);margin-bottom:3px}
+.kac__feat p{font-size:.81rem;color:#5A6259;margin:0}
+/* suitability */
+.kac__suit{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 auto;max-width:var(--measure)}
+.kac__suit>div{border:1px solid var(--line);border-radius:12px;padding:20px;background:#fff;text-align:left}
+.kac__suit h3{font-family:'Inter',sans-serif;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;margin:0 0 12px;text-align:center}
+.kac__suit ul{list-style:none;margin:0;padding:0}
+.kac__suit li{font-size:.85rem;padding:9px 0 9px 22px;position:relative;color:#41493F;border-top:1px solid var(--line)}
+.kac__suit li:first-child{border-top:0}
+.kac__suit--yes{background:#F4F8F3!important;border-color:#D8E6D6!important}
+.kac__suit--yes h3{color:#2F6B44}
+.kac__suit--yes li::before{content:"\2713";position:absolute;left:0;color:#2F6B44;font-weight:700}
+.kac__suit--no{background:#FCF5F1!important;border-color:#EEDCD2!important}
+.kac__suit--no h3{color:#A9512E}
+.kac__suit--no li::before{content:"\2192";position:absolute;left:0;color:#C4633A;font-weight:700}
+/* steps */
+.kac__steps{counter-reset:kstep;list-style:none;margin:0 auto;padding:0;max-width:var(--copy);text-align:left}
+.kac__steps li{counter-increment:kstep;position:relative;padding:0 0 22px 54px;font-size:.91rem;color:#41493F}
+.kac__steps li::before{content:counter(kstep);position:absolute;left:0;top:-2px;width:36px;height:36px;border-radius:10px;background:var(--forest);color:var(--brass-l);font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.kac__steps b{color:var(--forest)}
+/* gallery carousel */
+.kac__gal{max-width:var(--measure);margin:0 auto;position:relative}
+.kac__gal-head{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);margin-bottom:var(--s2);text-align:left}
+.kac__gal-head p{margin:0;font-size:.83rem;color:#6B7268;font-style:italic}
+.kac__gal-nav{display:flex;gap:8px;flex:none}
+.kac button.kac__arrow{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--forest);font-size:1.1rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.16s}
+.kac button.kac__arrow:hover{background:var(--forest);color:var(--brass-l);border-color:var(--forest);transform:translateY(-2px)}
+.kac__track{display:flex;gap:var(--s2);overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:var(--s2);scrollbar-width:thin}
+.kac__slide{flex:0 0 clamp(250px,44%,420px);scroll-snap-align:start;margin:0;border-radius:12px;overflow:hidden;background:#fff;border:1px solid var(--line)}
+.kac__slide img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.kac__slide figcaption{font-size:.78rem;color:#5A6259;padding:11px 13px;text-align:left;line-height:1.5}
+.kac__slide figcaption b{display:block;color:var(--forest);font-weight:600;margin-bottom:2px}
+/* accordions */
+.kac details{border:1px solid var(--line);border-radius:12px;background:#fff;margin:0 auto 10px;overflow:hidden;max-width:var(--copy);text-align:left}
+.kac summary{cursor:pointer;list-style:none;padding:15px 48px 15px 20px;font-weight:600;font-size:.93rem;color:var(--forest);position:relative}
+.kac summary::-webkit-details-marker{display:none}
+.kac summary::after{content:"+";position:absolute;right:18px;top:50%;transform:translateY(-50%);color:var(--brass);font-size:1.3rem;font-weight:400}
+.kac details[open] summary::after{content:"\2013"}
+.kac details[open] summary{background:var(--ivory)}
+.kac details .kac__ans{padding:15px 20px 18px;font-size:.9rem;color:#4C554B;border-top:1px solid var(--line)}
+.kac details .kac__ans p:last-child{margin:0}
+/* cta strip, final, related */
+.kac__ctastrip{background:var(--forest);position:relative;overflow:hidden;padding:24px;text-align:center;border-radius:14px;margin:40px 0 0}
+.kac__ctastrip::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--k-feather)}
+.kac__ctastrip p{margin:0 0 14px;color:#D8D1C2;font-size:.92rem}
+.kac__ctastrip p b{color:#fff}
+.kac__ctarow{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.kac__final{position:relative;color:#F1EADC;text-align:center;padding:88px 24px 96px;overflow:hidden;background:var(--forest-d)}
+.kac__final-bg{position:absolute;inset:0;background-size:cover;background-position:center 60%;opacity:.42}
+.kac__final-tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,27,22,.86),rgba(15,27,22,.62) 50%,rgba(11,20,16,.93))}
+.kac__final-in{position:relative;max-width:820px;margin:0 auto}
+.kac__final .kac__kicker{color:var(--brass-l)}
+.kac__final .kac__kicker::before,.kac__final .kac__kicker::after{background:var(--brass-l)}
+.kac__final h2{color:#fff}
+.kac__final h2 em{color:var(--brass-l)}
+.kac__final p{color:#D8D1C2;max-width:62ch;margin:0 auto 26px}
+.kac__final-contact{font-size:.8rem;color:#93A497;margin-top:20px}
+.kac__final-contact a{color:var(--brass-l)}
+.kac__rel{background:var(--bone);border-top:1px solid var(--line);padding:60px 24px 70px;text-align:center}
+.kac__relgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:var(--measure);margin:0 auto}
+.kac__relcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 18px;position:relative;overflow:hidden;text-align:center;transition:transform .18s,box-shadow .18s}
+.kac__relcard::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--dot,var(--brass))}
+.kac__relcard:hover{transform:translateY(-3px);box-shadow:0 14px 30px -14px rgba(25,27,24,.25)}
+.kac__relcard s{text-decoration:none;font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:#78806F;display:block;margin-bottom:8px}
+.kac__relcard h3{font-size:1.2rem;margin:0 0 6px}
+.kac__relcard p{font-size:.82rem;color:#5A6259;margin:0}
+.kac__sources{max-width:var(--copy);margin:0 auto;text-align:left;font-size:.8rem;color:#5A6259}
+.kac__sources ol{padding-left:20px}
+.kac__sources li{margin-bottom:5px}
+.kac a.kac__fab{position:fixed;right:18px;bottom:20px;z-index:80;display:flex;align-items:center;gap:9px;background:var(--k-teal);color:#fff;border:0;border-radius:999px;padding:13px 20px;font-size:.84rem;font-weight:700;box-shadow:0 14px 30px -8px rgba(14,124,120,.55)}
+.kac a.kac__fab:hover{background:#0E7C78;color:#fff}
+.kac__progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--k-feather);z-index:95;transition:width .12s linear}
+/* room photo strip + reviews */
+.kac__rgal{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:6px 0 18px}
+.kac__rgal .kac__fig img{aspect-ratio:4/3}
+.kac__spec{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:0 0 16px}
+.kac__spec span{font-size:.76rem;background:var(--ivory);border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:#4C554B}
+.kac__spec b{color:var(--forest)}
+.kac__scores{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:var(--measure);margin:0 auto 18px}
+.kac__score{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;text-align:left;position:relative;overflow:hidden}
+.kac__score::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--dot,var(--brass))}
+.kac__score h3{font-family:'Inter',sans-serif;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:#5A6259;margin:0 0 6px}
+.kac__big{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:700;color:var(--forest);line-height:1}
+.kac__big small{font-family:'Inter',sans-serif;font-size:.8rem;color:#78806F;font-weight:500}
+.kac__bars{list-style:none;margin:12px 0 0;padding:0;font-size:.76rem;color:#4C554B}
+.kac__bars li{display:grid;grid-template-columns:86px 1fr 44px;gap:8px;align-items:center;padding:3px 0}
+.kac__bars i{display:block;height:8px;border-radius:99px;background:var(--line);overflow:hidden;position:relative}
+.kac__bars i::after{content:"";position:absolute;inset:0;width:var(--w);background:var(--dot,var(--brass));border-radius:99px}
+.kac__bars span:last-child{text-align:right;color:#6B7268}
+/* ---------- responsive ---------- */
+@media(max-width:1100px){
+  .kac__body{grid-template-columns:minmax(0,1fr);gap:0}
+  .kac__side{position:relative;top:auto;margin:24px 0 0;order:-1}
+  .kac__sidetoggle{display:block}
+  .kac__sheet-wrap{display:none}
+  .kac__side details[open] .kac__sheet-wrap{display:block}
+  .kac__relgrid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:1000px){
+  .kac__hero-in{grid-template-columns:minmax(0,1fr);gap:30px}
+  .kac__split,.kac__mapgrid{grid-template-columns:1fr}
+  .kac__mapgrid>div+div{border-left:0;border-top:1px solid var(--line)}
+  .kac__dist{grid-template-columns:1fr 1fr}
+  .kac__cards{grid-template-columns:1fr}
+  .kac__scores{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+  .kac{--s7:56px;--s6:44px;--s5:32px}
+  .kac__body{padding:0 16px}
+  .kac__hero-in{padding:44px 16px 40px}
+  .kac__sec{padding:48px 0 46px}
+  .kac__feats,.kac__suit,.kac__form,.kac__out,.kac__relgrid{grid-template-columns:1fr}
+  .kac__rgal{grid-template-columns:1fr 1fr}
+  .kac__tabs{padding:14px 10px 16px}
+  .kac__tablab{padding:10px 14px 10px 10px;font-size:.82rem}
+  #ks1~.kac__tablist .kac__tablab{min-width:0;flex:1 1 45%}
+  .kac__slide{flex:0 0 84%}
+  .kac__day::before{left:46px}
+  .kac__day li{grid-template-columns:40px 1fr;gap:22px}
+  .kac__day li::after{left:41px}
+  .kac a.kac__fab{right:12px;bottom:12px;padding:12px 16px;font-size:.8rem}
+  .kac__snav a.kac__snav-cta{display:none}
+  .kac__rel{padding:48px 16px 56px}
+}
+@media(prefers-reduced-motion:reduce){.kac *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+<article class="kac" id="kac-top">
+
+<!-- ========== HERO: PROPERTY DOSSIER ========== -->
+<header class="kac__hero">
+  <div class="kac__hero-bg" style="background-image:url('https://cf.bstatic.com/xdata/images/hotel/max1024x768/200583810.jpg?k=d80db282eff864fcc03490b5c09686a499e3b57a2774bd74ee6a3e74ecce6dee&amp;o=&amp;hp=1')" aria-hidden="true"></div>
+  <div class="kac__hero-tint" aria-hidden="true"></div>
+  <div class="kac__hero-in">
+    <div>
+      <p class="kac__crumb"><a href="https://kambucampers.com/">Kambu Campers</a> &rsaquo; <a href="https://kambucampers.com/masai-mara/where-to-stay/">Where to stay in the Masai Mara</a> &rsaquo; Sarova Mara Game Camp</p>
+      <span class="kac__pill"><i></i>Kambu stay guide &middot; In-park accommodation</span>
+      <h1>Sarova Mara Game Camp: <em>tents, location, rates and how it fits a Kambu safari</em></h1>
+      <p class="kac__lead">The <b>Masai Mara National Reserve</b> covers about <b>1,510 km&sup2;</b> of south-west Kenya (Narok County's 2023&ndash;32 management plan gives 1,530 km&sup2;), from red-oat-grass plains and acacia&ndash;croton woodland to the riverine forest of the Mara and Talek rivers. <b>Sarova Mara Game Camp</b> is a permanent tented camp of roughly 72&ndash;75 tents, run by the Kenyan group <b>Sarova Hotels</b>, sitting <b>2.4 km inside Sekenani Gate</b> on the Reserve's eastern side. Below, we explore its tent types, exact location, published rates, what staying inside the Reserve does to your park-fee bill, and when Kambu books it instead of our own camp outside the gate.</p>
+      <div class="kac__chips">
+        <span class="kac__chip"><i style="background:var(--k-magenta)"></i>Inside the Reserve, Sekenani sector</span>
+        <span class="kac__chip"><i style="background:var(--k-gold)"></i>Deluxe, Club &amp; Family tents</span>
+        <span class="kac__chip"><i style="background:var(--k-teal)"></i>Pool, spa, fenced grounds</span>
+        <span class="kac__chip"><i style="background:var(--k-blue)"></i>4.8/5 Tripadvisor &middot; 4.7/5 Google &middot; 9.2/10 Booking.com</span>
+      </div>
+      <div class="kac__hero-cta">
+        <a class="kac__btn kac__btn--brass" href="https://wa.me/254769103670?text=Hi%20Kambu%2C%20I%27d%20like%20a%20Masai%20Mara%20safari%20quote%20staying%20at%20Sarova%20Mara%20Game%20Camp" rel="noopener">Ask for a Sarova Mara quote</a>
+        <a class="kac__btn kac__btn--ghost" href="#kac-tents">Compare the tents</a>
+      </div>
+    </div>
+
+    <aside class="kac__dossier" aria-label="Sarova Mara Game Camp at a glance">
+      <h2>Property dossier</h2>
+      <p>Facts checked 11 Oct 2026 &middot; sources at the foot of the page</p>
+      <dl class="kac__dl">
+        <dt>Operator</dt><dd>Sarova Hotels (Kenya)</dd>
+        <dt>Type</dt><dd>Permanent tented camp, fenced</dd>
+        <dt>Setting</dt><dd>Inside Masai Mara National Reserve, eastern (Narok) sector</dd>
+        <dt>Nearest gate</dt><dd><b>Sekenani</b> &middot; 2.4 km, ~6 min</dd>
+        <dt>Nearest airstrip</dt><dd><b>Keekorok</b> &middot; 14.6 km, 20&ndash;30 min</dd>
+        <dt>Tents</dt><dd>75 listed (Tripadvisor); 72&ndash;75 across sources</dd>
+        <dt>Guest ratings</dt><dd><b>4.8</b>/5 Tripadvisor (2,437) &middot; <b>4.7</b>/5 Google (2,096) &middot; <b>9.2</b>/10 Booking.com (52)</dd>
+        <dt>Board</dt><dd>Full board is the usual basis</dd>
+        <dt>Coordinates</dt><dd>1.5301&deg; S, 35.3189&deg; E</dd>
+      </dl>
+      <div class="kac__classbadge" role="note"><span aria-hidden="true">&#9673;</span><span><b>Kambu stay class: In-park</b>Reserve fees apply for every day of your stay, not only game-drive days.</span></div>
+    </aside>
+  </div>
+</header>
+
+<!-- ========== STICKY SECTION NAV ========== -->
+<nav class="kac__snav" data-spy aria-label="Page sections">
+  <div class="kac__snav-in">
+    <a href="#kac-what">Overview</a>
+    <a href="#kac-inpark">In-park costs</a>
+    <a href="#kac-tents">Tents</a>
+    <a href="#kac-day">A day here</a>
+    <a href="#kac-facilities">Facilities</a>
+    <a href="#kac-reviews">Reviews</a>
+    <a href="#kac-rates">Rates</a>
+    <a href="#kac-seasons">When to go</a>
+    <a href="#kac-compare">Compare</a>
+    <a href="#kac-faq">FAQ</a>
+    <a class="kac__btn kac__btn--brass kac__snav-cta" href="https://wa.me/254769103670?text=Hi%20Kambu%2C%20please%20quote%20a%20Masai%20Mara%20safari%20at%20Sarova%20Mara%20Game%20Camp" rel="noopener">Get a quote</a>
+  </div>
+</nav>
+
+<!-- ========== BODY: MAIN + STICKY STAY SHEET ========== -->
+<div class="kac__body">
+
+<main class="kac__main">
+
+<!-- ===== 1. WHAT IT IS + GLANCE + MAP ===== -->
+<section class="kac__sec" id="kac-what">
+  <p class="kac__kicker">The short answer</p>
+  <h2>What is Sarova Mara Game Camp, <em>and where exactly is it?</em></h2>
+  <p class="kac__sub">Identity, location and the distances that decide how your days run.</p>
+
+  <div class="kac__answer">
+    <p><b>Sarova Mara Game Camp is a large, fenced, permanent tented camp inside the Masai Mara National Reserve, 2.4 km (about 6 minutes) by road past Sekenani Gate on the Reserve's eastern side.</b> It is run by Sarova Hotels, a Kenyan hotel group, and offers Deluxe Tents, Club Tents and two-bedroom Family Tented Suites on a full-board basis, with a pool, a spa tent and its own safari vehicles.</p>
+    <p>On Kambu itineraries it is an <b>in-park upgrade</b>: you sleep inside the Reserve rather than at our own <a href="https://kambucampers.com/masai-mara/where-to-stay/">gate-edge camp outside Sekenani</a>, which changes your fee bill and your first and last game drives.</p>
+  </div>
+
+  <div class="kac__tw">
+    <table>
+      <caption>Sarova Mara Game Camp at a glance. Distances: Google Maps Routes API, free-flow, 11 Oct 2026. Tent counts and facilities: operator and agent listings (see sources); sarovahotels.com is the authority for current inventory.</caption>
+      <tbody>
+        <tr><td>Official name</td><td>Sarova Mara Game Camp (also listed as Mara Sarova Camp)</td></tr>
+        <tr><td>Operated by</td><td>Sarova Hotels &amp; Resorts, Nairobi</td></tr>
+        <tr><td>Protected area</td><td>Masai Mara National Reserve &mdash; Narok County-managed eastern sector (not the Mara Triangle)</td></tr>
+        <tr><td>Kambu stay class</td><td><span class="kac__tag kac__tag--mag">In-park</span> inside the Reserve boundary</td></tr>
+        <tr><td>Entry gate</td><td>Sekenani Gate, 2.4 km / ~6 min</td></tr>
+        <tr><td>From Narok</td><td>~89 km on the C12 via Sekenani, ~1 h 45 min free-flow</td></tr>
+        <tr><td>From Nairobi</td><td>~232 km by road; plan on 5&ndash;6 hours with a stop</td></tr>
+        <tr><td>By air</td><td>Scheduled light aircraft from Wilson to <b>Keekorok</b> airstrip, 14.6 km by road (~29 min per Booking.com; ~20 min per Five Star Alliance). Ol Kiombo (26 km) and Ol Seki (18 km) are further away</td></tr>
+        <tr><td>Tent categories</td><td>Deluxe Tent &middot; Club Tent &middot; Family Tented Suite (two bedrooms)</td></tr>
+        <tr><td>Size</td><td>75 units on Tripadvisor; Sarova's own text there lists 20 Club, 51 standard and 2 family tents. Other listings give 72&ndash;75 (see <a href="#kac-tents">Tents</a>)</td></tr>
+        <tr><td>Guest ratings</td><td>4.8/5 Tripadvisor (2,437 reviews) &middot; 4.7/5 Google (2,096) &middot; 9.2/10 Booking.com (52) &mdash; <a href="#kac-reviews">what guests say</a></td></tr>
+        <tr><td>Meal plan</td><td>Full board as standard; drinks extra</td></tr>
+        <tr><td>On site</td><td>Free-form pool with pool bar, Tulia spa tent, restaurant, bar, fish pond, organic garden, Maasai village next door</td></tr>
+        <tr><td>Perimeter</td><td>24-hour electric fence around the camp</td></tr>
+        <tr><td>Check-in / out</td><td>Check-in 12:00&ndash;18:00 &middot; check-out 06:00&ndash;11:00; photo ID and a card are requested at check-in (Booking.com, 11 Oct 2026)</td></tr>
+        <tr><td>Kambu Mara Camp</td><td>~10 km / ~19 min away by road, on the Narok side of Sekenani Gate</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <figure class="kac__map" id="kac-map">
+    <div class="kac__mapgrid">
+      <div><svg viewBox="0 0 760 470" role="img" aria-labelledby="kacMapT kacMapD" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;background:#F4EFE3">
+<title id="kacMapT">Road route from Narok to Sarova Mara Game Camp via Sekenani Gate</title>
+<desc id="kacMapD">Schematic static map: the C12 road from Narok runs about 89 km south-west to Sekenani Gate; Sarova Mara Game Camp lies 2.4 km inside the gate. Kambu Mara Camp sits on the Narok side of the gate. Keekorok airstrip lies south-west of the camp and Ol Kiombo airstrip further north-west.</desc>
+<defs><pattern id="kacGrid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#E4DBCA" stroke-width="1"/></pattern></defs>
+<rect width="760" height="470" fill="url(#kacGrid)"/>
+<text x="145.6" y="283.7" font-size="13" text-anchor="middle" class="t i">Masai Mara National Reserve</text>
+<text x="145.6" y="299.7" font-size="11" text-anchor="middle" class="t i">(west of Sekenani Gate)</text>
+<path d="M667.1,77.5 L665.7,79.6 L663.9,82.0 L658.4,82.4 L643.0,83.6 L640.7,83.4 L639.2,83.9 L633.5,84.8 L622.3,91.6 L614.1,96.7 L613.2,99.8 L612.5,103.1 L611.4,104.2 L601.6,106.8 L595.7,108.4 L587.9,114.7 L585.6,115.5 L584.3,115.5 L582.8,114.7 L577.5,116.5 L573.5,123.5 L570.9,126.9 L569.1,128.8 L566.6,132.0 L560.1,138.5 L557.2,141.7 L552.6,147.7 L549.7,151.4 L545.8,159.2 L543.1,164.9 L541.8,167.2 L538.7,170.6 L532.6,178.4 L527.4,184.2 L521.8,190.7 L518.6,194.2 L512.7,200.2 L508.8,205.0 L505.4,208.6 L500.6,213.0 L492.1,221.5 L486.9,226.8 L482.4,231.5 L479.7,234.2 L477.9,235.6 L473.5,237.4 L468.2,243.4 L466.2,247.7 L465.3,251.6 L464.3,255.9 L462.2,260.1 L461.4,263.7 L462.0,268.6 L461.5,270.2 L460.1,271.0 L451.9,272.6 L446.9,272.9 L437.7,271.2 L434.5,270.2 L429.3,266.5 L425.1,265.1 L419.0,264.4 L413.9,263.8 L404.6,262.7 L399.3,262.5 L392.4,264.0 L384.8,265.7 L379.9,266.4 L376.2,266.8 L367.0,267.8 L364.0,268.6 L361.5,271.1 L358.5,274.7 L355.4,278.8 L354.5,279.8 L348.9,281.6 L344.1,282.9 L337.1,283.5 L333.0,283.7 L329.8,285.1 L326.7,286.2 L326.4,288.3 L325.9,289.8 L323.8,293.8 L322.4,294.9 L320.7,297.4 L319.4,300.3 L317.1,301.0 L306.3,302.5 L301.8,303.2 L298.4,303.7 L296.6,304.5 L296.1,305.9 L294.0,308.3 L292.5,312.1 L290.7,316.5 L288.2,319.3 L286.3,321.2 L285.2,323.5 L282.8,329.5 L280.8,330.8 L275.4,333.9 L274.2,334.5 L273.1,334.8 L271.1,337.7 L269.4,340.0 L265.7,340.3 L263.9,340.7 L259.1,340.9 L258.0,341.7 L256.5,342.8 L256.3,343.6" fill="none" stroke="#AD8B54" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M667.1,77.5 L665.7,79.6 L663.9,82.0 L658.4,82.4 L643.0,83.6 L640.7,83.4 L639.2,83.9 L633.5,84.8 L622.3,91.6 L614.1,96.7 L613.2,99.8 L612.5,103.1 L611.4,104.2 L601.6,106.8 L595.7,108.4 L587.9,114.7 L585.6,115.5 L584.3,115.5 L582.8,114.7 L577.5,116.5 L573.5,123.5 L570.9,126.9 L569.1,128.8 L566.6,132.0 L560.1,138.5 L557.2,141.7 L552.6,147.7 L549.7,151.4 L545.8,159.2 L543.1,164.9 L541.8,167.2 L538.7,170.6 L532.6,178.4 L527.4,184.2 L521.8,190.7 L518.6,194.2 L512.7,200.2 L508.8,205.0 L505.4,208.6 L500.6,213.0 L492.1,221.5 L486.9,226.8 L482.4,231.5 L479.7,234.2 L477.9,235.6 L473.5,237.4 L468.2,243.4 L466.2,247.7 L465.3,251.6 L464.3,255.9 L462.2,260.1 L461.4,263.7 L462.0,268.6 L461.5,270.2 L460.1,271.0 L451.9,272.6 L446.9,272.9 L437.7,271.2 L434.5,270.2 L429.3,266.5 L425.1,265.1 L419.0,264.4 L413.9,263.8 L404.6,262.7 L399.3,262.5 L392.4,264.0 L384.8,265.7 L379.9,266.4 L376.2,266.8 L367.0,267.8 L364.0,268.6 L361.5,271.1 L358.5,274.7 L355.4,278.8 L354.5,279.8 L348.9,281.6 L344.1,282.9 L337.1,283.5 L333.0,283.7 L329.8,285.1 L326.7,286.2 L326.4,288.3 L325.9,289.8 L323.8,293.8 L322.4,294.9 L320.7,297.4 L319.4,300.3 L317.1,301.0 L306.3,302.5 L301.8,303.2 L298.4,303.7 L296.6,304.5 L296.1,305.9 L294.0,308.3 L292.5,312.1 L290.7,316.5 L288.2,319.3 L286.3,321.2 L285.2,323.5 L282.8,329.5 L280.8,330.8 L275.4,333.9 L274.2,334.5 L273.1,334.8 L271.1,337.7 L269.4,340.0 L265.7,340.3 L263.9,340.7 L259.1,340.9 L258.0,341.7 L256.5,342.8 L256.3,343.6" fill="none" stroke="#fff" stroke-width="1.4" stroke-dasharray="6 8"/>
+<text x="480.5" y="204.5" font-size="12" class="t" transform="rotate(32 480.5 204.5)">C12 &#183; Narok &#8594; Sekenani &#183; ~89 km</text>
+<circle cx="667.2" cy="76.9" r="7" fill="#233A31" stroke="#fff" stroke-width="2"/><text x="655.2" y="80.9" font-size="13" text-anchor="end" class="t">Narok</text>
+<circle cx="284.4" cy="303.5" r="6" fill="#159C97" stroke="#fff" stroke-width="2"/><text x="296.4" y="301.5" font-size="13" text-anchor="start" class="t">Kambu Mara Camp</text>
+<circle cx="269.8" cy="339.7" r="6" fill="#E45C34" stroke="#fff" stroke-width="2"/><text x="281.8" y="355.7" font-size="13" text-anchor="start" class="t">Sekenani Gate</text>
+<circle cx="256.4" cy="344.7" r="8" fill="#C0448E" stroke="#fff" stroke-width="2"/><text x="244.39999999999998" y="364.7" font-size="14" text-anchor="end" class="t">Sarova Mara Game Camp</text>
+<circle cx="212.1" cy="378.8" r="5" fill="#2B47A8" stroke="#fff" stroke-width="2"/><text x="202.1" y="396.8" font-size="13" text-anchor="end" class="t">Keekorok airstrip</text>
+<circle cx="101.5" cy="270.7" r="5" fill="#2B47A8" stroke="#fff" stroke-width="2"/><text x="111.5" y="262.7" font-size="13" text-anchor="start" class="t">Ol Kiombo airstrip</text>
+<g transform="translate(520,400)"><rect width="210" height="40" rx="8" fill="#fff" stroke="#E4DBCA"/><text x="12" y="25" font-size="11" class="t">Nairobi &#8594; Narok &#8594; Sekenani: ~232 km</text></g>
+<g transform="translate(30,442)"><text font-size="10" class="t m">Route: Google Maps Routes API, 11 Oct 2026. Points: Google geocoding. Schematic &#8212; not for navigation. &#169; Kambu Campers</text></g>
+<text x="726" y="40" font-size="13" text-anchor="end" class="t">N &#8593;</text>
+</svg></div>
+      <div><svg viewBox="0 0 380 470" role="img" aria-labelledby="kacInT kacInD" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;background:#F4EFE3">
+<title id="kacInT">Close-up: Kambu Mara Camp, Sekenani Gate and Sarova Mara Game Camp</title>
+<desc id="kacInD">Kambu Mara Camp to Sekenani Gate is about 7.8 km by road; Sekenani Gate to Sarova Mara Game Camp is 2.4 km, about 6 minutes. Keekorok airstrip lies roughly 9 km south-west of the camp in a straight line.</desc>
+<rect width="380" height="470" fill="url(#kacGrid)"/>
+<path d="M298.9,91.3 L318.1,111.3 L320.3,113.2 L323.1,116.5 L329.2,123.1 L329.6,123.6 L328.8,125.4 L327.9,127.2 L327.1,129.3 L326.2,130.9 L324.9,133.2 L324.1,134.5 L322.8,136.1 L319.7,140.5 L319.3,141.2 L318.3,143.2 L317.7,144.6 L317.2,145.3 L315.8,146.7 L315.0,147.6 L313.7,149.4 L312.3,151.9 L311.6,153.2 L311.4,153.9 L311.1,154.8 L310.8,156.3 L310.2,158.7 L309.8,160.6 L308.7,165.1 L307.9,168.6 L304.6,178.9 L303.3,182.6 L302.7,184.2 L302.4,185.0 L301.9,185.7 L301.1,186.6 L300.3,187.2 L297.6,189.1 L296.6,189.7 L291.5,193.1 L289.0,194.6 L286.3,196.7 L285.0,197.7 L283.0,199.8 L280.3,202.7 L279.2,203.9 L278.5,204.6 L278.0,205.0 L277.7,205.1 L277.3,205.1 L276.4,205.1 L275.6,205.0 L275.2,205.0 L274.7,205.1 L274.0,205.5 L273.4,206.0 L272.9,206.3 L272.0,207.6 L271.4,208.4 L270.2,211.1 L268.7,214.4 L268.1,215.7 L266.8,218.8 L264.1,224.6 L263.7,225.7 L263.0,227.1 L262.6,227.6 L262.0,228.1 L261.5,228.4 L260.7,228.7 L259.6,229.0 L256.3,229.3 L254.4,229.4 L251.7,229.5 L250.3,229.6 L249.4,229.8 L248.1,230.4 L246.8,231.1 L246.0,231.3 L245.2,231.4 L244.7,231.4 L243.6,231.3 L241.5,231.1 L239.7,230.9 L238.5,231.0 L236.9,231.3 L230.0,232.1 L228.4,232.3 L227.0,232.4 L227.3,233.9 L227.2,234.3 L227.0,235.0 L226.6,235.5 L226.2,235.9 L225.2,236.6 L224.8,237.1 L224.2,238.2 L222.6,239.6 L222.0,240.3 L221.7,240.8 L221.4,242.3 L221.3,243.6" fill="none" stroke="#AD8B54" stroke-width="4" stroke-linecap="round"/>
+<circle cx="307.7" cy="74.7" r="6" fill="#159C97" stroke="#fff" stroke-width="2"/><text x="297.7" y="78.7" font-size="12" text-anchor="end" class="t">Kambu Mara Camp</text>
+<circle cx="262.8" cy="227.2" r="6" fill="#E45C34" stroke="#fff" stroke-width="2"/><text x="272.8" y="231.2" font-size="12" text-anchor="start" class="t">Sekenani Gate</text>
+<circle cx="221.9" cy="248.1" r="7" fill="#C0448E" stroke="#fff" stroke-width="2"/><text x="211.9" y="252.1" font-size="13" text-anchor="end" class="t">Sarova</text>
+<circle cx="85.6" cy="391.5" r="5" fill="#2B47A8" stroke="#fff" stroke-width="2"/><text x="95.6" y="395.5" font-size="12" text-anchor="start" class="t">Keekorok airstrip</text>
+<text x="368" y="22" font-size="12" text-anchor="end" class="t">N &#8593;</text>
+<text x="12" y="460" font-size="9.5" class="t m">Road legs: Google Maps, 11 Oct 2026 &#183; &#169; Kambu Campers</text>
+</svg></div>
+    </div>
+    <div class="kac__leaflet" id="kac-leaflet" aria-label="Interactive map of Sarova Mara Game Camp and nearby points"></div>
+    <div class="kac__maptools"><button type="button" class="kac__btn kac__btn--forest" id="kac-mapbtn" aria-controls="kac-leaflet" aria-expanded="false">Open the interactive map</button></div>
+    <figcaption><b>What to notice:</b> the tarmac C12 from Narok ends at Sekenani Gate, and Sarova is the first large camp you reach once inside. That puts the camp a few minutes from the eastern plains at first light, but a long day's drive from the Mara River crossing points on the Reserve's far western side.</figcaption>
+  </figure>
+
+  <div class="kac__dist">
+    <div style="--dot:var(--k-coral)"><b>2.4 km</b><span>Sekenani Gate &rarr; camp, ~6 min</span></div>
+    <div style="--dot:var(--k-teal)"><b>~10 km</b><span>Kambu Mara Camp &rarr; Sarova, ~19 min</span></div>
+    <div style="--dot:var(--k-blue)"><b>20&ndash;30 min</b><span>Keekorok airstrip transfer (14.6 km)</span></div>
+    <div style="--dot:var(--k-gold)"><b>5&ndash;6 h</b><span>Nairobi by road, with a Narok stop</span></div>
+  </div>
+  <p class="kac__note">Free-flow road times from Google Maps; the realistic Nairobi&ndash;Mara figure is Kambu's own, from running the road. Airstrip transfer: Five Star Alliance and Booking.com.</p>
+</section>
+
+<!-- ===== 2. IN-PARK: WHAT IT MEANS + FEE CALCULATOR ===== -->
+<section class="kac__sec kac__sec--plan" id="kac-inpark">
+  <p class="kac__kicker">Kambu stay class</p>
+  <h2>What "in-park" means <em>for your days and your fee bill</em></h2>
+  <p class="kac__sub">We sort every Mara stay into three classes because each one changes the itinerary differently.</p>
+
+  <div class="kac__cards">
+    <div class="kac__card is-this" style="--dot:var(--k-magenta)"><h4>In-park &middot; Sarova Mara</h4><p>You sleep inside the Reserve. No gate queue at dawn and game drives can start from the camp drive, but reserve fees run for every day you are inside.</p></div>
+    <div class="kac__card" style="--dot:var(--k-teal)"><h4>Gate-edge &middot; Kambu Mara Camp</h4><p>You sleep about 9 km before Sekenani Gate, outside both the Reserve and the conservancies, and pay reserve fees only on the days you drive in.</p></div>
+    <div class="kac__card" style="--dot:var(--k-blue)"><h4>Conservancy camps</h4><p>Conservancy fees replace reserve fees while you stay there. Walking and night drives are possible; you pay the Reserve only on days you cross into it.</p></div>
+  </div>
+
+  <div class="kac__callout"><b>Why the fee rule matters more here than anywhere else in Kenya.</b> Reserve entry is sold as a 12-hour ticket: USD 100 per non-resident adult from January to June and USD 200 from July to December. A camp inside the boundary means you hold a valid ticket for every day you are there, rest days included. Outside the gate, a day spent at the pool or travelling costs nothing. On a three-night peak-season stay for two non-resident adults with two game-drive days, that difference is USD 400, which can be bigger than the gap in room rates.</div>
+
+  <div class="kac__calc" id="kac-calc">
+    <h3>Reserve fee estimator: in-park vs gate-edge</h3>
+    <p>Enter your party and plan. It uses the published reserve tariff only; lodge rates, vehicle and conservancy fees are separate.</p>
+    <form class="kac__form" onsubmit="return false">
+      <label>Guest category
+        <select id="kc-cat">
+          <option value="nr">Non-resident (USD)</option>
+          <option value="ear">East African resident (KES)</option>
+          <option value="kc">Kenyan citizen (KES)</option>
+        </select></label>
+      <label>Travel month
+        <select id="kc-month">
+          <option value="lo">January &ndash; June (low tariff)</option>
+          <option value="hi" selected>July &ndash; December (peak tariff)</option>
+        </select></label>
+      <label>Adults (18+)<input id="kc-ad" type="number" min="0" max="20" value="2" inputmode="numeric"></label>
+      <label>Children 9&ndash;17<input id="kc-ch" type="number" min="0" max="20" value="0" inputmode="numeric"><small>Under 9s enter free</small></label>
+      <label>Nights at Sarova<input id="kc-n" type="number" min="1" max="10" value="3" inputmode="numeric"></label>
+      <label>Game-drive days<input id="kc-gd" type="number" min="0" max="10" value="2" inputmode="numeric"><small>Days you actually drive in</small></label>
+    </form>
+    <div class="kac__out" aria-live="polite">
+      <div class="o1"><b id="kc-in">&mdash;</b><span id="kc-in-l">In-park: tickets for each night of the stay</span></div>
+      <div class="o2"><b id="kc-out">&mdash;</b><span id="kc-out-l">Gate-edge: tickets only on game-drive days</span></div>
+    </div>
+    <p class="kac__calc-note">Tariff: non-resident USD 100 / 200 per adult, USD 50 per child 9&ndash;17; East African resident KES 2,500 / 5,000, child KES 1,250; Kenyan citizen KES 1,500 / 3,000, child KES 750 (Jan&ndash;Jun / Jul&ndash;Dec). Checked 14 Sep 2026 and reconfirmed Oct 2026. The in-park figure assumes one ticket per night stayed, which is how stays inside the boundary are usually charged. Your Kambu quote states the exact ticket count for your arrival and departure times.</p>
+  </div>
+</section>
+
+<!-- ===== 3. TENTS: SELECTOR ===== -->
+<section class="kac__sec" id="kac-tents">
+  <p class="kac__kicker">Choose your tent</p>
+  <h2>Deluxe, Club or Family: <em>which Sarova tent fits your group?</em></h2>
+  <p class="kac__sub">All three are permanent tents with fixed roofs and en-suite bathrooms. They differ in privacy, space and lounge access.</p>
+
+  <div class="kac__tabs">
+    <input type="radio" name="kt" id="kt1" checked>
+    <input type="radio" name="kt" id="kt2">
+    <input type="radio" name="kt" id="kt3">
+    <p class="kac__tabhint">Tap a tent type to compare</p>
+    <div class="kac__tablist" role="tablist" aria-label="Tent types">
+      <label class="kac__tablab" for="kt1" role="tab"><i aria-hidden="true">&#9978;</i>Deluxe Tent</label>
+      <label class="kac__tablab" for="kt2" role="tab"><i aria-hidden="true">&#127775;</i>Club Tent (Olchani)</label>
+      <label class="kac__tablab" for="kt3" role="tab"><i aria-hidden="true">&#128106;</i>Family Tented Suite</label>
+    </div>
+    <div class="kac__panels">
+      <div class="kac__panel" role="tabpanel">
+        <div class="kac__tierhead"><span>Most of the camp &middot; couples, friends, solo</span><h3>Deluxe Tent</h3></div>
+        <div class="kac__spec"><span><b>~57 m&sup2;</b> (614 sq ft)</span><span>1 large double or twin</span><span>Sleeps 2 (triple on request)</span><span>Bath or shower</span><span>Full board</span></div>
+        <div class="kac__split">
+          <ul class="kac__lead-list">
+            <li><b>Who it suits:</b> two adults or a single traveller on a road or fly-in safari; twin or double bedding, triple on request.</li>
+            <li><b>Inside:</b> canvas walls under a permanent roof, large glass doors and windows, en-suite bathroom with a bath or shower, bathrobes and slippers, mosquito net, fan, kettle with tea and coffee, desk, safe and hairdryer.</li>
+            <li><b>Outside:</b> a private wooden deck with chairs and a day bed.</li>
+            <li><b>Rate reference:</b> on 11 Oct 2026 Booking.com showed <b>USD 847.92 for two nights, full board, taxes included</b> for two adults on 3&ndash;5 November 2026 &mdash; about <b>USD 424 per tent per night (~USD 212 per person)</b>, after a 10% promotional discount. See <a href="#kac-rates">Rates</a>.</li>
+            <li><b>Watch for:</b> Sarova has refurbished part of this category; some guest reviews still describe older bathrooms, so we ask for a refurbished unit when booking.</li>
+          </ul>
+          <figure class="kac__fig"><img loading="lazy" width="1024" height="734" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/473176831.jpg?k=8ee85a5e31d66c517dcef81b3a1f41b7a6689a135217b57769c45b32fc3cc3e0&amp;o=&amp;hp=1" alt="Renovated Deluxe Tent at Sarova Mara Game Camp with a canopied double bed, orange rugs and canvas walls"><figcaption><b>Deluxe Tent</b> &mdash; one of the refurbished units, with a large double bed under a canopy. <span class="kac__cred">Photo: Sarova Hotels via Booking.com</span></figcaption></figure>
+        </div>
+        <div class="kac__rgal"><figure class="kac__fig"><img loading="lazy" width="1100" height="719" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/2f/25/dc/deluxe-tent.jpg?w=1100&amp;h=-1&amp;s=1" alt="Deluxe Tent doors opened onto a wooden veranda with an armchair"><figcaption><b>Veranda doors</b> open the whole tent front. <span class="kac__cred">Photo: Sarova Hotels (management photo) via Tripadvisor</span></figcaption></figure><figure class="kac__fig"><img loading="lazy" width="691" height="768" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/200574606.jpg?k=1c18241ea8048d272f280ebd50b80241fc58b62dfdbf65d61e4dd83ebde05b4f&amp;o=&amp;hp=1" alt="Deluxe Tent bathroom with a stone vanity, mirror and walk-in shower"><figcaption><b>En-suite bathroom</b> in a refurbished Deluxe Tent. <span class="kac__cred">Photo: Sarova Hotels via Booking.com</span></figcaption></figure><figure class="kac__fig"><img loading="lazy" width="1100" height="1282" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/33/9b/90/sarova-mara-game-camp.jpg?w=1100&amp;h=-1&amp;s=1" alt="A Sarova Mara tent lit up at dusk among trees"><figcaption><b>Tents at dusk</b>, spread through wooded grounds. <span class="kac__cred">Photo: Sarova Hotels (management photo) via Tripadvisor</span></figcaption></figure></div>
+      </div>
+      <div class="kac__panel" role="tabpanel">
+        <div class="kac__tierhead"><span>Upgrade &middot; honeymooners, longer stays &middot; listed as "Olchani Luxury Camp Tent"</span><h3>Club Tent (Olchani Luxury Camp Tent)</h3></div>
+        <div class="kac__spec"><span><b>~62 m&sup2;</b> (667 sq ft)</span><span>1 extra-large double</span><span>Sleeps 2</span><span>Bath and shower</span><span>All-inclusive on Booking.com</span></div>
+        <div class="kac__rgal"><figure class="kac__fig"><img loading="lazy" width="1024" height="651" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/200583841.jpg?k=48443d5f55ab704af426613350a4cac52ff7e9ec3e2f0f74d5b1b025230f9722&amp;o=&amp;hp=1" alt="Club Tent bedroom with a four-poster bed, mosquito net and view through open canvas doors"><figcaption><b>Club Tent bedroom</b> facing the deck. <span class="kac__cred">Photo: Sarova Hotels via Booking.com</span></figcaption></figure><figure class="kac__fig"><img loading="lazy" width="1100" height="729" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/12/c3/5a/club-room.jpg?w=1100&amp;h=-1&amp;s=1" alt="Club Tent seen from outside with a wooden deck and railings under a thatched roof"><figcaption><b>The larger viewing deck</b> that sets Club Tents apart. <span class="kac__cred">Photo: Sarova Hotels (management photo) via Tripadvisor</span></figcaption></figure><figure class="kac__fig"><img loading="lazy" width="1024" height="645" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/200583883.jpg?k=f4f8dee7e2169cfb9b8b4e611d944bc6581615e9b5d78465e77590c99d47c343&amp;o=&amp;hp=1" alt="Club Tent bathroom with twin basins, a long mirror and a separate shower"><figcaption><b>Twin-basin bathroom</b> with bath and shower. <span class="kac__cred">Photo: Sarova Hotels via Booking.com</span></figcaption></figure></div>
+        <ul class="kac__lead-list">
+          <li><b>What you gain:</b> more space, a larger viewing deck, a bath as well as a shower, and access to the Olchani club lounge, which overlooks the camp's fishing lake. Booking.com also lists a private pool for this category; Sarova's own descriptions do not, so we confirm it per booking.</li>
+          <li><b>Same core:</b> en-suite bathroom, deck, mosquito nets and the same full-board kitchen as the Deluxe Tents.</li>
+          <li><b>Rate reference:</b> Booking.com showed <b>USD 1,520.02 for two nights, all-inclusive, taxes included</b> for two adults on 3&ndash;5 November 2026 &mdash; about <b>USD 760 per tent per night (~USD 380 per person)</b> (checked 11 Oct 2026).</li>
+          <li><b>Is it worth it?</b> The upgrade buys privacy and space in camp, not better game viewing; your game drives are the same either way.</li>
+        </ul>
+      </div>
+      <div class="kac__panel" role="tabpanel">
+        <div class="kac__tierhead"><span>Families &middot; two bedrooms, two bathrooms</span><h3>Family Tented Suite</h3></div>
+        <div class="kac__spec"><span><b>~129 m&sup2;</b> (1,389 sq ft)</span><span>Double room + twin room</span><span>Sleeps 4 (+ cot or extra bed)</span><span>2 bathrooms</span><span>Lounge &amp; dining table</span></div>
+        <div class="kac__rgal"><figure class="kac__fig"><img loading="lazy" width="1024" height="462" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/200569731.jpg?k=02621cbaf42fc0f46931bc5740d69d638fbf72a55cb072950e26c815b2122eb1&amp;o=&amp;hp=1" alt="Family Tented Suite interior with a lounge, dining table and a bedroom beyond a canvas partition"><figcaption><b>Shared lounge and dining area</b> between the two bedrooms. <span class="kac__cred">Photo: Sarova Hotels via Booking.com</span></figcaption></figure><figure class="kac__fig"><img loading="lazy" width="1100" height="563" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/2f/25/6f/family-tent-bathroom.jpg?w=1100&amp;h=-1&amp;s=1" alt="Family tent bathroom with a glass shower, basin and framed mirror"><figcaption><b>One of two en-suite bathrooms.</b> <span class="kac__cred">Photo: Sarova Hotels (management photo) via Tripadvisor</span></figcaption></figure><figure class="kac__fig"><img loading="lazy" width="511" height="768" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/200569631.jpg?k=b2e7e9f9a0fe8e9ba215d3b626d8f5d170564640710237fc42825e3654073b92&amp;o=&amp;hp=1" alt="Exterior of a Family Tented Suite with a thatched roof among tall trees"><figcaption><b>Family suite exterior</b> set among trees. <span class="kac__cred">Photo: Sarova Hotels via Booking.com</span></figcaption></figure></div>
+        <ul class="kac__lead-list">
+          <li><b>Layout:</b> about <b>129 m&sup2;</b> with a double bedroom and a twin bedroom, each with its own en-suite bathroom, joined by a shared lounge (Sarova's own description).</li>
+          <li><b>Who it suits:</b> two adults with two children, or two adults with older teens who want their own room; a cot or extra bed can be requested.</li>
+          <li><b>Supply:</b> only two or three exist, depending on the source; Booking.com showed &ldquo;2 left&rdquo; for early November. Book family dates early, especially July&ndash;October and Christmas.</li>
+            <li><b>Rate reference:</b> Booking.com showed <b>USD 1,670 for two nights, full board, taxes included, for four guests</b> on 3&ndash;5 November 2026 &mdash; about <b>USD 835 per suite per night (~USD 209 per person)</b>.</li>
+          <li><b>Kambu tip:</b> for families of five or six on a tighter budget, our <a href="https://kambucampers.com/masai-mara/where-to-stay/">Extended Family Tents at Kambu Mara Camp</a> sleep up to six in one unit, outside the gate.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="kac__callout"><b>How many tents does Sarova Mara have?</b> Sarova's own description on Tripadvisor lists 20 Club, 51 standard and 2 family tents (73), while Tripadvisor counts 75 units. SA Vacations gives 75 (20 / 52 / 3) and Monkey Adventures 72 (12 / 57 / 3). We show the range rather than pick one. Either way it is a large camp, so expect a buffet-style restaurant and a busy pool at midday in peak season.</div>
+</section>
+
+<!-- ===== 4. A DAY AT SAROVA ON A KAMBU SAFARI ===== -->
+<section class="kac__sec kac__sec--exp" id="kac-day">
+  <p class="kac__kicker">How the days run</p>
+  <h2>A day at Sarova <em>on a Kambu safari</em></h2>
+  <p class="kac__sub">How we sequence game drives from a camp just inside Sekenani Gate.</p>
+
+  <div class="kac__prose">
+    <p>Our <a href="https://kambucampers.com/">Kambu Campers</a> driver-guides live at our own camp near Sekenani Gate, not in Nairobi, and start their game drives through the same gate Sarova sits behind. Their advice for guests staying here is practical: use the camp's position for the first and last hour of light, and do not plan a crossing hunt from here as a quick morning outing.</p>
+  </div>
+
+  <ol class="kac__day">
+    <li><time>06:15</time><div><b>Leave camp at first light</b><p>No gate queue: you are already inside. The plains between Sekenani and Keekorok are minutes away, which is when cats are still moving.</p></div></li>
+    <li><time>09:30</time><div><b>Breakfast in the bush or back in camp</b><p>On a half-day plan you are back for a late breakfast. On a full day, your driver-guide carries a packed breakfast and lunch.</p></div></li>
+    <li><time>10:30</time><div><b>Full-day loop or midday rest</b><p>Our standard Mara loop runs Sekenani &rarr; Talek &rarr; Mara Bridge &rarr; Lookout Hill &rarr; the Tanzania border &rarr; Sekenani: roughly 90&ndash;100 km on an 8-hour day and 140&ndash;160 km on a 12-hour day.</p></div></li>
+    <li><time>13:00</time><div><b>Pool, spa or siesta</b><p>Guests who stay in camp use the pool, the Tulia spa tent or the deck. In-park, you have paid the day's fee either way.</p></div></li>
+    <li><time>16:00</time><div><b>Afternoon game drive</b><p>Short hop out for the evening light around the eastern plains. You must be back inside camp before the Reserve's night-time curfew on vehicles.</p></div></li>
+    <li><time>19:30</time><div><b>Dinner and the fire</b><p>Buffet or set dinner in the main restaurant, or a bush or boma dinner if booked. Night drives are not allowed anywhere in the Reserve.</p></div></li>
+  </ol>
+
+  <div class="kac__callout"><b>Crossing days need a different plan.</b> The Mara River crossing points (Lookout Hill, Mara Bridge and the Serena side) are on the western edge of the Reserve, a long drive from Sarova. In August and September, crossings often begin late morning and can mean a 4&ndash;6 hour wait. From Sarova, that is a full-day drive with a packed lunch, never a quick outing. We don't promise a crossing on any date, because nobody controls when the herds commit to the river.</div>
+</section>
+
+<!-- ===== 5. FACILITIES ===== -->
+<section class="kac__sec" id="kac-facilities">
+  <p class="kac__kicker">In camp</p>
+  <h2>Facilities and activities: <em>what is on site and what isn't allowed</em></h2>
+  <p class="kac__sub">What the camp offers, and the Reserve rules that limit what any in-park camp can do.</p>
+
+  <div class="kac__feats">
+    <div class="kac__feat"><i aria-hidden="true">&#127946;</i><div><b>Free-form pool and pool bar</b><p>The main midday draw for families and for road-safari guests resting after the drive from Nairobi.</p></div></div>
+    <div class="kac__feat"><i aria-hidden="true">&#127807;</i><div><b>Tulia spa tent</b><p>Massage and wellness treatments by trained therapists; book a slot on arrival in peak season.</p></div></div>
+    <div class="kac__feat"><i aria-hidden="true">&#127860;</i><div><b>Restaurant, bar and bush dining</b><p>The main restaurant overlooks the pool, and the camp grows produce in its own organic garden. Bush breakfasts, sundowners and boma dinners cost extra.</p></div></div>
+    <div class="kac__feat"><i aria-hidden="true">&#128101;</i><div><b>Maasai village next door</b><p>An adjoining village can be visited for a fee. Ask your driver-guide to agree the price and photography rules before you go in.</p></div></div>
+    <div class="kac__feat"><i aria-hidden="true">&#127907;</i><div><b>Fish pond, mini golf and bird walks</b><p>A stocked pond and landscaped grounds with a small bird sanctuary. Guided walks stay inside the fenced camp.</p></div></div>
+    <div class="kac__feat"><i aria-hidden="true">&#128246;</i><div><b>Wi-Fi and charging</b><p>Wi-Fi is advertised; treat speeds as variable. Dual-voltage shaver sockets are in each tent; bring a UK-type adapter for chargers.</p></div></div>
+    <div class="kac__feat"><i aria-hidden="true">&#127880;</i><div><b>Hot-air balloon flights</b><p>Booked through licensed balloon operators at about USD 450&ndash;500 per person, with an early pick-up. We arrange it on request.</p></div></div>
+    <div class="kac__feat"><i aria-hidden="true">&#9889;</i><div><b>Electric fence, 24 hours</b><p>The camp is fenced. That means safe movement at night and a calmer stay for young children, but fewer animals wandering through camp than at an unfenced site.</p></div></div>
+  </div>
+
+  <div class="kac__rgal" style="margin-top:18px"><figure class="kac__fig"><img loading="lazy" width="1100" height="475" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/2f/29/cb/sarova-mara-game-camp.jpg?w=1100&amp;h=-1&amp;s=1" alt="Sarova Mara free-form swimming pool with sun loungers and palms"><figcaption><b>Free-form pool</b> with its own bar. <span class="kac__cred">Photo: Sarova Hotels (management photo) via Tripadvisor</span></figcaption></figure><figure class="kac__fig"><img loading="lazy" width="1100" height="633" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/38/b1/76/tulia-spa.jpg?w=1100&amp;h=-1&amp;s=1" alt="Two massage beds in the Tulia spa tent opening onto a wooden deck"><figcaption><b>Tulia spa tent</b>. <span class="kac__cred">Photo: Sarova Hotels (management photo) via Tripadvisor</span></figcaption></figure><figure class="kac__fig"><img loading="lazy" width="1100" height="997" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/2f/2a/ac/sarova-mara-game-camp.jpg?w=1100&amp;h=-1&amp;s=1" alt="Main restaurant with wooden tables set for dinner under a high roof"><figcaption><b>Main restaurant</b>. <span class="kac__cred">Photo: Sarova Hotels (management photo) via Tripadvisor</span></figcaption></figure><figure class="kac__fig"><img loading="lazy" width="1100" height="612" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/12/c6/19/bush-breakfast.jpg?w=1100&amp;h=-1&amp;s=1" alt="A table laid for breakfast on open grassland in the Masai Mara"><figcaption><b>Bush breakfast</b>, booked as an extra. <span class="kac__cred">Photo: Sarova Hotels (management photo) via Tripadvisor</span></figcaption></figure><figure class="kac__fig"><img loading="lazy" width="1100" height="733" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/2f/26/5f/experiential-dining-at.jpg?w=1100&amp;h=-1&amp;s=1" alt="A chef presenting fresh vegetables from the camp organic garden"><figcaption><b>Organic garden</b> produce used in the kitchen. <span class="kac__cred">Photo: Sarova Hotels (management photo) via Tripadvisor</span></figcaption></figure><figure class="kac__fig"><img loading="lazy" width="1100" height="733" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/33/9b/bf/sarova-mara-game-camp.jpg?w=1100&amp;h=-1&amp;s=1" alt="An adult and a child paddling an inflatable kayak on the camp pond"><figcaption><b>Paddling on the camp pond</b>. <span class="kac__cred">Photo: Sarova Hotels (management photo) via Tripadvisor</span></figcaption></figure></div>
+  <div class="kac__callout"><b>Also on site:</b> archery, billiards, darts, table tennis, a children's playground and kids' meals, evening entertainment including Maasai dancing, room service, laundry (charged) and a 24-hour front desk (Booking.com and Tripadvisor facility lists, 11 Oct 2026).</div>
+
+  <div class="kac__callout"><b>Not possible from any camp inside the Reserve:</b> walking safaris, night game drives and off-road driving are all prohibited inside the Masai Mara National Reserve. If a bush walk or a night drive matters to you, add one or two nights in a conservancy, or stay outside the Reserve and drive in on game-drive days.</div>
+</section>
+
+<!-- ===== 5b. REVIEWS: STATS, PROS, CONS ===== -->
+<section class="kac__sec kac__sec--exp" id="kac-reviews">
+  <p class="kac__kicker">Guest ratings</p>
+  <h2>What guests say about Sarova Mara: <em>ratings, pros and cons</em></h2>
+  <p class="kac__sub">Scores pulled from Tripadvisor, Google and Booking.com on 11 October 2026. We summarise review themes; we don't reproduce individual reviews.</p>
+
+  <div class="kac__answer">
+    <p><b>Sarova Mara Game Camp is rated 4.8 out of 5 on Tripadvisor from 2,437 reviews, 4.7 out of 5 on Google from 2,096, and 9.2 out of 10 on Booking.com from 52.</b> About four in five Tripadvisor and Google reviewers give five stars. On every platform, value for money is the lowest-scoring category.</p>
+  </div>
+
+  <div class="kac__scores">
+    <div class="kac__score" style="--dot:var(--k-teal)">
+      <h3>Tripadvisor</h3>
+      <div class="kac__big">4.8<small> / 5 &middot; 2,437 reviews</small></div>
+      <ul class="kac__bars">
+        <li><span>5 stars</span><i style="--w:81.2%"></i><span>1,978</span></li>
+        <li><span>4 stars</span><i style="--w:15%"></i><span>366</span></li>
+        <li><span>3 stars</span><i style="--w:2.2%"></i><span>53</span></li>
+        <li><span>2 stars</span><i style="--w:0.9%"></i><span>23</span></li>
+        <li><span>1 star</span><i style="--w:0.7%"></i><span>17</span></li>
+      </ul>
+      <ul class="kac__bars" style="--dot:var(--brass)">
+        <li><span>Location</span><i style="--w:96%"></i><span>4.8</span></li>
+        <li><span>Cleanliness</span><i style="--w:96%"></i><span>4.8</span></li>
+        <li><span>Service</span><i style="--w:96%"></i><span>4.8</span></li>
+        <li><span>Rooms</span><i style="--w:94%"></i><span>4.7</span></li>
+        <li><span>Sleep</span><i style="--w:94%"></i><span>4.7</span></li>
+        <li><span>Value</span><i style="--w:92%"></i><span>4.6</span></li>
+      </ul>
+    </div>
+    <div class="kac__score" style="--dot:var(--k-blue)">
+      <h3>Google</h3>
+      <div class="kac__big">4.7<small> / 5 &middot; 2,096 reviews</small></div>
+      <ul class="kac__bars">
+        <li><span>5 stars</span><i style="--w:80%"></i><span>1,677</span></li>
+        <li><span>4 stars</span><i style="--w:14.9%"></i><span>312</span></li>
+        <li><span>3 stars</span><i style="--w:2.2%"></i><span>46</span></li>
+        <li><span>2 stars</span><i style="--w:1%"></i><span>20</span></li>
+        <li><span>1 star</span><i style="--w:2%"></i><span>41</span></li>
+      </ul>
+      <p style="font-size:.78rem;color:#5A6259;margin:12px 0 0">Google classes it as a 4-star hotel; Tripadvisor's class (from Giata) is also 4. Booking.com shows 5 stars.</p>
+    </div>
+    <div class="kac__score" style="--dot:var(--k-magenta)">
+      <h3>Booking.com</h3>
+      <div class="kac__big">9.2<small> / 10 &middot; 52 reviews</small></div>
+      <ul class="kac__bars">
+        <li><span>Location</span><i style="--w:96%"></i><span>9.6</span></li>
+        <li><span>Staff</span><i style="--w:95%"></i><span>9.5</span></li>
+        <li><span>Comfort</span><i style="--w:95%"></i><span>9.5</span></li>
+        <li><span>Cleanliness</span><i style="--w:93%"></i><span>9.3</span></li>
+        <li><span>Free Wi-Fi</span><i style="--w:92%"></i><span>9.2</span></li>
+        <li><span>Facilities</span><i style="--w:91%"></i><span>9.1</span></li>
+        <li><span>Value</span><i style="--w:87%"></i><span>8.7</span></li>
+      </ul>
+      <p style="font-size:.78rem;color:#5A6259;margin:12px 0 0">Reviewers (Dec 2023&ndash;Aug 2026): 26 couples, 11 groups, 9 families, 6 solo. 26 stayed in Deluxe Tents and 24 in Club Tents.</p>
+    </div>
+  </div>
+
+  <div class="kac__suit">
+    <div class="kac__suit--yes">
+      <h3>What guests praise most</h3>
+      <ul>
+        <li><b>Staff and service</b> &mdash; the most-mentioned positive in Booking.com reviews, and the joint top Tripadvisor subscore.</li>
+        <li><b>Tents and comfort</b> &mdash; spacious tents and good beds; Booking.com comfort 9.5.</li>
+        <li><b>Food</b> &mdash; varied buffets (Tripadvisor reviewers often mention Indian dishes), plus the organic garden.</li>
+        <li><b>Grounds</b> &mdash; green, well-kept gardens, the fish pond and dik-dik in camp.</li>
+        <li><b>Extras</b> &mdash; pool, Tulia spa, games and the evening Maasai dance.</li>
+      </ul>
+    </div>
+    <div class="kac__suit--no">
+      <h3>Common criticisms</h3>
+      <ul>
+        <li><b>Value for money</b> &rarr; the lowest score on all three platforms; drinks and extras add up.</li>
+        <li><b>Big-camp feel</b> &rarr; reviewers wanting a small, intimate camp suggest looking elsewhere.</li>
+        <li><b>Park fees per day of stay</b> &rarr; guests note the reserve fee applies to every day inside, whether or not they drive.</li>
+        <li><b>Older bathrooms in some tents</b> &rarr; mentioned in a minority of low scores; ask for a refurbished tent.</li>
+        <li><b>Distances</b> &rarr; some tents are a long walk from reception (a buggy can be requested), and the western game areas are a long drive.</li>
+        <li><b>Power at night</b> &rarr; one guest reported no electricity between midnight and 06:00; charge devices in the evening.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="kac__note">Counts and averages as displayed by each platform on 11 Oct 2026. Themes are Kambu's summary of all 52 Booking.com reviews, Tripadvisor's review tags and room tips, and the platforms' own AI summaries. Platforms don't verify reviews in the same way.</p>
+</section>
+
+<!-- ===== 6. RATES (lodge) + RESERVE FEES (separate) ===== -->
+<section class="kac__sec kac__sec--plan" id="kac-rates">
+  <p class="kac__kicker">Price basis first</p>
+  <h2>How much does Sarova Mara Game Camp cost <em>in 2026?</em></h2>
+  <p class="kac__sub">Sarova publishes no public rate sheet. These are the published reference figures we found, with their basis, source and date.</p>
+
+  <div class="kac__answer">
+    <p><b>Expect roughly USD 180&ndash;270 per person per night, full board, sharing a Deluxe Tent outside peak season, rising to about USD 380 per person from mid-June to September and higher over Christmas.</b> For 3&ndash;5 November 2026, Booking.com showed about USD 212 per person per night in a Deluxe Tent and about USD 380 in an all-inclusive Club Tent. Masai Mara reserve fees are always extra and charged separately.</p>
+  </div>
+
+  <div class="kac__tw">
+    <table>
+      <thead><tr><th>Source &amp; basis</th><th>Period</th><th>Published figure</th></tr></thead>
+      <tbody>
+        <tr class="kac__best"><td>Booking.com, Deluxe Tent<br><small>2 adults, full board, taxes incl., 10% promo</small></td><td>3&ndash;5 Nov 2026 (2 nights)</td><td><span class="kac__price">USD 847.92</span> total &middot; ~USD 424 per tent per night (~USD 212 pp)<span class="kac__tag">Live 11 Oct</span></td></tr>
+        <tr><td>Booking.com, Deluxe Tent, single<br><small>1 adult, full board, taxes incl.</small></td><td>3&ndash;5 Nov 2026</td><td><span class="kac__price">USD 729.61</span> total &middot; ~USD 365 per night</td></tr>
+        <tr><td>Booking.com, Club Tent (Olchani)<br><small>2 adults, all-inclusive, taxes incl.</small></td><td>3&ndash;5 Nov 2026</td><td><span class="kac__price">USD 1,520.02</span> total &middot; ~USD 760 per tent per night (~USD 380 pp)</td></tr>
+        <tr><td>Booking.com, Family Tent<br><small>4 guests, full board, taxes incl.</small></td><td>3&ndash;5 Nov 2026</td><td><span class="kac__price">USD 1,670</span> total &middot; ~USD 835 per suite per night (~USD 209 pp)</td></tr>
+        <tr><td>Sarova direct (Google hotel listing)<br><small>2 adults, lowest rate shown, incl. USD 77.14 tax</small></td><td>8&ndash;9 Nov 2026 (1 night)</td><td><span class="kac__price">USD 365.50</span> per night; other sites showed USD 607&ndash;760 for the same night</td></tr>
+        <tr><td>Siyabona / kenyasafari.com feed<br><small>Per room, full board+, "from"</small></td><td>1&ndash;14 Jun &middot; 1 Nov&ndash;22 Dec 2026</td><td><span class="kac__price">USD 394</span> per room</td></tr>
+        <tr><td>Same feed</td><td>15 Jun&ndash;30 Sep 2026</td><td><span class="kac__price">USD 759</span> per room</td></tr>
+        <tr><td>Same feed</td><td>1&ndash;31 Oct 2026</td><td><span class="kac__price">USD 459</span> per room</td></tr>
+        <tr><td>Same feed</td><td>23 Dec 2026&ndash;1 Jan 2027</td><td><span class="kac__price">USD 731</span> per room</td></tr>
+        <tr><td>Operator blog estimate<br><small>Per person, full board</small></td><td>Apr&ndash;May &middot; mid-season &middot; 15 Jun&ndash;Sep &middot; 23 Dec&ndash;3 Jan</td><td>~USD 172 &middot; ~200&ndash;230 &middot; ~380 &middot; ~522 pp</td></tr>
+        <tr><td>Tripadvisor price range<br><small>As displayed</small></td><td>Undated range</td><td>USD 383&ndash;1,650 per night</td></tr>
+        <tr><td>Agent listing<br><small>Per person sharing, full board</small></td><td>Undated</td><td>Deluxe USD 268.50 &middot; Club USD 487.50 pp</td></tr>
+      </tbody>
+      <caption>Lodge rates only; reserve fees, drinks, balloon flights and transfers excluded. Booking.com and Google rates scraped 11 Oct 2026 for the dates shown; feed and blog figures compiled 13 Sep 2026; agent listing accessed 11 Oct 2026. Peak-season 2027 dates returned no bookable rooms yet. Third-party figures are guidelines and can differ from Sarova's contracted rates. Kambu quotes a full package price on request.</caption>
+    </table>
+  </div>
+
+  <div class="kac__tw">
+    <table>
+      <thead><tr><th>Masai Mara reserve entry</th><th>Jan&ndash;Jun</th><th>Jul&ndash;Dec</th><th>Child 9&ndash;17</th></tr></thead>
+      <tbody>
+        <tr><td>Non-resident adult</td><td>USD 100</td><td>USD 200</td><td>USD 50</td></tr>
+        <tr><td>East African resident adult</td><td>KES 2,500</td><td>KES 5,000</td><td>KES 1,250</td></tr>
+        <tr><td>Kenyan citizen adult</td><td>KES 1,500</td><td>KES 3,000</td><td>KES 750</td></tr>
+      </tbody>
+      <caption>Per person per 12-hour ticket; under 9s free. Narok County tariff, eastern sector; checked 14 Sep 2026, non-resident rates reconfirmed Oct 2026. eCitizen does not sell Masai Mara tickets; payment is through the county's system, M-Pesa, card or cash. Fees change without notice.</caption>
+    </table>
+  </div>
+
+  <div class="kac__callout"><b>Reading the figures honestly.</b> The same November night ranged from USD 365.50 on Sarova's own site to USD 760 on Booking.com, partly because the cheapest listing may be a different tent or meal plan. The per-room feed and per-person estimates broadly agree: about USD 197 per person in the low season and about USD 380 at peak. Since Sarova publishes no rate sheet, we confirm the live rate for your exact dates before quoting. Kambu uses one rate structure for resident and non-resident guests on its own services; Sarova and the county set their own resident prices.</div>
+</section>
+
+<!-- ===== 7. SEASONS ===== -->
+<section class="kac__sec" id="kac-seasons">
+  <p class="kac__kicker">Timing</p>
+  <h2>When is the best time <em>to stay at Sarova Mara?</em></h2>
+  <p class="kac__sub">What changes month to month is the wildlife, the roads and the price.</p>
+
+  <div class="kac__tabs">
+    <input type="radio" name="ks" id="ks1" checked>
+    <input type="radio" name="ks" id="ks2">
+    <input type="radio" name="ks" id="ks3">
+    <input type="radio" name="ks" id="ks4">
+    <div class="kac__tablist" role="tablist" aria-label="Seasons">
+      <label class="kac__tablab" for="ks1" role="tab">Jul&ndash;Oct &middot; Migration</label>
+      <label class="kac__tablab" for="ks2" role="tab">Nov&ndash;Dec &middot; Short rains</label>
+      <label class="kac__tablab" for="ks3" role="tab">Jan&ndash;Feb &middot; Short dry</label>
+      <label class="kac__tablab" for="ks4" role="tab">Mar&ndash;Jun &middot; Long rains</label>
+    </div>
+    <div class="kac__panels">
+      <div class="kac__panel" role="tabpanel">
+        <div class="kac__tierhead"><span>Peak tariff &middot; book 9&ndash;12 months ahead</span><h3>July to October</h3></div>
+        <ul class="kac__lead-list">
+          <li><b>Wildlife:</b> wildebeest and zebra herds are in the Mara; river crossings are possible from July and peak in August.</li>
+          <li><b>Cost:</b> USD 200 reserve fee per non-resident adult per day, and the camp's highest rates from mid-June.</li>
+          <li><b>From Sarova:</b> plan at least one full-day drive west for crossings; in some years the herds also spread onto the eastern plains near camp.</li>
+        </ul>
+      </div>
+      <div class="kac__panel" role="tabpanel">
+        <div class="kac__tierhead"><span>Shoulder, then festive peak</span><h3>November and December</h3></div>
+        <ul class="kac__lead-list">
+          <li><b>Weather:</b> brief afternoon showers; roads generally fine.</li>
+          <li><b>Wildlife:</b> most migrating herds have left; resident cats, elephant and plains game remain.</li>
+          <li><b>Cost:</b> November is good value; 23 December to early January carries festive rates and the peak reserve fee.</li>
+        </ul>
+      </div>
+      <div class="kac__panel" role="tabpanel">
+        <div class="kac__tierhead"><span>Low reserve tariff &middot; dry</span><h3>January and February</h3></div>
+        <ul class="kac__lead-list">
+          <li><b>Why go:</b> dry, warm days and good cat viewing at the low USD 100 reserve fee.</li>
+          <li><b>Wildlife:</b> resident herds; cheetah cub sightings are often reported through to May.</li>
+          <li><b>Best for:</b> a two- or three-night in-park stay where the fee saving softens the in-park cost.</li>
+        </ul>
+      </div>
+      <div class="kac__panel" role="tabpanel">
+        <div class="kac__tierhead"><span>Green season &middot; lowest prices</span><h3>March to June</h3></div>
+        <ul class="kac__lead-list">
+          <li><b>Weather:</b> long rains from March; April is the wettest month and roads near the rivers get slick.</li>
+          <li><b>Cost:</b> the lowest lodge rates of the year, plus the low reserve tariff.</li>
+          <li><b>Kambu advice:</b> book a 4&times;4 with good tyres and keep afternoons flexible; June starts drying out and fills fast.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 8. COMPARE ===== -->
+<section class="kac__sec kac__sec--plan" id="kac-compare">
+  <p class="kac__kicker">Alternatives</p>
+  <h2>Sarova Mara vs Kambu Mara Camp <em>and other Sekenani-side lodges</em></h2>
+  <p class="kac__sub">Same gate, different trade-offs. Rates are published references, not Kambu quotes.</p>
+
+  <div class="kac__tw">
+    <table>
+      <thead><tr><th>Stay</th><th>Class</th><th>Style</th><th>Low-season reference</th><th>Choose it if&hellip;</th></tr></thead>
+      <tbody>
+        <tr class="kac__best"><td>Sarova Mara Game Camp</td><td><span class="kac__tag kac__tag--mag">In-park</span></td><td>~72&ndash;75 permanent tents, pool, spa</td><td>~USD 172&ndash;230 pp FB</td><td>you want lodge comforts inside the Reserve and dawn drives with no gate queue</td></tr>
+        <tr><td><a href="https://kambucampers.com/masai-mara/where-to-stay/">Kambu Mara Camp</a></td><td><span class="kac__tag kac__tag--teal">Gate-edge</span></td><td>Our own tented camp ~9 km before Sekenani</td><td>Quoted with your safari</td><td>you want value, resident driver-guides on site, and reserve fees only on drive days</td></tr>
+        <tr><td>Ashnil Mara Camp</td><td><span class="kac__tag kac__tag--mag">In-park</span></td><td>Tented camp on the Mara River</td><td>~USD 170 pp FB (Apr&ndash;May est.)</td><td>you want a river setting closer to the western crossing points</td></tr>
+        <tr><td>Keekorok Lodge</td><td><span class="kac__tag kac__tag--mag">In-park</span></td><td>Large lodge, hippo-pool bar</td><td>~USD 180 pp FB (Mar&ndash;May est.)</td><td>you prefer built rooms and the southern Keekorok plains</td></tr>
+        <tr><td>Mara Sopa Lodge</td><td><span class="kac__tag">Edge</span></td><td>Rondavel-style lodge near Ololaimutia</td><td>~USD 160&ndash;180 pp FB</td><td>you want a built lodge with a pool on the quieter south-east approach</td></tr>
+      </tbody>
+      <caption>Third-party per-person estimates for the low season, compiled 13 Sep 2026 (masaimarasafari.travel). Edge = outside or on the boundary, depending on the source. Kambu confirms current rates per date.</caption>
+    </table>
+  </div>
+  <p class="kac__note">Choose Sarova if in-park comfort and a pool outweigh the extra fee days. Choose Kambu Mara Camp if you'd rather spend the difference on longer game drives.</p>
+</section>
+
+<!-- ===== 9. SUITABILITY ===== -->
+<section class="kac__sec" id="kac-suit">
+  <p class="kac__kicker">Suitability</p>
+  <h2>Who Sarova Mara suits, <em>and who should stay elsewhere</em></h2>
+  <p class="kac__sub">Read the right-hand column too: we would rather route you well than fill a tent.</p>
+  <div class="kac__suit">
+    <div class="kac__suit--yes">
+      <h3>A strong fit if&hellip;</h3>
+      <ul>
+        <li><b>You are travelling with children</b> and want a fenced camp, a pool and a two-bedroom Family Tented Suite.</li>
+        <li><b>You are on a road safari from Nairobi</b> and want to be inside the Reserve within minutes of the tarmac ending.</li>
+        <li><b>It is your first safari</b> and lodge-style comforts (buffet, spa, Wi-Fi) matter as much as the bush.</li>
+        <li><b>You are flying in</b> to Keekorok for two or three nights and want short transfers.</li>
+      </ul>
+    </div>
+    <div class="kac__suit--no">
+      <h3>Look elsewhere if&hellip;</h3>
+      <ul>
+        <li><b>You want an intimate, unfenced camp</b> with animals around your tent at night &rarr; a small conservancy camp.</li>
+        <li><b>River crossings are the whole point</b> of an August trip &rarr; base yourself on the western side near the Mara River.</li>
+        <li><b>You want walking or night drives</b> &rarr; neither is allowed in the Reserve; add conservancy nights.</li>
+        <li><b>Budget is the deciding factor</b> &rarr; <a href="https://kambucampers.com/masai-mara/where-to-stay/">Kambu Mara Camp</a> outside the gate, paying fees only on drive days.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 10. GALLERY ===== -->
+<section class="kac__sec kac__sec--exp" id="kac-gallery">
+  <p class="kac__kicker">Around the camp</p>
+  <h2>Sarova Mara and the Sekenani side <em>in pictures</em></h2>
+  <p class="kac__sub">Camp photographs are Sarova Hotels' own, as published on Booking.com and Tripadvisor.</p>
+  <div class="kac__gal" data-gal>
+    <div class="kac__gal-head">
+      <p>Scroll or use the arrows: seven scenes from the camp and the eastern Mara</p>
+      <div class="kac__gal-nav">
+        <button type="button" class="kac__arrow" data-dir="-1" aria-label="Previous images">&lsaquo;</button>
+        <button type="button" class="kac__arrow" data-dir="1" aria-label="Next images">&rsaquo;</button>
+      </div>
+    </div>
+    <div class="kac__track" tabindex="0" role="region" aria-label="Gallery of Sarova Mara Game Camp and the eastern Masai Mara">
+      <figure class="kac__slide"><img loading="lazy" width="1024" height="646" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/200583810.jpg?k=d80db282eff864fcc03490b5c09686a499e3b57a2774bd74ee6a3e74ecce6dee&amp;o=&amp;hp=1" alt="A lone tent glowing at sunset on the edge of grassland and woodland"><figcaption><b>Sunset over the camp</b>Tents sit along the edge of the woodland. <span class="kac__cred">Photo: Sarova Hotels via Booking.com</span></figcaption></figure>
+      <figure class="kac__slide"><img loading="lazy" width="1100" height="638" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/2f/29/d6/sarova-mara-game-camp.jpg?w=1100&amp;h=-1&amp;s=1" alt="Free-form swimming pool surrounded by palms and trees"><figcaption><b>The pool</b>The main midday draw. <span class="kac__cred">Photo: Sarova Hotels (management photo) via Tripadvisor</span></figcaption></figure>
+      <figure class="kac__slide"><img loading="lazy" width="1024" height="768" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/36541128.jpg?k=7dfb6b0d5c18922177375772486b31ade2d8154d144f5176f57fb17950522eb7&amp;o=&amp;hp=1" alt="Club Tent lounge chair and lamp with the deck seen through open doors at dusk"><figcaption><b>Club Tent at dusk</b>Lounge corner and deck. <span class="kac__cred">Photo: Sarova Hotels via Booking.com</span></figcaption></figure>
+      <figure class="kac__slide"><img loading="lazy" width="1100" height="733" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/2f/27/c0/game-drives-at-the-maasai.jpg?w=1100&amp;h=-1&amp;s=1" alt="A Sarova safari vehicle watching buffalo on the Mara plains"><figcaption><b>Game drives</b>Sarova runs its own vehicles; Kambu guests drive with their Kambu driver-guide. <span class="kac__cred">Photo: Sarova Hotels (management photo) via Tripadvisor</span></figcaption></figure>
+      <figure class="kac__slide"><img loading="lazy" width="1100" height="733" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/2f/2b/12/sarova-mara-game-camp.jpg?w=1100&amp;h=-1&amp;s=1" alt="A hot-air balloon inflating at dawn beside a safari vehicle"><figcaption><b>Dawn balloon</b>Booked through licensed operators at extra cost. <span class="kac__cred">Photo: Sarova Hotels (management photo) via Tripadvisor</span></figcaption></figure>
+      <figure class="kac__slide"><img loading="lazy" width="1280" height="960" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Sekenani_Gate.tif/lossy-page1-1280px-Sekenani_Gate.tif.jpg" alt="Sekenani Gate entrance building of the Maasai Mara National Reserve under acacia trees"><figcaption><b>Sekenani Gate</b>Sarova is 2.4 km past this building. <span class="kac__cred">Trinidade, <a href="https://commons.wikimedia.org/wiki/File:Sekenani_Gate.tif" rel="noopener">Wikimedia Commons</a>, CC BY-SA 4.0</span></figcaption></figure>
+      <figure class="kac__slide"><img loading="lazy" width="1280" height="960" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Mara_River_crossing_08.jpg/1280px-Mara_River_crossing_08.jpg" alt="The Mara River under heavy storm clouds with riverine trees on the far bank"><figcaption><b>The Mara River</b>The crossing points are a full-day drive west of Sarova. <span class="kac__cred">Letherian3, <a href="https://commons.wikimedia.org/wiki/File:Mara_River_crossing_08.jpg" rel="noopener">Wikimedia Commons</a>, CC BY-SA 4.0</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 11. HOW TO BOOK THROUGH KAMBU ===== -->
+<section class="kac__sec" id="kac-book">
+  <p class="kac__kicker">Booking</p>
+  <h2>How to book Sarova Mara <em>on a Kambu safari</em></h2>
+  <p class="kac__sub">Four steps. Nothing is charged until you approve the quote.</p>
+  <ol class="kac__steps">
+    <li><b>Send dates and party.</b> Arrival and departure dates, adults, children's ages, and whether you prefer road or fly-in. WhatsApp or email works.</li>
+    <li><b>We check Sarova's live rate and tent availability</b> for your dates, and price the safari around it: driver-guide, vehicle and transfers, with reserve fees shown on their own line.</li>
+    <li><b>You get one quote</b> with the tent category, meal plan, number of reserve-ticket days, and what is and is not included.</li>
+    <li><b>Confirm with a 50% deposit</b> through our secure Pesapal payment link (card or M-Pesa); the remaining balance is due before or on arrival as set out in your quote.</li>
+  </ol>
+  <div class="kac__ctastrip">
+    <p><b>Weighing Sarova against our own camp?</b> Ask for both quotes side by side, with the reserve-fee difference shown.</p>
+    <div class="kac__ctarow">
+      <a class="kac__btn kac__btn--brass" href="https://wa.me/254769103670?text=Hi%20Kambu%2C%20please%20compare%20Sarova%20Mara%20and%20Kambu%20Mara%20Camp%20for%20my%20dates" rel="noopener">Compare both on WhatsApp</a>
+      <a class="kac__btn kac__btn--ghost" href="mailto:bookings@kambucampers.com?subject=Sarova%20Mara%20Game%20Camp%20quote">Email bookings</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 12. FAQ ===== -->
+<section class="kac__sec kac__sec--plan" id="kac-faq">
+  <p class="kac__kicker">FAQ</p>
+  <h2>Questions guests ask <em>about Sarova Mara Game Camp</em></h2>
+  <p class="kac__sub">Short, direct answers; the sections above carry the detail.</p>
+  <details open><summary>Is Sarova Mara Game Camp inside the Masai Mara National Reserve?</summary><div class="kac__ans"><p>Yes. It sits inside the Reserve boundary on the eastern, Narok County-managed side, 2.4 km by road past Sekenani Gate. That is why reserve fees apply for each day of your stay.</p></div></details>
+  <details><summary>Which gate and airstrip serve Sarova Mara?</summary><div class="kac__ans"><p>Sekenani Gate by road, about 6 minutes from camp. By air, Keekorok airstrip is the nearer strip, 14.6 km or a 20&ndash;30 minute transfer; Ol Kiombo is also used but is much further away.</p></div></details>
+  <details><summary>How far is Sarova Mara from Nairobi?</summary><div class="kac__ans"><p>About 232 km by road via Narok and the C12. Plan on 5&ndash;6 hours with a stop. Scheduled flights from Wilson Airport take roughly 45&ndash;60 minutes to the Mara airstrips.</p></div></details>
+  <details><summary>How much does Sarova Mara cost per night?</summary><div class="kac__ans"><p>Published references put a Deluxe Tent at about USD 180&ndash;270 per person per night, full board, outside peak season, and around USD 380 per person from mid-June to September. For 3&ndash;5 November 2026, Booking.com showed about USD 424 per Deluxe Tent per night for two adults, full board, taxes included (checked 11 October 2026). Reserve fees are extra. See the <a href="#kac-rates">rates table</a>.</p></div></details>
+  <details><summary>Are park fees included in the Sarova Mara rate?</summary><div class="kac__ans"><p>No. Masai Mara reserve fees are charged separately: USD 100 per non-resident adult per day from January to June and USD 200 from July to December. Kambu shows them as a separate line on your quote.</p></div></details>
+  <details><summary>Does Sarova Mara have family rooms?</summary><div class="kac__ans"><p>Yes, a small number of Family Tented Suites of about 129 m&sup2;, with a double bedroom and a twin bedroom, each with its own bathroom, joined by a lounge. Book them early for school holidays.</p></div></details>
+  <details><summary>Is Sarova Mara fenced? Is it safe for children?</summary><div class="kac__ans"><p>The camp has a 24-hour electric fence, which makes it a calm choice for families. The trade-off is fewer animals moving through camp than at an unfenced site.</p></div></details>
+  <details><summary>Can we do walking safaris or night drives from Sarova Mara?</summary><div class="kac__ans"><p>Not in the Reserve. Walking safaris, night drives and off-road driving are prohibited inside the Masai Mara National Reserve; book conservancy nights for those. Guided nature walks at Sarova stay within the camp grounds.</p></div></details>
+  <details><summary>What are Sarova Mara Game Camp's reviews like?</summary><div class="kac__ans"><p>Strong: 4.8/5 on Tripadvisor (2,437 reviews), 4.7/5 on Google (2,096) and 9.2/10 on Booking.com (52), as of 11 October 2026. Guests praise the staff, tents and food; the most common criticism is value for money. See <a href="#kac-reviews">guest ratings</a>.</p></div></details>
+  <details><summary>What is the Olchani tent at Sarova Mara?</summary><div class="kac__ans"><p>It is the Club Tent category, listed on Booking.com as the "Olchani Luxury Camp Tent": about 62 m&sup2; with an extra-large double bed, bath and shower, a larger deck and club-lounge access.</p></div></details>
+  <details><summary>Will we see the river crossing from Sarova Mara?</summary><div class="kac__ans"><p>Not from camp. The crossing points are on the Mara River on the far western side of the Reserve. In July to October we plan a full-day drive with a packed lunch, but nobody can promise a crossing on a given day.</p></div></details>
+  <details><summary>Should I stay at Sarova Mara or Kambu Mara Camp?</summary><div class="kac__ans"><p>Choose Sarova for in-park comfort, a pool and no gate queue at dawn. Choose <a href="https://kambucampers.com/masai-mara/where-to-stay/">Kambu Mara Camp</a> for better value, driver-guides who live on site, and reserve fees paid only on game-drive days.</p></div></details>
+</section>
+
+<!-- ===== SOURCES ===== -->
+<section class="kac__sec" id="kac-sources">
+  <p class="kac__kicker">Sources &amp; freshness</p>
+  <h2>Where these facts come from</h2>
+  <div class="kac__sources">
+    <p><b>Last reviewed: 11 October 2026.</b> Rates and fees change; we re-check before every quote.</p>
+    <ol>
+      <li>Sarova Hotels, Sarova Mara Game Camp and tented-suite pages (sarovahotels.com), via Kambu's 10-hotel research workbook, 12 Sep 2026.</li>
+      <li>Booking.com, Sarova Mara Game Camp listing and live rate sample (Deluxe Tent, 3&ndash;5 Nov 2026), Kambu accommodation export, 29 Sep 2026.</li>
+      <li><a href="https://www.fivestaralliance.com/luxury-hotels/maasai-mara/sarova-mara-game-camp" rel="noopener">Five Star Alliance, Sarova Mara Game Camp</a>, accessed 11 Oct 2026.</li>
+      <li><a href="https://www.savacations.com/kenya/accommodations/sarova-mara-game-camp/" rel="noopener">SA Vacations, Sarova Mara Game Camp</a>, accessed 11 Oct 2026.</li>
+      <li><a href="https://monkey.travel/en/accommodation/sarova-mara" rel="noopener">Monkey Adventures, Sarova Mara Game Camp</a>, accessed 11 Oct 2026.</li>
+      <li><a href="https://www.kenyasafari.com/pricing_sarova-mara-game-camp-masai-mara.html" rel="noopener">Siyabona Africa / kenyasafari.com pricing</a> and <a href="https://masaimarasafari.travel/sarova-mara-game-camp/" rel="noopener">masaimarasafari.travel</a>, via Kambu lodge-rate workbook, 13 Sep 2026.</li>
+      <li>Narok County Masai Mara National Reserve tariff and rules (management plan 2023&ndash;32), via Kambu field-research workbook, checked 14 Sep 2026.</li>
+      <li>Google Maps Routes and Geocoding APIs, road distances and coordinates, 11 Oct 2026.</li>
+      <li><a href="https://www.booking.com/hotel/ke/sarova-mara-game-camp.en-gb.html" rel="noopener">Booking.com listing</a>: room types, sizes, facilities, live rates (3&ndash;5 Nov 2026), 52 reviews and category scores, retrieved via Apify, 11 Oct 2026.</li>
+      <li><a href="https://www.tripadvisor.com/Hotel_Review-g19006858-d504789-Reviews-Sarova_Mara_Game_Camp-Nkoilale_Rift_Valley_Province.html" rel="noopener">Tripadvisor listing</a>: rating histogram, subscores, review tags and management photos, retrieved via Apify, 11 Oct 2026.</li>
+      <li>Google Maps place listing: rating distribution, amenities and hotel-ad prices (8&ndash;9 Nov 2026), retrieved via Apify, 11 Oct 2026.</li>
+    </ol>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== STICKY STAY SHEET (sidebar; toggle on mobile) ===== -->
+<aside class="kac__side" aria-label="Stay sheet">
+  <details class="kac__sidetoggle-wrap" id="kac-sidedet" open>
+    <summary class="kac__sidetoggle">Stay sheet: Sarova Mara at a glance</summary>
+    <div class="kac__sheet-wrap">
+      <div class="kac__sheet">
+        <div class="kac__sheet-h"><span>Stay sheet &middot; In-park</span><b>Sarova Mara Game Camp</b></div>
+        <div class="kac__sheet-b">
+          <ul>
+            <li><span>Gate</span><b>Sekenani &middot; 2.4 km</b></li>
+            <li><span>Airstrip</span><b>Keekorok &middot; 20&ndash;30 min</b></li>
+            <li><span>Tents</span><b>Deluxe &middot; Club &middot; Family</b></li>
+            <li><span>Deluxe, 2 adults</span><b>~USD 424 / tent / night*</b></li>
+            <li><span>Ratings</span><b>4.8 TA &middot; 4.7 G &middot; 9.2 B</b></li>
+            <li><span>Reserve fee (NR)</span><b>USD 100 / 200 pp / day</b></li>
+            <li><span>Fenced</span><b>Yes, electric</b></li>
+            <li><span>Pool &amp; spa</span><b>Yes</b></li>
+          </ul>
+          <div class="kac__sheet-toc" data-spy>
+            <p>On this page</p>
+            <a href="#kac-what">What and where</a>
+            <a href="#kac-inpark">In-park fee estimator</a>
+            <a href="#kac-tents">Tent selector</a>
+            <a href="#kac-day">A day on safari</a>
+            <a href="#kac-reviews">Guest ratings</a>
+            <a href="#kac-rates">2026 rates</a>
+            <a href="#kac-compare">Alternatives</a>
+            <a href="#kac-faq">FAQ</a>
+          </div>
+          <div class="kac__sheet-cta">
+            <a class="kac__btn kac__btn--brass kac__btn--wide" href="https://wa.me/254769103670?text=Hi%20Kambu%2C%20I%27d%20like%20a%20quote%20with%20Sarova%20Mara%20Game%20Camp" rel="noopener">Quote with Sarova</a>
+            <a class="kac__btn kac__btn--ghost kac__btn--wide" href="https://kambucampers.com/masai-mara/where-to-stay/">All Mara stays</a>
+          </div>
+          <small>*Booking.com, full board, taxes incl., 3&ndash;5 Nov 2026, checked 11 Oct 2026. Reserve fees extra.</small>
+        </div>
+      </div>
+    </div>
+  </details>
+</aside>
+
+</div><!-- /body -->
+
+<!-- ========== FINAL CTA ========== -->
+<section class="kac__final">
+  <div class="kac__final-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Maasai-Enkang-near-Sekenani.JPG/1280px-Maasai-Enkang-near-Sekenani.JPG')" aria-hidden="true"></div>
+  <div class="kac__final-tint" aria-hidden="true"></div>
+  <div class="kac__final-in">
+    <p class="kac__kicker">Dates first, then the quote</p>
+    <h2>Plan a Mara safari <em>with Sarova as your base</em></h2>
+    <p>Send your dates, party and road or fly-in preference. We check Sarova's live rate and tent availability, then send one quote with reserve fees on their own line. If our own gate-edge camp fits your plans better, we'll say so.</p>
+    <div class="kac__ctarow">
+      <a class="kac__btn kac__btn--brass" href="https://wa.me/254769103670?text=Hi%20Kambu%2C%20please%20quote%20a%20safari%20staying%20at%20Sarova%20Mara%20Game%20Camp" rel="noopener">Request a Sarova quote</a>
+      <a class="kac__btn kac__btn--ghost" href="https://kambucampers.com/masai-mara/where-to-stay/">Compare Mara stays</a>
+    </div>
+    <p class="kac__final-contact">WhatsApp +254 769 103 670 &middot; <a href="mailto:bookings@kambucampers.com">bookings@kambucampers.com</a> &middot; Kambu Campers Ltd, licensed Kenyan tour operator</p>
+  </div>
+</section>
+
+<!-- ========== RELATED ========== -->
+<section class="kac__rel">
+  <p class="kac__kicker">Keep planning</p>
+  <h2>Where to go <em>from here</em></h2>
+  <div class="kac__relgrid">
+    <div class="kac__relcard" style="--dot:var(--k-gold)"><s>Parent guide</s><h3><a href="https://kambucampers.com/masai-mara/where-to-stay/">Where to stay in the Masai Mara</a></h3><p>In-park, gate-edge and conservancy stays compared.</p></div>
+    <div class="kac__relcard" style="--dot:var(--k-teal)"><s>Kambu's own camp</s><h3><a href="https://kambucampers.com/masai-mara/where-to-stay/">Kambu Mara Camp</a></h3><p>Our gate-edge base near Sekenani, with driver-guides on site.</p></div>
+    <div class="kac__relcard" style="--dot:var(--k-magenta)"><s>Same gate</s><h3>Sekenani Gate</h3><p>Hours, queues and the C12 approach from Narok.</p></div>
+    <div class="kac__relcard" style="--dot:var(--k-blue)"><s>Costs</s><h3>Masai Mara park fees</h3><p>The 12-hour ticket and how to plan fee days.</p></div>
+  </div>
+</section>
+
+<a class="kac__fab" href="https://wa.me/254769103670?text=Hi%20Kambu%2C%20question%20about%20Sarova%20Mara%20Game%20Camp" rel="noopener" aria-label="Chat with Kambu Campers on WhatsApp about Sarova Mara">&#128172; Ask Kambu</a>
+
+<script>
+(function(){
+  var root=document.querySelector('.kac'); if(!root) return;
+  /* progress + scroll-spy */
+  var pb=document.createElement('div');pb.className='kac__progress';document.body.appendChild(pb);
+  window.addEventListener('scroll',function(){var h=document.documentElement,m=h.scrollHeight-h.clientHeight;pb.style.width=(m>0?(h.scrollTop/m*100):0)+'%';},{passive:true});
+  var links=[].slice.call(root.querySelectorAll('[data-spy] a[href^="#"]'));
+  if(links.length&&'IntersectionObserver' in window){
+    var ids={};links.forEach(function(a){var id=a.getAttribute('href').slice(1);(ids[id]=ids[id]||[]).push(a);});
+    var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var g=ids[e.target.id];if(!g)return;links.forEach(function(l){l.classList.remove('is-active');});g.forEach(function(a){a.classList.add('is-active');});});},{rootMargin:'-25% 0px -65% 0px'});
+    Object.keys(ids).forEach(function(id){var s=document.getElementById(id);if(s)obs.observe(s);});
+  }
+  /* sidebar collapsed by default on small screens */
+  var sd=document.getElementById('kac-sidedet');
+  if(sd&&window.matchMedia('(max-width:1100px)').matches){sd.removeAttribute('open');}
+  /* gallery arrows */
+  root.querySelectorAll('[data-gal]').forEach(function(g){
+    var track=g.querySelector('.kac__track');
+    g.querySelectorAll('.kac__arrow').forEach(function(btn){btn.addEventListener('click',function(){var s=track.querySelector('.kac__slide');var step=s?s.getBoundingClientRect().width+16:320;track.scrollBy({left:step*parseInt(btn.dataset.dir,10),behavior:'smooth'});});});
+  });
+  /* fee estimator */
+  var T={nr:{lo:[100,50],hi:[200,50],cur:'USD'},ear:{lo:[2500,1250],hi:[5000,1250],cur:'KES'},kc:{lo:[1500,750],hi:[3000,750],cur:'KES'}};
+  function v(id){var n=parseInt(document.getElementById(id).value,10);return isNaN(n)||n<0?0:n;}
+  function fmt(c,n){return c+' '+n.toLocaleString('en-GB');}
+  function calc(){
+    var t=T[document.getElementById('kc-cat').value],s=t[document.getElementById('kc-month').value];
+    var day=v('kc-ad')*s[0]+v('kc-ch')*s[1],n=v('kc-n'),gd=Math.min(v('kc-gd'),Math.max(n,v('kc-gd')));
+    document.getElementById('kc-in').textContent=fmt(t.cur,day*n);
+    document.getElementById('kc-in-l').textContent='In-park: '+n+' ticket day'+(n===1?'':'s')+' at '+fmt(t.cur,day)+' per day for your party';
+    document.getElementById('kc-out').textContent=fmt(t.cur,day*gd);
+    document.getElementById('kc-out-l').textContent='Gate-edge: '+gd+' game-drive day'+(gd===1?'':'s')+' only; saving '+fmt(t.cur,Math.max(0,day*(n-gd)));
+  }
+  ['kc-cat','kc-month','kc-ad','kc-ch','kc-n','kc-gd'].forEach(function(id){var el=document.getElementById(id);if(el){el.addEventListener('input',calc);el.addEventListener('change',calc);}});
+  calc();
+  /* interactive map on demand (Leaflet + OpenStreetMap) */
+  var btn=document.getElementById('kac-mapbtn'),box=document.getElementById('kac-leaflet'),made=false;
+  function css(h){var l=document.createElement('link');l.rel='stylesheet';l.href=h;document.head.appendChild(l);}
+  function build(){
+    var m=L.map(box,{scrollWheelZoom:false}).setView([-1.515,35.30],11);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:17,attribution:'&copy; OpenStreetMap contributors'}).addTo(m);
+    var P=[[-1.53012,35.31894,'Sarova Mara Game Camp','#C0448E'],[-1.52194,35.33684,'Sekenani Gate','#E45C34'],[-1.46243,35.35649,'Kambu Mara Camp','#159C97'],[-1.58608,35.25934,'Keekorok airstrip','#2B47A8'],[-1.40867,35.11076,'Ol Kiombo airstrip','#2B47A8']];
+    P.forEach(function(p){L.circleMarker([p[0],p[1]],{radius:8,color:'#fff',weight:2,fillColor:p[3],fillOpacity:1}).addTo(m).bindPopup('<b>'+p[2]+'</b>');});
+    L.polyline([[-1.09142,35.87083],[-1.09492,35.86893],[-1.09876,35.86656],[-1.09948,35.85911],[-1.10137,35.83851],[-1.10111,35.83539],[-1.10198,35.83336],[-1.1034,35.82573],[-1.11452,35.81067],[-1.12292,35.7996],[-1.12801,35.79837],[-1.1334,35.79748],[-1.1353,35.79599],[-1.13946,35.78287],[-1.14218,35.77491],[-1.15245,35.76439],[-1.15388,35.76137],[-1.15373,35.7595],[-1.15251,35.75758],[-1.15552,35.75042],[-1.16692,35.74508],[-1.17248,35.74161],[-1.17568,35.73917],[-1.18097,35.73577],[-1.19158,35.72701],[-1.1968,35.72314],[-1.20659,35.71698],[-1.21272,35.71312],[-1.22553,35.70789],[-1.23488,35.70418],[-1.23863,35.70248],[-1.24428,35.69825],[-1.257,35.69008],[-1.26664,35.68314],[-1.27731,35.67554],[-1.28298,35.67133],[-1.29288,35.66332],[-1.30074,35.65812],[-1.30663,35.65353],[-1.31395,35.64706],[-1.32781,35.63566],[-1.33659,35.62861],[-1.34418,35.6226],[-1.34873,35.61904],[-1.35101,35.61656],[-1.35399,35.6107],[-1.36371,35.6036],[-1.37091,35.60081],[-1.37724,35.59962],[-1.3843,35.59831],[-1.39124,35.59551],[-1.39714,35.59445],[-1.40519,35.59518],[-1.40773,35.59455],[-1.40914,35.59268],[-1.41176,35.58163],[-1.41221,35.57492],[-1.40946,35.56256],[-1.40776,35.55827],[-1.40177,35.55123],[-1.39943,35.54566],[-1.39823,35.53738],[-1.39726,35.53051],[-1.39547,35.51806],[-1.39522,35.51092],[-1.39762,35.50165],[-1.40033,35.49142],[-1.40151,35.48489],[-1.40219,35.47995],[-1.40384,35.46754],[-1.4052,35.46343],[-1.40925,35.46016],[-1.41521,35.45617],[-1.42192,35.45199],[-1.4235,35.45069],[-1.42658,35.44317],[-1.42863,35.43678],[-1.4296,35.42731],[-1.42991,35.42183],[-1.43218,35.41749],[-1.43414,35.41332],[-1.43747,35.41303],[-1.44004,35.41236],[-1.44648,35.40946],[-1.44841,35.40757],[-1.4525,35.40534],[-1.45727,35.40359],[-1.45839,35.40042],[-1.46078,35.38601],[-1.46202,35.37988],[-1.46278,35.3753],[-1.46404,35.37285],[-1.46645,35.37225],[-1.47032,35.36945],[-1.47666,35.36736],[-1.48377,35.36496],[-1.48839,35.36157],[-1.49158,35.35912],[-1.49523,35.3576],[-1.50516,35.35432],[-1.50733,35.35162],[-1.5124,35.34449],[-1.51332,35.34282],[-1.51381,35.34129],[-1.51868,35.33861],[-1.52242,35.3363],[-1.52291,35.33136],[-1.5236,35.32892],[-1.52385,35.3225],[-1.52518,35.32102],[-1.52705,35.31901],[-1.52836,35.31869]],{color:'#AD8B54',weight:4}).addTo(m);
+  }
+  if(btn&&box){btn.addEventListener('click',function(){
+    var on=box.classList.toggle('is-on');btn.setAttribute('aria-expanded',on?'true':'false');btn.textContent=on?'Hide the interactive map':'Open the interactive map';
+    if(on&&!made){made=true;css('https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css');var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';s.onload=build;document.head.appendChild(s);}
+  });}
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {"@type":["Organization","TravelAgency"],"@id":"https://kambucampers.com/#organization","name":"Kambu Campers","url":"https://kambucampers.com/","email":"bookings@kambucampers.com","telephone":"+254769103670","address":{"@type":"PostalAddress","addressLocality":"Nairobi","addressCountry":"KE"}},
+    {"@type":"WebSite","@id":"https://kambucampers.com/#website","url":"https://kambucampers.com/","name":"Kambu Campers","publisher":{"@id":"https://kambucampers.com/#organization"}},
+    {"@type":"WebPage","@id":"https://kambucampers.com/sarova-mara-game-camp/#page","url":"https://kambucampers.com/sarova-mara-game-camp/","name":"Sarova Mara Game Camp Guide: Tents, Location & Rates","isPartOf":{"@id":"https://kambucampers.com/#website"},"about":{"@id":"https://kambucampers.com/sarova-mara-game-camp/#lodging"},"breadcrumb":{"@id":"https://kambucampers.com/sarova-mara-game-camp/#breadcrumb"},"dateModified":"2026-10-11","inLanguage":"en-GB"},
+    {"@type":"BreadcrumbList","@id":"https://kambucampers.com/sarova-mara-game-camp/#breadcrumb","itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Kambu Campers","item":"https://kambucampers.com/"},
+      {"@type":"ListItem","position":2,"name":"Where to stay in the Masai Mara","item":"https://kambucampers.com/masai-mara/where-to-stay/"},
+      {"@type":"ListItem","position":3,"name":"Sarova Mara Game Camp","item":"https://kambucampers.com/sarova-mara-game-camp/"}]},
+    {"@type":"LodgingBusiness","@id":"https://kambucampers.com/sarova-mara-game-camp/#lodging","name":"Sarova Mara Game Camp","alternateName":"Mara Sarova Camp","url":"https://www.sarovahotels.com/maracamp-masai-mara/","brand":{"@type":"Brand","name":"Sarova Hotels"},
+      "address":{"@type":"PostalAddress","addressLocality":"Sekenani","addressRegion":"Narok County","addressCountry":"KE"},
+      "geo":{"@type":"GeoCoordinates","latitude":-1.53012,"longitude":35.31894},
+      "containedInPlace":{"@type":"Place","name":"Masai Mara National Reserve"},
+      "checkinTime":"12:00","checkoutTime":"11:00",
+      "amenityFeature":[
+        {"@type":"LocationFeatureSpecification","name":"Outdoor swimming pool","value":true},
+        {"@type":"LocationFeatureSpecification","name":"Spa","value":true},
+        {"@type":"LocationFeatureSpecification","name":"Restaurant","value":true},
+        {"@type":"LocationFeatureSpecification","name":"Wi-Fi","value":true},
+        {"@type":"LocationFeatureSpecification","name":"Family suites","value":true}]},
+    {"@type":"FAQPage","@id":"https://kambucampers.com/sarova-mara-game-camp/#faq","mainEntity":[
+      {"@type":"Question","name":"Is Sarova Mara Game Camp inside the Masai Mara National Reserve?","acceptedAnswer":{"@type":"Answer","text":"Yes. It sits inside the Reserve boundary on the eastern, Narok County-managed side, 2.4 km by road past Sekenani Gate. That is why reserve fees apply for each day of your stay."}},
+      {"@type":"Question","name":"Which gate and airstrip serve Sarova Mara?","acceptedAnswer":{"@type":"Answer","text":"Sekenani Gate by road, about 6 minutes from camp. By air, Keekorok airstrip is the nearer strip, 14.6 km or a 20&ndash;30 minute transfer; Ol Kiombo is also used but is much further away."}},
+      {"@type":"Question","name":"How far is Sarova Mara from Nairobi?","acceptedAnswer":{"@type":"Answer","text":"About 232 km by road via Narok and the C12. Plan on 5–6 hours with a stop. Scheduled flights from Wilson Airport take roughly 45–60 minutes to the Mara airstrips."}},
+      {"@type":"Question","name":"How much does Sarova Mara cost per night?","acceptedAnswer":{"@type":"Answer","text":"Published references put a Deluxe Tent at about USD 180–270 per person per night, full board, outside peak season, and around USD 380 per person from mid-June to September. For 3–5 November 2026, Booking.com showed about USD 424 per Deluxe Tent per night for two adults, full board, taxes included (checked 11 October 2026). Reserve fees are extra."}},
+      {"@type":"Question","name":"Are park fees included in the Sarova Mara rate?","acceptedAnswer":{"@type":"Answer","text":"No. Masai Mara reserve fees are charged separately: USD 100 per non-resident adult per day from January to June and USD 200 from July to December. Kambu shows them as a separate line on your quote."}},
+      {"@type":"Question","name":"Does Sarova Mara have family rooms?","acceptedAnswer":{"@type":"Answer","text":"Yes, a small number of Family Tented Suites of about 129 m², with a double bedroom and a twin bedroom, each with its own bathroom, joined by a lounge. Book them early for school holidays."}},
+      {"@type":"Question","name":"Is Sarova Mara fenced? Is it safe for children?","acceptedAnswer":{"@type":"Answer","text":"The camp has a 24-hour electric fence, which makes it a calm choice for families. The trade-off is fewer animals moving through camp than at an unfenced site."}},
+      {"@type":"Question","name":"Can we do walking safaris or night drives from Sarova Mara?","acceptedAnswer":{"@type":"Answer","text":"Not in the Reserve. Walking safaris, night drives and off-road driving are prohibited inside the Masai Mara National Reserve; book conservancy nights for those. Guided nature walks at Sarova stay within the camp grounds."}},
+      {"@type":"Question","name":"What are Sarova Mara Game Camp's reviews like?","acceptedAnswer":{"@type":"Answer","text":"Strong: 4.8/5 on Tripadvisor (2,437 reviews), 4.7/5 on Google (2,096) and 9.2/10 on Booking.com (52), as of 11 October 2026. Guests praise the staff, tents and food; the most common criticism is value for money."}},
+      {"@type":"Question","name":"What is the Olchani tent at Sarova Mara?","acceptedAnswer":{"@type":"Answer","text":"It is the Club Tent category, listed on Booking.com as the \"Olchani Luxury Camp Tent\": about 62 m² with an extra-large double bed, bath and shower, a larger deck and club-lounge access."}},
+      {"@type":"Question","name":"Will we see the river crossing from Sarova Mara?","acceptedAnswer":{"@type":"Answer","text":"Not from camp. The crossing points are on the Mara River on the far western side of the Reserve. In July to October we plan a full-day drive with a packed lunch, but nobody can promise a crossing on a given day."}},
+      {"@type":"Question","name":"Should I stay at Sarova Mara or Kambu Mara Camp?","acceptedAnswer":{"@type":"Answer","text":"Choose Sarova for in-park comfort, a pool and no gate queue at dawn. Choose Kambu Mara Camp for better value, driver-guides who live on site, and reserve fees paid only on game-drive days."}}
+    ]}
+  ]
+}
+</script>
+</article>

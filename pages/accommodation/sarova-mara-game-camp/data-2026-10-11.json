@@ -1,0 +1,210 @@
+{
+ "retrieved": "2026-10-11",
+ "source": "Apify (voyager/booking-scraper, voyager/booking-reviews-scraper, maxcopell/tripadvisor, compass/crawler-google-places)",
+ "booking": {
+  "rating": 9.2,
+  "reviews": 52,
+  "categories": [
+   {
+    "title": "Location",
+    "score": 9.6
+   },
+   {
+    "title": "Cleanliness",
+    "score": 9.3
+   },
+   {
+    "title": "Value for money",
+    "score": 8.7
+   },
+   {
+    "title": "Facilities",
+    "score": 9.1
+   },
+   {
+    "title": "Comfort",
+    "score": 9.5
+   },
+   {
+    "title": "Staff",
+    "score": 9.5
+   },
+   {
+    "title": "Free WiFi",
+    "score": 9.2
+   }
+  ],
+  "checkIn": "From 12:00 to 18:00Guests are required to show a photo identification and credit card upon check-inYou'll need to let the property know in advance what time you'll arrive.",
+  "checkOut": "From 06:00 to 11:00",
+  "rates_2026_11_03_to_05": [
+   {
+    "room": "Olchani Luxury Camp Tent",
+    "options": [
+     {
+      "persons": 2,
+      "total_usd_incl_tax": 1520.02,
+      "meal_plan": "All-Inclusive",
+      "discount": null
+     },
+     {
+      "persons": 1,
+      "total_usd_incl_tax": 1320,
+      "meal_plan": "All-Inclusive",
+      "discount": null
+     }
+    ],
+    "rooms_left": 4
+   },
+   {
+    "room": "Deluxe Tent",
+    "options": [
+     {
+      "persons": 2,
+      "total_usd_incl_tax": 847.92,
+      "meal_plan": "Breakfast, lunch & dinner included",
+      "discount": "10% off"
+     },
+     {
+      "persons": 1,
+      "total_usd_incl_tax": 729.61,
+      "meal_plan": "Breakfast, lunch & dinner included",
+      "discount": "10% off"
+     }
+    ],
+    "rooms_left": 10
+   },
+   {
+    "room": "Family Tent",
+    "options": [
+     {
+      "persons": 4,
+      "total_usd_incl_tax": 1670,
+      "meal_plan": "Breakfast, lunch & dinner included",
+      "discount": null
+     }
+    ],
+    "rooms_left": 2
+   }
+  ],
+  "room_sizes_sqft": {
+   "Olchani Luxury Camp Tent": 667,
+   "Deluxe Tent": 614,
+   "Family Tent": 1389
+  },
+  "review_mix": {
+   "couples": 26,
+   "groups": 11,
+   "families": 9,
+   "solo": 6
+  },
+  "peak_2027_dates": "no rooms returned for 10-12 Aug 2027 or 13-15 Apr 2027"
+ },
+ "tripadvisor": {
+  "rating": 4.8,
+  "reviews": 2437,
+  "histogram": {
+   "count1": 17,
+   "count2": 23,
+   "count3": 53,
+   "count4": 366,
+   "count5": 1978
+  },
+  "subscores": [
+   {
+    "categoryName": "Location",
+    "score": 4.792488,
+    "roundedScore": 4.8
+   },
+   {
+    "categoryName": "Rooms",
+    "score": 4.703665,
+    "roundedScore": 4.7
+   },
+   {
+    "categoryName": "Value",
+    "score": 4.5592732,
+    "roundedScore": 4.6
+   },
+   {
+    "categoryName": "Cleanliness",
+    "score": 4.7520328,
+    "roundedScore": 4.8
+   },
+   {
+    "categoryName": "Service",
+    "score": 4.7568307,
+    "roundedScore": 4.8
+   },
+   {
+    "categoryName": "Sleep Quality",
+    "score": 4.6866665,
+    "roundedScore": 4.7
+   }
+  ],
+  "rooms": 75,
+  "priceRange": "$383 - $1,650",
+  "url": "https://www.tripadvisor.com/Hotel_Review-g19006858-d504789-Reviews-Sarova_Mara_Game_Camp-Nkoilale_Rift_Valley_Province.html"
+ },
+ "google": {
+  "rating": 4.7,
+  "reviews": 2096,
+  "distribution": {
+   "oneStar": 41,
+   "twoStar": 20,
+   "threeStar": 46,
+   "fourStar": 312,
+   "fiveStar": 1677
+  },
+  "hotelStars": "4-star hotel",
+  "hotelAds_2026_11_08": [
+   {
+    "site": "Sarova Mara Game Camp - Safari Lodge in Kenya",
+    "price": "$366"
+   },
+   {
+    "site": "Booking.com",
+    "price": "$760"
+   },
+   {
+    "site": "Expedia.com",
+    "price": "$676"
+   },
+   {
+    "site": "Hotels.com",
+    "price": "$676"
+   },
+   {
+    "site": "Luxury Escapes",
+    "price": "$622"
+   },
+   {
+    "site": "Bluepillow.com",
+    "price": "$607"
+   },
+   {
+    "site": "Travelocity.com",
+    "price": "$676"
+   },
+   {
+    "site": "ZenHotels.com",
+    "price": "$676"
+   },
+   {
+    "site": "Orbitz.com",
+    "price": "$676"
+   },
+   {
+    "site": "eDreams",
+    "price": "$676"
+   },
+   {
+    "site": "CheapTickets.com",
+    "price": "$676"
+   },
+   {
+    "site": "m\u00fcv AI",
+    "price": "$676"
+   }
+  ]
+ }
+}
