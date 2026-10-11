@@ -1,0 +1,5 @@
+Kenya campsites map v3 - verification (11 Oct 2026)
+checks.py: words 57211 | passed 69 | failed 0 | Apify token in output: 0 | "confidence" in block: 0
+Playwright 390/768/1440 px: overflow 0 | broken imgs 0 | console errors 0 | H1 1 | H2 34 | region anchors 16 | boundary paths 219 | Showing 148 of 187 campsites | map ready
+Pin popups (1440 + 390 px): region-map pin opens overview | "Read more" jumps to #site-oloololo-public-campsite, card in view | keyboard Enter opens, Escape closes | national-map pin opens (Eliye Springs Tents) | interactive map popup uses same overview + read-more | logo watermark present on interactive map
+Reviews: 114 Google review blocks rendered | 90 pros/cons blocks (after second Apify pass) | 0 confidence labels

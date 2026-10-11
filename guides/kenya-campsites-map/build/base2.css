@@ -1,0 +1,167 @@
+/* ===== v2 additions: regions, campsite profiles, calculator, watermark ===== */
+.kcm{--t-mtn:#6A4C93}
+.kcm__t--mtn{--c:var(--t-mtn)}
+
+/* Kambu watermark on Kambu-made images (maps, graphics). Photos opt in with class kcm__own once replaced. */
+.kcm__own{position:relative}
+.kcm__own::after{content:"";position:absolute;inset:0;background:var(--wm) center 50%/min(52%,420px) auto no-repeat;opacity:.1;pointer-events:none;z-index:2}
+.kcm__own::before{content:"@kambucampers.com";position:absolute;left:12px;bottom:10px;font:italic 600 .78rem 'Inter',sans-serif;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.65);z-index:3;pointer-events:none}
+.kcm figure.kcm__own figcaption{position:relative;z-index:4}
+
+/* hero refresh */
+.kcm__hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:center;max-width:1240px;margin:0 auto;text-align:left}
+.kcm__hero-grid h1{margin-left:0;max-width:16ch}
+.kcm__hero-grid .kcm__lead{text-align:left;margin-left:0}
+.kcm__hero-grid .kcm__hero-cta{justify-content:flex-start}
+.kcm__hero-grid .kcm__pill{margin-left:0}
+.kcm__heromap{background:rgba(252,250,244,.96);border-radius:18px;padding:10px;box-shadow:0 24px 60px -24px rgba(0,0,0,.6)}
+.kcm__heromap svg{display:block;width:100%;height:auto;border-radius:12px}
+.kcm__stats--hero{grid-template-columns:repeat(4,minmax(0,1fr));margin-left:0}
+
+/* region jump grid */
+.kcm__rgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:var(--measure);margin:24px auto 0;text-align:left}
+.kcm a.kcm__rtile{display:flex;flex-direction:column;gap:6px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px 13px;color:var(--ink);border-bottom-width:1px;transition:transform .16s,box-shadow .16s;position:relative;overflow:hidden}
+.kcm a.kcm__rtile:hover{transform:translateY(-3px);box-shadow:0 14px 30px -16px rgba(25,27,24,.35);color:var(--ink)}
+.kcm a.kcm__rtile::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--k-feather)}
+.kcm__rtile b{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.18rem;color:var(--forest);line-height:1.15}
+.kcm__rtile span{font-size:.76rem;color:#5F655D}
+.kcm__rtile i{display:flex;height:6px;border-radius:3px;overflow:hidden;font-style:normal;background:var(--line)}
+.kcm__rtile i u{display:block;height:100%;text-decoration:none}
+
+/* region chapter */
+.kcm__chap{display:inline-flex;align-items:center;gap:10px;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--brass-d);margin:0 0 10px}
+.kcm__chap b{display:inline-flex;width:30px;height:30px;border-radius:50%;background:var(--forest);color:var(--brass-l);align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:0;font-variant-numeric:lining-nums}
+.kcm__rhead{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:28px;align-items:start;max-width:var(--measure);margin:0 auto 26px;text-align:left}
+.kcm__rhead .kcm__answer{margin:0 0 14px;max-width:none}
+.kcm__rfacts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 14px}
+.kcm__rfacts div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.kcm__rfacts b{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-size:1.45rem;line-height:1.05;color:var(--forest);font-variant-numeric:lining-nums}
+.kcm__rfacts span{font-size:.72rem;color:#5F655D;line-height:1.35;display:block;margin-top:3px}
+.kcm__rmap{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.kcm__rmap svg{display:block;width:100%;height:auto}
+.kcm__rmap figcaption{font-size:.78rem;color:#5A6259;padding:10px 14px;line-height:1.55}
+
+/* campsite profile cards */
+.kcm__sites{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:var(--measure);margin:0 auto;text-align:left}
+.kcm__site{position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px 14px 22px;scroll-margin-top:76px}
+.kcm__site::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;border-radius:14px 0 0 14px;background:var(--c,#999)}
+.kcm__site:target{box-shadow:0 0 0 3px var(--k-teal)}
+.kcm__site--kws-p{--c:var(--t-kwsp)}.kcm__site--kws-s{--c:var(--t-kwss)}.kcm__site--mara{--c:var(--t-mara)}.kcm__site--cons{--c:var(--t-cons)}
+.kcm__site--priv{--c:var(--t-priv)}.kcm__site--kmc{--c:var(--t-kmc)}.kcm__site--mtn{--c:var(--t-mtn)}
+.kcm__site--off{background:#FAF8F3}
+.kcm__site-h{display:flex;gap:12px;align-items:flex-start}
+.kcm__pin{flex:none;width:28px;height:28px;border-radius:50%;background:var(--c,#999);color:#fff;font:700 .78rem 'Inter',sans-serif;display:flex;align-items:center;justify-content:center;margin-top:2px;font-variant-numeric:tabular-nums}
+.kcm__site h3{font-size:1.24rem;margin:0;line-height:1.2}
+.kcm__site .kcm__alias{display:block;font-size:.76rem;color:#5F655D;margin-top:2px}
+.kcm__tags{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 10px}
+.kcm__tag{display:inline-flex;align-items:center;gap:5px;font-size:.7rem;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--ivory);border:1px solid var(--line);color:#41493F;white-space:nowrap}
+.kcm__tag--warn{background:#F6ECD6;border-color:#EAD9B4;color:#6E4A0E}
+.kcm__tag--off{background:#F3E3DC;border-color:#E7CBBE;color:#8E3A1C}
+.kcm__kv{display:grid;grid-template-columns:7.2em 1fr;gap:4px 12px;margin:0;font-size:.86rem}
+.kcm__kv dt{color:#5F655D;font-weight:600;font-size:.76rem;letter-spacing:.04em;text-transform:uppercase;padding-top:2px}
+.kcm__kv dd{margin:0;color:#2E352F;line-height:1.5}
+.kcm__kv dd b{color:var(--forest)}
+.kcm__site details{margin:10px 0 0;border-radius:10px;max-width:none}
+.kcm__site summary{font-size:.84rem;padding:10px 40px 10px 14px}
+.kcm__site .kcm__ans{font-size:.85rem;padding:12px 14px 14px}
+.kcm__site .kcm__ans p{margin-bottom:.6em}
+.kcm__srcs{font-size:.76rem;color:#5F655D;margin:6px 0 0}
+.kcm__srcs a{font-size:.76rem}
+.kcm__conf{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.kcm__conf--high{color:#2F6B44}.kcm__conf--medium{color:#6E4A0E}.kcm__conf--low{color:#8E3A1C}
+
+/* fee cards per authority */
+.kcm__feegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:var(--measure);margin:24px auto 0;text-align:left}
+.kcm__feecard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;position:relative;overflow:hidden}
+.kcm__feecard::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--c,var(--brass))}
+.kcm__feecard h3{font-size:1.2rem;margin:0 0 4px}
+.kcm__feecard .kcm__who{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#5F655D;margin:0 0 10px}
+.kcm__feecard table{min-width:0;font-size:.84rem}
+.kcm__feecard td,.kcm__feecard th{padding:8px 10px}
+.kcm__feecard .kcm__tw{margin:8px 0 6px;box-shadow:none}
+
+/* calculator */
+.kcm__calc{max-width:var(--measure);margin:26px auto 0;background:var(--forest);color:#E4DCCC;border-radius:18px;padding:24px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;text-align:left;position:relative;overflow:hidden}
+.kcm__calc::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--k-feather)}
+.kcm__calc h3{color:#fff;margin:0 0 6px}
+.kcm__calc p{color:#B9C6BC;font-size:.86rem}
+.kcm__calc label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brass-l);margin:12px 0 5px}
+.kcm__calc select,.kcm__calc input{width:100%;min-height:44px;border-radius:10px;border:1px solid rgba(255,255,255,.25);background:#fff;color:var(--ink);padding:8px 10px;font:500 .9rem 'Inter',sans-serif}
+.kcm__calc .kcm__crow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.kcm__cout{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:18px 20px}
+.kcm__cout table{min-width:0;font-size:.88rem;color:#E4DCCC}
+.kcm__cout td{border-top:1px solid rgba(255,255,255,.12);color:#E4DCCC;padding:8px 6px}
+.kcm__cout tbody tr:nth-child(even){background:transparent}
+.kcm__cout td:last-child{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.kcm__ctotal{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.1rem;color:var(--brass-l);line-height:1;margin:10px 0 4px;font-variant-numeric:lining-nums}
+.kcm__cnote{font-size:.78rem;color:#A9BCB0;margin:8px 0 0}
+
+/* info panels for access/seasons/safety */
+.kcm__panels3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:var(--measure);margin:24px auto 0;text-align:left}
+.kcm__pcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.kcm__pcard h3{font-size:1.16rem;margin:0 0 8px}
+.kcm__pcard p,.kcm__pcard li{font-size:.87rem;color:#41493F}
+.kcm__pcard ul{margin:0;padding-left:18px}
+.kcm__months{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;max-width:var(--measure);margin:20px auto 6px}
+.kcm__months div{border-radius:8px;padding:10px 2px;text-align:center;font-size:.72rem;font-weight:700;color:var(--forest);background:#EFE8D8}
+.kcm__months div.r1{background:#2B47A8;color:#fff}.kcm__months div.r2{background:#159C97;color:#fff}.kcm__months div.r3{background:#C9DCEB;color:#1B2F57}
+.kcm__months div span{display:block;font-weight:500;font-size:.62rem;margin-top:3px;opacity:.95}
+.kcm__checklist{columns:2;column-gap:28px;max-width:var(--copy);margin:0 auto;text-align:left;list-style:none;padding:0}
+.kcm__checklist li{break-inside:avoid;padding:6px 0 6px 0;font-size:.88rem;color:#41493F}
+.kcm__checklist label{display:flex;gap:9px;align-items:flex-start;cursor:pointer}
+.kcm__checklist input{width:18px;height:18px;margin-top:3px;accent-color:var(--forest);flex:none}
+
+@media(max-width:1000px){
+  .kcm__hero-grid,.kcm__rhead,.kcm__calc{grid-template-columns:1fr}
+  .kcm__rgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kcm__sites,.kcm__feegrid{grid-template-columns:1fr}
+  .kcm__panels3{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+  .kcm__rfacts{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .kcm__rfacts b{font-size:1.2rem}
+  .kcm__calc .kcm__crow{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kcm__months{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .kcm__checklist{columns:1}
+  .kcm__kv{grid-template-columns:1fr;gap:0 0}
+  .kcm__kv dt{padding-top:8px}
+  .kcm__stats--hero{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kcm__site{padding:14px 14px 12px 18px}
+}
+
+.kcm__split>*{min-width:0}
+.kcm__tw--fit table{min-width:0}
+
+.kcm__rmap .kcm__scroll svg{min-width:0}
+.kcm .kcm__stats--hero .kcm__stat:last-child{grid-column:auto}
+.kcm .kcm__calc p.kcm__ctotal{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.1rem;color:var(--brass-l);line-height:1.05;margin:10px 0 6px}
+.kcm .kcm__calc p.kcm__cnote{font-size:.78rem;color:#A9BCB0}
+
+/* clickable SVG pins + overview popup */
+.kcm .kcm__mpin{cursor:pointer;outline:none}
+.kcm .kcm__mpin:hover .kcm__mdot,.kcm .kcm__mpin:focus-visible .kcm__mdot,.kcm .kcm__mpin.is-on .kcm__mdot{stroke:#191B18;stroke-width:3}
+.kcm__rmap,.kcm__fig{position:relative}
+.kcm__mpop{position:absolute;z-index:20;width:min(300px,86%);background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 40px -16px rgba(25,27,24,.45);padding:12px 14px 12px;text-align:left;font-size:.82rem;color:#2E352F}
+.kcm__mpop[hidden]{display:none}
+.kcm__mpop b.kcm__mpop-n{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-size:1.15rem;line-height:1.2;color:var(--forest);padding-right:22px}
+.kcm__mpop p{margin-top:5px;margin-bottom:0;line-height:1.45}
+.kcm__mpop .kcm__mpop-meta{color:#5F655D;font-size:.76rem}
+.kcm__mpop .kcm__mpop-flag{color:#8E3A1C;font-weight:600}
+.kcm__mpop .kcm__mpop-rev{font-weight:600;color:var(--forest)}
+.kcm__mpop a.kcm__mpop-more{display:inline-block;margin-top:8px;font-weight:700;font-size:.82rem}
+.kcm button.kcm__mpop-x{position:absolute;top:6px;right:6px;width:30px;height:30px;border:0;background:transparent;font-size:1.2rem;line-height:1;color:#4C554B;cursor:pointer;border-radius:50%}
+.kcm button.kcm__mpop-x:hover{background:var(--ivory)}
+.kcm__map{position:relative}
+.kcm__mapwm{position:absolute;inset:0;z-index:401;pointer-events:none;background:var(--wm) center 50%/min(52%,460px) auto no-repeat;opacity:.13}
+.kcm__mapwm-t{position:absolute;left:12px;bottom:8px;z-index:402;pointer-events:none;font:italic 600 .8rem 'Inter',sans-serif;color:#233A31;text-shadow:0 0 3px #fff,0 0 3px #fff}
+.kcm__site:target,.kcm__site.is-flash{box-shadow:0 0 0 3px var(--k-teal),0 18px 40px -20px rgba(25,27,24,.4)}
+.kcm__rev{margin:10px 0 0;padding:10px 12px;background:var(--ivory);border:1px solid var(--line);border-radius:10px;font-size:.83rem}
+.kcm__rev-h{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin:0 0 6px}
+.kcm__rev-h b{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.25rem;color:var(--forest);font-variant-numeric:lining-nums}
+.kcm__rev-h span{color:#5F655D;font-size:.76rem}
+.kcm__pc{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;margin:6px 0 0}
+.kcm__pc ul{margin:0;padding-left:16px}
+.kcm__pc li{margin:2px 0;color:#2E352F}
+.kcm__pc p{margin:0 0 2px;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.kcm__pc .kcm__pro p{color:#2F6B44}.kcm__pc .kcm__con p{color:#A9512E}
+@media(max-width:680px){.kcm__pc{grid-template-columns:1fr}}
