@@ -1,0 +1,95 @@
+{
+  "summary": {
+    "health_score": 63,
+    "business_type": "Local hospitality: tented camp and campsite near Sekenani Gate, Masai Mara, with safari packages",
+    "top_findings": [
+      "32-page /v2/ duplicate site is indexable and listed in the sitemap",
+      "Three sources write duplicate meta descriptions, canonicals and OG tags; the first description is scraped menu text",
+      "WordPress default pages (Hello World, Sample Page, /10-2/, Uncategorized) are indexable and in the sitemap",
+      "No analytics: MonsterInsights reports 'No tracking code set'",
+      "Homepage title is 'Home'; other titles run to about 83 characters"
+    ],
+    "quick_wins": [
+      "Noindex /v2/ and remove it from the sitemap",
+      "Delete WordPress default content",
+      "Turn off duplicate meta and OG output",
+      "Shorten the site title and set a homepage title",
+      "Connect GA4 and Search Console"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 45,
+      "what_works": ["http and www redirect to https apex", "Real 404 status", "Clean robots.txt", "Sitemap index loads without errors", "Server-rendered HTML"],
+      "findings": [
+        {"title": "/v2/ duplicate site indexable", "severity": "Critical", "description": "/v2/ and /v2/tents/ return 200, index,follow, self-canonical; 32 /v2/ URLs in page-sitemap1.xml.", "recommendation": "Move to staging or noindex and remove from the sitemap; 301 to the live URLs at launch."},
+        {"title": "WordPress default pages indexable", "severity": "High", "description": "/hello-world/, /sample-page/, /10-2/ and /category/uncategorized/ are live and in the sitemap.", "recommendation": "Delete them and confirm they drop out of the sitemap."},
+        {"title": "Duplicate head tags", "severity": "High", "description": "2 canonicals, 3 meta descriptions, 2 og:title per page.", "recommendation": "Keep one source of SEO tags."},
+        {"title": "No analytics", "severity": "High", "description": "MonsterInsights comment: No tracking code set.", "recommendation": "Connect GA4 and verify Search Console."},
+        {"title": "Admin username exposed", "severity": "Medium", "description": "meta author = Admin-JQPbu.", "recommendation": "Change the public display name."}
+      ]
+    },
+    {
+      "name": "Content Quality",
+      "score": 80,
+      "what_works": ["Question-based H2s", "Specific prices, distances and fees", "First-hand local-operator experience signals", "About 2,400-3,300 words on main pages"],
+      "findings": [
+        {"title": "Overlap with kambucampers.com", "severity": "Medium", "description": "Both domains have 3-day Masai Mara safari pages and pages about the camp.", "recommendation": "Assign one ranking page per topic across the two sites."},
+        {"title": "Rating figures differ between sites", "severity": "Medium", "description": "9.4/251 Booking.com here vs 4.8/412 in kambucampers.com schema.", "recommendation": "Use the same review figures on both sites."}
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "score": 50,
+      "what_works": ["One descriptive H1 per page"],
+      "findings": [
+        {"title": "Homepage title is 'Home'", "severity": "High", "description": "<title>Home</title>", "recommendation": "Write a descriptive homepage title."},
+        {"title": "Titles too long", "severity": "High", "description": "64-character site name appended to every title.", "recommendation": "Shorten the site title to 'Kambu Mara Camp'."},
+        {"title": "Scraped text as meta description", "severity": "High", "description": "First description begins 'Skip to contentWhatsAppBook now...'.", "recommendation": "Use the theme's hand-written descriptions only."}
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "score": 55,
+      "what_works": ["Campground with address, geo, phone, priceRange and amenities", "Accommodation types on /tents/"],
+      "findings": [
+        {"title": "Overlapping schema blocks", "severity": "High", "description": "Two Organizations (one with an empty name) and three BreadcrumbLists per page.", "recommendation": "Merge into one graph."},
+        {"title": "Campground missing properties", "severity": "Medium", "description": "No image, sameAs, checkinTime or checkoutTime.", "recommendation": "Add them; leave out self-serving aggregateRating."}
+      ]
+    },
+    {
+      "name": "Performance (CWV)",
+      "score": 75,
+      "what_works": ["4 stylesheets, no render-blocking scripts", "WebP images with dimensions set", "Lazy loading"],
+      "findings": [
+        {"title": "Heavy pages", "severity": "Medium", "description": "/reviews/ about 680 KB HTML and 239 images; /v2/ about 490 KB.", "recommendation": "Paginate reviews; measure real Core Web Vitals."}
+      ]
+    },
+    {
+      "name": "AI Search Readiness",
+      "score": 70,
+      "what_works": ["Question-format sections", "Specific facts that can be quoted"],
+      "findings": [
+        {"title": "Inconsistent entity signals", "severity": "Medium", "description": "Scraped descriptions, no og:image, no sameAs, name and ratings differ across sister sites.", "recommendation": "Clean up meta, add sameAs, align the camp's details across sites."}
+      ]
+    },
+    {
+      "name": "Images",
+      "score": 85,
+      "what_works": ["No missing alt attributes on checked pages", "WebP", "width and height set"],
+      "findings": [
+        {"title": "No og:image", "severity": "Medium", "description": "No og:image tag on any page checked.", "recommendation": "Add a default 1200x630 image plus one per page."}
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {"name": "Phase 1: Critical Fixes", "timeframe": "Week 1", "items": ["Get /v2/ out of the index", "Delete WordPress default content"]},
+      {"name": "Phase 2: High-Impact Improvements", "timeframe": "Weeks 2-3", "items": ["One source of meta tags", "Rewrite titles", "GA4 and Search Console", "Merge schema"]},
+      {"name": "Phase 3: Content & Authority", "timeframe": "Month 2", "items": ["og:image", "Divide topics between the two sites", "Align review figures", "Make /reviews/ smaller"]},
+      {"name": "Phase 4: Monitoring & Iteration", "timeframe": "Ongoing", "items": ["Monthly Core Web Vitals check", "Sitemap and index coverage checks"]}
+    ]
+  },
+  "artifacts": {"findings_dir": "findings/", "screenshots_dir": "screenshots/"}
+}
