@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "keywords-everywhere": {
+      "type": "http",
+      "url": "https://mcp.keywordseverywhere.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${KEYWORDS_EVERYWHERE_API_KEY:-injected-by-proxy}"
+      }
+    }
+  }
+}
